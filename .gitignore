@@ -1,0 +1,4 @@
+myCoreMvc/bin/*
+myCoreMvc/wwwroot/*
+myCoreMvc/obj/*
+.vs/*
