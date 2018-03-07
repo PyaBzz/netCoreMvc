@@ -29,9 +29,22 @@ namespace myCoreMvc
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            //-------------------------------  Pipeline Experiment  ---------------------------------
+            app.Use(async (context, next) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("Forward order- In the Startup class" + Environment.NewLine);
+                await next.Invoke();
+                await context.Response.WriteAsync("Reverse order- In the Startup class" + Environment.NewLine);
+            });
+            app.UseMiddleware<CustomMiddleware>();
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("--------------------------------------------------------------" + Environment.NewLine);
+                await context.Response.WriteAsync(
+                    "Client IP address: " + context.Request.HttpContext.Connection.RemoteIpAddress.ToString() +
+                    "Host IP address: " + context.Request.HttpContext.Connection.LocalIpAddress.ToString() + Environment.NewLine +
+                    $"8 factorial is {8.Factorial()}" + Environment.NewLine);
+                await context.Response.WriteAsync("--------------------------------------------------------------" + Environment.NewLine);
             });
         }
     }
