@@ -33,7 +33,7 @@ namespace myCoreMvc
             {
                 routes.MapRoute(
                     name: "default", 
-                    template: "{controller=Experiments}/{action=Delegate}/{id?}");
+                    template: "{controller=ListOfWorkItems}/{action=Index}/{id?}");
             });
 
             //-------------------------------  Pipeline Experiment  ---------------------------------

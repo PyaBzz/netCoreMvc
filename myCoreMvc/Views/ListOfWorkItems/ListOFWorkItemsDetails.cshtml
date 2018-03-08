@@ -1,0 +1,18 @@
+﻿@using System.Linq;
+@using myCoreMvc.Models;
+
+@model WorkItem
+
+<h3>This is the view page</h3>
+<a asp-action="Index">Back</a>
+@if (@Model != null)
+{
+    <a asp-action="Enter" asp-route-id="@Model.Id">Edit</a>
+    <div>@Model.Id</div>
+    <div>@Model.Priority</div>
+    <div>@Model.Name</div>
+}
+else
+{
+    <h5>WorkItem not found!</h5>
+}
