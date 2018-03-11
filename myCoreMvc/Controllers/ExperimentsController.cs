@@ -4,15 +4,15 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using myCoreMvc.Models;
 
 namespace myCoreMvc.Controllers
 {
     public class ExperimentsController : Controller
     {
         [Route("Db")]
-        public ContentResult Db()
+        public ActionResult Db()
         {
-            var result = string.Empty;
             var myDBconnection = new SqlConnection("Database=myCoreMvc; SERVER=.\\sqlexpress; Integrated Security=SSPI; MultipleActiveResultSets=True;");
             myDBconnection.Open();
             var myParam = new SqlParameter("@Param1", System.Data.SqlDbType.Int);
@@ -20,15 +20,20 @@ namespace myCoreMvc.Controllers
             var selectCommand = new SqlCommand("select * from [myCoreMvc].[dbo].[WorkItems] where Id = @Param1", myDBconnection);
             selectCommand.Parameters.Add(myParam);
             var myReader = selectCommand.ExecuteReader();
+            var properties = typeof(WorkItem).GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+            var instance = new WorkItem();
             if (myReader.Read())
             {
-                for (var i = 0; i < myReader.FieldCount; i++)
+                foreach (var prop in properties)
                 {
-                    result += " " + myReader[i].ToString();
+                    //result += " " + prop.Name + ": " + myReader[prop.Name].ToString();
+                    typeof(WorkItem).GetProperty(prop.Name).SetValue(instance, myReader[prop.Name]);
                 }
             }
             myDBconnection.Close();
-            return Content(result);
+            return View("~/Views/ListOfWorkItems/ListOfWorkItemsDetails.cshtml", instance);
+            //return Content(result);
+
             //    [Route("Add")]
             //public string Add()
             //{
