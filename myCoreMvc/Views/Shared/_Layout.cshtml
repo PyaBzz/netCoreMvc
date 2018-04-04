@@ -1,10 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>myCoreMvc</title>
+    <title>@(ViewBag.Title ?? "myCoreMvc")</title>
 </head>
 <body>
     Layout Markup Here
         @RenderBody()
+    <footer>
+        @RenderSection("Footer", required: false)
+    </footer>
 </body>
 </html>
