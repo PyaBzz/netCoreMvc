@@ -52,7 +52,7 @@ namespace myCoreMvc
                     Name = inputModel.Name,
                     Priority = inputModel.Priority
                 };
-                var result = DataProvider.AddWorkItem(workItem) ? "Data saved" : "WorkItem with that Id already exists!";
+                var result = DataProvider.SaveWorkItem(workItem) ? "New item added" : "Item updated.";
                 return RedirectToAction("Index", new { result = result });  // Prevents form re-submission by refresh
             }
             else

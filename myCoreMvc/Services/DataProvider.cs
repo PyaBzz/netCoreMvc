@@ -27,15 +27,19 @@ namespace myCoreMvc
             }
         }
 
-        public static bool AddWorkItem(WorkItem workItem)
+        public static bool SaveWorkItem(WorkItem workItem)
         {
-            if(WorkItem.FindById(workItem.Id) == null)
+            var targetItem = WorkItems.SingleOrDefault(wi => wi.Id == workItem.Id);
+
+            if (targetItem == null)
             {
                 _WorkItems.Add(workItem);
                 return true;
             }
             else
             {
+                targetItem.Name = workItem.Name;
+                targetItem.Priority = workItem.Priority;
                 return false;
             }
         }
