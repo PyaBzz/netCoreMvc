@@ -20,13 +20,13 @@ namespace myCoreMvc
             return View("ListOfWorkItems", listModel);
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Details(Guid id)
         {
             var viewModel = WorkItem.FindById(id);
             return View("ListOfWorkItemsDetails", viewModel);
         }
 
-        public IActionResult Enter(int id)
+        public IActionResult Enter(Guid id)
         {
             var item = WorkItem.FindById(id);
             var inputModel = new EnterModel();
@@ -76,7 +76,7 @@ namespace myCoreMvc
 
         public class EnterModel
         {
-            public int Id { get; set; }
+            public Guid Id { get; set; }
             public int Priority { get; set; }
             [Display(Name = "Item name"), Required]
             public string Name { get; set; }

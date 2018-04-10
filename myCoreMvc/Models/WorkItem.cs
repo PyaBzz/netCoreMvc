@@ -8,14 +8,14 @@ namespace myCoreMvc.Models
 {
     public class WorkItem
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public int Priority { get; set; }
         [Display(Name ="Item name"), Required]
         public string Name { get; set; }
 
         private static IEnumerable<int> _PriorityChoices = new List<int> { 1, 2, 3, 4 };
 
-        public static WorkItem FindById(int id)
+        public static WorkItem FindById(Guid id)
         {
             return DataProvider.WorkItems.SingleOrDefault(i => i.Id == id);
         }
