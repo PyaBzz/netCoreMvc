@@ -9,8 +9,9 @@ namespace myCoreMvc.Models
     public class WorkItem
     {
         public Guid Id { get; set; }
+        public String Reference { get; set; }
         public int Priority { get; set; }
-        [Display(Name ="Item name"), Required]
+        [Display(Name = "Item name"), Required]
         public string Name { get; set; }
 
         private static IEnumerable<int> _PriorityChoices = new List<int> { 1, 2, 3, 4 };

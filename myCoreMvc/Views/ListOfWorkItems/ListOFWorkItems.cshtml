@@ -19,6 +19,7 @@
         <thead>
             <tr>
                 <td>Id</td>
+                <td>Reference</td>
                 <td>Priority</td>
                 <td>Name</td>
                 <td>Edit</td>
@@ -28,6 +29,7 @@
         {
             <tr>
                 <td><a asp-action="Details" asp-route-id="@item.Id">@item.Id</a></td>
+                <td>@item.Reference</td>
                 <td>@item.Priority</td>
                 <td>@item.Name</td>
                 <td><a asp-action="Enter" asp-route-id="@item.Id">Go</a></td>

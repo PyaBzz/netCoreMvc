@@ -30,13 +30,14 @@ namespace myCoreMvc
         {
             var item = WorkItem.FindById(id);
             var inputModel = new EnterModel();
-            if(item != null)
+            if (item != null)
             {
                 inputModel.Id = item.Id;
+                inputModel.Reference = item.Reference;
                 inputModel.Name = item.Name;
                 inputModel.Priority = item.Priority;
             }
-                inputModel.PriorityChoices = WorkItem.PriorityChoices;
+            inputModel.PriorityChoices = WorkItem.PriorityChoices;
             return View("ListOfWorkItemsEnter", inputModel);  // TODO: Use "asp-" tag helpers instead of tags attributes.
         }
 
@@ -49,6 +50,7 @@ namespace myCoreMvc
                 var workItem = new WorkItem  // We use this simple way to prevent malicious over-posting
                 {
                     Id = inputModel.Id,
+                    Reference = inputModel.Reference,
                     Name = inputModel.Name,
                     Priority = inputModel.Priority
                 };
@@ -60,6 +62,7 @@ namespace myCoreMvc
                 var correctionInputModel = new EnterModel
                 {
                     Id = inputModel.Id,
+                    Reference = inputModel.Reference,
                     Name = inputModel.Name,
                     Priority = inputModel.Priority,
                     PriorityChoices = WorkItem.PriorityChoices
@@ -77,6 +80,7 @@ namespace myCoreMvc
         public class EnterModel
         {
             public Guid Id { get; set; }
+            public String Reference { get; set; }
             public int Priority { get; set; }
             [Display(Name = "Item name"), Required]
             public string Name { get; set; }

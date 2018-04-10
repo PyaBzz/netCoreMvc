@@ -11,6 +11,9 @@
         <label>Id</label>
         <input type="text" name="Id" value="@Model.Id" />
         <br />
+        <label>Reference</label>
+        <input type="text" name="Reference" value="@Model.Reference" />
+        <br />
         <label asp-for="Name"></label>
         <input type="text" name="Name" value="@Model.Name" /><span asp-validation-for="Name"></span>
         <br />
@@ -30,6 +33,9 @@ else
     <form method="post">
         <label>Id</label>
         <input type="text" name="Id" />
+        <br />
+        <label>Reference</label>
+        <input type="text" name="Reference" value="@Model.Reference" />
         <br />
         <label asp-for="Name"></label>
         <input type="text" name="Name" /><span asp-validation-for="Name"></span>
