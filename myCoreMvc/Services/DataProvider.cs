@@ -29,7 +29,9 @@ namespace myCoreMvc
 
         public static bool SaveWorkItem(WorkItem workItem)
         {
-            var targetItem = WorkItems.SingleOrDefault(wi => wi.Id == workItem.Id);
+            WorkItem targetItem = null;
+            if (workItem.Id == Guid.Empty) workItem.Id = Guid.NewGuid();
+            else targetItem = WorkItems.SingleOrDefault(wi => wi.Id == workItem.Id);
 
             if (targetItem == null)
             {
