@@ -27,23 +27,32 @@ namespace myCoreMvc
             }
         }
 
-        public static bool SaveWorkItem(WorkItem workItem)
+        public static bool Save<T>(T obj) where T : Thing, new()
         {
-            WorkItem targetItem = null;
-            if (workItem.Id == Guid.Empty) workItem.Id = Guid.NewGuid();
-            else targetItem = WorkItems.SingleOrDefault(wi => wi.Id == workItem.Id);
-
-            if (targetItem == null)
+            if (obj.Id == Guid.Empty)
             {
-                _WorkItems.Add(workItem);
+                obj.Id = Guid.NewGuid();
+                _WorkItems.Add(obj as WorkItem);
                 return true;
             }
             else
             {
-                targetItem.Name = workItem.Name;
-                targetItem.Reference = workItem.Reference;
-                targetItem.Priority = workItem.Priority;
-                return false;
+                var existingObj = WorkItems.SingleOrDefault(wi => wi.Id == obj.Id) as T;
+
+                if (existingObj == null)
+                {
+                    _WorkItems.Add(obj as WorkItem);
+                    return true;
+                }
+                else
+                {
+                    var properties = typeof(T).GetProperties(System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+                    foreach (var property in properties)
+                    {
+                        typeof(T).GetProperty(property.Name).SetValue(existingObj, typeof(T).GetProperty(property.Name).GetValue(obj));
+                    }
+                    return false;
+                }
             }
         }
     }
