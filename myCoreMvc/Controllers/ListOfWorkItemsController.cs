@@ -14,7 +14,7 @@ namespace myCoreMvc
         {
             var listModel = new ListModel
             {
-                Items = DataProvider.WorkItems,
+                Items = DataProvider.GetList<WorkItem>(),
                 Message = result
             };
             return View("ListOfWorkItems", listModel);
@@ -22,13 +22,13 @@ namespace myCoreMvc
 
         public IActionResult Details(Guid id)
         {
-            var viewModel = WorkItem.FindById(id);
+            var viewModel = DataProvider.Get<WorkItem>(wi => wi.Id == id);
             return View("ListOfWorkItemsDetails", viewModel);
         }
 
         public IActionResult Enter(Guid id)
         {
-            var item = WorkItem.FindById(id);
+            var item = DataProvider.Get<WorkItem>(wi => wi.Id == id);
             var inputModel = new EnterModel();
             if (item != null)
             {

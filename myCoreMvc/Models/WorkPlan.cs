@@ -12,10 +12,5 @@ namespace myCoreMvc.Models
         public string Name { get; set; }
 
         public IEnumerable<WorkItem> WorkItems { get; set; }
-
-        public static WorkPlan FindById(Guid id)
-        {
-            return DataProvider.WorkPlans.SingleOrDefault(i => i.Id == id);
-        }
     }
 }
