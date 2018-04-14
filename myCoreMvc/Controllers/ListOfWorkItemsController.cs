@@ -39,6 +39,7 @@ namespace myCoreMvc
             }
             inputModel.PriorityChoices = WorkItem.PriorityChoices;
             return View("ListOfWorkItemsEnter", inputModel);  // TODO: Use "asp-" tag helpers instead of tags attributes.
+              // TODO: See if you can minimise duplicate markup in the view.
         }
 
         [HttpPost]

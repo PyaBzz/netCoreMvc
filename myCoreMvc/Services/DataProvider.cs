@@ -18,12 +18,30 @@ namespace myCoreMvc
                 {
                     _WorkItems = new List<WorkItem>
                     {
-                        new WorkItem { Id = new Guid("1d8c794d-da09-4227-b5cd-5b91b9f4f7fd"), Reference = "WI1", Priority = 1, Name = "FirstItem" },
-                        new WorkItem { Id = new Guid("83f5d9c1-3b3b-41ed-82f2-f25193dba798"), Reference = "WI2", Priority = 2, Name = "SecondItem" },
-                        new WorkItem { Id = new Guid("ddc59522-fc29-46cd-a944-5b05d320a9e5"), Reference = "WI3", Priority = 3, Name = "ThirdItem" }
+                        new WorkItem { Id = Guid.NewGuid(), Reference = "WI1", Priority = 1, Name = "FirstItem" },
+                        new WorkItem { Id = Guid.NewGuid(), Reference = "WI2", Priority = 2, Name = "SecondItem" },
+                        new WorkItem { Id = Guid.NewGuid(), Reference = "WI3", Priority = 3, Name = "ThirdItem" }
                     };
                 }
                 return _WorkItems;
+            }
+        }
+
+        private static List<WorkPlan> _WorkPlans;
+
+        public static IEnumerable<WorkPlan> WorkPlans
+        {
+            get
+            {
+                if (_WorkPlans == null)
+                {
+                    _WorkPlans = new List<WorkPlan>
+                    {
+                        new WorkPlan { Id = Guid.NewGuid(), Name = "Plan1" },
+                        new WorkPlan { Id = Guid.NewGuid(), Name = "Plan2" },
+                    };
+                }
+                return _WorkPlans;
             }
         }
 
