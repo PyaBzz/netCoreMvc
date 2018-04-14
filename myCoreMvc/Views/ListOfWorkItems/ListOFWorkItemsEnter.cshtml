@@ -19,7 +19,7 @@
         <select name="Priority">
             @foreach (var option in Model.PriorityChoices)
             {
-                <option value="@option">@option</option>
+                <option value="@option" selected=@(option == Model.Priority ? "selected" : null )>@option</option>
             }
         </select>
         <br />
