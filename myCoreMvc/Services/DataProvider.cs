@@ -65,27 +65,26 @@ namespace myCoreMvc
             return GetList<T>().SingleOrDefault(i => func(i));
         }
 
-        public static bool Save<T>(T obj) where T : Thing, new() // TODO: Use generics + reflection like the Get<T> method
+        public static bool Save<T>(T obj) where T : Thing, new() // TODO: Return a more informative value
         {
+            var targetSource = GetList<T>();
             if (obj.Id == Guid.Empty)
             {
                 obj.Id = Guid.NewGuid();
-                var source = GetList<T>();
-                source.Add(obj);
+                targetSource.Add(obj);
                 return true;
             }
             else
             {
-                var existingObj = Get<WorkItem>(wi => wi.Id == obj.Id);
-
+                var existingObj = targetSource.SingleOrDefault(e => e.Id == obj.Id);
                 if (existingObj == null)
                 {
-                    _WorkItems.Add(obj as WorkItem);
+                    targetSource.Add(obj);
                     return true;
                 }
                 else
                 {
-                    var properties = typeof(T).GetProperties(System.Reflection.BindingFlags.DeclaredOnly | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+                    var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
                     foreach (var property in properties)
                     {
                         typeof(T).GetProperty(property.Name).SetValue(existingObj, typeof(T).GetProperty(property.Name).GetValue(obj));
