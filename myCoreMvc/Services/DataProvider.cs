@@ -65,14 +65,14 @@ namespace myCoreMvc
             return GetList<T>().SingleOrDefault(i => func(i));
         }
 
-        public static bool Save<T>(T obj) where T : Thing, new() // TODO: Return a more informative value
+        public static TransactionResult Save<T>(T obj) where T : Thing, new()
         {
             var targetSource = GetList<T>();
             if (obj.Id == Guid.Empty)
             {
                 obj.Id = Guid.NewGuid();
                 targetSource.Add(obj);
-                return true;
+                return TransactionResult.Added;
             }
             else
             {
@@ -80,7 +80,7 @@ namespace myCoreMvc
                 if (existingObj == null)
                 {
                     targetSource.Add(obj);
-                    return true;
+                    return TransactionResult.Added;
                 }
                 else
                 {
@@ -89,9 +89,11 @@ namespace myCoreMvc
                     {
                         typeof(T).GetProperty(property.Name).SetValue(existingObj, typeof(T).GetProperty(property.Name).GetValue(obj));
                     }
-                    return false;
+                    return TransactionResult.Updated;
                 }
             }
         }
+
+        public enum TransactionResult {Added, Updated }
     }
 }

@@ -55,12 +55,18 @@ namespace myCoreMvc
                     Name = inputModel.Name,
                     Priority = inputModel.Priority
                 };
-                var result = DataProvider.Save(workItem) ? "New item added" : "Item updated.";
-                return RedirectToAction("Index", new { result = result });  // Prevents form re-submission by refresh
+                var result = "";
+                switch (DataProvider.Save(workItem))
+                {
+                    case DataProvider.TransactionResult.Updated: result = "Item updated"; break;
+                    case DataProvider.TransactionResult.Added: result = "New item added"; break;
+                    default: result = "New item added"; break;
+                }
+                return RedirectToAction("Index", new { result });  // Prevents form re-submission by refresh
             }
             else
             {
-                var correctionInputModel = new EnterModel
+                var correctionInputModel = new EnterModel  // TODO: Replace with a cloning method implemented at parent level for all object types
                 {
                     Id = inputModel.Id,
                     Reference = inputModel.Reference,
