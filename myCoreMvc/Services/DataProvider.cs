@@ -11,7 +11,7 @@ namespace myCoreMvc
     {
         private static List<WorkPlan> _WorkPlans;
 
-        private static IEnumerable<WorkPlan> WorkPlans
+        private static List<WorkPlan> WorkPlans
         {
             get
             {
@@ -29,7 +29,7 @@ namespace myCoreMvc
 
         private static List<WorkItem> _WorkItems;
 
-        private static IEnumerable<WorkItem> WorkItems
+        private static List<WorkItem> WorkItems
         {
             get
             {
@@ -46,28 +46,23 @@ namespace myCoreMvc
             }
         }
 
-        public static IEnumerable<T> GetList<T>()
+        public static List<T> GetList<T>()
         {
-            var source = typeof(DataProvider).GetProperties(BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.Public)
-                .SingleOrDefault(pi => pi.PropertyType == typeof(IEnumerable<T>))?.GetValue(null) as IEnumerable<T>;
-            if (source == null) throw new NullReferenceException($"DataProvider knows no source collection of type {typeof(T)}");
-            return source;
+            var propertyInfos = typeof(DataProvider).GetProperties(BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
+            var propertyInfo = propertyInfos.SingleOrDefault(pi => pi.PropertyType == typeof(List<T>));
+            if (propertyInfo == null) throw new NullReferenceException($"DataProvider knows no source collection of type {typeof(T)}");
+            var property = propertyInfo.GetValue(null);
+            return property as List<T>;
         }
 
         public static IEnumerable<T> GetList<T>(Func<T, bool> func)
         {
-            var source = typeof(DataProvider).GetProperties(BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.Public)
-                .SingleOrDefault(pi => pi.PropertyType == typeof(IEnumerable<T>))?.GetValue(null) as IEnumerable<T>;
-            if (source == null) throw new NullReferenceException($"DataProvider knows no source collection of type {typeof(T)}");
-            return source.Where(i => func(i));
+            return GetList<T>().Where(i => func(i));
         }
 
         public static T Get<T>(Func<T, bool> func)
         {
-            var source = typeof(DataProvider).GetProperties(BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.Public)
-                .SingleOrDefault(pi => pi.PropertyType == typeof(IEnumerable<T>))?.GetValue(null) as IEnumerable<T>;
-            if (source == null) throw new NullReferenceException($"DataProvider knows no source collection of type {typeof(T)}");
-            return source.SingleOrDefault(i => func(i));
+            return GetList<T>().SingleOrDefault(i => func(i));
         }
 
         public static bool Save<T>(T obj) where T : Thing, new() // TODO: Use generics + reflection like the Get<T> method
@@ -75,7 +70,8 @@ namespace myCoreMvc
             if (obj.Id == Guid.Empty)
             {
                 obj.Id = Guid.NewGuid();
-                _WorkItems.Add(obj as WorkItem);
+                var source = GetList<T>();
+                source.Add(obj);
                 return true;
             }
             else
