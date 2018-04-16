@@ -65,7 +65,7 @@ namespace myCoreMvc
             return GetList<T>().SingleOrDefault(i => func(i));
         }
 
-        public static TransactionResult Save<T>(T obj) where T : Thing, new()
+        public static TransactionResult Save<T>(T obj) where T : Thing
         {
             var targetSource = GetList<T>();
             if (obj.Id == Guid.Empty)
@@ -84,10 +84,10 @@ namespace myCoreMvc
                 }
                 else
                 {
-                    var properties = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
-                    foreach (var property in properties)
+                    var propertyInfos = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
+                    foreach (var propertyInfo in propertyInfos)
                     {
-                        typeof(T).GetProperty(property.Name).SetValue(existingObj, typeof(T).GetProperty(property.Name).GetValue(obj));
+                        propertyInfo.SetValue(existingObj, propertyInfo.GetValue(obj));
                     }
                     return TransactionResult.Updated;
                 }
