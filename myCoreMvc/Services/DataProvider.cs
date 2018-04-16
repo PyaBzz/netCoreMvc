@@ -84,7 +84,7 @@ namespace myCoreMvc
                 }
                 else
                 {
-                    existingObj.CopyMembersFrom(obj);
+                    existingObj.CopyPropertiesFrom(obj);
                     return TransactionResult.Updated;
                 }
             }

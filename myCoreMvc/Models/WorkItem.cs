@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace myCoreMvc.Models
 {
-    public class WorkItem : Thing
+    public class WorkItem : Thing, IClonable
     {
         public String Reference { get; set; }
         public int Priority { get; set; }

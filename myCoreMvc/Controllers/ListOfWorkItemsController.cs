@@ -48,13 +48,8 @@ namespace myCoreMvc
             if (ModelState.IsValid)
             {
                 var listModel = new ListModel();
-                var workItem = new WorkItem  // We use this simple way to prevent malicious over-posting
-                {
-                    Id = inputModel.Id,
-                    Reference = inputModel.Reference,
-                    Name = inputModel.Name,
-                    Priority = inputModel.Priority
-                };
+                var workItem = new WorkItem();
+                workItem.CopyCommonPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
                 var result = "";
                 switch (DataProvider.Save(workItem))
                 {
