@@ -66,14 +66,7 @@ namespace myCoreMvc
             }
             else
             {
-                var correctionInputModel = new EnterModel  // TODO: Replace with a cloning method implemented at parent level for all object types
-                {
-                    Id = inputModel.Id,
-                    Reference = inputModel.Reference,
-                    Name = inputModel.Name,
-                    Priority = inputModel.Priority,
-                    PriorityChoices = WorkItem.PriorityChoices
-                };
+                var correctionInputModel = inputModel.Clone();
                 return View("ListOfWorkItemsEnter", correctionInputModel);
             }
         }
@@ -84,7 +77,7 @@ namespace myCoreMvc
             public string Message;
         }
 
-        public class EnterModel
+        public class EnterModel : IClonable
         {
             public Guid Id { get; set; }
             public String Reference { get; set; }

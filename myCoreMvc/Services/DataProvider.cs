@@ -84,11 +84,7 @@ namespace myCoreMvc
                 }
                 else
                 {
-                    var propertyInfos = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
-                    foreach (var propertyInfo in propertyInfos)
-                    {
-                        propertyInfo.SetValue(existingObj, propertyInfo.GetValue(obj));
-                    }
+                    existingObj.CopyMembersFrom(obj);
                     return TransactionResult.Updated;
                 }
             }
