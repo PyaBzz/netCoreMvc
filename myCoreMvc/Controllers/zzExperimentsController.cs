@@ -15,7 +15,7 @@ namespace myCoreMvc.Controllers
         public ActionResult Database()
         {
             var instance = Db.Get<WorkItem>(5);
-            return View("~/Views/ListOfWorkItems/ListOfWorkItemsDetails.cshtml", instance);
+            return View("~/Views/ListOfWorkItems/DetailsOfWorkItem.cshtml", instance);
         }
 
         [Route("delegate")]
