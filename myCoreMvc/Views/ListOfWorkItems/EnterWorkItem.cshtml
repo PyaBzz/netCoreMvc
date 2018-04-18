@@ -1,10 +1,10 @@
 ﻿@using System.Linq;
 @using myCoreMvc;
 
-@model ListOfWorkItemsController.EnterModel
+@model EnterWorkItemController.EnterModel
 
 <h3>This is the enter page</h3>
-<a asp-action="Index">Back</a>
+<a asp-controller="ListOfWorkItems" asp-action="Index">Back</a>
 @if (Model != null)
 {
     <form method="post">

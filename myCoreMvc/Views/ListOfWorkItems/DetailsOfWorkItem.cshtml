@@ -4,10 +4,10 @@
 @model WorkItem
 
 <h3>This is the view page</h3>
-<a asp-action="Index">Back</a>
+<a asp-controller="ListOfWorkItems" asp-action="Index">Back</a>
 @if (@Model != null)
 {
-    <a asp-action="Enter" asp-route-id="@Model.Id">Edit</a>
+    <a asp-controller="EnterWorkItem" asp-action="Index" asp-route-id="@Model.Id">Edit</a>
     <div>@Model.Reference</div>
     <div>@Model.Name</div>
     <div>@Model.Priority</div>
