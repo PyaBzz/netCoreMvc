@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using myCoreMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace myCoreMvc
 {
@@ -43,7 +44,13 @@ namespace myCoreMvc
             }
             else
             {
-                inputModel.Message = "Invalid values";  // TODO: Specify which of the properties is invalid
+                var message = "Invalid: ";
+                foreach (var pair in ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid))
+                    message += ", " + pair.Key;
+                message += " ______ Valid: ";
+                foreach (var pair in ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Valid))
+                    message += ", " + pair.Key;
+                inputModel.Message = message;  // TODO: Give specific binding error to the user
                 return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);
             }
         }
