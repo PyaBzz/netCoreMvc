@@ -17,7 +17,6 @@ namespace myCoreMvc
                 Items = DataProvider.GetList<WorkItem>(),
                 Message = message
             };
-            listModel.Message = listModel.Items.First().ToString();
             return View("ListOfWorkItems", listModel);
         }
 

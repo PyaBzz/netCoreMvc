@@ -40,7 +40,7 @@ namespace myCoreMvc
                     case DataProvider.TransactionResult.Added: result = "New item added"; break;
                     default: result = "New item added"; break;
                 }
-                return RedirectToAction("Index", "ListOfWorkItems", new { result });  // Prevents form re-submission by refresh
+                return RedirectToAction("Index", "ListOfWorkItems", new { message = result });  // Prevents form re-submission by refresh
             }
             else
             {
