@@ -3,7 +3,11 @@
 
 @model EnterWorkItemController.EnterModel
 
-<h3>This is the enter page</h3>
+<h2>
+    @if (Model.Message != null && Model.Message != string.Empty)
+    {<text> @Model.Message </text>}
+</h2>
+
 <a asp-controller="ListOfWorkItems" asp-action="Index">Back</a>
 @if (Model != null)
 {

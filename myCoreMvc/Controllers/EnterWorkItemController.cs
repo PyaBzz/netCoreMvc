@@ -21,9 +21,8 @@ namespace myCoreMvc
                 inputModel.Name = item.Name;
                 inputModel.Priority = item.Priority;
             }
-            inputModel.PriorityChoices = WorkItem.PriorityChoices;
             return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);  // TODO: Use "asp-" tag helpers instead of tags attributes.
-                                                              // TODO: See if you can minimise duplicate markup in the view.
+                                                                                      // TODO: See if you can minimise duplicate markup in the view.
         }
 
         [HttpPost]
@@ -44,8 +43,8 @@ namespace myCoreMvc
             }
             else
             {
-                var correctionInputModel = inputModel.Clone();
-                return View("EnterWorkItem", correctionInputModel);
+                inputModel.Message = "Invalid values";  // TODO: Specify which of the properties is invalid
+                return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);
             }
         }
 
@@ -56,7 +55,11 @@ namespace myCoreMvc
             public int Priority { get; set; }
             [Display(Name = "Item name"), Required]
             public string Name { get; set; }
-            public IEnumerable<int> PriorityChoices;
+            public IEnumerable<int> PriorityChoices
+            {
+                get { return WorkItem.PriorityChoices; }
+            }
+            public string Message = "";
         }
     }
 }
