@@ -16,6 +16,12 @@ namespace myCoreMvc
             return result;
         }
 
+        /// <summary>
+        /// Returns an object that is member-wise copy of the given instance.
+        /// </summary>
+        /// <typeparam name="T">is any type that implements IClonable interface.</typeparam>
+        /// <param name="origin"></param>
+        /// <returns></returns>
         public static T Clone<T>(this T origin) where T : IClonable, new()
         {
             var result = new T();

@@ -21,7 +21,8 @@ namespace myCoreMvc
             return View("ListOfWorkItems", listModel);
         }
 
-        // TODO: Implement search using [https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-2.1] and [https://stackoverflow.com/questions/41577376/how-to-read-values-from-the-querystring-with-asp-net-core?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa]
+        // TODO: Implement search using [https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-2.1]
+        //and [https://stackoverflow.com/questions/41577376/how-to-read-values-from-the-querystring-with-asp-net-core?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa]
 
         public class ListModel
         {
