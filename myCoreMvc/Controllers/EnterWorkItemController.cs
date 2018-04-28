@@ -44,11 +44,8 @@ namespace myCoreMvc
             }
             else
             {
-                var message = "Invalid: ";
-                message += ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
-                message += "<br>" + " ______ Valid: ";
-                message += ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Valid).Select(p => p.Key).ToString(", ");
-                inputModel.Message = message;  // TODO: Give specific binding error to the user
+                inputModel.Message = "Invalid values for: "
+                    + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
                 return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);
             }
         }
