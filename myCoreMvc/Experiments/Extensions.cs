@@ -33,14 +33,24 @@ namespace myCoreMvc
             return result;
         }
 
-        public static T CopyPropertiesFrom<T>(this T it, T origin) where T : IClonable
+        public static T CopyPropertiesFrom<T>(this T target, T origin) where T : IClonable
         {
             var propertyInfos = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
             foreach (var propertyInfo in propertyInfos)
             {
-                propertyInfo.SetValue(it, propertyInfo.GetValue(origin));
+                propertyInfo.SetValue(target, propertyInfo.GetValue(origin));
             }
-            return it;
+            return target;
+        }
+
+        public static T CopyPropertiesTo<T>(this T origin, T target) where T : IClonable
+        {
+            var propertyInfos = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
+            foreach (var propertyInfo in propertyInfos)
+            {
+                propertyInfo.SetValue(target, propertyInfo.GetValue(origin));
+            }
+            return origin;
         }
 
         public static T CopyCommonPropertiesFrom<T, U>(this T it, U origin) where T : IClonable
@@ -59,14 +69,9 @@ namespace myCoreMvc
             return it;
         }
 
-        public static T CopyPropertiesTo<T>(this T origin, T target) where T : IClonable
+        public static string ToString<T>(this IEnumerable<T> source, string separator)
         {
-            var propertyInfos = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
-            foreach (var propertyInfo in propertyInfos)
-            {
-                propertyInfo.SetValue(target, propertyInfo.GetValue(origin));
-            }
-            return origin;
+            return string.Join(separator, source);
         }
     }
 }
