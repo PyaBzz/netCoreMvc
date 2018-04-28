@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace myCoreMvc.Models
+namespace PooyasFramework
 {
     public class Thing : IClonable
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace myCoreMvc
+namespace PooyasFramework
 {
     public static class Extensions
     {

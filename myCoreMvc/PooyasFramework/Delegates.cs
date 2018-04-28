@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace myCoreMvc
+namespace PooyasFramework
 {
     // A delegate is a TYPE that safely encapsulates a METHOD!
     public delegate string DelegateType(int i);
