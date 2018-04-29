@@ -25,7 +25,7 @@ namespace PooyasFramework
         public static T Clone<T>(this T origin) where T : IClonable, new()
         {
             var result = new T();
-            var propertyInfos = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
+            var propertyInfos = typeof(T).GetPublicDeclaredInstancePropertyInfos();
             foreach (var propertyInfo in propertyInfos)
             {
                 propertyInfo.SetValue(result, propertyInfo.GetValue(origin));
@@ -35,7 +35,7 @@ namespace PooyasFramework
 
         public static T CopyPropertiesFrom<T>(this T target, T origin) where T : IClonable
         {
-            var propertyInfos = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
+            var propertyInfos = typeof(T).GetPublicDeclaredInstancePropertyInfos();
             foreach (var propertyInfo in propertyInfos)
             {
                 propertyInfo.SetValue(target, propertyInfo.GetValue(origin));
@@ -45,7 +45,7 @@ namespace PooyasFramework
 
         public static T CopyPropertiesTo<T>(this T origin, T target) where T : IClonable
         {
-            var propertyInfos = typeof(T).GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
+            var propertyInfos = typeof(T).GetPublicDeclaredInstancePropertyInfos();
             foreach (var propertyInfo in propertyInfos)
             {
                 propertyInfo.SetValue(target, propertyInfo.GetValue(origin));
@@ -55,8 +55,8 @@ namespace PooyasFramework
 
         public static T CopyCommonPropertiesFrom<T, U>(this T it, U origin) where T : IClonable
         {
-            var propertyInfosOfT = typeof(T).GetProperties(BindingFlags.Instance | BindingFlags.Public);
-            var propertyInfosOfU = typeof(U).GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            var propertyInfosOfT = typeof(T).GetPublicInstancePropertyInfos();
+            var propertyInfosOfU = typeof(U).GetPublicInstancePropertyInfos();
             foreach (var propertyInfo in propertyInfosOfT)
             {
                 var correspondingPiOfU = propertyInfosOfU.SingleOrDefault(pi => pi.Name == propertyInfo.Name && pi.PropertyType == propertyInfo.PropertyType);
@@ -72,6 +72,16 @@ namespace PooyasFramework
         public static string ToString<T>(this IEnumerable<T> source, string separator)
         {
             return string.Join(separator, source);
+        }
+
+        public static IEnumerable<PropertyInfo> GetPublicInstancePropertyInfos(this Type T)
+        {
+            return T.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+        }
+
+        public static IEnumerable<PropertyInfo> GetPublicDeclaredInstancePropertyInfos(this Type T)
+        {
+            return T.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
         }
     }
 }
