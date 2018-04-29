@@ -20,13 +20,27 @@ namespace myCoreMvc
             return View("ListOfWorkItems", listModel);
         }
 
-        // TODO: Implement search using [https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-2.1]
-        //and [https://stackoverflow.com/questions/41577376/how-to-read-values-from-the-querystring-with-asp-net-core?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa]
+        [HttpPost]
+        public IActionResult Index(ListModel listModel)
+        {
+            if (ModelState.IsValid)
+            {
+                listModel.Items = DataProvider.GetList<WorkItem>(wi => wi.Name == listModel.Search_Name);  // TODO: Further develop the search feature based on RegEx.
+                listModel.Message = listModel.Search_Name;
+
+            }
+            else
+            {
+                listModel.Items = DataProvider.GetList<WorkItem>();
+            }
+            return View("ListOfWorkItems", listModel);
+        }
 
         public class ListModel
         {
             public IEnumerable<WorkItem> Items;
             public string Message;
+            public string Search_Name { get; set; }
         }
     }
 }

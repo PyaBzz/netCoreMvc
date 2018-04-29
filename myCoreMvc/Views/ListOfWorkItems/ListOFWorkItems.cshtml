@@ -13,6 +13,16 @@
 
 <h3>List of Work Items</h3>
 <a asp-controller="EnterWorkItem" asp-action="Index">Add</a>
+
+<form asp-controller="ListOfWorkItems" asp-action="Index">
+    <h3>Search</h3>
+    <label asp-for="Search_Name">SearchNameLabel</label>
+    <input type="text" name="Search_Name" value="@Model.Search_Name" />
+    <br />
+    <input type="submit" name="Search" value="Search" />
+</form>
+<br />
+
 @if (Model.Items != null && Model.Items.Any())
 {
     <table>
@@ -34,6 +44,10 @@
             </tr>
         }
     </table>
+}
+else
+{
+    <div>The list is empty.</div>
 }
 
 @section Footer {
