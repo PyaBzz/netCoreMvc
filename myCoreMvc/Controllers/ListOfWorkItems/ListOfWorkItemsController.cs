@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
+using PooyasFramework;
 
 namespace myCoreMvc
 {
@@ -25,9 +27,19 @@ namespace myCoreMvc
         {
             if (ModelState.IsValid)
             {
-                listModel.Items = DataProvider.GetList<WorkItem>(wi => wi.Name == listModel.Search_Name);  // TODO: Further develop the search feature based on RegEx.
-                listModel.Message = listModel.Search_Name;
+                listModel.Items = DataProvider.GetList<WorkItem>();
 
+                if (listModel.Search_All != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.GetStringOfProperties(), listModel.Search_All));
+                if (listModel.Search_Reference != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Reference, listModel.Search_Reference));
+                if (listModel.Search_Name != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
+                if (listModel.Search_Priority != null) listModel.SearchFilters.Add(wi => wi.Priority == listModel.Search_Priority);
+
+                foreach (var filter in listModel.SearchFilters)
+                {
+                    listModel.Items = listModel.Items.Where(i => filter(i));
+                }
+                // TODO: Find ways to improve search performance.
+                listModel.Message = listModel.Search_Name;
             }
             else
             {
@@ -39,8 +51,14 @@ namespace myCoreMvc
         public class ListModel
         {
             public IEnumerable<WorkItem> Items;
-            public string Message;
+            public List<Func<WorkItem, bool>> SearchFilters { get; set; } = new List<Func<WorkItem, bool>>();
+
+            public string Search_All { get; set; }
+            public string Search_Reference { get; set; }
             public string Search_Name { get; set; }
+            public int? Search_Priority { get; set; }
+
+            public string Message;
         }
     }
 }

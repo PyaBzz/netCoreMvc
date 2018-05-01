@@ -16,8 +16,17 @@
 
 <form asp-controller="ListOfWorkItems" asp-action="Index">
     <h3>Search</h3>
-    <label asp-for="Search_Name">SearchNameLabel</label>
+    <label asp-for="Search_All">All</label>
+    <input type="text" name="Search_All" value="@Model.Search_All" />
+    <br />
+    <label asp-for="Search_Reference">Reference</label>
+    <input type="text" name="Search_Reference" value="@Model.Search_Reference" />
+    <br />
+    <label asp-for="Search_Name">Name</label>
     <input type="text" name="Search_Name" value="@Model.Search_Name" />
+    <br />
+    <label asp-for="Search_Priority">Priority</label>
+    <input type="text" name="Search_Priority" value="@Model.Search_Priority" />
     <br />
     <input type="submit" name="Search" value="Search" />
 </form>

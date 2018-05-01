@@ -83,5 +83,18 @@ namespace PooyasFramework
         {
             return T.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public);
         }
+
+        public static string GetStringOfProperties<T>(this T obj)
+        {
+            var result = string.Empty;
+            var strings = new List<string>();
+
+            foreach (var propInfo in typeof(T).GetPublicInstancePropertyInfos())
+            {
+                strings.Add(typeof(T).GetProperty(propInfo.Name).GetValue(obj).ToString());
+            }
+
+            return strings.ToString(" ");
+        }
     }
 }
