@@ -33,7 +33,7 @@ namespace myCoreMvc
             if (ModelState.IsValid)
             {
                 var workItem = new WorkItem();
-                workItem.CopyCommonPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
+                workItem.CopySimilarPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
                 var result = "";
                 switch (DataProvider.Save(workItem))
                 {

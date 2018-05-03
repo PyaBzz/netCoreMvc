@@ -53,8 +53,9 @@ namespace PooyasFramework
             return origin;
         }
 
-        public static T CopyCommonPropertiesFrom<T, U>(this T it, U origin) where T : IClonable
+        public static T CopySimilarPropertiesFrom<T, U>(this T it, U origin) where T : IClonable
         {
+            // We need to have two separate sets of PropInfos because they are unique to their types!
             var propertyInfosOfT = typeof(T).GetPublicInstancePropertyInfos();
             var propertyInfosOfU = typeof(U).GetPublicInstancePropertyInfos();
             foreach (var propertyInfo in propertyInfosOfT)
@@ -91,7 +92,7 @@ namespace PooyasFramework
 
             foreach (var propInfo in typeof(T).GetPublicInstancePropertyInfos())
             {
-                strings.Add(typeof(T).GetProperty(propInfo.Name).GetValue(obj).ToString());
+                strings.Add(propInfo.GetValue(obj).ToString());
             }
 
             return strings.ToString(" ");
