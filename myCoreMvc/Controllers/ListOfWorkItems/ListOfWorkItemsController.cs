@@ -38,7 +38,7 @@ namespace myCoreMvc
                 {
                     listModel.Items = listModel.Items.Where(i => filter(i));
                 }
-                // TODO: Find ways to improve search performance.
+                // TODO: Find ways to improve search.
                 listModel.Message = listModel.Search_Name;
             }
             else
