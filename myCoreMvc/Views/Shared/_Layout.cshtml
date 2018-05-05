@@ -4,9 +4,14 @@
     <title>@(ViewBag.Title ?? "myCoreMvc")</title>
 </head>
 <body>
-    <img src="~/StaticContent/Mushroom-Red-2.png" />
-    Layout Markup Here
-        @RenderBody()
+    <header>
+        <img src="~/StaticContent/Mushroom-Red-2.png" />
+        <a asp-controller="ListOfWorkPlans" asp-action="Index">WorkPlans</a>
+        <a asp-controller="ListOfWorkItems" asp-action="Index">WorkItems</a>
+    </header>
+
+    @RenderBody()
+
     <footer>
         @RenderSection("Footer", required: false)
     </footer>

@@ -2,19 +2,21 @@
 @using myCoreMvc;
 
 @model EnterWorkPlanController.EnterModel
+@{ ViewBag.Title = "WorkPlan Details"; }
 
 <h2>
     @if (Model.Message != null && Model.Message != string.Empty)
     {<text> @Model.Message </text>}
 </h2>
 
-<a asp-controller="ListOfWorkItems" asp-action="Index">Back</a>
-@if (Model != null)
+<a asp-controller="ListOfWorkPlans" asp-action="Index">Back</a>
+@if (Model.Id == Guid.Empty)
 {
+    <h3>Add WorkPlan</h3>
     <form method="post">
-        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="hidden" name="Id" />
         <label asp-for="Name"></label>
-        <input type="text" name="Name" value="@Model.Name" /><span asp-validation-for="Name"></span>
+        <input type="text" name="Name" /><span asp-validation-for="Name"></span>
         <br />
         <br />
         <input type="submit" name="Save" value="Save" />
@@ -22,10 +24,11 @@
 }
 else
 {
+    <h3>Edit WorkPlan</h3>
     <form method="post">
-        <input type="hidden" name="Id" />
+        <input type="hidden" name="Id" value="@Model.Id" />
         <label asp-for="Name"></label>
-        <input type="text" name="Name" /><span asp-validation-for="Name"></span>
+        <input type="text" name="Name" value="@Model.Name" /><span asp-validation-for="Name"></span>
         <br />
         <br />
         <input type="submit" name="Save" value="Save" />

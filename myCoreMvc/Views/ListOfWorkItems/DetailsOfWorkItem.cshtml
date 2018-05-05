@@ -2,11 +2,12 @@
 @using myCoreMvc.Models;
 
 @model WorkItem
+@{ ViewBag.Title = "WorkItem Details"; }
 
-<h3>This is the view page</h3>
 <a asp-controller="ListOfWorkItems" asp-action="Index">Back</a>
 @if (@Model != null)
 {
+    <h3>WorkItem details</h3>
     <a asp-controller="EnterWorkItem" asp-action="Index" asp-route-id="@Model.Id">Edit</a>
     <div>@Model.Reference</div>
     <div>@Model.Name</div>
