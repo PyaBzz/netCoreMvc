@@ -13,14 +13,8 @@ namespace myCoreMvc.Models
         public int Priority { get; set; }
         [Display(Name = "Item name"), Required]
         public string Name { get; set; }
+        public WorkPlan WorkPlan { get; set; }
 
-        private static IEnumerable<int> _PriorityChoices = new List<int> { 1, 2, 3, 4 };
-        public static IEnumerable<int> PriorityChoices
-        {
-            get
-            {
-                return _PriorityChoices;
-            }
-        }
+        public static IEnumerable<int> PriorityChoices { get; } = new List<int> { 1, 2, 3, 4 };
     }
 }

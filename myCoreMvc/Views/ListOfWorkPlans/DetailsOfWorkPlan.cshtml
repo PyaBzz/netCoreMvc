@@ -1,0 +1,16 @@
+﻿@using System.Linq;
+@using myCoreMvc.Models;
+
+@model WorkPlan
+
+<h3>This is the view page</h3>
+<a asp-controller="ListOfWorkPlans" asp-action="Index">Back</a>
+@if (@Model != null)
+{
+    <a asp-controller="EnterWorkPlan" asp-action="Index" asp-route-id="@Model.Id">Edit</a>
+    <div>@Model.Name</div>
+}
+else
+{
+    <h5>WorkPlan not found!</h5>
+}

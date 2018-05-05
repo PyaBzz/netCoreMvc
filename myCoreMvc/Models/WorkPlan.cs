@@ -7,7 +7,7 @@ using PooyasFramework;
 
 namespace myCoreMvc.Models
 {
-    public class WorkPlan : Thing
+    public class WorkPlan : Thing, IClonable
     {
         [Display(Name = "Plan name"), Required]
         public string Name { get; set; }

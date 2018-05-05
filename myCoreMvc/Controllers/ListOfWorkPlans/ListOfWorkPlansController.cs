@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using myCoreMvc.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
+using PooyasFramework;
+
+namespace myCoreMvc
+{ //TODO: Add navigation elements to the layout.
+    public class ListOfWorkPlansController : Controller
+    {
+        public IActionResult Index(string message)
+        {
+            var listModel = new ListModel
+            {
+                Items = DataProvider.GetList<WorkPlan>(),
+                Message = message
+            };
+            return View("ListOfWorkPlans", listModel);
+        }
+
+        [HttpPost]
+        public IActionResult Index(ListModel listModel)
+        {
+            if (ModelState.IsValid)
+            {
+                listModel.Items = DataProvider.GetList<WorkPlan>();
+
+                if (listModel.Search_Name != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
+
+                foreach (var filter in listModel.SearchFilters)
+                {
+                    listModel.Items = listModel.Items.Where(i => filter(i));
+                }
+                // TODO: Find ways to improve search.
+                listModel.Message = listModel.Search_Name;
+            }
+            else
+            {
+                listModel.Items = DataProvider.GetList<WorkPlan>();
+            }
+            return View("ListOfWorkPlans", listModel);
+        }
+
+        public class ListModel
+        {
+            public IEnumerable<WorkPlan> Items;
+            public List<Func<WorkPlan, bool>> SearchFilters { get; set; } = new List<Func<WorkPlan, bool>>();
+
+            public string Search_Name { get; set; }
+
+            public string Message;
+        }
+    }
+}

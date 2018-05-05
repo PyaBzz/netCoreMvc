@@ -17,7 +17,7 @@ namespace myCoreMvc
             var item = DataProvider.Get<WorkItem>(wi => wi.Id == id);
             var inputModel = new EnterModel();
             if (item != null)
-            {
+            {  //TODO: Use reflection based methods instead of this.
                 inputModel.Id = item.Id;
                 inputModel.Reference = item.Reference;
                 inputModel.Name = item.Name;
@@ -52,7 +52,7 @@ namespace myCoreMvc
         }
 
         public class EnterModel : IClonable
-        {
+        { //TODO: Add a control for work plan.
             public Guid Id { get; set; }
             public String Reference { get; set; }
             public int Priority { get; set; }
