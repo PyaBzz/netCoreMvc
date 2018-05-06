@@ -22,6 +22,7 @@ namespace myCoreMvc
                 inputModel.Reference = item.Reference;
                 inputModel.Name = item.Name;
                 inputModel.Priority = item.Priority;
+                inputModel.WorkPlan = item.WorkPlan.Id;
             }
             return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);  // TODO: Use "asp-" tag helpers instead of tags attributes.
                                                                                       // TODO: See if you can minimise duplicate markup in the view.
@@ -34,6 +35,7 @@ namespace myCoreMvc
             {
                 var workItem = new WorkItem();
                 workItem.CopySimilarPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
+                workItem.WorkPlan = DataProvider.Get<WorkPlan>(inputModel.WorkPlan);
                 var result = "";
                 switch (DataProvider.Save(workItem))
                 {
@@ -54,14 +56,13 @@ namespace myCoreMvc
         public class EnterModel : IClonable
         { //TODO: Add a control for work plan.
             public Guid Id { get; set; }
+            public Guid WorkPlan { get; set; }
             public String Reference { get; set; }
             public int Priority { get; set; }
             [Display(Name = "Item name"), Required]
             public string Name { get; set; }
-            public IEnumerable<int> PriorityChoices
-            {
-                get { return WorkItem.PriorityChoices; }
-            }
+            public IEnumerable<int> PriorityChoices { get { return WorkItem.PriorityChoices; } }
+            public IEnumerable<WorkPlan> WorkPlanChoices { get { return DataProvider.GetList<WorkPlan>(); } }
             public string Message = "";
         }
     }

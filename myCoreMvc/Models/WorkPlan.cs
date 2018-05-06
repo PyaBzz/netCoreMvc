@@ -13,5 +13,7 @@ namespace myCoreMvc.Models
         public string Name { get; set; }
 
         public IEnumerable<WorkItem> WorkItems { get; set; }
+
+        public override string ToString() => Name;
     }
 }

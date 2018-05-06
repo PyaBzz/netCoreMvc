@@ -14,7 +14,14 @@
 {
     <h3>Add WorkItem</h3>
     <form method="post">
-        <input type="hidden" name="Id" />
+        <label>WorkPlan</label>
+        <select name="WorkPlan">
+            @foreach (var option in Model.WorkPlanChoices)
+            {
+                <option value="@option.Id">@option.Name</option>
+            }
+        </select>
+        <br />
         <label>Reference</label>
         <input type="text" name="Reference" value="@Model.Reference" />
         <br />
@@ -37,6 +44,14 @@ else
     <h3>Edit WorkItem</h3>
     <form method="post">
         <input type="hidden" name="Id" value="@Model.Id" />
+        <label>WorkPlan</label>
+        <select name="WorkPlan">
+            @foreach (var option in Model.WorkPlanChoices)
+            {
+                <option value="@option.Id" selected=@(option.Id == Model.WorkPlan ? "selected" : null )>@option.Name</option>
+            }
+        </select>
+        <br />
         <label>Reference</label>
         <input type="text" name="Reference" value="@Model.Reference" />
         <br />

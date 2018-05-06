@@ -37,6 +37,7 @@
     <table>
         <thead>
             <tr>
+                <td>WorkPlan</td>
                 <td>Reference</td>
                 <td>Name</td>
                 <td>Priority</td>
@@ -46,6 +47,7 @@
         @foreach (var item in Model.Items)
         {
             <tr>
+                <td>@item.WorkPlan</td>
                 <td><a asp-controller="DetailsOfWorkItem" asp-action="Index" asp-route-id="@item.Id">@item.Reference</a></td>
                 <td>@item.Name</td>
                 <td>@item.Priority</td>
@@ -56,7 +58,7 @@
 }
 else
 {
-    <div>The list is empty.</div>
+    <div>No WorkItems found with the specified criteria.</div>
 }
 
 @section Footer {
