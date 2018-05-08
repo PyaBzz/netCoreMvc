@@ -47,7 +47,7 @@ namespace myCoreMvc
         }
 
         public class EnterModel : IClonable
-        { //TODO: Add a control for work plan.
+        {
             public Guid Id { get; set; }
             public Guid WorkPlan { get; set; }
             public String Reference { get; set; }

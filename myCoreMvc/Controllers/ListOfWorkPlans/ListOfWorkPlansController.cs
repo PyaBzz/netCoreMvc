@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using PooyasFramework;
 
 namespace myCoreMvc
-{ //TODO: Add navigation elements to the layout.
+{
     public class ListOfWorkPlansController : Controller
     {
         public IActionResult Index(string message)
@@ -31,12 +31,7 @@ namespace myCoreMvc
 
                 if (listModel.Search_Name != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
 
-                foreach (var filter in listModel.SearchFilters)
-                {
-                    listModel.Items = listModel.Items.Where(i => filter(i));
-                }
-                // TODO: Find ways to improve search.
-                listModel.Message = listModel.Search_Name;
+                listModel.Items = listModel.Items.AppliedWithFilters(listModel.SearchFilters);
             }
             else
             {

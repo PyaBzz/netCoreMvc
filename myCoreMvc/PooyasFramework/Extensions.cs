@@ -97,5 +97,11 @@ namespace PooyasFramework
 
             return strings.ToString(" ");
         }
+
+        public static IEnumerable<T> AppliedWithFilters<T>(this IEnumerable<T> source, IEnumerable<Func<T, bool>> filters)
+        {
+            foreach (var filter in filters) source = source.Where(i => filter(i));
+            return source;
+        }
     }
 }
