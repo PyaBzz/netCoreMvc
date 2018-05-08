@@ -16,14 +16,7 @@ namespace myCoreMvc
         {
             var item = DataProvider.Get<WorkItem>(wi => wi.Id == id);
             var inputModel = new EnterModel();
-            if (item != null)
-            {  //TODO: Use reflection based methods instead of this.
-                inputModel.Id = item.Id;
-                inputModel.Reference = item.Reference;
-                inputModel.Name = item.Name;
-                inputModel.Priority = item.Priority;
-                inputModel.WorkPlan = item.WorkPlan.Id;
-            }
+            if (item != null) inputModel.CopySimilarPropertiesFrom(item);
             return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);  // TODO: Use "asp-" tag helpers instead of tags attributes.
                                                                                       // TODO: See if you can minimise duplicate markup in the view.
         }
