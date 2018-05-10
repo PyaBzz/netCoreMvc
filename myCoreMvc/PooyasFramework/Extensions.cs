@@ -8,14 +8,6 @@ namespace PooyasFramework
 {
     public static class Extensions
     {
-        public static int Factorial(this int instance)
-        {
-            if (instance < 2) return 1;
-            var result = 1;
-            for (var i = 2; i <= instance; i++) result *= i;
-            return result;
-        }
-
         /// <summary>
         /// Returns an object that is member-wise copy of the given instance.
         /// </summary>

@@ -35,11 +35,5 @@ namespace myCoreMvc.Controllers
 
             return Content(result);
         }
-
-        [Route("extension")]
-        public ContentResult Extension()
-        {
-            return Content($"8 factorial is {8.Factorial()}" + Environment.NewLine);
-        }
     }
 }
