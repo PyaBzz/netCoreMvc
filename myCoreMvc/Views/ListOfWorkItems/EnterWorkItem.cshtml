@@ -10,62 +10,35 @@
 </h2>
 
 <a asp-controller="ListOfWorkItems" asp-action="Index">Back</a>
+
 @if (Model.Id == Guid.Empty)
-{
-    <h3>Add WorkItem</h3>
-    <form method="post">
-        <label>WorkPlan</label>
-        <select name="WorkPlan">
-            @foreach (var option in Model.WorkPlanChoices)
-            {
-                <option value="@option.Id">@option.Name</option>
-            }
-        </select>
-        <br />
-        <label>Reference</label>
-        <input type="text" name="Reference" value="@Model.Reference" />
-        <br />
-        <label asp-for="Name"></label>
-        <input type="text" name="Name" /><span asp-validation-for="Name"></span>
-        <br />
-        <label>Priority</label>
-        <select name="Priority">
-            @foreach (var option in Model.PriorityChoices)
-            {
-                <option value="@option">@option</option>
-            }
-        </select>
-        <br />
-        <input type="submit" name="Save" value="Save" />
-    </form>
-}
+{<h3>Add WorkItem</h3>}
 else
-{
-    <h3>Edit WorkItem</h3>
-    <form method="post">
-        <input type="hidden" name="Id" value="@Model.Id" />
-        <label>WorkPlan</label>
-        <select name="WorkPlan">
-            @foreach (var option in Model.WorkPlanChoices)
-            {
-                <option value="@option.Id" selected=@(option.Id == Model.WorkPlan ? "selected" : null )>@option.Name</option>
-            }
-        </select>
-        <br />
-        <label>Reference</label>
-        <input type="text" name="Reference" value="@Model.Reference" />
-        <br />
-        <label asp-for="Name"></label>
-        <input type="text" name="Name" value="@Model.Name" /><span asp-validation-for="Name"></span>
-        <br />
-        <label>Priority</label>
-        <select name="Priority">
-            @foreach (var option in Model.PriorityChoices)
-            {
-                <option value="@option" selected=@(option == Model.Priority ? "selected" : null )>@option</option>
-            }
-        </select>
-        <br />
-        <input type="submit" name="Save" value="Save" />
-    </form>
-}
+{<h3>Edit WorkItem</h3>}
+
+<form method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <label>WorkPlan</label>
+    <select name="WorkPlan">
+        @foreach (var option in Model.WorkPlanChoices)
+        {
+            <option value="@option.Id" selected=@(option.Id == Model.WorkPlan ? "selected" : null )>@option.Name</option>
+        }
+    </select>
+    <br />
+    <label>Reference</label>
+    <input type="text" name="Reference" value="@Model.Reference" />
+    <br />
+    <label asp-for="Name"></label>
+    <input type="text" name="Name" value="@Model.Name" /><span asp-validation-for="Name"></span>
+    <br />
+    <label>Priority</label>
+    <select name="Priority">
+        @foreach (var option in Model.PriorityChoices)
+        {
+            <option value="@option" selected=@(option == Model.Priority ? "selected" : null )>@option</option>
+        }
+    </select>
+    <br />
+    <input type="submit" name="Save" value="Save" />
+</form>
