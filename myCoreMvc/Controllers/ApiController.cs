@@ -15,9 +15,10 @@ namespace myCoreMvc.Controllers
         [Route("GetClientSocket")]
         public string GetClientSocket()
         {
-            var clientIP = Request.HttpContext.Connection.RemoteIpAddress;
+            var clientIP = Request.HttpContext.Connection.RemoteIpAddress.ToString();
+            var clientAddress = clientIP == "::1" ? "localhost" : clientIP;
             var clientPort = Request.HttpContext.Connection.RemotePort;
-            return $"{clientIP}:{clientPort}";
+            return $"{clientAddress}:{clientPort}";
         }
     }
 }

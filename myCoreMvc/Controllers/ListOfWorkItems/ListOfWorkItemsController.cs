@@ -17,7 +17,7 @@ namespace myCoreMvc
             var listModel = new ListModel
             {
                 Items = DataProvider.GetList<WorkItem>(),
-                Message = message //TODO: Find a way to render footer from its own controller and show IP address of the client in it.
+                Message = message
             };
             return View("ListOfWorkItems", listModel);
         }
