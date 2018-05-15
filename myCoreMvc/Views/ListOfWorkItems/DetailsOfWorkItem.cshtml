@@ -9,6 +9,7 @@
 {
     <h3>WorkItem details</h3>
     <a asp-controller="EnterWorkItem" asp-action="Index" asp-route-id="@Model.Id">Edit</a>
+    <a asp-controller="DetailsOfWorkItem" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
     <br />
     <label>WorkPlan__ </label><span>@Model.WorkPlan</span>
     <br />

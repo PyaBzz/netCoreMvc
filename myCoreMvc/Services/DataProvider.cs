@@ -51,9 +51,9 @@ namespace myCoreMvc
         {
             var propertyInfos = typeof(DataProvider).GetProperties(BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
             var propertyInfo = propertyInfos.SingleOrDefault(pi => pi.PropertyType == typeof(List<T>));
-            if (propertyInfo == null) throw new NullReferenceException($"DataProvider knows no source collection of type {typeof(T)}");
-            var property = propertyInfo.GetValue(null);
-            return property as List<T>;
+            if (propertyInfo == null) throw new NullReferenceException($"DataProvider knows no source collection of type {typeof(T)}.");
+            var property = propertyInfo.GetValue(null) as List<T>;
+            return property;
         }
 
         public static IEnumerable<T> GetList<T>(Func<T, bool> func)
@@ -76,6 +76,7 @@ namespace myCoreMvc
             return GetList<T>().SingleOrDefault(i => i.Id == Guid.Parse(id));
         }
 
+        //TODO: Split this method into two for Add and Update operations separately.
         public static TransactionResult Save<T>(T obj) where T : Thing
         {
             var targetSource = GetList<T>();
@@ -101,6 +102,15 @@ namespace myCoreMvc
             }
         }
 
-        public enum TransactionResult { Added, Updated }
+        public static TransactionResult Delete<T>(Guid id) where T : Thing
+        {
+            var targetSource = GetList<T>();
+            var existingObj = targetSource.SingleOrDefault(e => e.Id == id);
+            if (existingObj == null) return TransactionResult.NotFound;
+            targetSource.Remove(existingObj);
+            return TransactionResult.Deleted;
+        }
+
+        public enum TransactionResult { NotFound, Added, Updated, Deleted }
     }
 }
