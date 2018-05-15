@@ -9,6 +9,7 @@
 {
     <h3>WorkPlan details</h3>
     <a asp-controller="EnterWorkPlan" asp-action="Index" asp-route-id="@Model.Id">Edit</a>
+    <a asp-controller="DetailsOfWorkPlan" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
     <div>@Model.Name</div>
 }
 else
