@@ -9,10 +9,22 @@
 {
     <h3>WorkPlan details</h3>
     <a asp-controller="EnterWorkPlan" asp-action="Index" asp-route-id="@Model.Id">Edit</a>
-    <a asp-controller="DetailsOfWorkPlan" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-    <div>@Model.Name</div>
+    <button id="delete">Delete</button>
+    <br />
+    <label>Name__ </label><span>@Model.Name</span>
 }
 else
 {
     <h5>WorkPlan not found!</h5>
 }
+
+<script>
+    var deleteButton = document.getElementById("delete");
+    deleteButton.onclick = function () {
+        var confirmed = confirm("Are you sure you want to delete this WorkPlan?");
+        if (confirmed) {
+        var url = window.location.origin + "/DetailsOfWorkPlan/Delete/" + "@Model.Id";
+        window.location.href = url;
+        }
+    };
+</script>
