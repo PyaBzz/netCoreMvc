@@ -2,7 +2,9 @@
 @using myCoreMvc;
 
 @model EnterWorkItemController.EnterModel
-@{ ViewBag.Title = "WorkItem Details"; }
+@{ ViewBag.Title = "WorkItem Details";
+    var addMode = Model.Id == Guid.Empty;
+}
 
 <h2>
     @if (Model.Message != null && Model.Message != string.Empty)
@@ -11,7 +13,7 @@
 
 <a asp-controller="ListOfWorkItems" asp-action="Index">Back</a>
 
-@if (Model.Id == Guid.Empty)
+@if (addMode)
 {<h3>Add WorkItem</h3>}
 else
 {<h3>Edit WorkItem</h3>}

@@ -28,14 +28,23 @@ namespace myCoreMvc
                 var workItem = new WorkItem();
                 workItem.CopySimilarPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
                 workItem.WorkPlan = DataProvider.Get<WorkPlan>(inputModel.WorkPlan);
-                var result = "";
-                switch (DataProvider.Save(workItem))
+                DataProvider.TransactionResult transactionResult;
+                if (workItem.Id == Guid.Empty)
                 {
-                    case DataProvider.TransactionResult.Updated: result = "Item updated"; break;
-                    case DataProvider.TransactionResult.Added: result = "New item added"; break;
-                    default: result = "New item added"; break;
+                    transactionResult = DataProvider.Add(workItem);
                 }
-                return RedirectToAction("Index", "ListOfWorkItems", new { message = result });  // Prevents form re-submission by refresh
+                else
+                {
+                    transactionResult = DataProvider.Update(workItem);
+                }
+                var resultMessage = "";
+                switch (transactionResult)
+                {
+                    case DataProvider.TransactionResult.Updated: resultMessage = "Item updated"; break;
+                    case DataProvider.TransactionResult.Added: resultMessage = "New item added"; break;
+                    default: resultMessage = transactionResult.ToString(); break;
+                }
+                return RedirectToAction("Index", "ListOfWorkItems", new { message = resultMessage });  // Prevents form re-submission by refresh
             }
             else
             {

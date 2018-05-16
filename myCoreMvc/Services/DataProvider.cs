@@ -76,29 +76,26 @@ namespace myCoreMvc
             return GetList<T>().SingleOrDefault(i => i.Id == Guid.Parse(id));
         }
 
-        //TODO: Split this method into two for Add and Update operations separately.
-        public static TransactionResult Save<T>(T obj) where T : Thing
+        public static TransactionResult Add<T>(T obj) where T : Thing
+        {
+            obj.Id = Guid.NewGuid();
+            var targetSource = GetList<T>();
+            targetSource.Add(obj);
+            return TransactionResult.Added;
+        }
+
+        public static TransactionResult Update<T>(T obj) where T : Thing
         {
             var targetSource = GetList<T>();
-            if (obj.Id == Guid.Empty)
+            var existingObj = targetSource.SingleOrDefault(e => e.Id == obj.Id);
+            if (existingObj == null)
             {
-                obj.Id = Guid.NewGuid();
-                targetSource.Add(obj);
-                return TransactionResult.Added;
+                return TransactionResult.NotFound;
             }
             else
             {
-                var existingObj = targetSource.SingleOrDefault(e => e.Id == obj.Id);
-                if (existingObj == null)
-                {
-                    targetSource.Add(obj);
-                    return TransactionResult.Added;
-                }
-                else
-                {
-                    existingObj.CopyPropertiesFrom(obj);
-                    return TransactionResult.Updated;
-                }
+                existingObj.CopyPropertiesFrom(obj);
+                return TransactionResult.Updated;
             }
         }
 
