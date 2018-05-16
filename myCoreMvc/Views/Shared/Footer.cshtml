@@ -1,15 +1,18 @@
 ﻿<div>______________________________</div>
 <div>Your network socket: <span id="client-ip"></span></div>
-<script type="text/javascript">
+<script>
     window.onload = function () {
+        showClientIp();
+    };
+    function showClientIp() {
         var url = window.location.origin + "/GetClientSocket";
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
+        var ajaxRequest = new XMLHttpRequest();
+        ajaxRequest.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("client-ip").innerHTML = this.responseText;
             }
         };
-        xhttp.open("GET", url, true);
-        xhttp.send();
-    };
+        ajaxRequest.open("GET", url, true);
+        ajaxRequest.send();
+    }
 </script>
