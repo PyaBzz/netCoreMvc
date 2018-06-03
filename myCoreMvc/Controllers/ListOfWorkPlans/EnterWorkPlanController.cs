@@ -56,8 +56,13 @@ namespace myCoreMvc
         public class EnterModel : IClonable
         {
             public Guid Id { get; set; }
-            [Display(Name = "Plan name"), Required]
+
+            [Display(Name = "Plan name")]
+            [Required(ErrorMessage = "{0} is mandatory.")]
+            [StringLength(5, MinimumLength = 3, ErrorMessage = "{0} should be between {2} and {1} characters in length.")]
+            [RegularExpression("^[A-Z][a-zA-Z0-9]*", ErrorMessage = "{0} must start with a capital letter and may only contain alphanumeric characters.")]
             public string Name { get; set; }
+
             public string Message = "";
         }
     }

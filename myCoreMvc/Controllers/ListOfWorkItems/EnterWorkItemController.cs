@@ -26,6 +26,12 @@ namespace myCoreMvc
             if (ModelState.IsValid)
             {
                 var workItem = new WorkItem();
+                // TODO: Look into object mapping solutions like AutoMapper to learn best practices.
+                // ModelState.AddModelError("Reference", "It must be in blabla format!")
+                // ModelState.AddModelError("", "This is an object level error rather than property level.")
+                // TODO: Put a validation summary tag in your view:
+                // @Html.ValidationSummary(true)
+                // @Html.ValidationMessageFor(p => p.Reference)
                 workItem.CopySimilarPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
                 workItem.WorkPlan = DataProvider.Get<WorkPlan>(inputModel.WorkPlan);
                 DataProvider.TransactionResult transactionResult;
@@ -60,8 +66,15 @@ namespace myCoreMvc
             public Guid WorkPlan { get; set; }
             public String Reference { get; set; }
             public int Priority { get; set; }
-            [Display(Name = "Item name"), Required]
+
+
+            // TODO: Use custom validators to inherit from ValidationAttribute
+            [Display(Name = "Item name")]
+            [Required(ErrorMessage = "{0} is mandatory.")]
+            [StringLength(5, MinimumLength = 3, ErrorMessage = "{0} should be between {2} and {1} characters in length.")]
+            [RegularExpression("^[A-Z][a-zA-Z0-9]*", ErrorMessage = "{0} must start with a capital letter and may only contain alphanumeric characters.")]
             public string Name { get; set; }
+
             public IEnumerable<int> PriorityChoices { get { return WorkItem.PriorityChoices; } }
             public IEnumerable<WorkPlan> WorkPlanChoices { get { return DataProvider.GetList<WorkPlan>(); } }
             public string Message = "";
