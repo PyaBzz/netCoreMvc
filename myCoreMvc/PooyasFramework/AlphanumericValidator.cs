@@ -9,21 +9,22 @@ namespace PooyasFramework
 {
     public class AlphanumericValidator : ValidationAttribute
     {
-        //[Range(0, int.MaxValue)]
-        private int _minLength;
-        //TODO: Find a way to limit valid ranges.
-        //[Range(_minLength, int.MaxValue)]
+        [Range(1, int.MaxValue)]
+        private int _minLength = 0;
+        [Range(1, int.MaxValue)]
         private int _maxLength;
-        private bool _mustStartWithLetter;
-        private bool _mustStartWithCapital;
+        private bool _mustStartWithLetter = false;
+        private bool _mustStartWithCapital = false;
 
-        public AlphanumericValidator( int minLength, int maxLength, bool mustStartWithLetter, bool mustStartWithCapital)
+        public AlphanumericValidator( int minLength = 1, int maxLength = 1, bool mustStartWithLetter = true, bool mustStartWithCapital = true)
         {
+            if (minLength <= 0 )
+                throw new ValidationException("Minimum length must be greater than zero."); // For developer
+            if (maxLength <= minLength)
+                throw new ValidationException("Maximum length must be greater than minimum length."); // For developer
             _minLength = minLength;
             _maxLength = maxLength;
             _mustStartWithLetter = mustStartWithLetter;
-            if (_minLength <= 0 )
-                throw new ValidationException("Minimum length must be greater than zero."); // For developer
             _mustStartWithCapital = mustStartWithCapital;
         }
 

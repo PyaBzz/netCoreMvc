@@ -69,7 +69,7 @@ namespace myCoreMvc
 
 
             [Display(Name = "Item name")]
-            [AlphanumericValidator(3, 5, true, true)]
+            [AlphanumericValidator(3, 5)]
             public string Name { get; set; }
 
             public IEnumerable<int> PriorityChoices { get { return WorkItem.PriorityChoices; } }
