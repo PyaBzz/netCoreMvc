@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PooyasFramework;
+using PooyasFramework.Attributes;
 
 namespace myCoreMvc
 {
     public class EnterWorkItemController : Controller
     {
+        //TODO: Use OnActionExecuting or similar methods from this page: https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-cs
+        // to access OnBound, OnPreBinding, etc. 
         public IActionResult Index(Guid id)
         {
             var item = DataProvider.Get<WorkItem>(wi => wi.Id == id);
@@ -20,7 +23,10 @@ namespace myCoreMvc
             return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);  // TODO: Use "asp-" tag helpers instead of tags attributes.
         }
 
+        //TODO: Invalid anti-forgery token sets Http status to 400 (bad request) instead of throwing an exception. Find a way to handle it e.g. with a relevant response.
         [HttpPost]
+        [CustomExceptionFilter]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(EnterModel inputModel)
         {
             if (ModelState.IsValid)
@@ -53,7 +59,6 @@ namespace myCoreMvc
             }
             else
             {
-                // TODO: See if you can use a validation summary tag instead: <div asp-validation-summary="All"></div>
                 inputModel.Message = "Invalid values for: "
                     + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
                 return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);
@@ -69,7 +74,7 @@ namespace myCoreMvc
 
 
             [Display(Name = "Item name")]
-            [AlphanumericValidator(3, 5)]
+            [ValidateAlphanumeric(3, 5)]
             public string Name { get; set; }
 
             public IEnumerable<int> PriorityChoices { get { return WorkItem.PriorityChoices; } }

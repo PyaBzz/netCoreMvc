@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace PooyasFramework
+namespace PooyasFramework.Attributes
 {
-    public class AlphanumericValidator : ValidationAttribute
+    public class ValidateAlphanumericAttribute : ValidationAttribute
     {
         [Range(1, int.MaxValue)]
         private int _minLength = 0;
@@ -16,9 +16,9 @@ namespace PooyasFramework
         private bool _mustStartWithLetter = false;
         private bool _mustStartWithCapital = false;
 
-        public AlphanumericValidator( int minLength = 1, int maxLength = 1, bool mustStartWithLetter = true, bool mustStartWithCapital = true)
+        public ValidateAlphanumericAttribute(int minLength = 1, int maxLength = 1, bool mustStartWithLetter = true, bool mustStartWithCapital = true)
         {
-            if (minLength <= 0 )
+            if (minLength <= 0)
                 throw new ValidationException("Minimum length must be greater than zero."); // For developer
             if (maxLength <= minLength)
                 throw new ValidationException("Maximum length must be greater than minimum length."); // For developer
