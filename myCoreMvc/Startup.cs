@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+using PooyasFramework.Middleware;
 
 namespace myCoreMvc
 {
@@ -26,10 +27,11 @@ namespace myCoreMvc
         {
             loggerFactory.AddConsole();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseMiddleware<CustomMiddleware>();
+
+            app.UseMiddleware<AntiForgeryTokenValidatorMiddleware>();
+
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             var staticFileOptions = new StaticFileOptions();
             staticFileOptions.RequestPath = "/StaticContent";
@@ -43,24 +45,6 @@ namespace myCoreMvc
                     name: "default", 
                     template: "{controller=ListOfWorkItems}/{action=Index}/{id?}");
             });
-
-            //-------------------------------  Pipeline Experiment  ---------------------------------
-            //app.Use(async (context, next) =>
-            //{
-            //    await context.Response.WriteAsync("Forward order- In the Startup class" + Environment.NewLine);
-            //    await next.Invoke();
-            //    await context.Response.WriteAsync("Reverse order- In the Startup class" + Environment.NewLine);
-            //});
-            //app.UseMiddleware<CustomMiddleware>();
-            //app.Run(async context =>
-            //{
-            //    await context.Response.WriteAsync("--------------------------------------------------------------" + Environment.NewLine);
-            //    await context.Response.WriteAsync(
-            //        "Client IP address: " + context.Request.HttpContext.Connection.RemoteIpAddress.ToString() +
-            //        "Host IP address: " + context.Request.HttpContext.Connection.LocalIpAddress.ToString() + Environment.NewLine +
-            //        $"8 factorial is {8.Factorial()}" + Environment.NewLine);
-            //    await context.Response.WriteAsync("--------------------------------------------------------------" + Environment.NewLine);
-            //});
         }
     }
 }

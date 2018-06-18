@@ -23,10 +23,8 @@ namespace myCoreMvc
             return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);  // TODO: Use "asp-" tag helpers instead of tags attributes.
         }
 
-        //TODO: Invalid anti-forgery token sets Http status to 400 (bad request) instead of throwing an exception. Find a way to handle it e.g. with a relevant response.
         [HttpPost]
         [CustomExceptionFilter]
-        [ValidateAntiForgeryToken]
         public IActionResult Index(EnterModel inputModel)
         {
             if (ModelState.IsValid)
