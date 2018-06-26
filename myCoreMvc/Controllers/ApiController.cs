@@ -10,7 +10,7 @@ using PooyasFramework;
 
 namespace myCoreMvc.Controllers
 {
-    public class ApiController : Controller
+    public class ApiController : BaseController
     {
         [Route("GetClientSocket")]
         public string GetClientSocket()

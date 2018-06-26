@@ -10,7 +10,7 @@ using PooyasFramework;
 
 namespace myCoreMvc
 {
-    public class ListOfWorkPlansController : Controller
+    public class ListOfWorkPlansController : BaseController
     {
         public IActionResult Index(string message)
         {

@@ -11,7 +11,7 @@ using PooyasFramework.Attributes;
 
 namespace myCoreMvc
 {
-    public class EnterWorkItemController : Controller
+    public class EnterWorkItemController : BaseController
     {
         //TODO: Use OnActionExecuting or similar methods from this page: https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-cs
         // to access OnBound, OnPreBinding, etc. 

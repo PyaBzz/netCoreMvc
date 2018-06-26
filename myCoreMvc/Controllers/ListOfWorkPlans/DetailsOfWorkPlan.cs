@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace myCoreMvc
 {
-    public class DetailsOfWorkPlan : Controller
+    public class DetailsOfWorkPlan : BaseController
     {
         public IActionResult Index(Guid id)
         {

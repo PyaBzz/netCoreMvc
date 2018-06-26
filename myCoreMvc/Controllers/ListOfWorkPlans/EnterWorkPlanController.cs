@@ -10,7 +10,7 @@ using PooyasFramework;
 
 namespace myCoreMvc
 {
-    public class EnterWorkPlanController : Controller
+    public class EnterWorkPlanController : BaseController
     {
         public IActionResult Index(Guid id)
         {
