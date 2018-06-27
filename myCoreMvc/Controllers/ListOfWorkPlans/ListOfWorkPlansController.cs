@@ -7,6 +7,7 @@ using myCoreMvc.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using PooyasFramework;
+using myCoreMvc.Services;
 
 namespace myCoreMvc
 {

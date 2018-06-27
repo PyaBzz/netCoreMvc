@@ -4,15 +4,21 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using myCoreMvc.Models;
+using myCoreMvc.PooyasFramework;
 using PooyasFramework;
 
 namespace myCoreMvc
 {
-    public class DataProvider
+    public class DbMock : IDataProvider
     {
-        private static List<WorkPlan> _WorkPlans;
+        /*==================================  Fields ==================================*/
 
-        private static List<WorkPlan> WorkPlans
+        private List<WorkPlan> _WorkPlans;
+        private List<WorkItem> _WorkItems;
+
+        /*================================  Properties ================================*/
+
+        private List<WorkPlan> WorkPlans
         {
             get
             {
@@ -27,10 +33,7 @@ namespace myCoreMvc
                 return _WorkPlans;
             }
         }
-
-        private static List<WorkItem> _WorkItems;
-
-        private static List<WorkItem> WorkItems
+        private List<WorkItem> WorkItems
         {
             get
             {
@@ -47,36 +50,38 @@ namespace myCoreMvc
             }
         }
 
-        public static List<T> GetList<T>()
+        /*==================================  Methods =================================*/
+
+        public List<T> GetList<T>()
         {
-            var propertyInfos = typeof(DataProvider).GetProperties(BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
+            var propertyInfos = this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
             var propertyInfo = propertyInfos.SingleOrDefault(pi => pi.PropertyType == typeof(List<T>));
-            if (propertyInfo == null) throw new NullReferenceException($"DataProvider knows no source collection of type {typeof(T)}.");
-            var property = propertyInfo.GetValue(null) as List<T>;
+            if (propertyInfo == null) throw new NullReferenceException($"DbMock knows no source collection of type {typeof(T)}.");
+            var property = propertyInfo.GetValue(this) as List<T>;
             return property;
         }
 
-        public static IEnumerable<T> GetList<T>(Func<T, bool> func)
+        public List<T> GetList<T>(Func<T, bool> func)
         {
-            return GetList<T>().Where(i => func(i));
+            return GetList<T>().Where(i => func(i)).ToList();
         }
 
-        public static T Get<T>(Func<T, bool> func)
+        public T Get<T>(Func<T, bool> func)
         {
             return GetList<T>().SingleOrDefault(i => func(i));
         }
 
-        public static T Get<T>(Guid id) where T : Thing
+        public T Get<T>(Guid id) where T : Thing
         {
             return GetList<T>().SingleOrDefault(i => i.Id == id);
         }
 
-        public static T Get<T>(string id) where T : Thing
+        public T Get<T>(string id) where T : Thing
         {
             return GetList<T>().SingleOrDefault(i => i.Id == Guid.Parse(id));
         }
 
-        public static TransactionResult Add<T>(T obj) where T : Thing
+        public TransactionResult Add<T>(T obj) where T : Thing
         {
             obj.Id = Guid.NewGuid();
             var targetSource = GetList<T>();
@@ -84,7 +89,7 @@ namespace myCoreMvc
             return TransactionResult.Added;
         }
 
-        public static TransactionResult Update<T>(T obj) where T : Thing
+        public TransactionResult Update<T>(T obj) where T : Thing
         {
             var targetSource = GetList<T>();
             var existingObj = targetSource.SingleOrDefault(e => e.Id == obj.Id);
@@ -99,7 +104,7 @@ namespace myCoreMvc
             }
         }
 
-        public static TransactionResult Delete<T>(Guid id) where T : Thing
+        public TransactionResult Delete<T>(Guid id) where T : Thing
         {
             var targetSource = GetList<T>();
             var existingObj = targetSource.SingleOrDefault(e => e.Id == id);
@@ -107,7 +112,5 @@ namespace myCoreMvc
             targetSource.Remove(existingObj);
             return TransactionResult.Deleted;
         }
-
-        public enum TransactionResult { NotFound, Added, Updated, Deleted }
     }
 }

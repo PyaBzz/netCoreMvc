@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using myCoreMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PooyasFramework;
 using PooyasFramework.Attributes;
+using myCoreMvc.PooyasFramework;
+using myCoreMvc.Services;
 
 namespace myCoreMvc
 {
@@ -37,7 +38,7 @@ namespace myCoreMvc
                 // @Html.ValidationMessageFor(p => p.Reference)
                 workItem.CopySimilarPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
                 workItem.WorkPlan = DataProvider.Get<WorkPlan>(inputModel.WorkPlan);
-                DataProvider.TransactionResult transactionResult;
+                TransactionResult transactionResult;
                 if (workItem.Id == Guid.Empty)
                 {
                     transactionResult = DataProvider.Add(workItem);
@@ -49,8 +50,8 @@ namespace myCoreMvc
                 var resultMessage = "";
                 switch (transactionResult)
                 {
-                    case DataProvider.TransactionResult.Updated: resultMessage = "Item updated"; break;
-                    case DataProvider.TransactionResult.Added: resultMessage = "New item added"; break;
+                    case TransactionResult.Updated: resultMessage = "Item updated"; break;
+                    case TransactionResult.Added: resultMessage = "New item added"; break;
                     default: resultMessage = transactionResult.ToString(); break;
                 }
                 return RedirectToAction("Index", "ListOfWorkItems", new { message = resultMessage });  // Prevents form re-submission by refresh
@@ -76,7 +77,7 @@ namespace myCoreMvc
             public string Name { get; set; }
 
             public IEnumerable<int> PriorityChoices { get { return WorkItem.PriorityChoices; } }
-            public IEnumerable<WorkPlan> WorkPlanChoices { get { return DataProvider.GetList<WorkPlan>(); } }
+            public IEnumerable<WorkPlan> WorkPlanChoices { get { return DataProviderFactory.DataProvider.GetList<WorkPlan>(); } } //TODO: Get rid of dependency
             public string Message = "";
         }
     }

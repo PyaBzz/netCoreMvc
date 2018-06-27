@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Models;
+using myCoreMvc.PooyasFramework;
+using myCoreMvc.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace myCoreMvc
 {
@@ -20,8 +19,8 @@ namespace myCoreMvc
             var result = "";
             switch (DataProvider.Delete<WorkPlan>(id))
             {
-                case DataProvider.TransactionResult.NotFound: result = "Found no WorkPlan with the provided Id."; break;
-                case DataProvider.TransactionResult.Deleted: result = "Item deleted."; break;
+                case TransactionResult.NotFound: result = "Found no WorkPlan with the provided Id."; break;
+                case TransactionResult.Deleted: result = "Item deleted."; break;
                 default: result = "Found no WorkPlan with the provided Id."; break;
             }
             return RedirectToAction("Index", "ListOfWorkPlans", new { message = result });  // Prevents form re-submission by refresh

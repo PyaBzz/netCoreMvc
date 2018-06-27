@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using myCoreMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PooyasFramework;
+using myCoreMvc.PooyasFramework;
+using myCoreMvc.Services;
 
 namespace myCoreMvc
 {
@@ -27,7 +27,7 @@ namespace myCoreMvc
             {
                 var workPlan = new WorkPlan();
                 workPlan.CopySimilarPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
-                DataProvider.TransactionResult transactionResult;
+                TransactionResult transactionResult;
                 if (workPlan.Id == Guid.Empty)
                 {
                     transactionResult = DataProvider.Add(workPlan);
@@ -39,8 +39,8 @@ namespace myCoreMvc
                 var resultMessage = "";
                 switch (transactionResult)
                 {
-                    case DataProvider.TransactionResult.Updated: resultMessage = "Item updated"; break;
-                    case DataProvider.TransactionResult.Added: resultMessage = "New item added"; break;
+                    case TransactionResult.Updated: resultMessage = "Item updated"; break;
+                    case TransactionResult.Added: resultMessage = "New item added"; break;
                     default: resultMessage = transactionResult.ToString(); break;
                 }
                 return RedirectToAction("Index", "ListOfWorkPlans", new { message = resultMessage });  // Prevents form re-submission by refresh
