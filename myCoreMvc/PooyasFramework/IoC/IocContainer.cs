@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace myCoreMvc.PooyasFramework.IoC
+namespace PooyasFramework.IoC
 {
-    public enum LifeCycle { Singleton, Transient };
-
     public class IocContainer
     {
         private readonly List<RegisteredObject> registeredObjects = new List<RegisteredObject>();
@@ -17,7 +13,7 @@ namespace myCoreMvc.PooyasFramework.IoC
         //    Register<TypeToResolve, ConcreteType>(LifeCycle.Singleton);
         //}
 
-        public void Register<TypeToResolve, ConcreteType>(LifeCycle lifeCycle)
+        public void Register<TypeToResolve, ConcreteType>(Injection lifeCycle)
         {
             registeredObjects.Add(new RegisteredObject(typeof(TypeToResolve), typeof(ConcreteType), lifeCycle));
         }
@@ -44,7 +40,7 @@ namespace myCoreMvc.PooyasFramework.IoC
 
         private object GetInstance(RegisteredObject registeredObject)
         {
-            if (registeredObject.Instance == null || registeredObject.LifeCycle == LifeCycle.Transient)
+            if (registeredObject.Instance == null || registeredObject.LifeCycle == Injection.Transient)
             {
                 var parameters = ResolveConstructorParameters(registeredObject);
                 registeredObject.CreateInstance(parameters.ToArray());

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace myCoreMvc.PooyasFramework
+﻿namespace PooyasFramework
 {
+    public enum Injection { Singleton, Transient };
+
     public enum TransactionResult { NotFound, Added, Updated, Deleted }
 }

@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PooyasFramework;
 using PooyasFramework.Attributes;
-using myCoreMvc.PooyasFramework;
 using myCoreMvc.Services;
 
 namespace myCoreMvc
@@ -77,7 +76,7 @@ namespace myCoreMvc
             public string Name { get; set; }
 
             public IEnumerable<int> PriorityChoices { get { return WorkItem.PriorityChoices; } }
-            public IEnumerable<WorkPlan> WorkPlanChoices { get { return DataProviderFactory.DataProvider.GetList<WorkPlan>(); } } //TODO: Get rid of dependency
+            public IEnumerable<WorkPlan> WorkPlanChoices { get { return ServiceInjector.Resolve<IDataProvider>().GetList<WorkPlan>(); } } //TODO: Get rid of dependency
             public string Message = "";
         }
     }

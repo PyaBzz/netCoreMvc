@@ -6,7 +6,8 @@ namespace myCoreMvc
 {
     public class BaseController : Controller
     {
-        // Every controller inherits from this
-        internal IDataProvider DataProvider = DataProviderFactory.DataProvider;
+        //TODO: Read this carefully:
+        //https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/dependency-injection?view=aspnetcore-2.1
+        internal IDataProvider DataProvider = ServiceInjector.Resolve<IDataProvider>();
     }
 }

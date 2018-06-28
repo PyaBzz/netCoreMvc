@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PooyasFramework;
-using myCoreMvc.PooyasFramework;
-using myCoreMvc.Services;
 
 namespace myCoreMvc
 {

@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using PooyasFramework.Middleware;
+using PooyasFramework;
+using myCoreMvc.Services;
 
 namespace myCoreMvc
 {
@@ -20,6 +22,7 @@ namespace myCoreMvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            ServiceInjector.Register<IDataProvider, DbMock>(Injection.Singleton);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

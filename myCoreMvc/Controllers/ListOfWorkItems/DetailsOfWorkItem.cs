@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Models;
-using myCoreMvc.PooyasFramework;
-using myCoreMvc.Services;
+using PooyasFramework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace myCoreMvc
 {

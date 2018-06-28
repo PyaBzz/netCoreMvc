@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using myCoreMvc.Models;
-using myCoreMvc.PooyasFramework;
 using PooyasFramework;
 
 namespace myCoreMvc

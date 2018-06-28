@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
 using myCoreMvc.Services;
 using myCoreMvc.Models;
 using PooyasFramework;
-using myCoreMvc.PooyasFramework.IoC;
+using PooyasFramework.IoC;
 
 namespace myCoreMvc.Controllers
 {
@@ -43,7 +39,7 @@ namespace myCoreMvc.Controllers
         public ContentResult Ioc()
         {
             var iocContainer = new IocContainer();
-            iocContainer.Register<IClonable, WorkItem>(LifeCycle.Singleton);
+            iocContainer.Register<IClonable, WorkItem>(Injection.Singleton);
             var resolvedObj = iocContainer.Resolve<IClonable>();
             //var result = resolvedObj.GetStringOfAllProperties();
             var result = resolvedObj.ToString();

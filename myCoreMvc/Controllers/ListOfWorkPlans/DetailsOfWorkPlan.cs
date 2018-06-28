@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Models;
-using myCoreMvc.PooyasFramework;
-using myCoreMvc.Services;
+using PooyasFramework;
 using System;
 
 namespace myCoreMvc

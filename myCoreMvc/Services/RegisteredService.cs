@@ -1,19 +1,20 @@
 ﻿using System;
+using PooyasFramework;
 
-namespace PooyasFramework.IoC
+namespace myCoreMvc.Services
 {
-    public class RegisteredObject
+    public class RegisteredService
     {
         public Type TypeToResolve { get; }
         public Type ConcreteType { get; }
-        public Injection LifeCycle { get; }
+        public Injection Injection { get; }
         public object Instance { get; set; }
 
-        public RegisteredObject(Type typeToResolve, Type concreteType, Injection lifeCycle)
+        public RegisteredService(Type typeToResolve, Type concreteType, Injection injection)
         {
             TypeToResolve = typeToResolve;
             ConcreteType = concreteType;
-            LifeCycle = lifeCycle;
+            Injection = injection;
         }
 
         internal void CreateInstance(object[] ConstructorParams)
