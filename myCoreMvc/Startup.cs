@@ -17,15 +17,21 @@ namespace myCoreMvc
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        // This method gets called by the runtime.
+        // Use it to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
             ServiceInjector.Register<IDataProvider, DbMock>(Injection.Singleton);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        //TODO: Implement user authentication (Cookie or Token based).
+        //TODO: Use the brilliant "nameof()" method particularly for validation messages: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/nameof
+        //TODO: Use OnActionExecuting() and OnActionExecuted() methods from here: https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller.onactionexecuting?view=aspnetcore-2.1
+        //
+
+        // This method gets called by the runtime.
+        // Use it to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();

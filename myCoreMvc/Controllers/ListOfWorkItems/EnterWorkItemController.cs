@@ -76,7 +76,7 @@ namespace myCoreMvc
             public string Name { get; set; }
 
             public IEnumerable<int> PriorityChoices { get { return WorkItem.PriorityChoices; } }
-            public IEnumerable<WorkPlan> WorkPlanChoices { get { return ServiceInjector.Resolve<IDataProvider>().GetList<WorkPlan>(); } } //TODO: Get rid of dependency
+            public IEnumerable<WorkPlan> WorkPlanChoices { get { return ServiceInjector.Resolve<IDataProvider>().GetList<WorkPlan>(); } }
             public string Message = "";
         }
     }

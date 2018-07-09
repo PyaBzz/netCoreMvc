@@ -6,8 +6,6 @@ using System.Linq;
 
 namespace myCoreMvc.Services
 {
-    //TODO: Further develop this container (factory) to inject concrete implementation of services
-
     public class ServiceInjector
     {
         private static readonly List<RegisteredService> registeredServices = new List<RegisteredService>();
@@ -50,19 +48,5 @@ namespace myCoreMvc.Services
                 yield return ResolveService(parameter.ParameterType);
             }
         }
-
-        //private static IDataProvider dataProvider;
-
-        //public static IDataProvider DataProvider
-        //{
-        //    get
-        //    {
-        //        if (dataProvider == null)
-        //        {
-        //            dataProvider = new DbMock();
-        //        }
-        //        return dataProvider;
-        //    }
-        //}
     }
 }
