@@ -1,4 +1,6 @@
-﻿@model myCoreMvc.Controllers.ListOfWorkItemsController.ListModel
+﻿@using myCoreMvc.Controllers
+
+@model myCoreMvc.Controllers.ListOfWorkItemsController.ListModel
 @{ ViewBag.Title = "WorkItems";
     if (true)
     {
@@ -12,9 +14,9 @@
 }
 
 <h3>Work Items</h3>
-<a asp-controller="EnterWorkItem" asp-action="Index">Add</a>
+<a asp-controller="@nameof(EnterWorkItemController).Replace("Controller", "")" asp-action="@nameof(EnterWorkItemController.Index)">Add</a>
 
-<form asp-controller="ListOfWorkItems" asp-action="Index">
+<form asp-controller="@nameof(ListOfWorkItemsController).Replace("Controller", "")" asp-action="@nameof(ListOfWorkItemsController.Index)">
     <h3>Search</h3>
     <label asp-for="Search_All">All</label>
     <input type="text" name="Search_All" value="@Model.Search_All" />
@@ -48,10 +50,10 @@
         {
             <tr>
                 <td>@item.WorkPlan</td>
-                <td><a asp-controller="DetailsOfWorkItem" asp-action="Index" asp-route-id="@item.Id">@item.Reference</a></td>
+                <td><a asp-controller="@nameof(DetailsOfWorkItemController).Replace("Controller", "")" asp-action="@nameof(DetailsOfWorkItemController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
                 <td>@item.Name</td>
                 <td>@item.Priority</td>
-                <td><a asp-controller="EnterWorkItem" asp-action="Index" asp-route-id="@item.Id">Go</a></td>
+                <td><a asp-controller="@nameof(EnterWorkItemController).Replace("Controller", "")" asp-action="@nameof(DetailsOfWorkItemController.Index)" asp-route-id="@item.Id">Go</a></td>
             </tr>
         }
     </table>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -94,6 +95,13 @@ namespace PooyasFramework
         {
             foreach (var filter in filters) source = source.Where(i => filter(i));
             return source;
+        }
+
+        public static string Dasoo<T>(this Controller controller, string actionName) where T : Controller
+        {
+            var longName = typeof(T).Name;
+            string shortName = longName.EndsWith("Controller") ? longName.Substring(0, longName.Length - 10) : longName;
+            return controller.Url.Action(actionName, shortName);
         }
     }
 }

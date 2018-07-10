@@ -27,7 +27,6 @@ namespace myCoreMvc
 
         //TODO: Experiment with cookies.
         //TODO: Implement user authentication with cookies: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-2.1&tabs=aspnetcore2x
-        //TODO: Use the brilliant "nameof()" method particularly for validation messages: https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/nameof
         //TODO: Use OnActionExecuting() and OnActionExecuted() methods from here: https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller.onactionexecuting?view=aspnetcore-2.1
 
         // This method gets called by the runtime.

@@ -5,7 +5,7 @@ using System;
 
 namespace myCoreMvc.Controllers
 {
-    public class DetailsOfWorkItem : BaseController
+    public class DetailsOfWorkItemController : BaseController
     {
         public IActionResult Index(Guid id)
         {

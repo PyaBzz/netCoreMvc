@@ -11,7 +11,7 @@
     {<text> @Model.Message </text>}
 </h2>
 
-<a asp-controller="ListOfWorkItems" asp-action="Index">Back</a>
+<a asp-controller="@nameof(ListOfWorkItemsController).Replace("Controller", "")" asp-action="@nameof(ListOfWorkItemsController.Index)">Back</a>
 
 @if (addMode)
 {<h3>Add WorkItem</h3>}

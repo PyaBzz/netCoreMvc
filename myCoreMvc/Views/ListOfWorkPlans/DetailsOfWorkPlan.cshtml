@@ -1,14 +1,15 @@
 ﻿@using System.Linq;
+@using myCoreMvc.Controllers
 @using myCoreMvc.Models;
 
 @model WorkPlan
 @{ ViewBag.Title = "WorkPlan Details"; }
 
-<a asp-controller="ListOfWorkPlans" asp-action="Index">Back</a>
+<a asp-controller="@nameof(ListOfWorkPlansController).Replace("Controller", "")" asp-action="@nameof(ListOfWorkPlansController.Index)">Back</a>
 @if (@Model != null)
 {
     <h3>WorkPlan details</h3>
-    <a asp-controller="EnterWorkPlan" asp-action="Index" asp-route-id="@Model.Id">Edit</a>
+    <a asp-controller="@nameof(EnterWorkPlanController).Replace("Controller", "")" asp-action="@nameof(EnterWorkPlanController.Index)" asp-route-id="@Model.Id">Edit</a>
     <button id="delete">Delete</button>
     <br />
     <label>Name__ </label><span>@Model.Name</span>
