@@ -9,8 +9,6 @@ namespace myCoreMvc.Controllers
 {
     public class ExperimentsController : BaseController
     {
-        //TODO: Could we use reflection to automatically add all action methods in this controller to the top menu?
-        //We could perhaps use something similar to: registeredObject.ConcreteType.GetConstructors().First()
         [Route("db")]
         public ActionResult Database()
         {

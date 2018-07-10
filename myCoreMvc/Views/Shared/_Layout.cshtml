@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Reflection
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>@(ViewBag.Title ?? "myCoreMvc")</title>
@@ -8,6 +10,14 @@
         <img src="~/StaticContent/Mushroom-Red-2.png" />
         <a asp-controller="ListOfWorkPlans" asp-action="Index">WorkPlans</a>
         <a asp-controller="ListOfWorkItems" asp-action="Index">WorkItems</a>
+        @{
+            var methodInfos = typeof(myCoreMvc.Controllers.ExperimentsController).GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
+            <text>__________Experiments: @methodInfos.Count()</text>
+            foreach (var methodInfo in methodInfos)
+            {
+                <a asp-controller="Experiments" asp-action="@methodInfo.Name">@methodInfo.Name</a>
+            }
+        }
     </header>
 
     @RenderBody()
