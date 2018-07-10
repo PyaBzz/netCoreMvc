@@ -3,7 +3,7 @@ using myCoreMvc.Models;
 using PooyasFramework;
 using System;
 
-namespace myCoreMvc
+namespace myCoreMvc.Controllers
 {
     public class DetailsOfWorkItem : BaseController
     {

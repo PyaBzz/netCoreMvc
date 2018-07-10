@@ -3,9 +3,9 @@ using myCoreMvc.Models;
 using PooyasFramework;
 using System;
 
-namespace myCoreMvc
+namespace myCoreMvc.Controllers
 {
-    public class DetailsOfWorkPlan : BaseController
+    public class DetailsOfWorkPlanController : BaseController
     {
         public IActionResult Index(Guid id)
         {

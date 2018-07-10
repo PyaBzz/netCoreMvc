@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using PooyasFramework;
 
-namespace myCoreMvc
+namespace myCoreMvc.Controllers
 {
     public class ListOfWorkItemsController : BaseController
     {

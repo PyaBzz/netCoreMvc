@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using PooyasFramework;
 using myCoreMvc.Services;
 
-namespace myCoreMvc
+namespace myCoreMvc.Controllers
 {
     public class ListOfWorkPlansController : BaseController
     {

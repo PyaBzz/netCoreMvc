@@ -2,7 +2,7 @@
 using myCoreMvc.Services;
 using PooyasFramework;
 
-namespace myCoreMvc
+namespace myCoreMvc.Controllers
 {
     public class BaseController : Controller
     {

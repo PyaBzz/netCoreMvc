@@ -9,7 +9,7 @@ using PooyasFramework;
 using PooyasFramework.Attributes;
 using myCoreMvc.Services;
 
-namespace myCoreMvc
+namespace myCoreMvc.Controllers
 {
     public class EnterWorkItemController : BaseController
     {
