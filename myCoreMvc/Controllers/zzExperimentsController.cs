@@ -4,6 +4,7 @@ using myCoreMvc.Services;
 using myCoreMvc.Models;
 using PooyasFramework;
 using PooyasFramework.IoC;
+using System.Linq;
 
 namespace myCoreMvc.Controllers
 {
@@ -42,6 +43,20 @@ namespace myCoreMvc.Controllers
             //var result = resolvedObj.GetStringOfAllProperties();
             var result = resolvedObj.ToString();
             return Content(result);
+        }
+
+        [Route("cookie")]
+        public ContentResult Cookie()
+        {
+            var key = $"Key{Request.Cookies.Count()}";
+            var value = $"Value{Request.Cookies.Count()}";
+            var content = "Request Cookies:" + Environment.NewLine;
+            content += Request.Cookies.ToString(Environment.NewLine) + Environment.NewLine;
+            content += "=======================================================================" + Environment.NewLine;
+            content += $"Adding [{key}, {value}]";
+
+            Response.Cookies.Append(key, value);
+            return Content(content);
         }
     }
 }
