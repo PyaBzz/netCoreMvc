@@ -1,4 +1,5 @@
 ﻿@using myCoreMvc.Controllers
+@using PooyasFramework
 
 @model myCoreMvc.Controllers.ListOfWorkPlansController.ListModel
 @{ ViewBag.Title = "WorkPlans";
@@ -14,9 +15,9 @@
 }
 
 <h3>Work Plans</h3>
-<a asp-controller="@nameof(EnterWorkPlanController).Replace("Controller", "")" asp-action="@nameof(EnterWorkPlanController.Index)">Add</a>
+<a asp-controller="@(Html.ShortNameOf<EnterWorkPlanController>())" asp-action="@nameof(EnterWorkPlanController.Index)">Add</a>
 
-<form asp-controller="@nameof(ListOfWorkPlansController).Replace("Controller", "")" asp-action="@nameof(ListOfWorkPlansController.Index)">
+<form asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">
     <h3>Search</h3>
     <label asp-for="Search_Name">Name</label>
     <input type="text" name="Search_Name" value="@Model.Search_Name" />
@@ -37,8 +38,8 @@
         @foreach (var item in Model.Items)
         {
             <tr>
-                <td><a asp-controller="@nameof(DetailsOfWorkPlanController).Replace("Controller", "")" asp-action="@nameof(DetailsOfWorkPlanController.Index)" asp-route-id="@item.Id">@item.Name</a></td>
-                <td><a asp-controller="@nameof(EnterWorkPlanController).Replace("Controller", "")" asp-action="@nameof(EnterWorkPlanController.Index)" asp-route-id="@item.Id">Go</a></td>
+                <td><a asp-controller="@(Html.ShortNameOf<DetailsOfWorkPlanController>())" asp-action="@nameof(DetailsOfWorkPlanController.Index)" asp-route-id="@item.Id">@item.Name</a></td>
+                <td><a asp-controller="@(Html.ShortNameOf<EnterWorkPlanController>())" asp-action="@nameof(EnterWorkPlanController.Index)" asp-route-id="@item.Id">Go</a></td>
             </tr>
         }
     </table>

@@ -1,15 +1,16 @@
 ﻿@using System.Linq;
 @using myCoreMvc.Models;
 @using myCoreMvc.Controllers
+@using PooyasFramework
 
 @model WorkItem
 @{ ViewBag.Title = "WorkItem Details"; }
 
-<a asp-controller="@nameof(ListOfWorkItemsController).Replace("Controller", "")" asp-action="@nameof(ListOfWorkItemsController.Index)">Back</a>
+<a asp-controller="@(Html.ShortNameOf<ListOfWorkItemsController>())" asp-action="@nameof(ListOfWorkItemsController.Index)">Back</a>
 @if (@Model != null)
 {
     <h3>WorkItem details</h3>
-    <a asp-controller="@nameof(EnterWorkItemController).Replace("Controller", "")" asp-action="@nameof(EnterWorkItemController.Index)" asp-route-id="@Model.Id">Edit</a>
+    <a asp-controller="@(Html.ShortNameOf<EnterWorkItemController>())" asp-action="@nameof(EnterWorkItemController.Index)" asp-route-id="@Model.Id">Edit</a>
     <button id="delete">Delete</button>
     <br />
     <label>WorkPlan__ </label><span>@Model.WorkPlan</span>

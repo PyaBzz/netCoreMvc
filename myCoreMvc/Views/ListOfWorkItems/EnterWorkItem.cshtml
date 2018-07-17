@@ -1,5 +1,6 @@
 ﻿@using System.Linq;
 @using myCoreMvc.Controllers;
+@using PooyasFramework
 
 @model EnterWorkItemController.EnterModel
 @{ ViewBag.Title = "WorkItem Details";
@@ -11,7 +12,7 @@
     {<text> @Model.Message </text>}
 </h2>
 
-<a asp-controller="@nameof(ListOfWorkItemsController).Replace("Controller", "")" asp-action="@nameof(ListOfWorkItemsController.Index)">Back</a>
+<a asp-controller="@(Html.ShortNameOf<ListOfWorkItemsController>())" asp-action="@nameof(ListOfWorkItemsController.Index)">Back</a>
 
 @if (addMode)
 {<h3>Add WorkItem</h3>}

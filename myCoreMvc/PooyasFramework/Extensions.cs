@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace PooyasFramework
 {
@@ -68,6 +67,11 @@ namespace PooyasFramework
             return string.Join(separator, source);
         }
 
+        public static string TrimEnd(this string @this, string tail)
+        {
+            return @this.EndsWith(tail) ? @this.Remove(@this.Length - tail.Length) : @this;
+        }
+
         public static IEnumerable<PropertyInfo> GetPublicInstancePropertyInfos(this Type T)
         {
             return T.GetProperties(BindingFlags.Instance | BindingFlags.Public);
@@ -97,11 +101,10 @@ namespace PooyasFramework
             return source;
         }
 
-        public static string Dasoo<T>(this Controller controller, string actionName) where T : Controller
+        public static string ShortNameOf<T>(this IHtmlHelper helper) where T : Controller
         {
-            var longName = typeof(T).Name;
-            string shortName = longName.EndsWith("Controller") ? longName.Substring(0, longName.Length - 10) : longName;
-            return controller.Url.Action(actionName, shortName);
+            return typeof(T).Name.TrimEnd("Controller");
         }
+
     }
 }
