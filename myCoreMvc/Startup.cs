@@ -33,7 +33,6 @@ namespace myCoreMvc
         //TODO: Experiment with cookies.
         //TODO: Implement user authentication with cookies: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-2.1&tabs=aspnetcore2x
         //TODO: Use OnActionExecuting() and OnActionExecuted() methods from here: https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller.onactionexecuting?view=aspnetcore-2.1
-        //TODO: Enable SSH based on the introduction video of this course: https://app.pluralsight.com/player?course=aspnet-core-identity-management-playbook&author=chris-klug&name=aspnet-core-identity-management-playbook-m2&clip=1&mode=live
 
         // This method gets called by the runtime.
         // Use it to configure the HTTP request pipeline.
