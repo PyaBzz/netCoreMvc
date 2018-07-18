@@ -9,5 +9,10 @@ namespace myCoreMvc.Controllers
         //TODO: Read this carefully:
         //https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/dependency-injection?view=aspnetcore-2.1
         internal IDataProvider DataProvider = ServiceInjector.Resolve<IDataProvider>();
+
+        internal static string ShortNameOf<T>() where T : Controller
+        {
+            return typeof(T).Name.TrimEnd("Controller");
+        }
     }
 }
