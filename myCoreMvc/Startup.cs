@@ -13,6 +13,8 @@ using PooyasFramework.Middleware;
 using PooyasFramework;
 using myCoreMvc.Services;
 using myCoreMvc.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace myCoreMvc
 {
@@ -22,7 +24,7 @@ namespace myCoreMvc
         // Use it to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(options => { options.Filters.Add(new RequireHttpsAttribute()); });
             ServiceInjector.Register<IDataProvider, DbMock>(Injection.Singleton); //TODO: Why don't we use "services"?
             var users = new Dictionary<string, string> { { "Hasang", "Palang" } };
             services.AddSingleton<IUserService>(new UserServiceMock(users));
@@ -43,6 +45,8 @@ namespace myCoreMvc
 
             app.UseMiddleware<AntiForgeryTokenValidatorMiddleware>();
 
+            app.UseRewriter(new RewriteOptions().AddRedirectToHttps(301, 44383));
+
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             var staticFileOptions = new StaticFileOptions();
@@ -54,7 +58,7 @@ namespace myCoreMvc
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default", 
+                    name: "default",
                     template: "{controller=ListOfWorkItems}/{action=Index}/{id?}");
             });
         }
