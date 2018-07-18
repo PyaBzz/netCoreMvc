@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using PooyasFramework.Middleware;
 using PooyasFramework;
 using myCoreMvc.Services;
+using myCoreMvc.Models;
 
 namespace myCoreMvc
 {
@@ -23,6 +24,8 @@ namespace myCoreMvc
         {
             services.AddMvc();
             ServiceInjector.Register<IDataProvider, DbMock>(Injection.Singleton); //TODO: Why don't we use "services"?
+            var users = new Dictionary<string, string> { { "Hasang", "Palang" } };
+            services.AddSingleton<IUserService>(new UserServiceMock(users));
         }
 
         //TODO: Experiment with cookies.

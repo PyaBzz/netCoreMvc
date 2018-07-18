@@ -22,7 +22,7 @@ namespace myCoreMvc.Controllers
                 case TransactionResult.Deleted: result = "Item deleted."; break;
                 default: result = "Found no WorkPlan with the provided Id."; break;
             }
-            return RedirectToAction(nameof(ListOfWorkPlansController.Index), ShortNameOf<ListOfWorkPlansController>(), new { message = result });  // Prevents form re-submission by refresh
+            return RedirectToAction(nameof(ListOfWorkPlansController.Index), ShortNameOf<ListOfWorkPlansController>(), new { message = result });  // Prevents re-submission by refresh
         }
     }
 }

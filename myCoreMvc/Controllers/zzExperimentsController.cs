@@ -58,5 +58,11 @@ namespace myCoreMvc.Controllers
             Response.Cookies.Append(key, value);
             return Content(content);
         }
+
+        [Route("auth")]
+        public IActionResult Auth()
+        {
+            return RedirectToAction(nameof(AuthController.SignIn), ShortNameOf<AuthController>());
+        }
     }
 }

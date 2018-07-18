@@ -1,0 +1,24 @@
+﻿@using System.Linq;
+@using myCoreMvc.Controllers;
+@using PooyasFramework
+
+@model AuthController.EnterModel
+
+<h2>
+    Log in
+</h2>
+
+@if (!ViewContext.ModelState.IsValid)
+{
+    <div asp-validation-summary="All">Back</div>
+}
+
+ <form method="post">
+     <label>User name</label>
+     <input type="text" name="@nameof(Model.userName)" placeholder="User name" value="@Model.userName" />
+     <br />
+     <label>Password</label>
+     <input type="text" name="@nameof(Model.passWord)" placeholder="Pass word" value="@Model.passWord" />
+     <br />
+     <input type="submit" name="Save" value="Save" />
+ </form>
