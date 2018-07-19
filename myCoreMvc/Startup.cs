@@ -25,7 +25,15 @@ namespace myCoreMvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(options => { options.Filters.Add(new RequireHttpsAttribute()); });
-            ServiceInjector.Register<IDataProvider, DbMock>(Injection.Singleton); //TODO: Why don't we use "services"?
+
+            //LessonLearnt: I use my own service container because:
+            // Injecting registered services is only possible by:
+            // 1- Constructors of controllers and middleware
+            // 2- Invoke method of middleware
+            // 3- HttpContext.RequestServices
+            //Making registered services available in other classes (e.g service classes) is so complex and difficult and requires bad programming practices.
+            ServiceInjector.Register<IDataProvider, DbMock>(Injection.Singleton);
+
             var users = new Dictionary<string, string> { { "Hasang", "Palang" } };
             services.AddSingleton<IUserService>(new UserServiceMock(users));
         }
