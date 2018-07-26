@@ -45,12 +45,6 @@ namespace myCoreMvc.Controllers
             return Content(result);
         }
 
-        [Route("addCookie")]
-        public IActionResult AddCookie()
-        {
-            return RedirectToAction(nameof(CookieEditorController.Add), ShortNameOf<CookieEditorController>());
-        }
-
         [Route("editCookie")]
         public IActionResult EditCookie()
         {

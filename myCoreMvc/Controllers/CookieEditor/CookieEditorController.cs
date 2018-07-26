@@ -16,37 +16,21 @@ namespace myCoreMvc.Controllers
     {
         public IActionResult Index()
         {
-            var inputModel = new EnterModel();
-            inputModel.Cookies = Request.Cookies;
-            return View("~/Views/CookieEditor/CookieEditor.cshtml", inputModel);
+            return View("~/Views/CookieEditor/CookieEditor.cshtml", Request.Cookies);
         }
 
         [HttpPost]
-        public IActionResult Index(List<KeyValuePair<string, string>> inputModel)
+        public IActionResult Delete(string key)
         {
-            foreach (var key in Request.Form.Keys)
-            {
-                //Do something
-            }
-            return Content(inputModel.Select(i => i.Key).ToString(" | "));
+            Response.Cookies.Delete(key);
+            return RedirectToAction(nameof(CookieEditorController.Index), ShortNameOf<CookieEditorController>());
         }
 
-        public ContentResult Add()
+        [HttpPost]
+        public IActionResult Add(string key, string value)
         {
-            var key = $"Key{Request.Cookies.Count()}";
-            var value = $"Value{Request.Cookies.Count()}";
-            var content = "Request Cookies:" + Environment.NewLine;
-            content += Request.Cookies.ToString(Environment.NewLine) + Environment.NewLine;
-            content += "=======================================================================" + Environment.NewLine;
-            content += $"Adding [{key}, {value}]";
-
             Response.Cookies.Append(key, value);
-            return Content(content);
-        }
-
-        public class EnterModel : IClonable
-        {
-            public IRequestCookieCollection Cookies { get; set; }
+            return RedirectToAction(nameof(CookieEditorController.Index), ShortNameOf<CookieEditorController>());
         }
     }
 }
