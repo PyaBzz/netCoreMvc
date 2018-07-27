@@ -50,11 +50,5 @@ namespace myCoreMvc.Controllers
         {
             return RedirectToAction(nameof(CookieEditorController.Index), ShortNameOf<CookieEditorController>());
         }
-
-        [Route("auth")]
-        public IActionResult Auth()
-        {
-            return RedirectToAction(nameof(AuthController.SignIn), ShortNameOf<AuthController>());
-        }
     }
 }

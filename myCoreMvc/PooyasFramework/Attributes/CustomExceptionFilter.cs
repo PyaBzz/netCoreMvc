@@ -24,7 +24,7 @@ namespace PooyasFramework.Attributes
 
         public override void OnException(ExceptionContext context)
         {
-            context.Result = new ContentResult { Content = "From custom handler" };
+            context.Result = new ContentResult { Content = "Exception handled in this custom handler" };
             context.ExceptionHandled = true;
             context.HttpContext.Response.StatusCode = 200;
         }
