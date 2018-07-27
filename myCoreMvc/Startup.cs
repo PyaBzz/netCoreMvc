@@ -39,7 +39,7 @@ namespace myCoreMvc
             services.AddSingleton<IUserService>(new UserServiceMock(users));
         }
 
-        //TODO: Experiment with cookies.
+        //TODO: Use Selenium to automate web GUI testing.
         //TODO: Implement user authentication with cookies: https://docs.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-2.1&tabs=aspnetcore2x
         //TODO: Use OnActionExecuting() and OnActionExecuted() methods from here: https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller.onactionexecuting?view=aspnetcore-2.1
 

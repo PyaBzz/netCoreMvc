@@ -45,18 +45,10 @@ namespace myCoreMvc.Controllers
             return Content(result);
         }
 
-        [Route("cookie")]
-        public ContentResult Cookie()
+        [Route("editCookie")]
+        public IActionResult EditCookie()
         {
-            var key = $"Key{Request.Cookies.Count()}";
-            var value = $"Value{Request.Cookies.Count()}";
-            var content = "Request Cookies:" + Environment.NewLine;
-            content += Request.Cookies.ToString(Environment.NewLine) + Environment.NewLine;
-            content += "=======================================================================" + Environment.NewLine;
-            content += $"Adding [{key}, {value}]";
-
-            Response.Cookies.Append(key, value);
-            return Content(content);
+            return RedirectToAction(nameof(CookieEditorController.Index), ShortNameOf<CookieEditorController>());
         }
 
         [Route("auth")]
