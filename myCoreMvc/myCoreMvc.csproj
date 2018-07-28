@@ -5,8 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="myTasks.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="StaticFiles\" />
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="myTasks.cs" />
   </ItemGroup>
 
   <ItemGroup>

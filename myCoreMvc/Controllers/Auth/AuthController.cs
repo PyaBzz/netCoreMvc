@@ -28,7 +28,7 @@ namespace myCoreMvc.Controllers
 
         [Route("signin")]
         [HttpPost]
-        public async Task<IActionResult> SignIn(EnterModel model) //TODO: Use returnUrl based on the video to redirect after signing in
+        public async Task<IActionResult> SignIn(EnterModel model) //Task: Use returnUrl based on the video to redirect after signing in
         {
             if (ModelState.IsValid)
             {

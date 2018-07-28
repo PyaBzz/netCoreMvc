@@ -13,14 +13,12 @@ namespace myCoreMvc.Controllers
 {
     public class EnterWorkItemController : BaseController
     {
-        //TODO: Use OnActionExecuting or similar methods from this page: https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-cs
-        // to access OnBound, OnPreBinding, etc. 
         public IActionResult Index(Guid id)
         {
             var item = DataProvider.Get<WorkItem>(wi => wi.Id == id);
             var inputModel = new EnterModel();
             if (item != null) inputModel.CopySimilarPropertiesFrom(item);
-            return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);  // TODO: Use "asp-" tag helpers instead of tags attributes.
+            return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);
         }
 
         [HttpPost]
@@ -30,7 +28,6 @@ namespace myCoreMvc.Controllers
             if (ModelState.IsValid)
             {
                 var workItem = new WorkItem();
-                // TODO: Look into object mapping solutions like AutoMapper to learn best practices.
                 // ModelState.AddModelError("Reference", "It must be in blabla format!")
                 // ModelState.AddModelError("", "This is an object level error rather than property level.")
                 // @Html.ValidationSummary(true)

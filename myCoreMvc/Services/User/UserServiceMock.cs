@@ -14,7 +14,7 @@ namespace myCoreMvc.Services
         {
             foreach (var user in users)
             {
-                var hash = user.Value; //TODO: Hash the PW
+                var hash = user.Value; //Task: Hash the PW
                 _users.Add(user.Key.ToLower(), (hash, new User(user.Key)));
             }
         }
@@ -26,7 +26,7 @@ namespace myCoreMvc.Services
             if (_users.ContainsKey(key))
             {
                 var existingHash = _users[key].PwHash;
-                var hash = passWord; //TODO: Needs to change based on Hash implementation
+                var hash = passWord; //Task: Needs to change based on Hash implementation
                 if (hash == existingHash)
                 {
                     user = _users[key].User;
