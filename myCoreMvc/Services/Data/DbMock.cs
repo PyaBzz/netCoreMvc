@@ -5,7 +5,7 @@ using System.Reflection;
 using myCoreMvc.Models;
 using PooyasFramework;
 
-namespace myCoreMvc //TODO: Put it in the "Services" namespace
+namespace myCoreMvc.Services
 {
     public class DbMock : IDataProvider
     {
