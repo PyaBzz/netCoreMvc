@@ -57,7 +57,7 @@ namespace myCoreMvc.Controllers
 
             [Display(Name = "Plan name")]
             [Required(ErrorMessage = "{0} is mandatory.")]
-            [StringLength(5, MinimumLength = 3, ErrorMessage = "{0} should be between {2} and {1} characters in length.")]
+            [StringLength(16, MinimumLength = 3, ErrorMessage = "{0} should be between {2} and {1} characters in length.")]
             [RegularExpression("^[A-Z][a-zA-Z0-9]*", ErrorMessage = "{0} must start with a capital letter and may only contain alphanumeric characters.")]
             public string Name { get; set; }
 

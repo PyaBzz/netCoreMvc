@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+	<title>myCoreMvc</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Add WorkPlan 3</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost/<datalist><option>http://localhost/</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=WorkPlans<datalist><option>link=Add</option><option>//a[contains(text(),'Add')]</option><option>//a[contains(@href, '/EnterWorkItem')]</option><option>//body/a</option><option>css=body &gt; a</option><option>link=WorkPlans</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Add<datalist><option>link=Add</option><option>//a[contains(text(),'Add')]</option><option>//a[contains(@href, '/EnterWorkItem')]</option><option>//body/a</option><option>css=body &gt; a</option></datalist></td><td></td>
+</tr>
+<tr><td>setText</td><td>name=Name<datalist><option>name=Name</option></datalist></td><td>Plan3</td>
+</tr>
+<tr><td>click</td><td>name=Save<datalist><option>name=Save</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>css=h2#message<datalist><option>id=message</option><option>//h2[@id='message']</option><option>//h2</option><option>css=#message</option><option>css=h2#message</option></datalist></td><td>New item added</td>
+</tr>
+</tbody></table>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Add WorkItem: FourthItem</td></tr>
+</thead>
+<tbody>
+<tr><td>open</td><td>http://localhost/<datalist><option>http://localhost/</option></datalist></td><td></td>
+</tr>
+<tr><td>click</td><td>link=Add<datalist><option>link=Add</option><option>//a[contains(text(),'Add')]</option><option>//a[contains(@href, '/EnterWorkItem')]</option><option>//body/a</option><option>css=body &gt; a</option></datalist></td><td></td>
+</tr>
+<tr><td>select</td><td>name=WorkPlan<datalist><option>name=WorkPlan</option></datalist></td><td>index=2</td>
+</tr>
+<tr><td>setText</td><td>name=Reference<datalist><option>name=Reference</option></datalist></td><td>Wi31</td>
+</tr>
+<tr><td>setText</td><td>name=Name<datalist><option>name=Name</option></datalist></td><td>FourthItem</td>
+</tr>
+<tr><td>select</td><td>name=Priority<datalist><option>name=Priority</option></datalist></td><td>index=3</td>
+</tr>
+<tr><td>click</td><td>name=Save<datalist><option>name=Save</option></datalist></td><td></td>
+</tr>
+<tr><td>verifyText</td><td>css=h2#message<datalist><option>css=h2#message</option><option>id=message</option><option>//h2[@id='message']</option><option>//h2</option><option>css=#message</option></datalist></td><td>New item added</td>
+</tr>
+</tbody></table>
+</body>
+</html>
