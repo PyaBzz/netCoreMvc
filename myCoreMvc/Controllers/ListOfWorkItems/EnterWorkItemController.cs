@@ -69,7 +69,7 @@ namespace myCoreMvc.Controllers
 
 
             [Display(Name = "Item name")]
-            [ValidateAlphanumeric(3, 5)]
+            [ValidateAlphanumeric(3, 16)]
             public string Name { get; set; }
 
             public IEnumerable<int> PriorityChoices { get { return WorkItem.PriorityChoices; } }
