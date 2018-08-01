@@ -1,6 +1,7 @@
 ﻿//Task: Use Selenium to automate web GUI testing.
 
-//FuturePlan: Use OnActionExecuting() and OnActionExecuted() or similar methods from these pages to access OnBound, OnPreBinding, etc. :
+//FuturePlan: OnBound and similar methods are in fact attributes declared in "Msharp.Framework.Mvc.Version\src\Attributes"
+// See if you can use OnActionExecuting() and OnActionExecuted() or similar methods from these pages to achieve similar functionality:
 // https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller.onactionexecuting?view=aspnetcore-2.1
 // https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-cs
 
