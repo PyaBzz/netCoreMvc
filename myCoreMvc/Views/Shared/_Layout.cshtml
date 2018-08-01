@@ -9,19 +9,20 @@
 </head>
 <body>
     <header>
-        <img src="~/StaticContent/Mushroom-Red-2.png" />
-        <a asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">WorkPlans</a>
-        <a asp-controller="@(Html.ShortNameOf<ListOfWorkItemsController>())" asp-action="@nameof(ListOfWorkItemsController.Index)">WorkItems</a>
         @{
             var methodInfos = typeof(ExperimentsController).GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
-            <text>__________Experiments: @(Html.ShortNameOf<ExperimentsController>())</text>
+            <text>Experiments: </text>
             foreach (var methodInfo in methodInfos)
             {
                 <a asp-controller="@(Html.ShortNameOf<ExperimentsController>())" asp-action="@methodInfo.Name">@methodInfo.Name</a>
             }
         }
+        <br />
+        <img src="~/StaticContent/Mushroom-Red-2.png" />
         @if (User.Identity.IsAuthenticated)
         {
+            <a asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">WorkPlans</a>
+            <a asp-controller="@(Html.ShortNameOf<ListOfWorkItemsController>())" asp-action="@nameof(ListOfWorkItemsController.Index)">WorkItems</a>
             <form method="post" asp-controller="@(Html.ShortNameOf<AuthController>())" asp-action="@nameof(AuthController.SignOut)">
                 <button type="submit">Sign Out</button>
             </form>
