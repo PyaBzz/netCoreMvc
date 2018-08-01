@@ -27,9 +27,18 @@ namespace myCoreMvc.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(string key, string value)
+        public IActionResult Add(string key, string value, string LifeTime)
         {
-            Response.Cookies.Append(key, value);
+            int lifeTimeInSeconds;
+            if (int.TryParse(LifeTime, out lifeTimeInSeconds))
+            {
+                var lifeTime = TimeSpan.FromSeconds(lifeTimeInSeconds);
+                Response.Cookies.Append(key, value, new CookieOptions { MaxAge = lifeTime });
+            }
+            else
+            {
+                Response.Cookies.Append(key, value);
+            }
             return RedirectToAction(nameof(CookieEditorController.Index), ShortNameOf<CookieEditorController>());
         }
     }
