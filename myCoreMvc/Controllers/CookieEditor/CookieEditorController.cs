@@ -14,9 +14,9 @@ namespace myCoreMvc.Controllers
 {
     public class CookieEditorController : BaseController
     {
-        public IActionResult Index() // Task: You can access cookies directly in a Razor view!!
+        public IActionResult Index()
         {
-            return View("~/Views/CookieEditor/CookieEditor.cshtml", Request.Cookies);
+            return View("~/Views/CookieEditor/CookieEditor.cshtml");
         }
 
         [HttpPost]

@@ -3,13 +3,11 @@
 @using Microsoft.AspNetCore.Http;
 @using PooyasFramework
 
-@model IRequestCookieCollection
-
 <h2>Cookies</h2>
 
 <table style="width: 100%">
     <tbody>
-        @foreach (var cookie in Model)
+        @foreach (var cookie in Context.Request.Cookies)
         {
             <tr>
                 <td style="">
