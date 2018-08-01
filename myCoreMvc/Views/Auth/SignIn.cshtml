@@ -13,7 +13,7 @@
     <div asp-validation-summary="All">Back</div>
 }
 
- <form method="post">
+ <form method="post" asp-route-returnUrl="@Context.Request.Query["returnUrl"]">
      <label>User name</label>
      <input type="text" name="@nameof(Model.UserName)" placeholder="User name" value="@Model.UserName" />
      <br />

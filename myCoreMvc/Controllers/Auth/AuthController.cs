@@ -28,7 +28,7 @@ namespace myCoreMvc.Controllers
 
         [Route("signin")]
         [HttpPost]
-        public async Task<IActionResult> SignIn(EnterModel model) //Task: Use returnUrl based on the video to redirect after signing in
+        public async Task<IActionResult> SignIn(EnterModel model, string returnUrl) //Task: Use returnUrl based on the video to redirect after signing in. Still incomplete.
         {
             if (ModelState.IsValid)
             {
@@ -36,6 +36,7 @@ namespace myCoreMvc.Controllers
                 if (await _userService.ValidateCredentials(model.UserName, model.PassWord, out user))
                 {
                     await SignInUser(user.Name);
+                    if (returnUrl != null) return Redirect(returnUrl);
                     return RedirectToAction(nameof(ListOfWorkItemsController.Index), ShortNameOf<ListOfWorkItemsController>(), new { message = "You're in!" });
                 }
             }
