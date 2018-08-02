@@ -5,6 +5,7 @@ using myCoreMvc.Models;
 using PooyasFramework;
 using PooyasFramework.IoC;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace myCoreMvc.Controllers
 {
@@ -49,6 +50,14 @@ namespace myCoreMvc.Controllers
         public IActionResult EditCookie()
         {
             return RedirectToAction(nameof(CookieEditorController.Index), ShortNameOf<CookieEditorController>());
+        }
+
+        public ContentResult Logger([FromServices] ILoggerFactory loggerFactory)
+        {
+            var logger = loggerFactory.CreateLogger("Logger");
+            var message = "Dasoo";
+            logger.LogCritical(message);
+            return Content($"Find \"{message}\" in your Web server terminal.");
         }
     }
 }

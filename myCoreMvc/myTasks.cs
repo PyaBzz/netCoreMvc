@@ -1,5 +1,4 @@
-﻿//Task: Enable and use logging.
-//Task: Use configuration.
+﻿//Task: Use configuration.
 //Task: Use Selenium to automate web GUI testing. Look into Katalon Studio as a full feature IDE.
 
 //FuturePlan: OnBound and similar methods are in fact attributes declared in "Msharp.Framework.Mvc.Version\src\Attributes"
