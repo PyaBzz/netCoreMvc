@@ -27,8 +27,12 @@ namespace myCoreMvc
 
             //Lesson: I don't put this service in the default IoC container because:
             #region
-            // I couldn't find a way to make this service available outside MVC controllers.
-            // All material I found on the Web was abount injecting into controllers.
+            // There seems to be no way to make this service available outside MVC controllers.
+            // The only ways to resolve them to an instance are:
+            // 1- Constructor injection
+            // 2- Action Method Injection: public IActionResult Index([FromServices] ILogger logger)
+            // 3- Manual injection: Use of HttpContext.RequestServices.GetService()
+            // All of which exist only in controllers. Further information is at the middle of this page: https://stackify.com/net-core-loggerfactory-use-correctly/
             #endregion
             ServiceInjector.Register<IDataProvider, DbMock>(Injection.Singleton);
 
@@ -48,26 +52,26 @@ namespace myCoreMvc
 
         // This method gets called by the runtime.
         // Use it to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder appBuilder, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
 
-            app.UseMiddleware<CustomMiddleware>();
+            appBuilder.UseMiddleware<CustomMiddleware>();
 
-            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+            if (env.IsDevelopment()) appBuilder.UseDeveloperExceptionPage();
 
             var staticFileOptions = new StaticFileOptions();
             staticFileOptions.RequestPath = "/StaticContent";
             var path = Path.Combine(env.ContentRootPath, "StaticFiles");
             staticFileOptions.FileProvider = new PhysicalFileProvider(path);
-            app.UseStaticFiles(staticFileOptions);
+            appBuilder.UseStaticFiles(staticFileOptions);
 
-            app.UseAuthentication();
+            appBuilder.UseAuthentication();
 
             //Experience: When this is put before Authentication middleware it doesn't work. Why?
-            app.UseMiddleware<AntiForgeryTokenValidatorMiddleware>();
+            appBuilder.UseMiddleware<AntiForgeryTokenValidatorMiddleware>();
 
-            app.UseMvc(routes => { routes.MapRoute(name: "default", template: "{controller=ListOfWorkItems}/{action=Index}/{id?}"); });
+            appBuilder.UseMvc(routes => { routes.MapRoute(name: "default", template: "{controller=ListOfWorkItems}/{action=Index}/{id?}"); });
         }
     }
 }
