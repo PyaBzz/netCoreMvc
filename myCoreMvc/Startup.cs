@@ -54,7 +54,7 @@ namespace myCoreMvc
         // Use it to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder appBuilder, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
+            loggerFactory.AddConsole((category, logLevel) => category.Contains("Microsoft") == false);
 
             appBuilder.UseMiddleware<CustomMiddleware>();
 
