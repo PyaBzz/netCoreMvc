@@ -6,17 +6,26 @@ using PooyasFramework;
 using PooyasFramework.IoC;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 
 namespace myCoreMvc.Controllers
 {
     public class ExperimentsController : BaseController
     {
         public IActionResult Logger([FromServices] ILoggerFactory loggerFactory)
-        {
+        { //Task: Why don't we resolve Logger itself rather than its factory?
+            // Like what we did for config! Do we have similar cases elsewhere?
             var logger = loggerFactory.CreateLogger("Logger");
             var message = $"Dasoo at {DateTime.Now.ToLongTimeString()}";
             logger.LogCritical(message);
             return View("~/Views/Shared/MessageOnly.cshtml", $"Find \"{message}\" in your Web server terminal.");
+        }
+
+        public IActionResult Config([FromServices] IConfiguration config)
+        {
+            var key = config.AsEnumerable().ToDictionary(e => e.Key, e => e.Value).Keys.First();
+            var message = $"The first key-value pair in the config file is{Environment.NewLine}{key} : {config[key]}";
+            return View("~/Views/Shared/MessageOnly.cshtml", message);
         }
 
         public IActionResult CookieEditor()

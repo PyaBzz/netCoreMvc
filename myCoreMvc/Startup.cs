@@ -14,6 +14,7 @@ using PooyasFramework;
 using myCoreMvc.Services;
 using myCoreMvc.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Configuration;
 
 namespace myCoreMvc
 {
@@ -36,6 +37,11 @@ namespace myCoreMvc
             #endregion
             ServiceInjector.Register<IDataProvider, DbMock>(Injection.Singleton);
 
+            services.AddSingleton<IConfiguration>(new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("settings.json")
+                .Build());
+
             var users = new Dictionary<string, string> { { "Hasang", "Palang" } };
             services.AddSingleton<IUserService>(new UserServiceMock(users));
 
@@ -52,13 +58,20 @@ namespace myCoreMvc
 
         // This method gets called by the runtime.
         // Use it to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder appBuilder, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(
+              ILoggerFactory loggerFactory
+            , IConfiguration config
+            , IHostingEnvironment env
+            , IApplicationBuilder appBuilder)
         {
             loggerFactory.AddConsole((category, logLevel) => category.Contains("Microsoft") == false);
 
-            appBuilder.UseMiddleware<CustomMiddleware>();
+            Console.WriteLine(config.GetValue<string>("dasooKey"));
 
+            //Task: Make use of this.
             if (env.IsDevelopment()) appBuilder.UseDeveloperExceptionPage();
+
+            appBuilder.UseMiddleware<CustomMiddleware>();
 
             var staticFileOptions = new StaticFileOptions();
             staticFileOptions.RequestPath = "/StaticContent";
