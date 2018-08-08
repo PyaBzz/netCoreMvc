@@ -11,12 +11,12 @@ namespace myCoreMvc.Controllers
 {
     public class ExperimentsController : BaseController
     {
-        public ContentResult Logger([FromServices] ILoggerFactory loggerFactory)
+        public IActionResult Logger([FromServices] ILoggerFactory loggerFactory)
         {
             var logger = loggerFactory.CreateLogger("Logger");
-            var message = "Dasoo";
+            var message = $"Dasoo at {DateTime.Now.ToLongTimeString()}";
             logger.LogCritical(message);
-            return Content($"Find \"{message}\" in your Web server terminal.");
+            return View("~/Views/Shared/MessageOnly.cshtml", $"Find \"{message}\" in your Web server terminal.");
         }
 
         public IActionResult CookieEditor()
@@ -24,16 +24,16 @@ namespace myCoreMvc.Controllers
             return RedirectToAction(nameof(CookieEditorController.Index), ShortNameOf<CookieEditorController>());
         }
 
-        public ContentResult Delegate()
+        public IActionResult Delegate()
         {
             var result = string.Empty;
             DelegateType hasang;
             hasang = Delegates.DelegateImplementation1;
-            result += hasang(8) + Environment.NewLine;
+            result += hasang("Dasoo") + Environment.NewLine;
             hasang -= Delegates.DelegateImplementation1;
             hasang += Delegates.DelegateImplementation2;
-            result += hasang(8) + Environment.NewLine;
-            return Content(result);
+            result += hasang("Dasoo");
+            return View("~/Views/Shared/MessageOnly.cshtml", result);
         }
 
         public ActionResult Database()
