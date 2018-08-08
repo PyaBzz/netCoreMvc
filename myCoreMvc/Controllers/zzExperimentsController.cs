@@ -12,10 +12,8 @@ namespace myCoreMvc.Controllers
 {
     public class ExperimentsController : BaseController
     {
-        public IActionResult Logger([FromServices] ILoggerFactory loggerFactory)
-        { //Task: Why don't we resolve Logger itself rather than its factory?
-            // Like what we did for config! Do we have similar cases elsewhere?
-            var logger = loggerFactory.CreateLogger("Logger");
+        public IActionResult Logger([FromServices] ILogger logger)
+        {
             var message = $"Dasoo at {DateTime.Now.ToLongTimeString()}";
             logger.LogCritical(message);
             return View("~/Views/Shared/MessageOnly.cshtml", $"Find \"{message}\" in your Web server terminal.");
@@ -23,8 +21,9 @@ namespace myCoreMvc.Controllers
 
         public IActionResult Config([FromServices] IConfiguration config)
         {
-            var key = config.AsEnumerable().ToDictionary(e => e.Key, e => e.Value).Keys.First();
-            var message = $"The first key-value pair in the config file is{Environment.NewLine}{key} : {config[key]}";
+            var keys = config.AsEnumerable().ToDictionary(e => e.Key, e => e.Value).Keys;
+            var message = "The key-value pairs in the config file are";
+            foreach (var key in keys) message += $"{Environment.NewLine}{key} : {config[key]}";
             return View("~/Views/Shared/MessageOnly.cshtml", message);
         }
 
@@ -47,8 +46,9 @@ namespace myCoreMvc.Controllers
 
         public ActionResult Database()
         {
-            var instance = Db.Get<WorkItem>(5);
-            return View("~/Views/ListOfWorkItems/DetailsOfWorkItem.cshtml", instance);
+            //var instance = Db.Get<WorkItem>(5);
+            //return View("~/Views/ListOfWorkItems/DetailsOfWorkItem.cshtml", instance);
+            return View("~/Views/Shared/MessageOnly.cshtml", $"This method needs correction!{Environment.NewLine}It's temporarily down.");
         }
     }
 }

@@ -20,8 +20,7 @@ namespace myCoreMvc
 {
     public class Startup
     {
-        // This method gets called by the runtime.
-        // Use it to add services to the container.
+        // Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
@@ -37,37 +36,31 @@ namespace myCoreMvc
             #endregion
             ServiceInjector.Register<IDataProvider, DbMock>(Injection.Singleton);
 
+            services.AddSingleton(new LoggerFactory()
+                .AddConsole((category, logLevel) => category.Contains("Microsoft") == false)
+                .CreateLogger("myCoreMvc"));
+
             services.AddSingleton<IConfiguration>(new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("settings.json")
                 .Build());
 
-            var users = new Dictionary<string, string> { { "Hasang", "Palang" } };
-            services.AddSingleton<IUserService>(new UserServiceMock(users));
+            services.AddSingleton<IUserService>(new UserServiceMock(new Dictionary<string, string> { { "Hasang", "Palang" } }));
 
             services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookie(options => { options.LoginPath = "/signin"; });
+                {
+                    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                }).AddCookie(options => { options.LoginPath = "/signin"; });
         }
 
         //TODO: Enable SSH based on:
         // the introduction video of this course: https://app.pluralsight.com/player?course=aspnet-core-identity-management-playbook&author=chris-klug&name=aspnet-core-identity-management-playbook-m2&clip=1&mode=live
 
-        // This method gets called by the runtime.
-        // Use it to configure the HTTP request pipeline.
-        public void Configure(
-              ILoggerFactory loggerFactory
-            , IConfiguration config
-            , IHostingEnvironment env
-            , IApplicationBuilder appBuilder)
+        // Use this method to configure the HTTP request pipeline.
+        public void Configure(IHostingEnvironment env, IApplicationBuilder appBuilder)
         {
-            loggerFactory.AddConsole((category, logLevel) => category.Contains("Microsoft") == false);
-
-            Console.WriteLine(config.GetValue<string>("dasooKey"));
-
             //Task: Make use of this.
             if (env.IsDevelopment()) appBuilder.UseDeveloperExceptionPage();
 
