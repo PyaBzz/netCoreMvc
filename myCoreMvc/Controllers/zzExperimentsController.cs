@@ -7,11 +7,21 @@ using PooyasFramework.IoC;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting;
 
 namespace myCoreMvc.Controllers
 {
     public class ExperimentsController : BaseController
     {
+        public ActionResult Env()
+        {
+            var env = HttpContext.RequestServices.GetService(typeof(IHostingEnvironment)) as IHostingEnvironment;
+            var message = string.Empty;
+            foreach (var propInfo in env.GetType().GetProperties())
+                message += $"{propInfo.Name} : {propInfo.GetValue(env)}{Environment.NewLine}";
+            return View("~/Views/Shared/MessageOnly.cshtml", message);
+        }
+
         public IActionResult Logger([FromServices] ILogger logger)
         {
             var message = $"Dasoo at {DateTime.Now.ToLongTimeString()}";

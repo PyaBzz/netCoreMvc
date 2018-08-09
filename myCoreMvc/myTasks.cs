@@ -1,5 +1,4 @@
-﻿//Task: Use configuration.
-//Task: Use Selenium to automate web GUI testing. Look into Katalon Studio as a full feature IDE.
+﻿//Task: Use Selenium to automate web GUI testing. Look into Katalon Studio as a full feature IDE.
 
 //FuturePlan: OnBound and similar methods are in fact attributes declared in "Msharp.Framework.Mvc.Version\src\Attributes"
 // See if you can use OnActionExecuting() and OnActionExecuted() or similar methods from these pages to achieve similar functionality:
