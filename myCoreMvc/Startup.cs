@@ -45,7 +45,7 @@ namespace myCoreMvc
                 .AddJsonFile("settings.json")
                 .Build());
 
-            services.AddSingleton<IUserService>(new UserServiceMock(new Dictionary<string, string> { { "Hasang", "Palang" } }));
+            services.AddSingleton<IUserService>(new UserServiceMock());
 
             services.AddAuthentication(options =>
                 {

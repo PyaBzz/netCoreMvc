@@ -8,28 +8,27 @@ namespace myCoreMvc.Services
 {
     public class UserServiceMock : IUserService
     {
-        private IDictionary<string, (string PwHash, User User)> _users = new Dictionary<string, (string PwHash, User User)>();
+        private IDictionary<string, (string PwHash, User User)> Records;
 
-        public UserServiceMock(IDictionary<string, string> users)
+        public UserServiceMock()
         {
-            foreach (var user in users)
-            {
-                var hash = user.Value; //Task: Hash the PW
-                _users.Add(user.Key.ToLower(), (hash, new User(user.Key)));
-            }
+            Records = new Dictionary<string, (string PwHash, User User)>();
+            Records.Add("junior0", ("j00", new User("junior0", new DateTime(2018, 01, 01), "junior"))); //Task: Hash the PW
+            Records.Add("senior0", ("s00", new User("senior00", new DateTime(2010, 01, 01), "senior"))); //Task: Hash the PW
+            Records.Add("admin0", ("a00", new User("admin00", new DateTime(2000, 01, 01), "admin"))); //Task: Hash the PW
         }
 
         public Task<bool> ValidateCredentials(string userName, string passWord, out User user)
         {
             user = null;
             var key = userName.ToLower();
-            if (_users.ContainsKey(key))
+            if (Records.ContainsKey(key))
             {
-                var existingHash = _users[key].PwHash;
-                var hash = passWord; //Task: Needs to change based on Hash implementation
+                var existingHash = Records[key].PwHash;
+                var hash = passWord;
                 if (hash == existingHash)
                 {
-                    user = _users[key].User;
+                    user = Records[key].User;
                     return Task.FromResult(true);
                 }
             }

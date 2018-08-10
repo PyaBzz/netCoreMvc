@@ -24,7 +24,7 @@
             <a asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">WorkPlans</a>
             <a asp-controller="@(Html.ShortNameOf<ListOfWorkItemsController>())" asp-action="@nameof(ListOfWorkItemsController.Index)">WorkItems</a>
             <form method="post" asp-controller="@(Html.ShortNameOf<AuthController>())" asp-action="@nameof(AuthController.SignOut)">
-                <button type="submit">Sign Out</button>
+                <button type="submit">Sign Out @User.Identity.Name</button>
             </form>
         }
         else
