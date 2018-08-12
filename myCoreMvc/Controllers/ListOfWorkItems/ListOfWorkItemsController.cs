@@ -8,10 +8,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using PooyasFramework;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace myCoreMvc.Controllers
 {
-    [Authorize] // Task: Apply it globally.
     public class ListOfWorkItemsController : BaseController
     {
         public IActionResult Index(string message)

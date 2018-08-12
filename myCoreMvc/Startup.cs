@@ -15,6 +15,10 @@ using myCoreMvc.Services;
 using myCoreMvc.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using myCoreMvc.Controllers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace myCoreMvc
 {
@@ -47,16 +51,41 @@ namespace myCoreMvc
 
             services.AddSingleton<IUserService>(new UserServiceMock());
 
-            services.AddAuthentication(options =>
+            var authBuilder = services.AddAuthentication(options =>
                 {
-                    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                }).AddCookie(options => { options.LoginPath = "/signin"; });
-        }
+                    var schemeName = CookieAuthenticationDefaults.AuthenticationScheme; // We could simply use string: "Cookies"
+                    options.DefaultAuthenticateScheme = schemeName;
+                    options.DefaultSignInScheme = schemeName;
+                    options.DefaultChallengeScheme = schemeName;
+                });
 
-        //TODO: Enable SSH based on:
-        // the introduction video of this course: https://app.pluralsight.com/player?course=aspnet-core-identity-management-playbook&author=chris-klug&name=aspnet-core-identity-management-playbook-m2&clip=1&mode=live
+            authBuilder.AddCookie(options =>
+                {
+                    options.LoginPath = "/auth/signin";
+                    options.AccessDeniedPath = "/auth/denied";
+                });
+
+            services.AddAuthorization(options =>
+            {
+                options.DefaultPolicy = new AuthorizationPolicyBuilder(CookieAuthenticationDefaults.AuthenticationScheme)
+                .RequireAuthenticatedUser().Build();
+
+                options.AddPolicy("adminOnly", policy =>
+                {
+                    policy.RequireRole("admin");
+                });
+
+                options.AddPolicy("allowAll", policy =>
+                {
+                    policy.RequireAssertion(ctx => true);
+                });
+
+                options.AddPolicy("denyAll", policy =>
+                {
+                    policy.RequireAssertion(ctx => false);
+                });
+            });
+        }
 
         // Use this method to configure the HTTP request pipeline.
         public void Configure(IHostingEnvironment env, IApplicationBuilder appBuilder)
@@ -65,6 +94,9 @@ namespace myCoreMvc
             if (env.IsDevelopment()) appBuilder.UseDeveloperExceptionPage();
 
             appBuilder.UseMiddleware<CustomMiddleware>();
+
+            //TODO: Redirect to SSH using this:
+            //appBuilder.UseRewriter(new Microsoft.AspNetCore.Rewrite.RewriteOptions().AddRedirectToHttpsPermanent());
 
             var staticFileOptions = new StaticFileOptions();
             staticFileOptions.RequestPath = "/StaticContent";

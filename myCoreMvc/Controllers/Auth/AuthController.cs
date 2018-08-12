@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Models;
+using PooyasFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,22 +21,19 @@ namespace myCoreMvc.Controllers
             _userService = userService;
         }
 
-        [Route("signin")]
         public IActionResult SignIn()
         {
             return View(new EnterModel());
         }
 
-        [Route("signin")]
         [HttpPost]
-        public async Task<IActionResult> SignIn(EnterModel model, string returnUrl) //Task: Use returnUrl based on the video to redirect after signing in. Still incomplete.
+        public async Task<IActionResult> SignIn(EnterModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                User user;
-                if (await _userService.ValidateCredentials(model.UserName, model.PassWord, out user))
+                if (await _userService.GetPrincipal(model.UserName, model.PassWord, out ClaimsPrincipal claimsPrincipal))
                 {
-                    await SignInUser(user.Name);
+                    await HttpContext.SignInAsync("Cookies", claimsPrincipal, new AuthenticationProperties { }); //Task: Could we put redirectUri in these properties?
                     if (returnUrl != null) return Redirect(returnUrl);
                     return RedirectToAction(nameof(ListOfWorkItemsController.Index), ShortNameOf<ListOfWorkItemsController>(), new { message = "You're in!" });
                 }
@@ -43,24 +41,16 @@ namespace myCoreMvc.Controllers
             return View(model);
         }
 
-        public async Task SignInUser(string name)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, name),
-                new Claim("name", name)
-            };
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme, "name", null);
-            var principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(principal);
-        }
-
-        [Route("signout")]
         [HttpPost]
         public async Task<IActionResult> SignOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction(nameof(ListOfWorkItemsController.Index), ShortNameOf<ListOfWorkItemsController>(), new { message = "You're out!" });
+            return RedirectToAction(nameof(SignIn));
+        }
+
+        public IActionResult Denied()
+        {
+            return View("~/Views/Shared/MessageOnly.cshtml", "Access Denied!");
         }
 
         public class EnterModel

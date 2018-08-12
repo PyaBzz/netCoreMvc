@@ -1,5 +1,8 @@
-﻿using System;
+﻿using myCoreMvc.Models;
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace PooyasFramework
 {
@@ -17,5 +20,11 @@ namespace PooyasFramework
         TransactionResult Add<T>(T obj) where T : Thing;
         TransactionResult Update<T>(T obj) where T : Thing;
         TransactionResult Delete<T>(Guid id) where T : Thing;
+    }
+
+    public interface IUserService
+    {
+        Task<bool> GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal);
+        Task<bool> ValidateCredentials(string userName, string passWord, out User user);
     }
 }

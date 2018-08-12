@@ -8,9 +8,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using PooyasFramework;
 using myCoreMvc.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace myCoreMvc.Controllers
 {
+    [Authorize(
+      //AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, //Task: Can we choose among available schemes?
+      Policy = "adminOnly"
+      )] //Task: Apply it globally.
     public class ListOfWorkPlansController : BaseController
     {
         public IActionResult Index(string message)
