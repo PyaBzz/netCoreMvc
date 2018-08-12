@@ -24,13 +24,17 @@ namespace myCoreMvc
 {
     public class Startup
     {
-        // Use this method to add services to the container.
+        //##################################################################
+        //###                          Services                          ###
+        //##################################################################
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
 
-            //Lesson: I don't put this service in the default IoC container because:
+            //Lesson:
             #region
+            // I don't put this service in the default IoC container because:
             // There seems to be no way to make this service available outside MVC controllers.
             // The only ways to resolve them to an instance are:
             // 1- Constructor injection
@@ -87,7 +91,10 @@ namespace myCoreMvc
             });
         }
 
-        // Use this method to configure the HTTP request pipeline.
+        //##################################################################
+        //###                          Pipeline                          ###
+        //##################################################################
+
         public void Configure(IHostingEnvironment env, IApplicationBuilder appBuilder)
         {
             //Task: Make use of this.
