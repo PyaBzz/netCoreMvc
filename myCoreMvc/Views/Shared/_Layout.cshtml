@@ -1,6 +1,9 @@
 ﻿@using System.Reflection
 @using myCoreMvc.Controllers
 @using PooyasFramework
+@using Microsoft.Extensions.Configuration
+
+@{var config = Context.RequestServices.GetService(typeof(IConfiguration)) as IConfiguration;}
 
 <!DOCTYPE html>
 <html>
@@ -19,10 +22,14 @@
         }
         <br />
         <img src="~/StaticContent/Mushroom-Red-2.png" />
-        @if (User.Identity.IsAuthenticated)
+        @if (bool.Parse(config["ShowNavigationToUnauthenticatedUsers"]) || User.Identity.IsAuthenticated)
         {
             <a asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">WorkPlans</a>
             <a asp-controller="@(Html.ShortNameOf<ListOfWorkItemsController>())" asp-action="@nameof(ListOfWorkItemsController.Index)">WorkItems</a>
+        }
+
+        @if (User.Identity.IsAuthenticated)
+        {
             <form method="post" asp-controller="@(Html.ShortNameOf<AuthController>())" asp-action="@nameof(AuthController.SignOut)">
                 <button type="submit">Sign Out @User.Identity.Name</button>
             </form>
