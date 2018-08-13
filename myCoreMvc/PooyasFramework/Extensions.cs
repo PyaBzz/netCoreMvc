@@ -84,13 +84,14 @@ namespace PooyasFramework
         }
 
         public static string GetStringOfProperties<T>(this T obj)
-        {
+        { //Task: See if there's any built-in object binding facility in NetCore.
             var result = string.Empty;
             var strings = new List<string>();
 
             foreach (var propInfo in typeof(T).GetPublicInstancePropertyInfos())
             {
-                strings.Add(propInfo.GetValue(obj).ToString());
+                var value = propInfo.GetValue(obj) ?? string.Empty;
+                strings.Add(value.ToString());
             }
 
             return strings.ToString(" ");
