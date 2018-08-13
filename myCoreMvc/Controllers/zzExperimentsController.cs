@@ -37,6 +37,13 @@ namespace myCoreMvc.Controllers
             return View("~/Views/Shared/MessageOnly.cshtml", message);
         }
 
+        public IActionResult ConfigBind([FromServices] IConfiguration config)
+        {
+            var workItem = new WorkItem();
+            config.Bind("WorkItem", workItem);
+            return View("~/Views/Shared/MessageOnly.cshtml", workItem.GetStringOfProperties());
+        }
+
         public IActionResult CookieEditor()
         {
             return RedirectToAction(nameof(CookieEditorController.Index), ShortNameOf<CookieEditorController>());
