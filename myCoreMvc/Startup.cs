@@ -81,7 +81,7 @@ namespace myCoreMvc
 
                 options.AddPolicy("allowAll", policy =>
                 {
-                    policy.RequireAssertion(ctx => true);
+                    policy.RequireAssertion(ctx => true); // Equivalent to [AllowAnonymous] attribute
                 });
 
                 options.AddPolicy("denyAll", policy =>

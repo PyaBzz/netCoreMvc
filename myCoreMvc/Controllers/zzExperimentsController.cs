@@ -8,6 +8,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
+using System.Collections.Generic;
 
 namespace myCoreMvc.Controllers
 {
@@ -47,6 +48,23 @@ namespace myCoreMvc.Controllers
         public IActionResult CookieEditor()
         {
             return RedirectToAction(nameof(CookieEditorController.Index), ShortNameOf<CookieEditorController>());
+        }
+
+        public IActionResult UserClaims()
+        {
+            if (User.Identity.IsAuthenticated == false)
+                return View("~/Views/Shared/MessageOnly.cshtml", "Your are anonymous");
+
+            var result = new List<string>();
+            foreach (var identity in User.Identities)
+            {
+                result.Add($"========================== Identity : {identity.Name} ==========================" + Environment.NewLine);
+                foreach (var claim in identity.Claims)
+                {
+                    result.Add($"{claim.Type}  ->  {claim.Value}");
+                }
+            }
+            return View("~/Views/Shared/MessageOnly.cshtml", result.ToString(Environment.NewLine));
         }
 
         public IActionResult Delegate()
