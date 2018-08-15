@@ -2,11 +2,18 @@
     "Key00": "Value00",
     "Key01": "Value01",
     "Key02": "Value02",
+
     "ShowNavigationToUnauthenticatedUsers": "True",
+
     "WorkItem": {
         "Id": "98e5d9e4-8dfe-4682-88bf-8dfbe614de4d",
         "Reference": "Wi22",
         "Priority": "4",
         "Name": "FourthItem"
+    },
+
+    "Authentication": {
+        "CookieName": "myCoreMvc.Auth",
+        "AuthenticationSessionLifeTime": "30"
     }
 }

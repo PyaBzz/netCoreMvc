@@ -48,10 +48,12 @@ namespace myCoreMvc
                 .AddConsole((category, logLevel) => category.Contains("Microsoft") == false)
                 .CreateLogger("myCoreMvc"));
 
-            services.AddSingleton<IConfiguration>(new ConfigurationBuilder()
+            var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("settings.json")
-                .Build());
+                .Build();
+
+            services.AddSingleton<IConfiguration>(config); // Could we bind a config object of type dynamic with all properties and children?
 
             services.AddSingleton<IUserService>(new UserServiceMock());
 
@@ -67,6 +69,7 @@ namespace myCoreMvc
                 {
                     options.LoginPath = "/auth/signin";
                     options.AccessDeniedPath = "/auth/denied";
+                    options.Cookie.Name = config.GetSection("Authentication").GetValue<string>("CookieName");
                 });
 
             services.AddAuthorization(options =>

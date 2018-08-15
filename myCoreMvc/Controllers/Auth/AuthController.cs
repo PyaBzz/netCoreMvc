@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using myCoreMvc.Models;
 using PooyasFramework;
 using System;
@@ -27,15 +28,22 @@ namespace myCoreMvc.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignIn(EnterModel model, string returnUrl)
+        public async Task<IActionResult> SignIn(EnterModel model, string returnUrl, [FromServices] IConfiguration config)
         {
             if (ModelState.IsValid)
             {
                 if (await _userService.GetPrincipal(model.UserName, model.PassWord, out ClaimsPrincipal claimsPrincipal))
                 {
-                    await HttpContext.SignInAsync("Cookies", claimsPrincipal, new AuthenticationProperties { }); //Task: Could we put redirectUri in these properties?
+                    var expiryTime = DateTime.UtcNow.AddSeconds(config.GetValue<int>("AuthenticationSessionLifeTime"));
+
+                    await HttpContext.SignInAsync("Cookies", claimsPrincipal, new AuthenticationProperties
+                    {
+                        RedirectUri = returnUrl,
+                        ExpiresUtc = DateTime.Now.AddSeconds(config.GetSection("Authentication").GetValue<int>("AuthenticationSessionLifeTime")).ToUniversalTime(),
+                        IsPersistent = true
+                    }); //Task: Cookie remains after session timeout why!
                     if (returnUrl != null) return Redirect(returnUrl);
-                    return RedirectToAction(nameof(ListOfWorkItemsController.Index), ShortNameOf<ListOfWorkItemsController>(), new { message = "You're in!" });
+                    return RedirectToAction(nameof(ListOfWorkItemsController.Index), ShortNameOf<ListOfWorkItemsController>(), new { message = "You're in!" }); //Task: How does it work with RedirectUri?
                 }
             }
             return View(model);
