@@ -30,13 +30,13 @@
 
         @if (User.Identity.IsAuthenticated)
         {
-            <form method="post" asp-controller="@(Html.ShortNameOf<AuthController>())" asp-action="@nameof(AuthController.SignOut)">
+            <form method="post" asp-controller="@(Html.ShortNameOf<AuthController>())" asp-action="@nameof(AuthController.SignOut)" style="display: inline">
                 <button type="submit">Sign Out @User.Identity.Name</button>
             </form>
         }
         else
         {
-            <form method="get" asp-controller="@(Html.ShortNameOf<AuthController>())" asp-action="@nameof(AuthController.SignIn)">
+            <form method="get" asp-controller="@(Html.ShortNameOf<AuthController>())" asp-action="@nameof(AuthController.SignIn)" style="display: inline">
                 <button type="submit">Sign In</button>
             </form>
         }
