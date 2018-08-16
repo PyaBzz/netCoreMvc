@@ -70,6 +70,7 @@ namespace myCoreMvc
                     options.LoginPath = "/auth/signin";
                     options.AccessDeniedPath = "/auth/denied";
                     options.Cookie.Name = config.GetSection("Authentication").GetValue<string>("CookieName");
+                    options.Cookie.MaxAge = TimeSpan.FromSeconds(config.GetSection("Authentication").GetValue<int>("AuthenticationSessionLifeTime"));
                 });
 
             services.AddAuthorization(options =>

@@ -36,14 +36,9 @@ namespace myCoreMvc.Controllers
                 {
                     var expiryTime = DateTime.UtcNow.AddSeconds(config.GetValue<int>("AuthenticationSessionLifeTime"));
 
-                    await HttpContext.SignInAsync("Cookies", claimsPrincipal, new AuthenticationProperties
-                    {
-                        RedirectUri = returnUrl,
-                        ExpiresUtc = DateTime.Now.AddSeconds(config.GetSection("Authentication").GetValue<int>("AuthenticationSessionLifeTime")).ToUniversalTime(),
-                        IsPersistent = true
-                    }); //Task: Cookie remains after session timeout why!
+                    await HttpContext.SignInAsync("Cookies", claimsPrincipal);
                     if (returnUrl != null) return Redirect(returnUrl);
-                    return RedirectToAction(nameof(ListOfWorkItemsController.Index), ShortNameOf<ListOfWorkItemsController>(), new { message = "You're in!" }); //Task: How does it work with RedirectUri?
+                    return RedirectToAction(nameof(ListOfWorkItemsController.Index), ShortNameOf<ListOfWorkItemsController>(), new { message = "You're in!" });
                 }
             }
             return View(model);
