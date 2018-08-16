@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using myCoreMvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using myCoreMvc.PooyasFramework.Filters;
 
 namespace myCoreMvc
 {
@@ -30,8 +32,6 @@ namespace myCoreMvc
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-
             //Lesson:
             #region
             // I don't put this service in the default IoC container because:
@@ -67,7 +67,7 @@ namespace myCoreMvc
 
             authBuilder.AddCookie(options =>
                 {
-                    options.LoginPath = "/auth/signin";
+                    options.LoginPath = "/auth/signin"; //Task: Find a way to avoid hard coded values!
                     options.AccessDeniedPath = "/auth/denied";
                     options.Cookie.Name = config.GetSection("Authentication").GetValue<string>("CookieName");
                     options.Cookie.MaxAge = TimeSpan.FromSeconds(config.GetSection("Authentication").GetValue<int>("AuthenticationSessionLifeTime"));
@@ -88,11 +88,15 @@ namespace myCoreMvc
                     policy.RequireAssertion(ctx => true); // Equivalent to [AllowAnonymous] attribute
                 });
 
-                options.AddPolicy("denyAll", policy =>
+                options.AddPolicy("denyAll", policy => //Task: use static and constant values instead of hard coded stuff
                 {
                     policy.RequireAssertion(ctx => false);
                 });
             });
+
+            services.AddMvc(
+                options => { options.Conventions.Add(new AddAuthoriseAttributeConvention()); }
+                );
         }
 
         //##################################################################
