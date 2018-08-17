@@ -11,22 +11,17 @@ namespace myCoreMvc.PooyasFramework.Filters
     {
         public void Apply(ControllerModel model)
         {
-            //if (model.ControllerName.Contains("Api"))
-            //{
-            //    model.Filters.Add(new AuthorizeFilter("apipolicy"));
-            //}
-            //else
-            //{
-            //    model.Filters.Add(new AuthorizeFilter("defaultpolicy"));
-            //}
+            var openPages = new[]
+            {
+                "Auth",
+                "Base",
+                "Api" //Task: Make it case-insensitive. And avoid hard-coded values.
+            };
 
-            if (model.ControllerName.Contains("Auth"))
+            if (openPages.Contains(model.ControllerName) == false)
             {
-                //model.Filters.Add(new AuthorizeFilter("apipolicy"));
-            }
-            else
-            {
-                model.Filters.Add(new AuthorizeFilter("denyAll"));
+                var filter = new AuthorizeFilter();
+                model.Filters.Add(filter);
             }
         }
     }
