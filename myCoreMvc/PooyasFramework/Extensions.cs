@@ -68,6 +68,11 @@ namespace PooyasFramework
             return string.Join(separator, source);
         }
 
+        public static bool Lacks<T>(this IEnumerable<T> @this, T element)
+        {
+            return @this.Contains(element) == false;
+        }
+
         public static string TrimEnd(this string @this, string tail)
         {
             return @this.EndsWith(tail) ? @this.Remove(@this.Length - tail.Length) : @this;

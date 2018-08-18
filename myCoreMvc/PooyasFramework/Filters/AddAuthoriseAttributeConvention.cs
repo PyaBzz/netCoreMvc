@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using myCoreMvc.Controllers;
+using PooyasFramework;
 
 namespace myCoreMvc.PooyasFramework.Filters
 {
@@ -13,16 +17,22 @@ namespace myCoreMvc.PooyasFramework.Filters
         {
             var openPages = new[]
             {
-                "Auth",
-                "Base",
-                "Api" //Task: Make it case-insensitive. And avoid hard-coded values.
+                typeof(ApiController),
+                typeof(AuthController),
+                typeof(BaseController),
+                typeof(ListOfWorkPlansController)
             };
 
-            if (openPages.Contains(model.ControllerName) == false)
+            if (openPages.Lacks(model.ControllerType))
             {
                 var filter = new AuthorizeFilter();
                 model.Filters.Add(filter);
             }
+        }
+
+        public static string ShortNameOf<T>() where T : Controller
+        {
+            return typeof(T).Name.TrimEnd("Controller");
         }
     }
 }
