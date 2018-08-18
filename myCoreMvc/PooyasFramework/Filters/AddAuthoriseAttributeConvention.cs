@@ -15,15 +15,12 @@ namespace myCoreMvc.PooyasFramework.Filters
     {
         public void Apply(ControllerModel model)
         {
-            var openPages = new[]
+            var protectedControllers = new[]
             {
-                typeof(ApiController),
-                typeof(AuthController),
-                typeof(BaseController),
-                typeof(ListOfWorkPlansController)
+                typeof(AuthenticatedOnlyController)
             };
 
-            if (openPages.Lacks(model.ControllerType))
+            if (protectedControllers.Contains(model.ControllerType))
             {
                 var filter = new AuthorizeFilter();
                 model.Filters.Add(filter);

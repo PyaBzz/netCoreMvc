@@ -67,7 +67,7 @@ namespace myCoreMvc
 
             authBuilder.AddCookie(options =>
                 {
-                    options.LoginPath = "/auth/signin"; //Task: Find a way to avoid hard coded values!
+                    options.LoginPath = "/auth/signin";
                     options.AccessDeniedPath = "/auth/denied";
                     options.Cookie.Name = config.GetSection("Authentication").GetValue<string>("CookieName");
                     options.Cookie.MaxAge = TimeSpan.FromSeconds(config.GetSection("Authentication").GetValue<int>("AuthenticationSessionLifeTime"));
@@ -88,7 +88,7 @@ namespace myCoreMvc
                     policy.RequireAssertion(ctx => true); // Equivalent to [AllowAnonymous] attribute
                 });
 
-                options.AddPolicy("denyAll", policy => //Task: use static and constant values instead of hard coded stuff
+                options.AddPolicy("denyAll", policy =>
                 {
                     policy.RequireAssertion(ctx => false);
                 });

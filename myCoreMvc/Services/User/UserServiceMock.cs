@@ -15,9 +15,9 @@ namespace myCoreMvc.Services
         public UserServiceMock()
         {
             Records = new Dictionary<string, (string PwHash, User User)>();
-            Records.Add("junior0", ("j00", new User("junior0", new DateTime(2018, 01, 01), "junior"))); //Task: Hash the PW
-            Records.Add("senior0", ("s00", new User("senior00", new DateTime(2010, 01, 01), "senior")));
-            Records.Add("admin0", ("a00", new User("admin00", new DateTime(2000, 01, 01), "admin")));
+            Records.Add("junior", ("jjj", new User("junior", new DateTime(2018, 01, 01), "junior"))); //Task: Hash the PW
+            Records.Add("senior", ("sss", new User("senior", new DateTime(2010, 01, 01), "senior")));
+            Records.Add("admin", ("aaa", new User("admin", new DateTime(2000, 01, 01), "admin")));
         }
 
         public Task<bool> GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
