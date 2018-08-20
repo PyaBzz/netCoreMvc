@@ -36,7 +36,7 @@ namespace myCoreMvc.Controllers
                 {
                     var expiryTime = DateTime.UtcNow.AddSeconds(config.GetValue<int>("AuthenticationSessionLifeTime"));
 
-                    await HttpContext.SignInAsync("Cookies", claimsPrincipal);
+                    await HttpContext.SignInAsync(AuthConstants.SchemeName, claimsPrincipal);
                     if (returnUrl != null) return Redirect(returnUrl);
                     return RedirectToAction(nameof(ListOfWorkItemsController.Index), ShortNameOf<ListOfWorkItemsController>(), new { message = "You're in!" });
                 }
@@ -47,7 +47,7 @@ namespace myCoreMvc.Controllers
         [HttpPost]
         public async Task<IActionResult> SignOut()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignOutAsync(AuthConstants.SchemeName);
             return RedirectToAction(nameof(SignIn));
         }
 
@@ -58,9 +58,9 @@ namespace myCoreMvc.Controllers
 
         public class EnterModel
         {
-            [Required(ErrorMessage = "UserName is required")]
+            [Required(ErrorMessage = "{0} is required")]
             public string UserName { get; set; }
-            [Required(ErrorMessage = "PassWord is required")]
+            [Required(ErrorMessage = "{0} is required")]
             public string PassWord { get; set; }
         }
     }

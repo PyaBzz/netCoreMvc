@@ -14,11 +14,11 @@ using Microsoft.AspNetCore.Authorization;
 namespace myCoreMvc.Controllers
 {
     [Authorize]
-    public class AuthenticatedOnlyController : BaseController
+    public class Level1OnlyController : BaseController
     {
         public ActionResult Index()
         {
-            return View("~/Views/Shared/MessageOnly.cshtml", ">>> Authenticated <<<");
+            return View("~/Views/Shared/MessageOnly.cshtml", $">>> Access {AuthConstants.Level1PolicyName} (Only Authenticated) <<<");
         }
     }
 }

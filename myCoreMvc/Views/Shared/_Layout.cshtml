@@ -26,8 +26,8 @@
         {
             <a asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">WorkPlans</a>
             <a asp-controller="@(Html.ShortNameOf<ListOfWorkItemsController>())" asp-action="@nameof(ListOfWorkItemsController.Index)">WorkItems</a>
-            <a asp-controller="@(Html.ShortNameOf<AuthenticatedOnlyController>())" asp-action="@nameof(AuthenticatedOnlyController.Index)">AuthOnly</a>
-            <a asp-controller="@(Html.ShortNameOf<AdminOnlyController>())" asp-action="@nameof(AdminOnlyController.Index)">AdminOnly</a>
+            <a asp-controller="@(Html.ShortNameOf<Level1OnlyController>())" asp-action="@nameof(Level1OnlyController.Index)">@AuthConstants.Level1PolicyName</a>
+            <a asp-controller="@(Html.ShortNameOf<Level2OnlyController>())" asp-action="@nameof(Level2OnlyController.Index)">@AuthConstants.Level2PolicyName</a>
         }
 
         @if (User.Identity.IsAuthenticated)

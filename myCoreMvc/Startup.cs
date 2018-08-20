@@ -59,7 +59,7 @@ namespace myCoreMvc
 
             var authBuilder = services.AddAuthentication(options =>
                 {
-                    var schemeName = CookieAuthenticationDefaults.AuthenticationScheme; // We could simply use string: "Cookies"
+                    var schemeName = AuthConstants.SchemeName; // We could simply use string: "Cookies"
                     options.DefaultAuthenticateScheme = schemeName;
                     options.DefaultSignInScheme = schemeName;
                     options.DefaultChallengeScheme = schemeName;
@@ -75,22 +75,25 @@ namespace myCoreMvc
 
             services.AddAuthorization(options =>
             {
-                options.DefaultPolicy = new AuthorizationPolicyBuilder(CookieAuthenticationDefaults.AuthenticationScheme)
+                options.DefaultPolicy = new AuthorizationPolicyBuilder(AuthConstants.SchemeName)
                 .RequireAuthenticatedUser().Build();
 
-                options.AddPolicy("adminOnly", policy =>
-                {
-                    policy.RequireRole("admin");
+                // Access Level to Role mapping
+                options.AddPolicy(AuthConstants.Level0PolicyName, policy =>
+                { // Equivalent to un-authenticated users
+                    policy.RequireAssertion(ctx => true);
                 });
-
-                options.AddPolicy("allowAll", policy =>
-                {
-                    policy.RequireAssertion(ctx => true); // Equivalent to [AllowAnonymous] attribute
+                options.AddPolicy(AuthConstants.Level1PolicyName, policy =>
+                { // Equivalent to the default [Authorize] attribute
+                    policy.RequireRole(new[] { AuthConstants.JuniorRoleName, AuthConstants.SeniorRoleName, AuthConstants.AdminRoleName });
                 });
-
-                options.AddPolicy("denyAll", policy =>
+                options.AddPolicy(AuthConstants.Level2PolicyName, policy =>
                 {
-                    policy.RequireAssertion(ctx => false);
+                    policy.RequireRole(new[] { AuthConstants.SeniorRoleName, AuthConstants.AdminRoleName });
+                });
+                options.AddPolicy(AuthConstants.Level3PolicyName, policy =>
+                {
+                    policy.RequireRole(new[] { AuthConstants.AdminRoleName });
                 });
             });
 

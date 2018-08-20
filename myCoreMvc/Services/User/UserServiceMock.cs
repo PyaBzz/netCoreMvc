@@ -15,9 +15,9 @@ namespace myCoreMvc.Services
         public UserServiceMock()
         {
             Records = new Dictionary<string, (string PwHash, User User)>();
-            Records.Add("junior", ("jjj", new User("junior", new DateTime(2018, 01, 01), "junior"))); //Task: Hash the PW
-            Records.Add("senior", ("sss", new User("senior", new DateTime(2010, 01, 01), "senior")));
-            Records.Add("admin", ("aaa", new User("admin", new DateTime(2000, 01, 01), "admin")));
+            Records.Add("junior", ("jjj", new User("junior", new DateTime(2018, 01, 01), AuthConstants.JuniorRoleName))); //Task: Hash the PW
+            Records.Add("senior", ("sss", new User("senior", new DateTime(2010, 01, 01), AuthConstants.SeniorRoleName)));
+            Records.Add("admin", ("aaa", new User("admin", new DateTime(2000, 01, 01), AuthConstants.AdminRoleName)));
         }
 
         public Task<bool> GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
@@ -36,7 +36,7 @@ namespace myCoreMvc.Services
             var claimsIdentity = new ClaimsIdentity
                 (
                     claims: claims,
-                    authenticationType: "Cookies",
+                    authenticationType: AuthConstants.SchemeName,
                     nameType: ClaimTypes.Name,
                     roleType: ClaimTypes.Role
                 );

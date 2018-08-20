@@ -17,7 +17,7 @@ namespace myCoreMvc.PooyasFramework.Filters
         {
             var protectedControllers = new[]
             {
-                typeof(AuthenticatedOnlyController)
+                typeof(Level1OnlyController)
             };
 
             if (protectedControllers.Contains(model.ControllerType))
