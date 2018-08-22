@@ -8,14 +8,14 @@ using PooyasFramework;
 
 namespace myCoreMvc.Controllers
 {
-    public class EnterWorkPlanController : BaseController
+    public class EnterUserController : BaseController
     {
         public IActionResult Index(Guid id)
-        {
-            var workPlan = DataProvider.Get<WorkPlan>(wp => wp.Id == id);
+        { //Task: Complete the CRUD for user management
+            var user = DataProvider.Get<User>(wp => wp.Id == id);
             var inputModel = new EnterModel();
-            if (workPlan != null) inputModel.CopySimilarPropertiesFrom(workPlan);
-            return View("~/Views/ListOfWorkPlans/EnterWorkPlan.cshtml", inputModel);
+            if (user != null) inputModel.CopySimilarPropertiesFrom(user);
+            return View("~/Views/ListOfUsers/EnterUser.cshtml", inputModel);
         }
 
         [HttpPost]
@@ -23,16 +23,16 @@ namespace myCoreMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var workPlan = new WorkPlan();
-                workPlan.CopySimilarPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
+                var user = new User();
+                user.CopySimilarPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
                 TransactionResult transactionResult;
-                if (workPlan.Id == Guid.Empty)
+                if (user.Id == Guid.Empty)
                 {
-                    transactionResult = DataProvider.Add(workPlan);
+                    transactionResult = DataProvider.Add(user);
                 }
                 else
                 {
-                    transactionResult = DataProvider.Update(workPlan);
+                    transactionResult = DataProvider.Update(user);
                 }
                 var resultMessage = "";
                 switch (transactionResult)
@@ -41,13 +41,13 @@ namespace myCoreMvc.Controllers
                     case TransactionResult.Added: resultMessage = "New item added"; break;
                     default: resultMessage = transactionResult.ToString(); break;
                 }
-                return RedirectToAction(nameof(ListOfWorkPlansController.Index), ShortNameOf<ListOfWorkPlansController>(), new { message = resultMessage });  // Prevents re-submission by refresh
+                return RedirectToAction(nameof(ListOfUsersController.Index), ShortNameOf<ListOfUsersController>(), new { message = resultMessage });  // Prevents re-submission by refresh
             }
             else
             {
                 inputModel.Message = "Invalid values for: "
                     + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
-                return View("~/Views/ListOfWorkPlans/EnterWorkPlan.cshtml", inputModel);
+                return View("~/Views/ListOfUsers/EnterUser.cshtml", inputModel);
             }
         }
 
@@ -55,7 +55,7 @@ namespace myCoreMvc.Controllers
         {
             public Guid Id { get; set; }
 
-            [Display(Name = "Plan name")]
+            [Display(Name = "User name")]
             [Required(ErrorMessage = "{0} is mandatory.")]
             [StringLength(16, MinimumLength = 3, ErrorMessage = "{0} should be between {2} and {1} characters in length.")]
             [RegularExpression("^[A-Z][a-zA-Z0-9]*", ErrorMessage = "{0} must start with a capital letter and may only contain alphanumeric characters.")]

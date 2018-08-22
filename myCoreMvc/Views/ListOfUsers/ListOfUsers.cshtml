@@ -1,0 +1,50 @@
+﻿@using myCoreMvc.Controllers
+@using PooyasFramework
+
+@model myCoreMvc.Controllers.ListOfWorkPlansController.ListModel
+@{ ViewBag.Title = "WorkPlans";
+    if (true)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";  //explicitly specifies the layout for this view
+    }
+}
+
+@if (Model.Message != null && Model.Message != string.Empty)
+{
+    <h2 id="message">@Model.Message</h2>
+}
+
+<h3>Work Plans</h3>
+<a asp-controller="@(Html.ShortNameOf<EnterWorkPlanController>())" asp-action="@nameof(EnterWorkPlanController.Index)">Add</a>
+
+<form asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">
+    <h3>Search</h3>
+    <label asp-for="Search_Name">Name</label>
+    <input type="text" name="Search_Name" value="@Model.Search_Name" />
+    <br />
+    <input type="submit" name="Search" value="Search" />
+</form>
+<br />
+
+@if (Model.Items != null && Model.Items.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Edit</td>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td><a asp-controller="@(Html.ShortNameOf<DetailsOfWorkPlanController>())" asp-action="@nameof(DetailsOfWorkPlanController.Index)" asp-route-id="@item.Id">@item.Name</a></td>
+                <td><a asp-controller="@(Html.ShortNameOf<EnterWorkPlanController>())" asp-action="@nameof(EnterWorkPlanController.Index)" asp-route-id="@item.Id">Go</a></td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>No WorkPlans found.</div>
+}
