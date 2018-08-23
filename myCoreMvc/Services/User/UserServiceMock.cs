@@ -10,15 +10,7 @@ namespace myCoreMvc.Services
 {
     public class UserServiceMock : IUserService
     {
-        private IDictionary<string, (string PwHash, User User)> Records;
-
-        public UserServiceMock()
-        {
-            Records = new Dictionary<string, (string PwHash, User User)>();
-            Records.Add("junior", ("jjj", new User("junior", new DateTime(2018, 01, 01), AuthConstants.JuniorRoleName))); //Task: Hash the PW
-            Records.Add("senior", ("sss", new User("senior", new DateTime(2010, 01, 01), AuthConstants.SeniorRoleName)));
-            Records.Add("admin", ("aaa", new User("admin", new DateTime(2000, 01, 01), AuthConstants.AdminRoleName)));
-        }
+        private IDataProvider DataProvider = ServiceInjector.Resolve<IDataProvider>();
 
         public Task<bool> GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
         {
@@ -47,15 +39,13 @@ namespace myCoreMvc.Services
 
         public Task<bool> ValidateCredentials(string userName, string passWord, out User user)
         {
-            user = null;
-            var key = userName.ToLower();
-            if (Records.ContainsKey(key))
+            user = DataProvider.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
+            if (user != null)
             {
-                var existingHash = Records[key].PwHash;
+                var existingHash = user.Hash;
                 var hash = passWord;
                 if (hash == existingHash)
                 {
-                    user = Records[key].User;
                     return Task.FromResult(true);
                 }
             }

@@ -11,7 +11,7 @@ namespace myCoreMvc.Controllers
     public class EnterUserController : BaseController
     {
         public IActionResult Index(Guid id)
-        { //Task: Complete the CRUD for user management
+        {
             var user = DataProvider.Get<User>(wp => wp.Id == id);
             var inputModel = new EnterModel();
             if (user != null) inputModel.CopySimilarPropertiesFrom(user);
@@ -24,7 +24,7 @@ namespace myCoreMvc.Controllers
             if (ModelState.IsValid)
             {
                 var user = new User();
-                user.CopySimilarPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
+                user.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
                 TransactionResult transactionResult;
                 if (user.Id == Guid.Empty)
                 {
@@ -60,7 +60,10 @@ namespace myCoreMvc.Controllers
             [StringLength(16, MinimumLength = 3, ErrorMessage = "{0} should be between {2} and {1} characters in length.")]
             [RegularExpression("^[A-Z][a-zA-Z0-9]*", ErrorMessage = "{0} must start with a capital letter and may only contain alphanumeric characters.")]
             public string Name { get; set; }
-
+            public string Hash { get; set; }
+            public DateTime DateOfBirth { get; set; } = new DateTime(1900, 01, 01);
+            public string Role { get; set; }
+            public string[] RoleChoices => UserRole.All;
             public string Message = "";
         }
     }

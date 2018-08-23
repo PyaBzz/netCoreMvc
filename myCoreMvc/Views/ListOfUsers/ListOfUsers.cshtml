@@ -1,8 +1,8 @@
 ﻿@using myCoreMvc.Controllers
 @using PooyasFramework
 
-@model myCoreMvc.Controllers.ListOfWorkPlansController.ListModel
-@{ ViewBag.Title = "WorkPlans";
+@model myCoreMvc.Controllers.ListOfUsersController.ListModel
+@{ ViewBag.Title = "Users";
     if (true)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";  //explicitly specifies the layout for this view
@@ -14,10 +14,10 @@
     <h2 id="message">@Model.Message</h2>
 }
 
-<h3>Work Plans</h3>
-<a asp-controller="@(Html.ShortNameOf<EnterWorkPlanController>())" asp-action="@nameof(EnterWorkPlanController.Index)">Add</a>
+<h3>Users</h3>
+<a asp-controller="@(Html.ShortNameOf<EnterUserController>())" asp-action="@nameof(EnterUserController.Index)">Add</a>
 
-<form asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">
+<form asp-controller="@(Html.ShortNameOf<ListOfUsersController>())" asp-action="@nameof(ListOfUsersController.Index)">
     <h3>Search</h3>
     <label asp-for="Search_Name">Name</label>
     <input type="text" name="Search_Name" value="@Model.Search_Name" />
@@ -32,19 +32,27 @@
         <thead>
             <tr>
                 <td>Name</td>
+                <td>Id</td>
+                <td>Hash</td>
+                <td>DateOfBirth</td>
+                <td>Role</td>
                 <td>Edit</td>
             </tr>
         </thead>
         @foreach (var item in Model.Items)
         {
             <tr>
-                <td><a asp-controller="@(Html.ShortNameOf<DetailsOfWorkPlanController>())" asp-action="@nameof(DetailsOfWorkPlanController.Index)" asp-route-id="@item.Id">@item.Name</a></td>
-                <td><a asp-controller="@(Html.ShortNameOf<EnterWorkPlanController>())" asp-action="@nameof(EnterWorkPlanController.Index)" asp-route-id="@item.Id">Go</a></td>
+                <td><a asp-controller="@(Html.ShortNameOf<DetailsOfUserController>())" asp-action="@nameof(DetailsOfUserController.Index)" asp-route-id="@item.Id">@item.Name</a></td>
+                <td>@item.Id</td>
+                <td>@item.Hash</td>
+                <td>@item.DateOfBirth.ToShortDateString()</td>
+                <td>@item.Role</td>
+                <td><a asp-controller="@(Html.ShortNameOf<EnterUserController>())" asp-action="@nameof(EnterUserController.Index)" asp-route-id="@item.Id">Go</a></td>
             </tr>
         }
     </table>
 }
 else
 {
-    <div>No WorkPlans found.</div>
+    <div>No Users found.</div>
 }

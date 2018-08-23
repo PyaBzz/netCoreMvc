@@ -24,7 +24,7 @@ namespace myCoreMvc.Controllers
             if (ModelState.IsValid)
             {
                 var workPlan = new WorkPlan();
-                workPlan.CopySimilarPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
+                workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
                 TransactionResult transactionResult;
                 if (workPlan.Id == Guid.Empty)
                 {

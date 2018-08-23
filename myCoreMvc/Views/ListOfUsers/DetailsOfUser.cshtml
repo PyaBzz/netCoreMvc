@@ -3,29 +3,35 @@
 @using myCoreMvc.Models;
 @using PooyasFramework
 
-@model WorkPlan
-@{ ViewBag.Title = "WorkPlan Details"; }
+@model User
+@{ ViewBag.Title = "User Details"; }
 
-<a asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">Back</a>
+<a asp-controller="@(Html.ShortNameOf<ListOfUsersController>())" asp-action="@nameof(ListOfUsersController.Index)">Back</a>
 @if (@Model != null)
 {
-    <h3>WorkPlan details</h3>
-    <a asp-controller="@(Html.ShortNameOf<EnterWorkPlanController>())" asp-action="@nameof(EnterWorkPlanController.Index)" asp-route-id="@Model.Id">Edit</a>
+    <h3>User details</h3>
+    <a asp-controller="@(Html.ShortNameOf<EnterUserController>())" asp-action="@nameof(EnterUserController.Index)" asp-route-id="@Model.Id">Edit</a>
     <button id="delete">Delete</button>
     <br />
     <label>Name__ </label><span>@Model.Name</span>
+    <br />
+    <label>Hash__ </label><span>@Model.Hash</span>
+    <br />
+    <label>DateOfBirth__ </label><span>@Model.DateOfBirth.ToShortDateString()</span>
+    <br />
+    <label>Role__ </label><span>@Model.Role</span>
 }
 else
 {
-    <h5>WorkPlan not found!</h5>
+    <h5>User not found!</h5>
 }
 
 <script>
     var deleteButton = document.getElementById("delete");
     deleteButton.onclick = function () {
-        var confirmed = confirm("Are you sure you want to delete this WorkPlan?");
+        var confirmed = confirm("Are you sure you want to delete this User?");
         if (confirmed) {
-        var url = window.location.origin + "/DetailsOfWorkPlan/Delete/" + "@Model.Id";
+        var url = window.location.origin + "/DetailsOfUser/Delete/" + "@Model.Id";
         window.location.href = url;
         }
     };

@@ -2,25 +2,39 @@
 @using myCoreMvc.Controllers;
 @using PooyasFramework
 
-@model EnterWorkPlanController.EnterModel
-@{ ViewBag.Title = "WorkPlan Details"; }
+@model EnterUserController.EnterModel
+@{ ViewBag.Title = "User Details"; }
 
 <h2>
     @if (Model.Message != null && Model.Message != string.Empty)
     {<text> @Model.Message </text>}
 </h2>
 
-<a asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">Back</a>
+<a asp-controller="@(Html.ShortNameOf<ListOfUsersController>())" asp-action="@nameof(ListOfUsersController.Index)">Back</a>
 
 @if (Model.Id == Guid.Empty)
-{<h3>Add WorkPlan</h3>}
+{<h3>Add User</h3>}
 else
-{<h3>Edit WorkPlan</h3>}
+{<h3>Edit User</h3>}
 
 <form method="post">
     <input type="hidden" name="Id" value="@Model.Id" />
     <label asp-for="Name"></label>
     <input type="text" name="Name" value="@Model.Name" /><span asp-validation-for="Name"></span>
+    <br />
+    <label asp-for="Hash"></label>
+    <input type="text" name="Hash" value="@Model.Hash" />
+    <br />
+    <label asp-for="DateOfBirth"></label>
+    <input type="date" name="DateOfBirth" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")" min="1900-01-01" max="@DateTime.Today.ToString("yyyy-MM-dd")"/>
+    <br />
+    <label asp-for="Role"></label>
+    <select name="Role">
+        @foreach (var option in Model.RoleChoices)
+        {
+            <option value="@option" selected=@(option == Model.Role ? "selected" : null )>@option</option>
+        }
+    </select>
     <br />
     <br />
     <input type="submit" name="Save" value="Save" />

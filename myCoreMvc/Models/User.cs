@@ -1,20 +1,15 @@
-﻿using System;
+﻿using PooyasFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace myCoreMvc.Models
 {
-    public class User
+    public class User : Thing
     {
-        public string Name { get; }
-        public DateTime DateOfBirth { get; }
-        public string Role { get; }
-
-        public User(string name, DateTime dob, string role)
-        {
-            Name = name;
-            DateOfBirth = dob;
-            Role = role;
-        }
+        public string Name { get; set; }
+        public string Hash { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string Role { get; set; } //Task: Make Role a type it needs to be linked to Access Level somehow. Can we?
     }
 }

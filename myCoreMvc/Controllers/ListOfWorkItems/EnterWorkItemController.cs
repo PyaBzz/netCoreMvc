@@ -32,7 +32,7 @@ namespace myCoreMvc.Controllers
                 // ModelState.AddModelError("", "This is an object level error rather than property level.")
                 // @Html.ValidationSummary(true)
                 // @Html.ValidationMessageFor(p => p.Reference)
-                workItem.CopySimilarPropertiesFrom(inputModel);  // We use this simple way to prevent malicious over-posting
+                workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
                 workItem.WorkPlan = DataProvider.Get<WorkPlan>(inputModel.WorkPlan);
                 TransactionResult transactionResult;
                 if (workItem.Id == Guid.Empty)

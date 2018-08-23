@@ -85,15 +85,15 @@ namespace myCoreMvc
                 });
                 options.AddPolicy(AuthConstants.Level1PolicyName, policy =>
                 { // Equivalent to the default [Authorize] attribute
-                    policy.RequireRole(new[] { AuthConstants.JuniorRoleName, AuthConstants.SeniorRoleName, AuthConstants.AdminRoleName });
+                    policy.RequireRole(new[] { UserRole.JuniorRoleName, UserRole.SeniorRoleName, UserRole.AdminRoleName });
                 });
                 options.AddPolicy(AuthConstants.Level2PolicyName, policy =>
                 {
-                    policy.RequireRole(new[] { AuthConstants.SeniorRoleName, AuthConstants.AdminRoleName });
+                    policy.RequireRole(new[] { UserRole.SeniorRoleName, UserRole.AdminRoleName });
                 });
                 options.AddPolicy(AuthConstants.Level3PolicyName, policy =>
                 {
-                    policy.RequireRole(new[] { AuthConstants.AdminRoleName });
+                    policy.RequireRole(new[] { UserRole.AdminRoleName });
                 });
             });
 

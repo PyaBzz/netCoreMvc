@@ -6,7 +6,7 @@ using System;
 namespace myCoreMvc.Controllers
 {
     public class DetailsOfUserController : BaseController
-    {
+    { //Task: Use tables like the CookieEditor for all details pages
         public IActionResult Index(Guid id)
         {
             var viewModel = DataProvider.Get<User>(wi => wi.Id == id);
