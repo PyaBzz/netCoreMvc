@@ -63,7 +63,7 @@ namespace myCoreMvc.Controllers
             public string Hash { get; set; }
             public DateTime DateOfBirth { get; set; } = new DateTime(1900, 01, 01);
             public string Role { get; set; }
-            public string[] RoleChoices => UserRole.All;
+            public string[] RoleChoices => AuthConstants.All;
             public string Message = "";
         }
     }

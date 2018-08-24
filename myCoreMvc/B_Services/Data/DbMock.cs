@@ -19,11 +19,11 @@ namespace myCoreMvc.Services
         private List<User> Users { get; set; } = new List<User>
             { //Task: Hash it!
                 new User {Id = Guid.Parse("5d45a66d-fc2d-4a7f-b9dc-aac9f723f034"),
-                    Name = "Junior", Hash = "jjj", DateOfBirth = new DateTime(2018, 01, 22), Role = UserRole.JuniorRoleName },
+                    Name = "Junior", Hash = "jjj", DateOfBirth = new DateTime(2018, 01, 22), Role = AuthConstants.JuniorRoleName },
                 new User {Id = Guid.Parse("91555540-6137-4668-9d55-5c22471237f3"),
-                    Name = "Senior", Hash = "sss", DateOfBirth = new DateTime(2010, 01, 22), Role = UserRole.SeniorRoleName },
+                    Name = "Senior", Hash = "sss", DateOfBirth = new DateTime(2010, 01, 22), Role = AuthConstants.SeniorRoleName },
                 new User {Id = Guid.Parse("97ba3d59-a990-4b55-ba91-7865fca0a4a2"),
-                    Name = "Admin", Hash = "aaa", DateOfBirth = new DateTime(2000, 01, 22), Role = UserRole.AdminRoleName }
+                    Name = "Admin", Hash = "aaa", DateOfBirth = new DateTime(2000, 01, 22), Role = AuthConstants.AdminRoleName }
             };
         private List<WorkPlan> WorkPlans
         { //Task: Change these like Users above
