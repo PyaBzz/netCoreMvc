@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PooyasFramework;
 using PooyasFramework.Attributes;
 using myCoreMvc.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace myCoreMvc.Controllers
 {
@@ -17,7 +18,11 @@ namespace myCoreMvc.Controllers
         {
             var item = DataProvider.Get<WorkItem>(wi => wi.Id == id);
             var inputModel = new EnterModel();
-            if (item != null) inputModel.CopySimilarPropertiesFrom(item);
+            if (item != null)
+            {
+                inputModel.CopySimilarPropertiesFrom(item);
+                inputModel.WorkPlan = item.WorkPlan.Id; //Task: WorkPlan itself works in Get but its Guid works for POST. Find a way to cover both.
+            }
             return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);
         }
 
@@ -72,8 +77,8 @@ namespace myCoreMvc.Controllers
             [ValidateAlphanumeric(3, 16)]
             public string Name { get; set; }
 
-            public IEnumerable<int> PriorityChoices { get { return WorkItem.PriorityChoices; } }
-            public IEnumerable<WorkPlan> WorkPlanChoices { get { return ServiceInjector.Resolve<IDataProvider>().GetList<WorkPlan>(); } }
+            public IEnumerable<SelectListItem> PriorityChoices => WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == Priority });
+            public IEnumerable<SelectListItem> WorkPlanChoices => ServiceInjector.Resolve<IDataProvider>().GetList<WorkPlan>().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == WorkPlan });
             public string Message = "";
         }
     }
