@@ -9,15 +9,32 @@ namespace myCoreMvc.Services
 {
     public class DbMock : IDataProvider
     {
-        /*==================================  Fields ==================================*/
-
-        private List<WorkPlan> _WorkPlans;
-        private List<WorkItem> _WorkItems;
-
         /*================================  Properties ================================*/
 
-        private List<User> Users { get; set; } = new List<User>
-            { //Task: Hash it!
+        private List<WorkPlan> WorkPlans { get; set; }
+        private List<WorkItem> WorkItems { get; set; }
+        private List<User> Users { get; set; }
+
+        /*==================================  Constructors ==================================*/
+
+        public DbMock()
+        {
+            WorkPlans = new List<WorkPlan>
+            {
+                new WorkPlan { Id = Guid.Parse("60f9fc29-083f-4ed2-a3e2-3948b503c25f"), Name = "Plan1" },
+                new WorkPlan { Id = Guid.Parse("53c88402-4092-4834-8e7f-6ce70057cdc5"), Name = "Plan2" }
+            };
+
+            WorkItems = new List<WorkItem>
+            {
+                new WorkItem { Id = Guid.Parse("7073ad87-4695-4a0b-b2c3-fa794d5ffa21"), Reference = "Wi11", Priority = 1, Name = "FirstItem", WorkPlan = Get<WorkPlan>("60f9fc29-083f-4ed2-a3e2-3948b503c25f")},
+                new WorkItem { Id = Guid.Parse("5fc4bfcf-24e0-430a-8889-03b2f31387e1"), Reference = "Wi12", Priority = 2, Name = "SecondItem", WorkPlan = Get<WorkPlan>("60f9fc29-083f-4ed2-a3e2-3948b503c25f")},
+                new WorkItem { Id = Guid.Parse("eb66287b-1cde-421e-868e-a0df5b21a90d"), Reference = "Wi21", Priority = 3, Name = "ThirdItem", WorkPlan = Get<WorkPlan>("53c88402-4092-4834-8e7f-6ce70057cdc5")}
+            };
+
+            //Task: Hash the PW!
+            Users = new List<User>
+            {
                 new User {Id = Guid.Parse("5d45a66d-fc2d-4a7f-b9dc-aac9f723f034"),
                     Name = "Junior", Hash = "jjj", DateOfBirth = new DateTime(2018, 01, 22), Role = AuthConstants.JuniorRoleName },
                 new User {Id = Guid.Parse("91555540-6137-4668-9d55-5c22471237f3"),
@@ -25,36 +42,6 @@ namespace myCoreMvc.Services
                 new User {Id = Guid.Parse("97ba3d59-a990-4b55-ba91-7865fca0a4a2"),
                     Name = "Admin", Hash = "aaa", DateOfBirth = new DateTime(2000, 01, 22), Role = AuthConstants.AdminRoleName }
             };
-        private List<WorkPlan> WorkPlans
-        { //Task: Change these like Users above
-            get
-            {
-                if (_WorkPlans == null)
-                {
-                    _WorkPlans = new List<WorkPlan>
-                    {
-                        new WorkPlan { Id = Guid.Parse("60f9fc29-083f-4ed2-a3e2-3948b503c25f"), Name = "Plan1" },
-                        new WorkPlan { Id = Guid.Parse("53c88402-4092-4834-8e7f-6ce70057cdc5"), Name = "Plan2" },
-                    };
-                }
-                return _WorkPlans;
-            }
-        }
-        private List<WorkItem> WorkItems
-        {
-            get
-            {
-                if (_WorkItems == null)
-                {
-                    _WorkItems = new List<WorkItem>
-                    {
-                        new WorkItem { Id = Guid.Parse("7073ad87-4695-4a0b-b2c3-fa794d5ffa21"), Reference = "Wi11", Priority = 1, Name = "FirstItem", WorkPlan = Get<WorkPlan>("60f9fc29-083f-4ed2-a3e2-3948b503c25f")},
-                        new WorkItem { Id = Guid.Parse("5fc4bfcf-24e0-430a-8889-03b2f31387e1"), Reference = "Wi12", Priority = 2, Name = "SecondItem", WorkPlan = Get<WorkPlan>("60f9fc29-083f-4ed2-a3e2-3948b503c25f")},
-                        new WorkItem { Id = Guid.Parse("eb66287b-1cde-421e-868e-a0df5b21a90d"), Reference = "Wi21", Priority = 3, Name = "ThirdItem", WorkPlan = Get<WorkPlan>("53c88402-4092-4834-8e7f-6ce70057cdc5")}
-                    };
-                }
-                return _WorkItems;
-            }
         }
 
         /*==================================  Methods =================================*/
