@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PooyasFramework;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace myCoreMvc.Controllers
 {
@@ -63,7 +65,7 @@ namespace myCoreMvc.Controllers
             public string Hash { get; set; }
             public DateTime DateOfBirth { get; set; } = new DateTime(1900, 01, 01);
             public string Role { get; set; }
-            public string[] RoleChoices => AuthConstants.All;
+            public IEnumerable<SelectListItem> RoleChoices => AuthConstants.All.Select(c => new SelectListItem { Text = c, Value = c, Selected = c == Role });
             public string Message = "";
         }
     }

@@ -19,7 +19,7 @@
 
 <form asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">
     <h3>Search</h3>
-    <label asp-for="Search_Name">Name</label>
+    <label asp-for=@Model.Search_Name>Name</label>
     <input type="text" name="Search_Name" value="@Model.Search_Name" />
     <br />
     <input type="submit" name="Search" value="Search" />

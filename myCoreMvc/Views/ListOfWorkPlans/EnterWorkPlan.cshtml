@@ -19,7 +19,7 @@ else
 
 <form method="post">
     <input type="hidden" name="Id" value="@Model.Id" />
-    <label asp-for="Name"></label>
+    <label asp-for=@Model.Name></label>
     <input type="text" name="Name" value="@Model.Name" /><span asp-validation-for="Name"></span>
     <br />
     <br />
