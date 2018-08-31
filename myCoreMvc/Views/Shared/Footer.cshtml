@@ -1,18 +1,2 @@
 ﻿<div>______________________________</div>
-<div>Your network socket: <span id="client-ip"></span></div>
-<script>
-    window.onload = function () {
-        showClientIp();
-    };
-    function showClientIp() {
-        var url = window.location.origin + "/GetClientSocket";
-        var ajaxRequest = new XMLHttpRequest();
-        ajaxRequest.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("client-ip").innerHTML = this.responseText;
-            }
-        };
-        ajaxRequest.open("GET", url, true);
-        ajaxRequest.send();
-    }
-</script>
+<client-socket></client-socket>
