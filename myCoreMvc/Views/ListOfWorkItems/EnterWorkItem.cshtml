@@ -12,7 +12,7 @@
     {<text> @Model.Message </text>}
 </h2>
 
-<a asp-controller="@(Html.ShortNameOf<ListOfWorkItemsController>())" asp-action="@nameof(ListOfWorkItemsController.Index)">Back</a>
+@(Html.LinkToAction<ListOfWorkItemsController>(nameof(ListOfWorkItemsController.Index), "Back"))
 
 @if (addMode)
 {<h3>Add WorkItem</h3>}

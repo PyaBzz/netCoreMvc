@@ -6,11 +6,11 @@
 @model WorkPlan
 @{ ViewBag.Title = "WorkPlan Details"; }
 
-<a asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">Back</a>
+@(Html.LinkToAction<ListOfWorkPlansController>(nameof(ListOfWorkPlansController.Index), "Back"))
 @if (@Model != null)
 {
     <h3>WorkPlan details</h3>
-    <a asp-controller="@(Html.ShortNameOf<EnterWorkPlanController>())" asp-action="@nameof(EnterWorkPlanController.Index)" asp-route-id="@Model.Id">Edit</a>
+    @(Html.LinkToAction<EnterWorkPlanController>(nameof(EnterWorkPlanController.Index), "Edit", Model.Id))
     <button id="delete">Delete</button>
     <br />
     <label>Name__ </label><span>@Model.Name</span>

@@ -15,7 +15,7 @@
 }
 
 <h3>Work Plans</h3>
-<a asp-controller="@(Html.ShortNameOf<EnterWorkPlanController>())" asp-action="@nameof(EnterWorkPlanController.Index)">Add</a>
+@(Html.LinkToAction<EnterWorkPlanController>(nameof(EnterWorkPlanController.Index), "Add"))
 
 <form asp-controller="@(Html.ShortNameOf<ListOfWorkPlansController>())" asp-action="@nameof(ListOfWorkPlansController.Index)">
     <h3>Search</h3>
@@ -38,8 +38,8 @@
         @foreach (var item in Model.Items)
         {
             <tr>
-                <td><a asp-controller="@(Html.ShortNameOf<DetailsOfWorkPlanController>())" asp-action="@nameof(DetailsOfWorkPlanController.Index)" asp-route-id="@item.Id">@item.Name</a></td>
-                <td><a asp-controller="@(Html.ShortNameOf<EnterWorkPlanController>())" asp-action="@nameof(EnterWorkPlanController.Index)" asp-route-id="@item.Id">Go</a></td>
+                <td>@(Html.LinkToAction<DetailsOfWorkPlanController>(nameof(DetailsOfWorkPlanController.Index), item.Name, item.Id))</td>
+                <td>@(Html.LinkToAction<EnterWorkPlanController>(nameof(EnterWorkPlanController.Index), "Go", item.Id))</td>
             </tr>
         }
     </table>
