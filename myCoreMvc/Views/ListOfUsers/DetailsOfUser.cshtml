@@ -14,13 +14,7 @@
     @(Html.LinkToAction<EnterUserController>(nameof(EnterUserController.Index), "Edit", Model.Id))
     <button id="delete">Delete</button>
     <br />
-    <label>Name__ </label><span>@Model.Name</span>
-    <br />
-    <label>Hash__ </label><span>@Model.Hash</span>
-    <br />
-    <label>DateOfBirth__ </label><span>@Model.DateOfBirth.ToShortDateString()</span>
-    <br />
-    <label>Role__ </label><span>@Model.Role</span>
+    <ModelDetails tag-model="Model" />
 }
 else
 {

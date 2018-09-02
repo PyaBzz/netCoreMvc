@@ -85,10 +85,5 @@ namespace myCoreMvc.Controllers
             //return View("~/Views/ListOfWorkItems/DetailsOfWorkItem.cshtml", instance);
             return View("~/Views/Shared/MessageOnly.cshtml", $"This method needs correction!{Environment.NewLine}It's temporarily down.");
         }
-
-        public ActionResult CustomTag()
-        {
-            return View("~/Views/Experiments/CustomTagHelper.cshtml");
-        }
     }
 }
