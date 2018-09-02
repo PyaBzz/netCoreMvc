@@ -67,7 +67,7 @@ namespace myCoreMvc
 
             authBuilder.AddCookie(options =>
                 {
-                    options.LoginPath = "/auth/signin";
+                    options.LoginPath = "/auth/signin"; //Task: Replace hardcoded values. Search for "path" to find similar instances
                     options.AccessDeniedPath = "/auth/denied";
                     options.Cookie.Name = config.GetSection("Authentication").GetValue<string>("CookieName");
                     options.Cookie.MaxAge = TimeSpan.FromSeconds(config.GetSection("Authentication").GetValue<int>("AuthenticationSessionLifeTime"));
