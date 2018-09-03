@@ -1,18 +1,20 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using PooyasFramework;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace myCoreMvc.PooyasFramework
-{ //Task: Find a way to move the Edit button to here as well.
-    [HtmlTargetElement("ModelDetails", TagStructure = TagStructure.NormalOrSelfClosing)]
+{
+    [HtmlTargetElement("ModelDetails")]
     public class ModelDetailsTagHelper : TagHelper
     {
         public Thing TagModel { get; set; }
 
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             base.Process(context, output);
-            var request = $"/DetailsOf{TagModel.GetType().Name}/Delete/{TagModel.Id}";
+            var existingContent = await output.GetChildContentAsync();
+            var requestPath = $"/DetailsOf{TagModel.GetType().Name}/Delete/{TagModel.Id}";
             var content = $"<table style='width: 100%'>" +
                             "<button id='delete'>Delete</button>" +
                             "<tbody>" +
@@ -29,12 +31,12 @@ namespace myCoreMvc.PooyasFramework
                              "deleteButton.onclick = function() {" +
                               $"var confirmed = confirm('Are you sure you want to delete this {TagModel.GetType().Name}?');" +
                               "if (confirmed) {" +
-                               $"var url = window.location.origin + '{request}';" +
+                               $"var url = window.location.origin + '{requestPath}';" +
                                "window.location.href = url;" +
                               "}" +
                              "};" +
                             "</script>";
-
+            output.Content.AppendHtml(existingContent);
             output.Content.AppendHtml(content);
             output.TagMode = TagMode.StartTagAndEndTag;
         }
