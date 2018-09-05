@@ -22,8 +22,8 @@ else
     <label asp-for=@Model.Name></label>
     <input type="text" name="Name" value="@Model.Name" /><span asp-validation-for="Name"></span>
     <br />
-    <label asp-for=@Model.Hash></label>
-    <input type="text" name="Hash" value="@Model.Hash" />
+    <label asp-for=@Model.Password></label>
+    <input type="text" name="Hash" value="@Model.Password" />
     <br />
     <label asp-for=@Model.DateOfBirth></label>
     <input type="date" name="DateOfBirth" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")" min="1900-01-01" max="@DateTime.Today.ToString("yyyy-MM-dd")" />

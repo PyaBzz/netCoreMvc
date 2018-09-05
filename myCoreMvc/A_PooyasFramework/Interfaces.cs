@@ -26,5 +26,6 @@ namespace PooyasFramework
     {
         Task<bool> GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal);
         Task<bool> ValidateCredentials(string userName, string passWord, out User user);
+        TransactionResult Save(User user);
     }
 }

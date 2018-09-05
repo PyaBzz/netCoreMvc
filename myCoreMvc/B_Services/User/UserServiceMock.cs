@@ -16,7 +16,7 @@ namespace myCoreMvc.Services
         {
             claimsPrincipal = null;
 
-            if (ValidateCredentials(userName, passWord, out User user).Result == false)
+            if (ValidateCredentials(userName, passWord, out var user).Result == false)
                 return Task.FromResult(false);
 
             var claims = new List<Claim>
@@ -45,11 +45,25 @@ namespace myCoreMvc.Services
                 var existingHash = user.Hash;
                 var hash = passWord;
                 if (hash == existingHash)
-                {
                     return Task.FromResult(true);
-                }
             }
             return Task.FromResult(false);
+        }
+
+        public TransactionResult Save(User user)
+        {
+            TransactionResult transactionResult;
+            if (user.Id == Guid.Empty)
+            {
+                //user.Salt = 
+                user.Hash =
+                transactionResult = DataProvider.Add(user);
+            }
+            else
+            {
+                transactionResult = DataProvider.Update(user);
+            }
+            return transactionResult;
         }
     }
 }
