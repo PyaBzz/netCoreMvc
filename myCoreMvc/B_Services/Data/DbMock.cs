@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using myCoreMvc.Models;
 using PooyasFramework;
 
@@ -32,16 +34,25 @@ namespace myCoreMvc.Services
                 new WorkItem { Id = Guid.Parse("eb66287b-1cde-421e-868e-a0df5b21a90d"), Reference = "Wi21", Priority = 3, Name = "ThirdItem", WorkPlan = Get<WorkPlan>("53c88402-4092-4834-8e7f-6ce70057cdc5")}
             };
 
-            //Task: Hash the PW!
-            Users = new List<User>();
-            //{
-            //    new User {Id = Guid.Parse("5d45a66d-fc2d-4a7f-b9dc-aac9f723f034"),
-            //        Name = "Junior", Hash = "jjj", DateOfBirth = new DateTime(2018, 01, 22), Role = AuthConstants.JuniorRoleName },
-            //    new User {Id = Guid.Parse("91555540-6137-4668-9d55-5c22471237f3"),
-            //        Name = "Senior", Hash = "sss", DateOfBirth = new DateTime(2010, 01, 22), Role = AuthConstants.SeniorRoleName },
-            //    new User {Id = Guid.Parse("97ba3d59-a990-4b55-ba91-7865fca0a4a2"),
-            //        Name = "Admin", Hash = "aaa", DateOfBirth = new DateTime(2000, 01, 22), Role = AuthConstants.AdminRoleName }
-            //};
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                var Salts = new[] { new byte[128 / 8], new byte[128 / 8], new byte[128 / 8] };
+                foreach (var salt in Salts)
+                    rng.GetBytes(salt);
+
+                Users = new List<User>()
+                {
+                    new User {Id = Guid.Parse("5d45a66d-fc2d-4a7f-b9dc-aac9f723f034"), Salt = Salts[0], Name = "Junior",
+                        Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("jjj", Salts[0], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
+                        DateOfBirth = new DateTime(2018, 01, 22), Role = AuthConstants.JuniorRoleName },
+                    new User {Id = Guid.Parse("91555540-6137-4668-9d55-5c22471237f3"), Salt = Salts[1], Name = "Senior",
+                        Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("sss", Salts[1], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
+                        DateOfBirth = new DateTime(2010, 01, 22), Role = AuthConstants.SeniorRoleName },
+                    new User {Id = Guid.Parse("97ba3d59-a990-4b55-ba91-7865fca0a4a2"), Salt = Salts[2], Name = "Admin",
+                        Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("aaa", Salts[2], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
+                        DateOfBirth = new DateTime(2000, 01, 22), Role = AuthConstants.AdminRoleName }
+                };
+            }
         }
 
         /*==================================  Methods =================================*/

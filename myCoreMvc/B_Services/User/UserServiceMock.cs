@@ -58,6 +58,10 @@ namespace myCoreMvc.Services
             if (user.Id == Guid.Empty)
             {
                 user.Salt = new byte[128 / 8];
+                using (var rng = RandomNumberGenerator.Create())
+                {
+                    rng.GetBytes(user.Salt);
+                }
                 return DataProvider.Add(user);
             }
             else
@@ -75,10 +79,6 @@ namespace myCoreMvc.Services
             if (user == null)
                 return TransactionResult.NotFound;
 
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(user.Salt);
-            }
             var hashBytes = KeyDerivation.Pbkdf2(password, user.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
             user.Hash = Convert.ToBase64String(hashBytes);
             return TransactionResult.Updated;
