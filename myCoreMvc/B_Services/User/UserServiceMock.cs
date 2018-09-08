@@ -1,9 +1,11 @@
-﻿using myCoreMvc.Models;
+﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using myCoreMvc.Models;
 using PooyasFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace myCoreMvc.Services
@@ -43,7 +45,8 @@ namespace myCoreMvc.Services
             if (user != null)
             {
                 var existingHash = user.Hash;
-                var hash = passWord;
+                var hashBytes = KeyDerivation.Pbkdf2(passWord, user.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
+                var hash = Convert.ToBase64String(hashBytes);
                 if (hash == existingHash)
                     return Task.FromResult(true);
             }
@@ -52,18 +55,33 @@ namespace myCoreMvc.Services
 
         public TransactionResult Save(User user)
         {
-            TransactionResult transactionResult;
             if (user.Id == Guid.Empty)
             {
-                //user.Salt = 
-                user.Hash =
-                transactionResult = DataProvider.Add(user);
+                user.Salt = new byte[128 / 8];
+                return DataProvider.Add(user);
             }
             else
             {
-                transactionResult = DataProvider.Update(user);
+                var existingUser = DataProvider.Get<User>(user.Id);
+                user.Salt = existingUser.Salt;
+                user.Hash = existingUser.Hash;
+                return DataProvider.Update(user);
             }
-            return transactionResult;
+        }
+
+        public TransactionResult SetPassword(Guid id, string password)
+        {
+            var user = DataProvider.Get<User>(id);
+            if (user == null)
+                return TransactionResult.NotFound;
+
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(user.Salt);
+            }
+            var hashBytes = KeyDerivation.Pbkdf2(password, user.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
+            user.Hash = Convert.ToBase64String(hashBytes);
+            return TransactionResult.Updated;
         }
     }
 }

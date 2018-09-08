@@ -37,6 +37,7 @@
                 <td>DateOfBirth</td>
                 <td>Role</td>
                 <td>Edit</td>
+                <td>Set Password</td>
             </tr>
         </thead>
         @foreach (var item in Model.Items)
@@ -48,6 +49,7 @@
                 <td>@item.DateOfBirth.ToShortDateString()</td>
                 <td>@item.Role</td>
                 <td>@(Html.LinkToAction<EnterUserController>(nameof(EnterUserController.Index), "Go", item.Id))</td>
+                <td>@(Html.LinkToAction<SetPasswordController>(nameof(EnterUserController.Index), "Go", item.Id))</td>
             </tr>
         }
     </table>
