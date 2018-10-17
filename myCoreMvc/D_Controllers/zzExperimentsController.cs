@@ -79,11 +79,17 @@ namespace myCoreMvc.Controllers
             return View("~/Views/Shared/MessageOnly.cshtml", result);
         }
 
-        public ActionResult Database()
+        public ActionResult DbGet()
         {
-            //var instance = Db.Get<WorkItem>(5);
-            //return View("~/Views/ListOfWorkItems/DetailsOfWorkItem.cshtml", instance);
-            return View("~/Views/Shared/MessageOnly.cshtml", $"This method needs correction!{Environment.NewLine}It's temporarily down.");
+            var id = Guid.Parse("6fa45755-680d-4aaf-bcd5-8f5bc7668f0b");
+            var instance = Db.Get<WorkItem>(id);
+            return View("~/Views/ListOfWorkItems/DetailsOfWorkItem.cshtml", instance);
+        }
+
+        public ActionResult DbAdd()
+        {
+            Db.Add();
+            return View("~/Views/Shared/MessageOnly.cshtml", "Added");
         }
     }
 }

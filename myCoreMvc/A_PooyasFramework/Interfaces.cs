@@ -16,7 +16,8 @@ namespace PooyasFramework
         List<T> GetList<T>(Func<T, bool> func);
         T Get<T>(Func<T, bool> func);
         T Get<T>(Guid id) where T : Thing;
-        T Get<T>(string id) where T : Thing;
+        T Get<T>(string id) where T : Thing; //Task: Do we need this?
+        //Task: Why don't we say: TransactionResult Add(Thing obj)
         TransactionResult Add<T>(T obj) where T : Thing;
         TransactionResult Update<T>(T obj) where T : Thing;
         TransactionResult Delete<T>(Guid id) where T : Thing;

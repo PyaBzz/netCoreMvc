@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.Data.SqlClient;
 
 namespace PooyasFramework
 {
@@ -128,6 +129,17 @@ namespace PooyasFramework
                 controllerName: thisHelper.ShortNameOf<T>(),
                 routeValues: new { id = routeId }
                 );
+        }
+
+        public static string[] GetNonRelationalColumnNames(this SqlDataReader @this)
+        {
+            var columns = new List<string>();
+            for (var i = 0; i < @this.FieldCount; i++)
+            {
+                if(@this.GetDataTypeName(i) != "uniqueidentifier")
+                columns.Add(@this.GetName(i));
+            }
+            return columns.ToArray();
         }
     }
 }
