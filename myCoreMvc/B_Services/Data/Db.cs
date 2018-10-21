@@ -62,7 +62,8 @@ namespace myCoreMvc.Services
             return TransactionResult.Added;
         }
 
-        public List<T> GetList<T>()
+        //Task: Needs serious refactoring
+        public static List<T> GetList<T>()
         {
             var targetType = typeof(T);
             //Lesson:
@@ -73,26 +74,27 @@ namespace myCoreMvc.Services
             // SqlParameters won't allow suspicious patterns.
             #endregion
             var tableName = new SqlParameter("@tableName", GetTableName(targetType));
-            var getListCommand = new SqlCommand($@"select * from @tableName", sqlConnection);
+            var getListCommand = new SqlCommand(@"exec('select * from ' + @tableName);", sqlConnection);
             getListCommand.Parameters.Add(tableName);
-
-
-
             sqlConnection.Open();
-            var myReader = getListCommand.ExecuteReader();
-            var propertyInfos = typeof(T).GetPublicInstancePropertyInfos().Where(pi => pi.Name != "WorkPlan");
-            var instance = (T)Activator.CreateInstance(typeof(T));
-            if (myReader.Read())
+            var reader = getListCommand.ExecuteReader();
+            var columns = reader.GetNonRelationalColumnNames();
+            var propertyInfos = targetType.GetPublicInstancePropertyInfos();
+            var commonProperties = propertyInfos.Where(pi => columns.Contains(pi.Name));
+            var targetListType = typeof(List<>).MakeGenericType(targetType);
+            var result = (List<T>)Activator.CreateInstance(targetListType);
+
+            while (reader.Read())
             {
-                foreach (var propertyInfo in propertyInfos)
+                var instance = (T)Activator.CreateInstance(targetType);
+                foreach (var propertyInfo in commonProperties)
                 {
-                    typeof(T).GetProperty(propertyInfo.Name).SetValue(instance, myReader[propertyInfo.Name]);
+                    typeof(T).GetProperty(propertyInfo.Name).SetValue(instance, reader[propertyInfo.Name]);
                 }
+                result.Add(instance);
             }
             sqlConnection.Close();
-            //return new List<T>();
-
-            throw new NotImplementedException();
+            return result;
         }
 
         public TransactionResult Delete<T>(Guid id) where T : Thing
@@ -120,12 +122,7 @@ namespace myCoreMvc.Services
             throw new NotImplementedException();
         }
 
-        T IDataProvider.Get<T>(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        //Task: Remove this
+        //Task: Get rid of these
         public static TransactionResult Add()
         {
             var insertCommand =
@@ -136,6 +133,16 @@ namespace myCoreMvc.Services
             insertCommand.ExecuteNonQuery();
             sqlConnection.Close();
             return TransactionResult.Added;
+        }
+
+        T IDataProvider.Get<T>(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<T> IDataProvider.GetList<T>()
+        {
+            throw new NotImplementedException();
         }
     }
 }

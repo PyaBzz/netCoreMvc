@@ -86,6 +86,16 @@ namespace myCoreMvc.Controllers
             return View("~/Views/ListOfWorkItems/DetailsOfWorkItem.cshtml", instance);
         }
 
+        public ActionResult DbGetList()
+        {
+            var listModel = new ListOfWorkItemsController.ListModel
+            {
+                Items = Db.GetList<WorkItem>(),
+                Message = "This Comes from the DataBase"
+            };
+            return View("~/Views/ListOfWorkItems/ListOfWorkItems.cshtml", listModel);
+        }
+
         public ActionResult DbAdd()
         {
             Db.Add();
