@@ -107,11 +107,6 @@ namespace myCoreMvc.Services
             throw new NotImplementedException();
         }
 
-        public T Get<T>(string id) where T : Thing
-        {
-            throw new NotImplementedException();
-        }
-
         public List<T> GetList<T>(Func<T, bool> func)
         {
             throw new NotImplementedException();

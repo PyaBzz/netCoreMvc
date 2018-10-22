@@ -16,8 +16,9 @@ namespace PooyasFramework
         List<T> GetList<T>(Func<T, bool> func);
         T Get<T>(Func<T, bool> func);
         T Get<T>(Guid id) where T : Thing;
-        T Get<T>(string id) where T : Thing; //Task: Do we need this?
-        //Task: Why don't we say: TransactionResult Add(Thing obj)
+        //Lesson: Why don't we say: TransactionResult Add(Thing obj)?
+        // Because then in order to use it with any derived class off Thing,
+        // we'd have to cast the subclass to Thing or use "as List<Thing>"
         TransactionResult Add<T>(T obj) where T : Thing;
         TransactionResult Update<T>(T obj) where T : Thing;
         TransactionResult Delete<T>(Guid id) where T : Thing;
