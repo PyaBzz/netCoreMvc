@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace myCoreMvc.Services
 {
-    public class DbCtx : DbContext
+    public class EfCtx : DbContext
     {
-        public DbCtx() {} // Only to get Get-DbContext command of EF to work
+        public EfCtx() {} // Only to get Get-DbContext command of EF to work
 
-        public DbCtx(DbContextOptions options) : base(options) { }
+        public EfCtx(DbContextOptions options) : base(options) { }
 
         public DbSet<WorkItem> WorkItems { get; set; }
         public DbSet<WorkPlan> WorkPlans { get; set; }

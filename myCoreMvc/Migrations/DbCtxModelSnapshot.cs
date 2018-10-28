@@ -8,7 +8,7 @@ using myCoreMvc.Services;
 
 namespace myCoreMvc.Migrations
 {
-    [DbContext(typeof(DbCtx))]
+    [DbContext(typeof(EfCtx))]
     partial class DbCtxModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -9,7 +9,7 @@ using myCoreMvc.Services;
 
 namespace myCoreMvc.Migrations
 {
-    [DbContext(typeof(DbCtx))]
+    [DbContext(typeof(EfCtx))]
     [Migration("20181028123332_initial")]
     partial class initial
     {
