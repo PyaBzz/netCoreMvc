@@ -1,4 +1,5 @@
-﻿using myCoreMvc.Services;
+﻿using Microsoft.EntityFrameworkCore;
+using myCoreMvc.Services;
 using PooyasFramework;
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,25 @@ namespace myCoreMvc.Services
 {
     public class EfDataProvider : IDataProvider
     {
+        /*==================================  Fields =================================*/
+
         private readonly EfCtx Ctx;
+
+        /*==================================  Methods =================================*/
 
         public EfDataProvider(EfCtx ctx)
         {
             Ctx = ctx;
         }
+
+        private DbSet<T> GetDbSet<T>() where T : Thing
+        {
+            var targetPropertyInfo = Ctx.GetType().GetPublicDeclaredInstancePropertyInfos()
+                .Single(pi => pi.PropertyType == typeof(DbSet<T>));
+            return targetPropertyInfo.GetValue(Ctx) as DbSet<T>;
+        }
+
+        /*==================================  Methods of IDataProvider =================================*/
 
         public TransactionResult Add<T>(T obj) where T : Thing
         {
@@ -36,9 +50,9 @@ namespace myCoreMvc.Services
             throw new NotImplementedException();
         }
 
-        public List<T> GetList<T>()
+        public List<T> GetList<T>() where T : Thing
         {
-            throw new NotImplementedException();
+            return GetDbSet<T>() as List<T>;
         }
 
         public List<T> GetList<T>(Func<T, bool> func)
