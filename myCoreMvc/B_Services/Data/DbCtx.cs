@@ -9,6 +9,8 @@ namespace myCoreMvc.Services
 {
     public class DbCtx : DbContext
     {
+        public DbCtx() {} // Only to get Get-DbContext command of EF to work
+
         public DbCtx(DbContextOptions options) : base(options) { }
 
         public DbSet<WorkItem> WorkItems { get; set; }
