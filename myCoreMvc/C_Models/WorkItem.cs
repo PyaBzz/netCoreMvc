@@ -17,7 +17,7 @@ namespace myCoreMvc.Models
         public string Name { get; set; }
         public WorkPlan WorkPlan { get; set; }
 
-        public static IEnumerable<int> PriorityChoices { get; } = new List<int> { 1, 2, 3, 4 };
+        public static IEnumerable<int> PriorityChoices { get; } = new List<int> { 1, 2, 3, 4 }; //Task: Make it a static field
 
         /*==================================  Methods =================================*/
 

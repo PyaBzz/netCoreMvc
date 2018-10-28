@@ -1,4 +1,6 @@
-﻿//FuturePlan: Further develop upon authorisation and authentication
+﻿//Task: Break down the solution to "Data", "Domain" and "Webite/myCoreMvc" projects.
+
+//FuturePlan: Further develop upon authorisation and authentication
 //Experiment: Google Authentication using OIDC based on:
 //https://app.pluralsight.com/player?course=aspdotnet-core-fundamentals&author=scott-allen&name=aspdotnet-core-fundamentals-m7&clip=5&mode=live
 
