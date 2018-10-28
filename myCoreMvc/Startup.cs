@@ -54,7 +54,9 @@ namespace myCoreMvc
 
             services.AddSingleton<IConfiguration>(config); // Could we bind a config object of type dynamic with all properties and children?
 
-            services.AddSingleton<IDataProvider>(new DbMock());
+            services.AddSingleton(new EfCtx());
+
+            services.AddSingleton<IDataProvider, EfDataProvider>();
 
             services.AddSingleton<IUserService, UserServiceMock>();
 
