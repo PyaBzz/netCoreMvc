@@ -17,7 +17,7 @@ namespace myCoreMvc.Controllers
         public IActionResult Index(Guid id)
         {
             var item = DataProvider.Get<WorkItem>(wi => wi.Id == id);
-            var inputModel = new EnterModel();
+            var inputModel = new EnterModel(DataProvider);
             if (item != null)
             {
                 inputModel.CopySimilarPropertiesFrom(item);
@@ -67,18 +67,24 @@ namespace myCoreMvc.Controllers
 
         public class EnterModel : IClonable
         {
+            private IDataProvider DataProvider;
+
+            public EnterModel(IDataProvider dataProvider)
+            {
+                DataProvider = dataProvider;
+            }
+
             public Guid Id { get; set; }
             public Guid WorkPlan { get; set; }
             public String Reference { get; set; }
             public int Priority { get; set; }
-
 
             [Display(Name = "Item name")]
             [ValidateAlphanumeric(3, 16)]
             public string Name { get; set; }
 
             public IEnumerable<SelectListItem> PriorityChoices => WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == Priority });
-            public IEnumerable<SelectListItem> WorkPlanChoices => ServiceInjector.Resolve<IDataProvider>().GetList<WorkPlan>().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == WorkPlan });
+            public IEnumerable<SelectListItem> WorkPlanChoices => DataProvider.GetList<WorkPlan>().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == WorkPlan });
             public string Message = "";
         }
     }

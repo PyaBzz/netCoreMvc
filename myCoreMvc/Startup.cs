@@ -34,15 +34,14 @@ namespace myCoreMvc
         {
             //Lesson:
             #region
-            // I don't put this service in the default IoC container because:
-            // There seems to be no way to make this service available outside MVC controllers.
+            // There seems to be no way to access services outside NetCore DI container.
             // The only ways to resolve them to an instance are:
             // 1- Constructor injection
             // 2- Action Method Injection: public IActionResult Index([FromServices] ILogger logger)
             // 3- Manual injection: Use of HttpContext.RequestServices.GetService()
-            // All of which exist only in controllers. Further information is at the middle of this page: https://stackify.com/net-core-loggerfactory-use-correctly/
+            // If you need to access service A in service B, you'll need to also register B in the container
+            // and inject A into B's constructor.
             #endregion
-            ServiceInjector.Register<IDataProvider, DbMock>(Injection.Singleton);
 
             services.AddSingleton(new LoggerFactory()
                 .AddConsole((category, logLevel) => category.Contains("Microsoft") == false)
@@ -55,7 +54,9 @@ namespace myCoreMvc
 
             services.AddSingleton<IConfiguration>(config); // Could we bind a config object of type dynamic with all properties and children?
 
-            services.AddSingleton<IUserService>(new UserServiceMock());
+            services.AddSingleton<IDataProvider>(new DbMock());
+
+            services.AddSingleton<IUserService, UserServiceMock>();
 
             var authBuilder = services.AddAuthentication(options =>
                 {

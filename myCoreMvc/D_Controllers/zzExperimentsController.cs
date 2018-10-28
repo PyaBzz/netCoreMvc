@@ -78,28 +78,5 @@ namespace myCoreMvc.Controllers
             result += hasang("Dasoo");
             return View("~/Views/Shared/MessageOnly.cshtml", result);
         }
-
-        public ActionResult DbGet()
-        {
-            var id = Guid.Parse("6fa45755-680d-4aaf-bcd5-8f5bc7668f0b");
-            var instance = Db.Get<WorkItem>(id);
-            return View("~/Views/ListOfWorkItems/DetailsOfWorkItem.cshtml", instance);
-        }
-
-        public ActionResult DbGetList()
-        {
-            var listModel = new ListOfWorkItemsController.ListModel
-            {
-                Items = Db.GetList<WorkItem>(),
-                Message = "This Comes from the DataBase"
-            };
-            return View("~/Views/ListOfWorkItems/ListOfWorkItems.cshtml", listModel);
-        }
-
-        public ActionResult DbAdd()
-        {
-            Db.Add();
-            return View("~/Views/Shared/MessageOnly.cshtml", "Added");
-        }
     }
 }

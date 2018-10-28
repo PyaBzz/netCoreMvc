@@ -6,7 +6,7 @@ namespace myCoreMvc.Controllers
 {
     public class BaseController : Controller
     {
-        internal IDataProvider DataProvider = ServiceInjector.Resolve<IDataProvider>();
+        internal IDataProvider DataProvider => HttpContext.RequestServices.GetService(typeof(IDataProvider)) as IDataProvider;
 
         internal static string ShortNameOf<T>() where T : Controller
         {

@@ -12,7 +12,12 @@ namespace myCoreMvc.Services
 {
     public class UserServiceMock : IUserService
     {
-        private IDataProvider DataProvider = ServiceInjector.Resolve<IDataProvider>();
+        private IDataProvider DataProvider;
+
+        public UserServiceMock(IDataProvider dataProvider)
+        {
+            DataProvider = dataProvider;
+        }
 
         public Task<bool> GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
         {
