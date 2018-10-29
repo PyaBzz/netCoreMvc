@@ -21,7 +21,7 @@ namespace myCoreMvc.Controllers
 
         public IActionResult Index(Guid id)
         {
-            var user = DataProvider.Get<User>(wp => wp.Id == id);
+            var user = DataProvider.Get<User>(id);
             var inputModel = new EnterModel();
             if (user != null) inputModel.CopySimilarPropertiesFrom(user);
             return View("~/Views/ListOfUsers/SetPassword.cshtml", inputModel);

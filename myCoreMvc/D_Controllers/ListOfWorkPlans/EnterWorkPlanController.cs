@@ -12,9 +12,12 @@ namespace myCoreMvc.Controllers
     {
         public IActionResult Index(Guid id)
         {
-            var workPlan = DataProvider.Get<WorkPlan>(wp => wp.Id == id);
             var inputModel = new EnterModel();
-            if (workPlan != null) inputModel.CopySimilarPropertiesFrom(workPlan);
+            if (id != Guid.Empty)
+            {
+                var workPlan = DataProvider.Get<WorkPlan>(id);
+                if (workPlan != null) inputModel.CopySimilarPropertiesFrom(workPlan);
+            }
             return View("~/Views/ListOfWorkPlans/EnterWorkPlan.cshtml", inputModel);
         }
 

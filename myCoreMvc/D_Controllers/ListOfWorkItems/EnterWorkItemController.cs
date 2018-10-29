@@ -16,12 +16,15 @@ namespace myCoreMvc.Controllers
     {
         public IActionResult Index(Guid id)
         {
-            var item = DataProvider.Get<WorkItem>(wi => wi.Id == id);
             var inputModel = new EnterModel(DataProvider);
-            if (item != null)
+            if (id != Guid.Empty)
             {
-                inputModel.CopySimilarPropertiesFrom(item);
-                inputModel.WorkPlan = item.WorkPlan.Id; //Task: WorkPlan itself works in Get but its Guid works for POST. Find a way to cover both.
+                var item = DataProvider.Get<WorkItem>(id);
+                if (item != null)
+                {
+                    inputModel.CopySimilarPropertiesFrom(item);
+                    inputModel.WorkPlan = item.WorkPlan.Id; //Task: WorkPlan itself works in Get but its Guid works for POST. Find a way to cover both.
+                }
             }
             return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);
         }

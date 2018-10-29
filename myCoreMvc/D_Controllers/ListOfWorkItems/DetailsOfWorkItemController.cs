@@ -9,7 +9,7 @@ namespace myCoreMvc.Controllers
     {
         public IActionResult Index(Guid id)
         {
-            var viewModel = DataProvider.Get<WorkItem>(wi => wi.Id == id);
+            var viewModel = DataProvider.Get<WorkItem>(id);
             return View("~/Views/ListOfWorkItems/DetailsOfWorkItem.cshtml", viewModel);
         }
 
