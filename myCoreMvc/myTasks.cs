@@ -1,4 +1,5 @@
-﻿//Task: Break down the solution to "Data", "Domain" and "Webite/myCoreMvc" projects.
+﻿//Task: Based on the PluralSight course add logging to DbCtx to logg SQL commands to the console.
+//Task: Break down the solution to "Data", "Domain" and "Webite/myCoreMvc" projects.
 
 //FuturePlan: Further develop upon authorisation and authentication
 //Experiment: Google Authentication using OIDC based on:

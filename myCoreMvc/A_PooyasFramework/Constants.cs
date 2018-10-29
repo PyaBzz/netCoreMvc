@@ -2,7 +2,7 @@
 {
     public enum Injection { Singleton, Transient };
 
-    public enum TransactionResult { NotFound, Added, Updated, Deleted }
+    public enum TransactionResult { Added, Updated, Deleted, NotFound, Failed }
 
     public static class AuthConstants
     {

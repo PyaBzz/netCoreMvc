@@ -13,8 +13,8 @@ namespace PooyasFramework
     public interface IDataProvider
     {
         List<T> GetList<T>() where T : Thing;
-        List<T> GetList<T>(Func<T, bool> func);
-        T Get<T>(Func<T, bool> func);
+        List<T> GetList<T>(Func<T, bool> func) where T : Thing;
+        T Get<T>(Func<T, bool> func) where T : Thing;
         T Get<T>(Guid id) where T : Thing;
         //Lesson: Why don't we say: TransactionResult Add(Thing obj)?
         // Because then in order to use it with any derived class off Thing,

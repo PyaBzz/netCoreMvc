@@ -32,7 +32,8 @@ namespace myCoreMvc.Services
 
         public TransactionResult Add<T>(T obj) where T : Thing
         {
-            throw new NotImplementedException();
+            GetDbSet<T>().Add(obj); //Task: We could simply say Ctx.Add(obj) and let it figure type and stuff
+            return Ctx.SaveChanges() == 0 ? TransactionResult.Failed : TransactionResult.Added;
         }
 
         public TransactionResult Delete<T>(Guid id) where T : Thing
@@ -40,25 +41,13 @@ namespace myCoreMvc.Services
             throw new NotImplementedException();
         }
 
-        public T Get<T>(Func<T, bool> func)
-        {
-            throw new NotImplementedException();
-        }
+        public T Get<T>(Func<T, bool> func) where T : Thing => GetDbSet<T>().Single(t => func(t));
 
-        public T Get<T>(Guid id) where T : Thing
-        {
-            throw new NotImplementedException();
-        }
+        public T Get<T>(Guid id) where T : Thing => Get<T>(t => t.Id == id);
 
-        public List<T> GetList<T>() where T : Thing
-        {
-            return GetDbSet<T>() as List<T>;
-        }
+        public List<T> GetList<T>() where T : Thing => GetDbSet<T>().ToList();
 
-        public List<T> GetList<T>(Func<T, bool> func)
-        {
-            throw new NotImplementedException();
-        }
+        public List<T> GetList<T>(Func<T, bool> func) where T : Thing => GetDbSet<T>().Where(t => func(t)).ToList();
 
         public TransactionResult Update<T>(T obj) where T : Thing
         {
