@@ -36,20 +36,20 @@ namespace myCoreMvc.Services
             return Ctx.SaveChanges() == 0 ? TransactionResult.Failed : TransactionResult.Added;
         }
 
-        public TransactionResult Delete<T>(Guid id) where T : Thing
-        {
-            throw new NotImplementedException();
-        }
+        public T Get<T>(Guid id) where T : Thing => Get<T>(t => t.Id == id);
 
         public T Get<T>(Func<T, bool> func) where T : Thing => GetDbSet<T>().Single(t => func(t));
-
-        public T Get<T>(Guid id) where T : Thing => Get<T>(t => t.Id == id);
 
         public List<T> GetList<T>() where T : Thing => GetDbSet<T>().ToList();
 
         public List<T> GetList<T>(Func<T, bool> func) where T : Thing => GetDbSet<T>().Where(t => func(t)).ToList();
 
         public TransactionResult Update<T>(T obj) where T : Thing
+        {
+            throw new NotImplementedException();
+        }
+
+        public TransactionResult Delete<T>(Guid id) where T : Thing
         {
             throw new NotImplementedException();
         }
