@@ -26,15 +26,18 @@ namespace myCoreMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var workPlan = new WorkPlan();
-                workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
+                WorkPlan workPlan;
                 TransactionResult transactionResult;
-                if (workPlan.Id == Guid.Empty)
+                if (inputModel.Id == Guid.Empty)
                 {
+                    workPlan = new WorkPlan();
+                    workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
                     transactionResult = DataProvider.Add(workPlan);
                 }
                 else
                 {
+                    workPlan = DataProvider.Get<WorkPlan>(inputModel.Id);
+                    workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
                     transactionResult = DataProvider.Update(workPlan);
                 }
                 var resultMessage = "";

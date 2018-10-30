@@ -30,25 +30,27 @@ namespace myCoreMvc.Controllers
         }
 
         [HttpPost]
-        [CustomExceptionFilter]
+        //[CustomExceptionFilter]
         public IActionResult Index(EnterModel inputModel)
         {
             if (ModelState.IsValid)
             {
-                var workItem = new WorkItem();
                 // ModelState.AddModelError("Reference", "It must be in blabla format!")
                 // ModelState.AddModelError("", "This is an object level error rather than property level.")
                 // @Html.ValidationSummary(true)
                 // @Html.ValidationMessageFor(p => p.Reference)
-                workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                workItem.WorkPlan = DataProvider.Get<WorkPlan>(inputModel.WorkPlan);
+                WorkItem workItem;
                 TransactionResult transactionResult;
-                if (workItem.Id == Guid.Empty)
+                if (inputModel.Id == Guid.Empty)
                 {
+                    workItem = new WorkItem();
+                    workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
+                    workItem.WorkPlan = DataProvider.Get<WorkPlan>(inputModel.WorkPlan);
                     transactionResult = DataProvider.Add(workItem);
                 }
                 else
                 {
+                    workItem = DataProvider.Get<WorkItem>(inputModel.Id);
                     transactionResult = DataProvider.Update(workItem);
                 }
                 var resultMessage = "";
@@ -77,6 +79,8 @@ namespace myCoreMvc.Controllers
                 DataProvider = dataProvider;
             }
 
+            public EnterModel() { }
+
             public Guid Id { get; set; }
             public Guid WorkPlan { get; set; }
             public String Reference { get; set; }
@@ -87,7 +91,7 @@ namespace myCoreMvc.Controllers
             public string Name { get; set; }
 
             public IEnumerable<SelectListItem> PriorityChoices => WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == Priority });
-            public IEnumerable<SelectListItem> WorkPlanChoices => DataProvider.GetList<WorkPlan>().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == WorkPlan });
+            public IEnumerable<SelectListItem> WorkPlanChoices => DataProvider?.GetList<WorkPlan>().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == WorkPlan });
             public string Message = "";
         }
     }
