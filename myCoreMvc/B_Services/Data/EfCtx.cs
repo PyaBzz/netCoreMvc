@@ -25,5 +25,6 @@ namespace myCoreMvc.Services
 
         public DbSet<WorkItem> WorkItems { get; set; }
         public DbSet<WorkPlan> WorkPlans { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
