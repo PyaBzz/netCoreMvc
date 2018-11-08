@@ -4,6 +4,7 @@ using PooyasFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace myCoreMvc.Services
@@ -36,6 +37,17 @@ namespace myCoreMvc.Services
         public List<T> GetList<T>() where T : Thing => Ctx.Set<T>().ToList(); //ToList() is a Linq to Entity execution method
 
         public List<T> GetList<T>(Func<T, bool> func) where T : Thing => Ctx.Set<T>().Where(t => func(t)).ToList();
+
+        public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : Thing => GetQueryableIncluding<T>(includeProperties).ToList();
+
+        public List<T> GetListIncluding<T>(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties) where T : Thing
+            => GetQueryableIncluding<T>(includeProperties).Where(predicate).ToList();
+
+        private IQueryable<T> GetQueryableIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : Thing
+        {
+            IQueryable<T> queryable = Ctx.Set<T>();
+            return includeProperties.Aggregate(queryable, (current, nextInclude) => current.Include(nextInclude));
+        }
 
         public TransactionResult Update<T>(T obj) where T : Thing
         {
