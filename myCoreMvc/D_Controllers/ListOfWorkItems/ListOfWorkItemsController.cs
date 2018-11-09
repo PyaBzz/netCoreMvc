@@ -18,7 +18,7 @@ namespace myCoreMvc.Controllers
         {
             var listModel = new ListModel
             {
-                Items = DataProvider.GetList<WorkItem>(),
+                Items = DataProvider.GetListIncluding<WorkItem>(wi => wi.WorkPlan),
                 Message = message
             };
             return View("ListOfWorkItems", listModel);
@@ -36,7 +36,7 @@ namespace myCoreMvc.Controllers
                 if (listModel.Search_Name != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
                 if (listModel.Search_Priority != null) listModel.SearchFilters.Add(wi => wi.Priority == listModel.Search_Priority);
 
-                listModel.Items = listModel.Items.AppliedWithFilters(listModel.SearchFilters);
+                listModel.Items = listModel.Items.AppliedWithFilters(listModel.SearchFilters); //Task: Should we filter in back-end instead?
             }
             else
             {
