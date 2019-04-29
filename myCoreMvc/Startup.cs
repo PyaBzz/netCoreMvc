@@ -56,7 +56,8 @@ namespace myCoreMvc
 
             services.AddSingleton(new EfCtx());
 
-            services.AddSingleton<IDataProvider, EfDataProvider>();
+            //services.AddSingleton<IDataProvider, EfDataProvider>();
+            services.AddSingleton<IDataProvider, DbMock>();
 
             services.AddSingleton<IUserService, UserServiceMock>();
 
