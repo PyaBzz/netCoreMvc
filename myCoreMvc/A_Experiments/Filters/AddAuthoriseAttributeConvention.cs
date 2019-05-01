@@ -26,10 +26,5 @@ namespace myCoreMvc
                 model.Filters.Add(filter);
             }
         }
-
-        public static string ShortNameOf<T>() where T : Controller
-        {
-            return typeof(T).Name.TrimEnd("Controller");
-        }
     }
 }
