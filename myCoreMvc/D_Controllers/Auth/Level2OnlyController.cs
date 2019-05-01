@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Services;
 using myCoreMvc.Models;
-using PooyasFramework;
-using PooyasFramework.IoC;
+using PyaFramework.Core;
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;

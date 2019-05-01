@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
-using PooyasFramework;
+using PyaFramework.Core;
 using myCoreMvc.Services;
 using Microsoft.AspNetCore.Authorization;
 

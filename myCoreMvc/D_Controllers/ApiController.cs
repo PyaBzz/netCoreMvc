@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using myCoreMvc.Services;
 using myCoreMvc.Models;
-using PooyasFramework;
+using PyaFramework;
 
 namespace myCoreMvc.Controllers
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Services;
-using PooyasFramework;
+using PyaFramework.Core;
 
 namespace myCoreMvc.Controllers
 {

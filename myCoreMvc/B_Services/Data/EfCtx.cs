@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using myCoreMvc.Models;
-using PooyasFramework;
+using PyaFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;

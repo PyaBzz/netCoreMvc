@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using myCoreMvc.Models;
-using PooyasFramework;
+using PyaFramework.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,13 +44,13 @@ namespace myCoreMvc.Services
             return Task.FromResult(true);
         }
 
-        public Task<bool> ValidateCredentials(string userName, string passWord, out User user)
+        public Task<bool> ValidateCredentials(string userName, string passWord, out IUser iUser)
         {
-            user = DataProvider.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
-            if (user != null)
+            iUser = DataProvider.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
+            if (iUser != null)
             {
-                var existingHash = user.Hash;
-                var hashBytes = KeyDerivation.Pbkdf2(passWord, user.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
+                var existingHash = iUser.Hash;
+                var hashBytes = KeyDerivation.Pbkdf2(passWord, iUser.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
                 var hash = Convert.ToBase64String(hashBytes);
                 if (hash == existingHash)
                     return Task.FromResult(true);
@@ -58,23 +58,23 @@ namespace myCoreMvc.Services
             return Task.FromResult(false);
         }
 
-        public TransactionResult Save(User user)
+        public TransactionResult Save(IUser iUser)
         {
-            if (user.Id == Guid.Empty)
+            if (iUser.Id == Guid.Empty)
             {
-                user.Salt = new byte[128 / 8];
+                iUser.Salt = new byte[128 / 8];
                 using (var rng = RandomNumberGenerator.Create())
                 {
-                    rng.GetBytes(user.Salt);
+                    rng.GetBytes(iUser.Salt);
                 }
-                return DataProvider.Add(user);
+                return DataProvider.Add(iUser);
             }
             else
             {
-                var existingUser = DataProvider.Get<User>(user.Id);
-                user.Salt = existingUser.Salt;
-                user.Hash = existingUser.Hash;
-                return DataProvider.Update(user);
+                var existingUser = DataProvider.Get<User>(iUser.Id);
+                iUser.Salt = existingUser.Salt;
+                iUser.Hash = existingUser.Hash;
+                return DataProvider.Update(iUser);
             }
         }
 

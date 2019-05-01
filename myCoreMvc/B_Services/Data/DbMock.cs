@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using myCoreMvc.Models;
-using PooyasFramework;
+using PyaFramework.Core;
 
 namespace myCoreMvc.Services
 {
@@ -58,7 +58,7 @@ namespace myCoreMvc.Services
 
         /*==================================  Methods =================================*/
 
-        public List<T> GetList<T>() where T : Thing
+        public List<T> GetList<T>() where T : class, IThing
         {
             var propertyInfos = this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
             var propertyInfo = propertyInfos.SingleOrDefault(pi => pi.PropertyType == typeof(List<T>));
@@ -67,22 +67,22 @@ namespace myCoreMvc.Services
             return property;
         }
 
-        public List<T> GetList<T>(Func<T, bool> func) where T : Thing
+        public List<T> GetList<T>(Func<T, bool> func) where T : class, IThing
         {
             return GetList<T>().Where(i => func(i)).ToList();
         }
 
-        public T Get<T>(Func<T, bool> func) where T : Thing
+        public T Get<T>(Func<T, bool> func) where T : class, IThing
         {
             return GetList<T>().SingleOrDefault(i => func(i));
         }
 
-        public T Get<T>(Guid id) where T : Thing
+        public T Get<T>(Guid id) where T : class, IThing
         {
             return GetList<T>().SingleOrDefault(i => i.Id == id);
         }
 
-        public TransactionResult Add<T>(T obj) where T : Thing
+        public TransactionResult Add<T>(T obj) where T : class, IThing
         {
             obj.Id = Guid.NewGuid();
             var targetSource = GetList<T>();
@@ -90,7 +90,7 @@ namespace myCoreMvc.Services
             return TransactionResult.Added;
         }
 
-        public TransactionResult Update<T>(T obj) where T : Thing
+        public TransactionResult Update<T>(T obj) where T : class, IThing
         {
             var targetSource = GetList<T>();
             var existingObj = targetSource.SingleOrDefault(e => e.Id == obj.Id);
@@ -105,7 +105,7 @@ namespace myCoreMvc.Services
             }
         }
 
-        public TransactionResult Delete<T>(Guid id) where T : Thing
+        public TransactionResult Delete<T>(Guid id) where T : class, IThing
         {
             var targetSource = GetList<T>();
             var existingObj = targetSource.SingleOrDefault(e => e.Id == id);
@@ -114,10 +114,10 @@ namespace myCoreMvc.Services
             return TransactionResult.Deleted;
         }
 
-        public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : Thing
+        public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
             => GetList<T>();
 
-        public List<T> GetListIncluding<T>(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties) where T : Thing
+        public List<T> GetListIncluding<T>(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
             => GetList(predicate);
     }
 }

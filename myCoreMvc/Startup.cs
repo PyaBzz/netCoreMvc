@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
-using PooyasFramework.Middleware;
-using PooyasFramework;
+using PyaFramework.Middleware;
+using PyaFramework.Core;
 using myCoreMvc.Services;
 using myCoreMvc.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -20,7 +20,6 @@ using System.Security.Claims;
 using myCoreMvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using myCoreMvc.PooyasFramework.Filters;
 
 namespace myCoreMvc
 {

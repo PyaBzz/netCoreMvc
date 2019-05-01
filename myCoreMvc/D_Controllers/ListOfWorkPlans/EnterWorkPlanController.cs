@@ -4,7 +4,7 @@ using myCoreMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using PooyasFramework;
+using PyaFramework.Core;
 
 namespace myCoreMvc.Controllers
 {

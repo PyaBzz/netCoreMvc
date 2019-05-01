@@ -5,8 +5,8 @@ using myCoreMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using PooyasFramework;
-using PooyasFramework.Attributes;
+using PyaFramework;
+using PyaFramework.Attributes;
 using myCoreMvc.Services;
 using Microsoft.AspNetCore.Http;
 
