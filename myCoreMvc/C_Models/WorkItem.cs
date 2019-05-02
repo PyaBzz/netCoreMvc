@@ -9,6 +9,8 @@ namespace myCoreMvc.Models
 {
     public class WorkItem : Thing, IClonable
     {
+        public static readonly int[] PriorityChoices = new[] { 1, 2, 3, 4 };
+
         /*================================  Properties ================================*/
 
         public String Reference { get; set; }
@@ -16,8 +18,6 @@ namespace myCoreMvc.Models
         [Display(Name = "Item name"), Required]
         public string Name { get; set; }
         public WorkPlan WorkPlan { get; set; }
-
-        public static IEnumerable<int> PriorityChoices { get; } = new List<int> { 1, 2, 3, 4 }; //Task: Make it a static field
 
         /*==================================  Methods =================================*/
 
