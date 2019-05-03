@@ -18,7 +18,7 @@ namespace myCoreMvc.Controllers
                 var workPlan = DataProvider.Get<WorkPlan>(id);
                 if (workPlan != null) inputModel.CopySimilarPropertiesFrom(workPlan);
             }
-            return View("~/Views/ListOfWorkPlans/EnterWorkPlan.cshtml", inputModel);
+            return View("~/E_Views/ListOfWorkPlans/EnterWorkPlan.cshtml", inputModel);
         }
 
         [HttpPost]
@@ -53,7 +53,7 @@ namespace myCoreMvc.Controllers
             {
                 inputModel.Message = "Invalid values for: "
                     + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
-                return View("~/Views/ListOfWorkPlans/EnterWorkPlan.cshtml", inputModel);
+                return View("~/E_Views/ListOfWorkPlans/EnterWorkPlan.cshtml", inputModel);
             }
         }
 

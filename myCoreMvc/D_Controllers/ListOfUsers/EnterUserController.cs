@@ -24,7 +24,7 @@ namespace myCoreMvc.Controllers
             var user = DataProvider.Get<User>(id);
             var enterModel = new EnterModel();
             if (user != null) enterModel.CopySimilarPropertiesFrom(user);
-            return View("~/Views/ListOfUsers/EnterUser.cshtml", enterModel);
+            return View("~/E_Views/ListOfUsers/EnterUser.cshtml", enterModel);
         }
 
         [HttpPost]
@@ -48,7 +48,7 @@ namespace myCoreMvc.Controllers
             {
                 inputModel.Message = "Invalid values for: "
                     + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
-                return View("~/Views/ListOfUsers/EnterUser.cshtml", inputModel);
+                return View("~/E_Views/ListOfUsers/EnterUser.cshtml", inputModel);
             }
         }
 

@@ -53,7 +53,7 @@ namespace myCoreMvc.Controllers
 
         public IActionResult Denied()
         {
-            return View("~/Views/Shared/MessageOnly.cshtml", "Access Denied!");
+            return View("MessageOnly", "Access Denied!");
         }
 
         public class EnterModel

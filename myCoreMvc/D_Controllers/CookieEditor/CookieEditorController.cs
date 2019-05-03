@@ -16,7 +16,7 @@ namespace myCoreMvc.Controllers
     {
         public IActionResult Index()
         {
-            return View("~/Views/CookieEditor/CookieEditor.cshtml");
+            return View("CookieEditor");
         }
 
         [HttpPost]

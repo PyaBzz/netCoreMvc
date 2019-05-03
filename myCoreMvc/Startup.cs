@@ -20,6 +20,7 @@ using System.Security.Claims;
 using myCoreMvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace myCoreMvc
 {
@@ -103,6 +104,13 @@ namespace myCoreMvc
             services.AddMvc(
                 options => { options.Conventions.Add(new AddAuthoriseAttributeConvention()); }
                 );
+
+            services.Configure<RazorViewEngineOptions>(o =>
+            {
+                o.ViewLocationFormats.Clear();
+                o.ViewLocationFormats.Add("/E_Views/{1}/{0}" + RazorViewEngine.ViewExtension);
+                o.ViewLocationFormats.Add("/E_Views/Shared/{0}" + RazorViewEngine.ViewExtension);
+            });
         }
 
         //##################################################################
@@ -135,7 +143,11 @@ namespace myCoreMvc
             //Experience: When this is put before Authentication middleware it doesn't work. Why?
             appBuilder.UseMiddleware<AntiForgeryTokenValidatorMiddleware>();
 
-            appBuilder.UseMvc(routes => { routes.MapRoute(name: "default", template: "{controller=ListOfWorkItems}/{action=Index}/{id?}"); });
+            appBuilder.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "areas", template: "{area:exists}/{controller=ListOfWorkItems}/{action=Index}/{id?}");
+                routes.MapRoute(name: "default", template: "{controller=ListOfWorkItems}/{action=Index}/{id?}");
+            });
         }
     }
 }

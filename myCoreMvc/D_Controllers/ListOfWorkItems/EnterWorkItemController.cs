@@ -26,7 +26,7 @@ namespace myCoreMvc.Controllers
                     inputModel.WorkPlan = item.WorkPlan.Id; //Task: WorkPlan itself works in Get but its Guid works for POST. Find a way to cover both.
                 }
             }
-            return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);
+            return View("~/E_Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);
         }
 
         [HttpPost]
@@ -66,7 +66,7 @@ namespace myCoreMvc.Controllers
             {
                 inputModel.Message = "Invalid values for: "
                     + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
-                return View("~/Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);
+                return View("~/E_Views/ListOfWorkItems/EnterWorkItem.cshtml", inputModel);
             }
         }
 

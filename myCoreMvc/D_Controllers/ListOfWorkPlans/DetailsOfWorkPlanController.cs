@@ -10,7 +10,7 @@ namespace myCoreMvc.Controllers
         public IActionResult Index(Guid id)
         {
             var viewModel = DataProvider.Get<WorkPlan>(id);
-            return View("~/Views/ListOfWorkPlans/DetailsOfWorkPlan.cshtml", viewModel);
+            return View("~/E_Views/ListOfWorkPlans/DetailsOfWorkPlan.cshtml", viewModel);
         }
 
         public IActionResult Delete(Guid id)

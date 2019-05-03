@@ -2,12 +2,7 @@
 @using PyaFramework.CoreMvc
 
 @model myCoreMvc.Controllers.ListOfWorkPlansController.ListModel
-@{ ViewBag.Title = "WorkPlans";
-    if (true)
-    {
-        Layout = "~/Views/Shared/_Layout.cshtml";  //explicitly specifies the layout for this view
-    }
-}
+@{ ViewBag.Title = "WorkPlans";}
 
 @if (Model.Message != null && Model.Message != string.Empty)
 {

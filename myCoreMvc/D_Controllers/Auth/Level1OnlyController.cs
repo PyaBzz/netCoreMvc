@@ -18,7 +18,7 @@ namespace myCoreMvc.Controllers
     {
         public ActionResult Index()
         {
-            return View("~/Views/Shared/MessageOnly.cshtml", $">>> Access {AuthConstants.Level1PolicyName} (Only Authenticated) <<<");
+            return View("MessageOnly", $">>> Access {AuthConstants.Level1PolicyName} (Only Authenticated) <<<");
         }
     }
 }
