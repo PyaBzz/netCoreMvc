@@ -71,7 +71,7 @@ namespace myCoreMvc
 
             authBuilder.AddCookie(options =>
                 {
-                    options.LoginPath = "/auth/signin"; //Task: Replace hardcoded values. Search for "path" to find similar instances
+                    options.LoginPath = "/LogIn/LogIn/SignIn"; //Task: Replace hardcoded values. Search for "path" to find similar instances
                     options.AccessDeniedPath = "/auth/denied";
                     options.Cookie.Name = config.GetSection("Authentication").GetValue<string>("CookieName");
                     options.Cookie.MaxAge = TimeSpan.FromSeconds(config.GetSection("Authentication").GetValue<int>("AuthenticationSessionLifeTime"));
@@ -108,8 +108,12 @@ namespace myCoreMvc
             services.Configure<RazorViewEngineOptions>(o =>
             {
                 o.ViewLocationFormats.Clear();
-                o.ViewLocationFormats.Add("/E_Views/{1}/{0}" + RazorViewEngine.ViewExtension);
-                o.ViewLocationFormats.Add("/E_Views/Shared/{0}" + RazorViewEngine.ViewExtension);
+                o.ViewLocationFormats.Add("JustADummyEntryHereShutTheViewEngineUp" + RazorViewEngine.ViewExtension);
+
+                o.AreaViewLocationFormats.Clear();
+                o.AreaViewLocationFormats.Add("/Pages/{2}/{1}/View/{0}" + RazorViewEngine.ViewExtension);
+                o.AreaViewLocationFormats.Add("/Pages/{2}/View/{0}" + RazorViewEngine.ViewExtension);
+                o.AreaViewLocationFormats.Add("/Pages/zzView/{0}" + RazorViewEngine.ViewExtension);
             });
         }
 
@@ -145,8 +149,7 @@ namespace myCoreMvc
 
             appBuilder.UseMvc(routes =>
             {
-                routes.MapRoute(name: "areas", template: "{area:exists}/{controller=ListOfWorkItems}/{action=Index}/{id?}");
-                routes.MapRoute(name: "default", template: "{controller=ListOfWorkItems}/{action=Index}/{id?}");
+                routes.MapRoute(name: "default", template: "{area=WorkItems}/{controller=WorkItemList}/{action=Index}/{id?}");
             });
         }
     }

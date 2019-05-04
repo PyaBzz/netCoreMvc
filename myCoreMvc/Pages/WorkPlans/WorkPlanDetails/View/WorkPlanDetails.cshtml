@@ -1,0 +1,21 @@
+﻿@using myCoreMvc.Controllers
+@using myCoreMvc.Models;
+@using PyaFramework.CoreMvc
+
+@model WorkPlan
+@{ ViewBag.Title = "WorkPlan Details"; }
+
+@(Html.LinkToAction<WorkPlanListController>(nameof(WorkPlanListController.Index), "Back"))
+
+@if (@Model != null)
+{
+    <h3>WorkPlan details</h3>
+    <br />
+    <ModelDetails tag-model="Model">
+        @(Html.LinkToAction<WorkPlanEnterController>(nameof(WorkPlanEnterController.Index), "Edit", Model.Id))
+    </ModelDetails>
+}
+else
+{
+    <h5>WorkPlan not found!</h5>
+}

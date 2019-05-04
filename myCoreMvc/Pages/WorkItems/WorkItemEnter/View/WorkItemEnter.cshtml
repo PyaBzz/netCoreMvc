@@ -1,0 +1,37 @@
+﻿@using System.Linq;
+@using myCoreMvc.Controllers;
+@using PyaFramework.CoreMvc
+
+@model WorkItemEnterController.EnterModel
+@{ ViewBag.Title = "WorkItem Details";
+    var addMode = Model.Id == Guid.Empty;
+}
+
+<h2>
+    @if (Model.Message != null && Model.Message != string.Empty)
+    {<text> @Model.Message </text>}
+</h2>
+
+@(Html.LinkToAction<WorkItemListController>(nameof(WorkItemListController.Index), "Back"))
+
+@if (addMode)
+{<h3>Add WorkItem</h3>}
+else
+{<h3>Edit WorkItem</h3>}
+
+<form method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <label>WorkPlan</label>
+    <select asp-for=@Model.WorkPlan asp-items="Model.WorkPlanChoices"></select>
+    <br />
+    <label>Reference</label>
+    <input type="text" name="Reference" value="@Model.Reference" />
+    <br />
+    <label asp-for=@Model.Name></label>
+    <input type="text" name="Name" value="@Model.Name" /><span asp-validation-for="Name"></span>
+    <br />
+    <label>Priority</label>
+    <select asp-for=@Model.Priority asp-items="Model.PriorityChoices"></select>
+    <br />
+    <input type="submit" name="Save" value="Save" />
+</form>

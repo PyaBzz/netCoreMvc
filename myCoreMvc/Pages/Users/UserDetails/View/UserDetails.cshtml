@@ -1,0 +1,22 @@
+﻿@using myCoreMvc.Controllers
+@using myCoreMvc.Models;
+@using PyaFramework.CoreMvc
+
+@model User
+@{ ViewBag.Title = "User Details"; }
+
+@(Html.LinkToAction<UserListController>(nameof(UserListController.Index), "Back"))
+
+@if (@Model != null)
+{
+    <h3>User details</h3>
+    <br />
+        @(Html.LinkToAction<UserEnterController>(nameof(UserEnterController.Index), "Edit", Model.Id))
+    <ModelDetails tag-model="Model">
+        @(Html.LinkToAction<UserEnterController>(nameof(UserEnterController.Index), "Edit", Model.Id))
+    </ModelDetails>
+}
+else
+{
+    <h5>User not found!</h5>
+}

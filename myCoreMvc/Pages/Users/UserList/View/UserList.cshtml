@@ -1,0 +1,55 @@
+﻿@using myCoreMvc.Controllers
+@using PyaFramework.CoreMvc
+
+@model myCoreMvc.Controllers.UserListController.ListModel
+@{ ViewBag.Title = "Users";}
+
+@if (Model.Message != null && Model.Message != string.Empty)
+{
+    <h2 id="message">@Model.Message</h2>
+}
+
+<h3>Users</h3>
+@(Html.LinkToAction<UserEnterController>(nameof(UserEnterController.Index), "Add"))
+
+<form asp-controller="@(Html.ShortNameOf<UserListController>())" asp-action="@nameof(UserListController.Index)">
+    <h3>Search</h3>
+    <label asp-for=@Model.Search_Name>Name</label>
+    <input type="text" name="Search_Name" value="@Model.Search_Name" />
+    <br />
+    <input type="submit" name="Search" value="Search" />
+</form>
+<br />
+
+@if (Model.Items != null && Model.Items.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Id</td>
+                <td>Hash</td>
+                <td>DateOfBirth</td>
+                <td>Role</td>
+                <td>Edit</td>
+                <td>Set Password</td>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@(Html.LinkToAction<UserDetailsController>(nameof(UserDetailsController.Index), item.Name, item.Id))</td>
+                <td>@item.Id</td>
+                <td>@item.Hash</td>
+                <td>@item.DateOfBirth.ToShortDateString()</td>
+                <td>@item.Role</td>
+                <td>@(Html.LinkToAction<UserEnterController>(nameof(UserEnterController.Index), "Go", item.Id))</td>
+                <td>@(Html.LinkToAction<UserSetPasswordController>(nameof(UserEnterController.Index), "Go", item.Id))</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>No Users found.</div>
+}

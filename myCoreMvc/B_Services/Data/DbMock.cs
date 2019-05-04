@@ -92,7 +92,7 @@ namespace myCoreMvc.Services
 
         public TransactionResult Update<T>(T obj) where T : class, IThing
         {
-            var targetSource = GetList<T>();
+            var targetSource = GetList<T>();//Task: Use filtering query instead of LINQ!
             var existingObj = targetSource.SingleOrDefault(e => e.Id == obj.Id);
             if (existingObj == null)
             {

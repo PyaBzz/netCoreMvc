@@ -1,0 +1,60 @@
+﻿@using myCoreMvc.Controllers
+@using PyaFramework.CoreMvc
+
+@model myCoreMvc.Controllers.WorkItemListController.ListModel
+@{ ViewBag.Title = "WorkItems";}
+
+@if (Model.Message != null && Model.Message != string.Empty)
+{
+    <h2 id="message">@Model.Message</h2>
+}
+
+<h3>Work Items</h3>
+@(Html.LinkToAction<WorkItemEnterController>(nameof(WorkItemEnterController.Index), "Add"))
+
+<form asp-controller="@(Html.ShortNameOf<WorkItemListController>())" asp-action="@nameof(WorkItemListController.Index)">
+    <h3>Search</h3>
+    <label asp-for=@Model.Search_All>All</label>
+    <input type="text" name="Search_All" value="@Model.Search_All" />
+    <br />
+    <label asp-for=@Model.Search_Reference>Reference</label>
+    <input type="text" name="Search_Reference" value="@Model.Search_Reference" />
+    <br />
+    <label asp-for=@Model.Search_Name>Name</label>
+    <input type="text" name="Search_Name" value="@Model.Search_Name" />
+    <br />
+    <label asp-for=@Model.Search_Priority>Priority</label>
+    <input type="text" name="Search_Priority" value="@Model.Search_Priority" />
+    <br />
+    <input type="submit" name="Search" value="Search" />
+</form>
+<br />
+
+@if (Model.Items != null && Model.Items.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <td>WorkPlan</td>
+                <td>Reference</td>
+                <td>Name</td>
+                <td>Priority</td>
+                <td>Edit</td>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.WorkPlan</td>
+                <td>@(Html.LinkToAction<WorkItemDetailsController>(nameof(WorkItemDetailsController.Index), item.Reference, item.Id))</td>
+                <td>@item.Name</td>
+                <td>@item.Priority</td>
+                <td>@(Html.LinkToAction<WorkItemEnterController>(nameof(WorkItemDetailsController.Index), "Go", item.Id))</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>No WorkItems found.</div>
+}
