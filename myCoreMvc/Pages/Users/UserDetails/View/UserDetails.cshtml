@@ -11,9 +11,9 @@
 {
     <h3>User details</h3>
     <br />
-        @(Html.LinkToAction<UserEnterController>(nameof(UserEnterController.Index), "Edit", Model.Id))
     <ModelDetails tag-model="Model">
-        @(Html.LinkToAction<UserEnterController>(nameof(UserEnterController.Index), "Edit", Model.Id))
+        <a asp-controller=@(Html.ShortNameOf<UserEnterController>()) asp-action=@nameof(UserEnterController.Index) asp-route-id=@Model.Id>Edit</a>
+        <ButtonWithConfirmation controller-type=typeof(UserDetailsController) item-type=typeof(User) method-name=@nameof(UserDetailsController.Delete) id=@Model.Id>
     </ModelDetails>
 }
 else
