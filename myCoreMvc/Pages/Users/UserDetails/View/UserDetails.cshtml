@@ -11,10 +11,9 @@
 {
     <h3>User details</h3>
     <br />
-    <ModelDetails tag-model="Model">
-        <a asp-controller=@(Html.ShortNameOf<UserEnterController>()) asp-action=@nameof(UserEnterController.Index) asp-route-id=@Model.Id>Edit</a>
-        <ButtonWithConfirmation controller-type=typeof(UserDetailsController) item-type=typeof(User) method-name=@nameof(UserDetailsController.Delete) id=@Model.Id>
-    </ModelDetails>
+    <a asp-controller=@(Html.ShortNameOf<UserEnterController>()) asp-action=@nameof(UserEnterController.Index) asp-route-id=@Model.Id>Edit</a>
+    <ActionWithConfirm controller-type=@typeof(UserDetailsController) method-name=@nameof(UserDetailsController.Delete) message="Delete this" item-name=@typeof(User).Name route-parameter=@Model.Id />
+    <ObjectDetails object=@Model></ObjectDetails>
 }
 else
 {
