@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using myCoreMvc.Domain;
 using PyaFramework.Core;
 
-namespace myCoreMvc.Services
+namespace myCoreMvc.App
 {
     public class DbMock : IDataProvider
     {

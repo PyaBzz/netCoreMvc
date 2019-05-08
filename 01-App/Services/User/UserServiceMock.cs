@@ -8,7 +8,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-namespace myCoreMvc.Services
+namespace myCoreMvc.App
 {
     public class UserServiceMock : IUserService
     {

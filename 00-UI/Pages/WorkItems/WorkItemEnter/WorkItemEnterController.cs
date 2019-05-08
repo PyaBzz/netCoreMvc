@@ -7,8 +7,8 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PyaFramework.Core;
 using PyaFramework.Attributes;
-using myCoreMvc.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using myCoreMvc.App;
 
 namespace myCoreMvc.Controllers
 {

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PyaFramework.Core;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using myCoreMvc.App;
 
 namespace myCoreMvc.Controllers
 {

@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using myCoreMvc.Domain;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using PyaFramework;
-using PyaFramework.Attributes;
-using myCoreMvc.Services;
 using Microsoft.AspNetCore.Http;
 
 namespace myCoreMvc.Controllers

@@ -1,13 +1,5 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using myCoreMvc.Services;
-using myCoreMvc.Domain;
+﻿using Microsoft.AspNetCore.Mvc;
 using PyaFramework.Core;
-using System.Linq;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Hosting;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 
 namespace myCoreMvc.Controllers

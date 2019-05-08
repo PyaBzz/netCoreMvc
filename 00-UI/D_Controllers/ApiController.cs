@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
-using myCoreMvc.Services;
-using myCoreMvc.Domain;
-using PyaFramework;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace myCoreMvc.Controllers
 {

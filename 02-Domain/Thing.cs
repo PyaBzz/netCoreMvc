@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using PyaFramework.Core;
 
-namespace PyaFramework.Core
+namespace myCoreMvc.Domain
 {
     public class Thing : IThing, IClonable
     {

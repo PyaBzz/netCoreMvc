@@ -1,13 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using myCoreMvc.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
-using PyaFramework.Core;
+using myCoreMvc.Domain;
 
-namespace myCoreMvc.Services
+namespace myCoreMvc.App
 {
     public class EfDataProvider : IDataProvider
     {

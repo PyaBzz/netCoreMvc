@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Domain;
-using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using PyaFramework.Core;
-using myCoreMvc.Services;
-using Microsoft.AspNetCore.Authorization;
 
 namespace myCoreMvc.Controllers
 {
