@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PyaFramework\PyaFramework.csproj" />
+    <ProjectReference Include="..\01-App\01-App.csproj" />
   </ItemGroup>
 
 </Project>
