@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using PyaFramework.Core;
 
-namespace myCoreMvc.Models
+namespace myCoreMvc.Domain
 {
     public class WorkPlan : Thing, IClonable
     {

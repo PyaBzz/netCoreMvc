@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using myCoreMvc.Models;
+using myCoreMvc.Domain;
 using PyaFramework.Core;
 
 namespace myCoreMvc.Services

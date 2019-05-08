@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using myCoreMvc.Models;
+using myCoreMvc.Domain;
 using PyaFramework.Core;
 using System;
 using System.Collections.Generic;

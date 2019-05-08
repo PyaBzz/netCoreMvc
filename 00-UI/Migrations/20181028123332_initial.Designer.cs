@@ -21,7 +21,7 @@ namespace myCoreMvc.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("myCoreMvc.Models.WorkItem", b =>
+            modelBuilder.Entity("myCoreMvc.Domain.WorkItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -42,7 +42,7 @@ namespace myCoreMvc.Migrations
                     b.ToTable("WorkItems");
                 });
 
-            modelBuilder.Entity("myCoreMvc.Models.WorkPlan", b =>
+            modelBuilder.Entity("myCoreMvc.Domain.WorkPlan", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -55,9 +55,9 @@ namespace myCoreMvc.Migrations
                     b.ToTable("WorkPlans");
                 });
 
-            modelBuilder.Entity("myCoreMvc.Models.WorkItem", b =>
+            modelBuilder.Entity("myCoreMvc.Domain.WorkItem", b =>
                 {
-                    b.HasOne("myCoreMvc.Models.WorkPlan", "WorkPlan")
+                    b.HasOne("myCoreMvc.Domain.WorkPlan", "WorkPlan")
                         .WithMany("WorkItems")
                         .HasForeignKey("WorkPlanId");
                 });

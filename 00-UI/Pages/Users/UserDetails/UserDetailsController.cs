@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using myCoreMvc.Models;
+using myCoreMvc.Domain;
 using PyaFramework.Core;
 using System;
 

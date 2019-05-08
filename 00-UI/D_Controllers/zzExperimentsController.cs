@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Services;
-using myCoreMvc.Models;
+using myCoreMvc.Domain;
 using PyaFramework.Core;
 using PyaFramework.IoC;
 using System.Linq;

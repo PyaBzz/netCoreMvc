@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using PyaFramework.Middleware;
 using PyaFramework.Core;
 using myCoreMvc.Services;
-using myCoreMvc.Models;
+using myCoreMvc.Domain;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;

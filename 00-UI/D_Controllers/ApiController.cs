@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using myCoreMvc.Services;
-using myCoreMvc.Models;
+using myCoreMvc.Domain;
 using PyaFramework;
 
 namespace myCoreMvc.Controllers

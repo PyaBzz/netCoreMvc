@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using myCoreMvc.Models;
+using myCoreMvc.Domain;
 using PyaFramework;
 using System;
 using System.Collections.Generic;
