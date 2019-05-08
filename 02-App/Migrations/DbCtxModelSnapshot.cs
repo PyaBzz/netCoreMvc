@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using myCoreMvc.App;
 
-namespace myCoreMvc.Migrations
+namespace myCoreMvc.App.Migrations
 {
     [DbContext(typeof(EfCtx))]
     partial class DbCtxModelSnapshot : ModelSnapshot

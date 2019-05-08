@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using myCoreMvc.App;
 
-namespace myCoreMvc.Migrations
+namespace myCoreMvc.App.Migrations
 {
     [DbContext(typeof(EfCtx))]
     [Migration("20181101192055_AddUsersTable")]

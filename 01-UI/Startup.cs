@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using myCoreMvc.App;
 
-namespace myCoreMvc
+namespace myCoreMvc.UI
 {
     public class Startup
     {

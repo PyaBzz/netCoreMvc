@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using myCoreMvc.UI.Controllers;
 using PyaFramework.Core;
 
-namespace myCoreMvc
+namespace myCoreMvc.UI
 {
     public class AddAuthoriseAttributeConvention : IControllerModelConvention
     {
