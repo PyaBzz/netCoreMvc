@@ -1,0 +1,178 @@
+{
+  "id": "2886a69a-746c-4d2d-ac65-c11786e230cb",
+  "version": "2.0",
+  "name": "myCoreMvcUiTests",
+  "url": "http://localhost:60343",
+  "tests": [{
+    "id": "ad5ddc5b-7849-4387-8ef1-645a4fecc293",
+    "name": "Add the Fourth WorkItem",
+    "commands": [{
+      "id": "bb4efc00-b8d5-4ecb-b0c1-550937119198",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5157163e-5c78-46f3-b5b3-a9eea6b98179",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4fba3a2d-8b7e-452f-8e2c-792c6dc7061f",
+      "comment": "",
+      "command": "click",
+      "target": "id=WorkPlan",
+      "targets": [
+        ["id=WorkPlan", "id"],
+        ["name=WorkPlan", "name"],
+        ["css=#WorkPlan", "css:finder"],
+        ["xpath=//select[@id='WorkPlan']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"],
+        ["xpath=//select[contains(.,'Plan1\nPlan2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a464855-6138-460c-b138-7bfd0dfaf70e",
+      "comment": "",
+      "command": "select",
+      "target": "id=WorkPlan",
+      "targets": [],
+      "value": "label=Plan2"
+    }, {
+      "id": "0acfd928-7bac-4411-8ff4-aea23a5b4798",
+      "comment": "",
+      "command": "click",
+      "target": "id=WorkPlan",
+      "targets": [
+        ["id=WorkPlan", "id"],
+        ["name=WorkPlan", "name"],
+        ["css=#WorkPlan", "css:finder"],
+        ["xpath=//select[@id='WorkPlan']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"],
+        ["xpath=//select[contains(.,'Plan1\nPlan2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "783ccffd-91ae-4c22-b8f1-de667ad924c0",
+      "comment": "",
+      "command": "click",
+      "target": "name=Reference",
+      "targets": [
+        ["name=Reference", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='Reference']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fa320e4b-550a-42b7-bfc9-4fc831ec70f6",
+      "comment": "",
+      "command": "type",
+      "target": "name=Reference",
+      "targets": [
+        ["name=Reference", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='Reference']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "Wi22"
+    }, {
+      "id": "dbb25d12-0b3c-49f6-a193-deadb45e149d",
+      "comment": "",
+      "command": "type",
+      "target": "name=Name",
+      "targets": [
+        ["name=Name", "name"],
+        ["css=input:nth-child(9)", "css:finder"],
+        ["xpath=//input[@name='Name']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "FourthItem"
+    }, {
+      "id": "eda07c96-7341-4fb7-8ab8-95d70e45164c",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(12)",
+      "targets": [
+        ["css=label:nth-child(12)", "css:finder"],
+        ["xpath=//label[4]", "xpath:position"],
+        ["xpath=//label[contains(.,'Priority')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2d2243f7-3135-4eb1-b1a9-1e056a24068e",
+      "comment": "",
+      "command": "click",
+      "target": "id=Priority",
+      "targets": [
+        ["id=Priority", "id"],
+        ["name=Priority", "name"],
+        ["css=#Priority", "css:finder"],
+        ["xpath=//select[@id='Priority']", "xpath:attributes"],
+        ["xpath=//select[2]", "xpath:position"],
+        ["xpath=//select[contains(.,'1\n2\n3\n4')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c435b6d-6823-4506-885e-7938f30b9ef0",
+      "comment": "",
+      "command": "select",
+      "target": "id=Priority",
+      "targets": [],
+      "value": "label=4"
+    }, {
+      "id": "f1ad64bd-bfcc-4293-b005-3307752afae0",
+      "comment": "",
+      "command": "click",
+      "target": "id=Priority",
+      "targets": [
+        ["id=Priority", "id"],
+        ["name=Priority", "name"],
+        ["css=#Priority", "css:finder"],
+        ["xpath=//select[@id='Priority']", "xpath:attributes"],
+        ["xpath=//select[2]", "xpath:position"],
+        ["xpath=//select[contains(.,'1\n2\n3\n4')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "68094bc4-0f04-4718-b7e0-e73956e5e4d4",
+      "comment": "",
+      "command": "click",
+      "target": "name=Save",
+      "targets": [
+        ["name=Save", "name"],
+        ["css=input:nth-child(15)", "css:finder"],
+        ["xpath=//input[@name='Save']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4bf0e980-7079-4685-a094-eb4d93a4efd6",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=tr:nth-child(4) > td:nth-child(3)",
+      "targets": [],
+      "value": "FourthItem"
+    }]
+  }],
+  "suites": [{
+    "id": "b8d96c5f-f8cd-4b01-8284-33c7cba90d35",
+    "name": "",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["ad5ddc5b-7849-4387-8ef1-645a4fecc293"]
+  }],
+  "urls": ["http://localhost:60343/"],
+  "plugins": []
+}
