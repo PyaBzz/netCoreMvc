@@ -1,0 +1,21 @@
+{
+  "id": "2886a69a-746c-4d2d-ac65-c11786e230cb",
+  "version": "2.0",
+  "name": "myCoreMvcUiTests",
+  "url": "",
+  "tests": [{
+    "id": "ad5ddc5b-7849-4387-8ef1-645a4fecc293",
+    "name": "",
+    "commands": []
+  }],
+  "suites": [{
+    "id": "b8d96c5f-f8cd-4b01-8284-33c7cba90d35",
+    "name": "",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["ad5ddc5b-7849-4387-8ef1-645a4fecc293"]
+  }],
+  "urls": [],
+  "plugins": []
+}
