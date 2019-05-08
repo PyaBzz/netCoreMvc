@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace myCoreMvc.Controllers
+namespace myCoreMvc.UI.Controllers
 {
     public class ApiController : BaseController
     {

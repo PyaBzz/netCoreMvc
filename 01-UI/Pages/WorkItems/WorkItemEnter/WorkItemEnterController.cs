@@ -10,7 +10,7 @@ using PyaFramework.Attributes;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using myCoreMvc.App;
 
-namespace myCoreMvc.Controllers
+namespace myCoreMvc.UI.Controllers
 {
     [Area("WorkItems")]
     public class WorkItemEnterController : BaseController

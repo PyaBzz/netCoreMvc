@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PyaFramework.Core;
 using myCoreMvc.App;
 
-namespace myCoreMvc.Controllers
+namespace myCoreMvc.UI.Controllers
 {
     [Area("WorkPlans")]
     public class WorkPlanEnterController : BaseController

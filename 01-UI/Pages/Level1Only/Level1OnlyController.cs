@@ -2,7 +2,7 @@
 using PyaFramework.Core;
 using Microsoft.AspNetCore.Authorization;
 
-namespace myCoreMvc.Controllers
+namespace myCoreMvc.UI.Controllers
 {
     [Authorize]
     [Area("Level1Only")]

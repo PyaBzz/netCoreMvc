@@ -2,7 +2,7 @@
 using PyaFramework.Core;
 using Microsoft.AspNetCore.Authorization;
 
-namespace myCoreMvc.Controllers
+namespace myCoreMvc.UI.Controllers
 {
     //Task: Can we use "AuthenticationSchemes = AuthConstants.AuthSchemeName" as a parameter to the Authorize attribute to choose among available schemes?
     [Authorize(Policy = AuthConstants.Level2PolicyName)]

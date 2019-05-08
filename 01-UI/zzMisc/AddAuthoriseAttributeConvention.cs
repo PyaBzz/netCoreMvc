@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using myCoreMvc.Controllers;
+using myCoreMvc.UI.Controllers;
 using PyaFramework.Core;
 
 namespace myCoreMvc

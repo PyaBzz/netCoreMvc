@@ -2,7 +2,7 @@
 using myCoreMvc.App;
 using PyaFramework.Core;
 
-namespace myCoreMvc.Controllers
+namespace myCoreMvc.UI.Controllers
 {
     public class BaseController : Controller
     {

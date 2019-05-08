@@ -5,7 +5,7 @@ using myCoreMvc.Domain;
 using System.Text.RegularExpressions;
 using PyaFramework.Core;
 
-namespace myCoreMvc.Controllers
+namespace myCoreMvc.UI.Controllers
 {
     [Area("WorkPlans")]
     public class WorkPlanListController : BaseController

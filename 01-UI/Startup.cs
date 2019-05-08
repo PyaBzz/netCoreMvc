@@ -103,7 +103,7 @@ namespace myCoreMvc
                 o.AreaViewLocationFormats.Clear();
                 o.AreaViewLocationFormats.Add("/Pages/{2}/{1}/View/{0}" + RazorViewEngine.ViewExtension);
                 o.AreaViewLocationFormats.Add("/Pages/{2}/View/{0}" + RazorViewEngine.ViewExtension);
-                o.AreaViewLocationFormats.Add("/Pages/zzView/{0}" + RazorViewEngine.ViewExtension);
+                o.AreaViewLocationFormats.Add("/Pages/zzShared/{0}" + RazorViewEngine.ViewExtension);
             });
         }
 

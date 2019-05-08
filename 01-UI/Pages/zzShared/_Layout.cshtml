@@ -1,5 +1,5 @@
 ﻿@using System.Reflection
-@using myCoreMvc.Controllers
+@using myCoreMvc.UI.Controllers
 @using PyaFramework.Core
 @using PyaFramework.CoreMvc
 @using Microsoft.Extensions.Configuration
@@ -13,15 +13,6 @@
 </head>
 <body>
     <header>
-        @{
-            var methodInfos = typeof(ExperimentsController).GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
-            <text>Experiments: </text>
-            foreach (var methodInfo in methodInfos)
-            {
-                @(Html.LinkToAction<ExperimentsController>(methodInfo.Name, methodInfo.Name))<span class="separator"></span>
-            }
-        }
-        <br />
         <img src="~/StaticContent/Mushroom-Red-2.png" />
         @if (bool.Parse(config["ShowNavigationToUnauthenticatedUsers"]) || User.Identity.IsAuthenticated)
         {

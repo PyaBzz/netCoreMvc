@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using myCoreMvc.App;
 
-namespace myCoreMvc.Controllers
+namespace myCoreMvc.UI.Controllers
 {
     [Area("Users")]
     public class UserEnterController : BaseController

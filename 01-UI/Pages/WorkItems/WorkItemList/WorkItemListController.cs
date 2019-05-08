@@ -10,7 +10,7 @@ using PyaFramework.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
-namespace myCoreMvc.Controllers
+namespace myCoreMvc.UI.Controllers
 {
     [Area("WorkItems")]
     public class WorkItemListController : BaseController

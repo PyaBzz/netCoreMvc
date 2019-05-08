@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\PyaFramework\PyaFramework.csproj" />
-    <ProjectReference Include="..\04-Persisence\04-Persisence.csproj" />
   </ItemGroup>
 
 </Project>

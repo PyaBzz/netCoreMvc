@@ -4,7 +4,7 @@ using myCoreMvc.Domain;
 using PyaFramework.Core;
 using System;
 
-namespace myCoreMvc.Controllers
+namespace myCoreMvc.UI.Controllers
 {
     [Area("Users")]
     public class UserDetailsController : BaseController
