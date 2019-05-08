@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>myCoreMvc</ActiveDebugProfile>
+    <ActiveDebugProfile>UI</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

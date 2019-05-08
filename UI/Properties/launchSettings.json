@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "DevIIS"
       }
     },
-    "myCoreMvc": {
+    "UI": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
