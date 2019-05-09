@@ -16,8 +16,8 @@ namespace myCoreMvc.UI.Controllers
     [Area("WorkItems")]
     public class WorkItemEnterController : BaseController
     {
-        private IWorkItemBiz WorkItemBiz;
-        private IWorkPlanBiz WorkPlanBiz;
+        private readonly IWorkItemBiz WorkItemBiz;
+        private readonly IWorkPlanBiz WorkPlanBiz;
 
         public WorkItemEnterController(IWorkItemBiz workItemBiz, IWorkPlanBiz workPlanBiz)
         {
@@ -27,7 +27,8 @@ namespace myCoreMvc.UI.Controllers
 
         public IActionResult Index(Guid id)
         {
-            var inputModel = new EnterModel(WorkItemBiz, WorkPlanBiz);
+            var inputModel = new EnterModel();
+            inputModel.WorkPlanBiz = WorkPlanBiz;
             if (id != Guid.Empty)
             {
                 var item = WorkItemBiz.Get(id);
@@ -50,6 +51,7 @@ namespace myCoreMvc.UI.Controllers
                 // ModelState.AddModelError("", "This is an object level error rather than property level.")
                 // @Html.ValidationSummary(true)
                 // @Html.ValidationMessageFor(p => p.Reference)
+                inputModel.WorkPlanBiz = WorkPlanBiz;
                 WorkItem workItem;
                 TransactionResult transactionResult;
                 if (inputModel.Id == Guid.Empty)
@@ -84,32 +86,24 @@ namespace myCoreMvc.UI.Controllers
 
         public class EnterModel : IClonable
         {
-            public IWorkItemBiz WorkItemBiz;
-            public IWorkPlanBiz WorkPlanBiz;
-
-            public EnterModel(IWorkItemBiz workItemBiz, IWorkPlanBiz workPlanBiz)
-            {
-                WorkItemBiz = workItemBiz;
-                WorkPlanBiz = workPlanBiz;
-            }
-
-            public EnterModel()
-            {
-                //WorkItemBiz = Request.HttpContext.RequestServices.GetService(typeof(IConfiguration)) as IConfiguration; ;
-                //WorkPlanBiz = re;
-            }
-
             public Guid Id { get; set; }
-            public Guid WorkPlan { get; set; }
-            public string Reference { get; set; }
-            public int Priority { get; set; }
 
             [Display(Name = "Item name")]
             [ValidateAlphanumeric(3, 16)]
             public string Name { get; set; }
+            public Guid WorkPlan { get; set; }
+            public string Reference { get; set; }
+            public int Priority { get; set; }
 
+            //Lesson: View models should be simpe data containers.
+            //They should contain no behavior and neither expose nor hold any dependencies.
+            //This forces the Razor views to be simple and stupid and hence most maintainable.
+            //When you follow that practice, only the controller will (and should) have dependencies.
+            //Then the controller should set necessary properties on the VM
+            //This may require filtering or policy enforcement based on business requirements none of which is a concern of VM!
+            public IWorkPlanBiz WorkPlanBiz { get; set; }
             public IEnumerable<SelectListItem> PriorityChoices => WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == Priority });
-            public IEnumerable<SelectListItem> WorkPlanChoices => WorkPlanBiz.GetList().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == WorkPlan });
+            public IEnumerable<SelectListItem> WorkPlanChoices => (WorkPlanBiz?.GetList() ?? new List<WorkPlan>()).Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == WorkPlan });
             public string Message = "";
         }
     }
