@@ -1,8 +1,0 @@
-D:\PooyaPersonal\Projects\myCoreMvc\04-Persisence\bin\Debug\netcoreapp2.2\04-Persisence.deps.json
-D:\PooyaPersonal\Projects\myCoreMvc\04-Persisence\bin\Debug\netcoreapp2.2\04-Persisence.dll
-D:\PooyaPersonal\Projects\myCoreMvc\04-Persisence\bin\Debug\netcoreapp2.2\04-Persisence.pdb
-D:\PooyaPersonal\Projects\myCoreMvc\04-Persisence\obj\Debug\netcoreapp2.2\04-Persisence.csproj.CoreCompileInputs.cache
-D:\PooyaPersonal\Projects\myCoreMvc\04-Persisence\obj\Debug\netcoreapp2.2\04-Persisence.AssemblyInfoInputs.cache
-D:\PooyaPersonal\Projects\myCoreMvc\04-Persisence\obj\Debug\netcoreapp2.2\04-Persisence.AssemblyInfo.cs
-D:\PooyaPersonal\Projects\myCoreMvc\04-Persisence\obj\Debug\netcoreapp2.2\04-Persisence.dll
-D:\PooyaPersonal\Projects\myCoreMvc\04-Persisence\obj\Debug\netcoreapp2.2\04-Persisence.pdb
