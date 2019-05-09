@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Domain;
-using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using PyaFramework.Core;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using myCoreMvc.App.Providing;
 
 namespace myCoreMvc.UI.Controllers
 {
     [Area("WorkItems")]
     public class WorkItemListController : BaseController
     {
+        private readonly IWorkItemBiz WorkItemBiz;
+
+        public WorkItemListController(IWorkItemBiz workItemBiz)
+            => WorkItemBiz = workItemBiz;
+
         public IActionResult Index(string message)
         {
             var listModel = new ListModel
             {
-                Items = DataProvider.GetListIncluding<WorkItem>(wi => wi.WorkPlan),
+                Items = WorkItemBiz.GetListIncluding(wi => wi.WorkPlan),
                 Message = message
             };
             return View("WorkItemList", listModel);
@@ -30,7 +31,7 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                listModel.Items = DataProvider.GetList<WorkItem>();
+                listModel.Items = WorkItemBiz.GetList();
 
                 if (listModel.Search_All != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.GetStringOfProperties(), listModel.Search_All));
                 if (listModel.Search_Reference != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Reference, listModel.Search_Reference));
@@ -41,7 +42,7 @@ namespace myCoreMvc.UI.Controllers
             }
             else
             {
-                listModel.Items = DataProvider.GetList<WorkItem>();
+                listModel.Items = WorkItemBiz.GetList();
             }
             return View("WorkItemList", listModel);
         }

@@ -8,22 +8,23 @@ using PyaFramework.Core;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using myCoreMvc.App;
+using myCoreMvc.App.Providing;
 
 namespace myCoreMvc.UI.Controllers
 {
     [Area("Users")]
     public class UserSetPasswordController : BaseController
     {
-        private IUserService _userService;
+        private readonly IUserBiz UserBiz;
 
-        public UserSetPasswordController(IUserService userService)
+        public UserSetPasswordController(IUserBiz userBiz)
         {
-            _userService = userService;
+            UserBiz = userBiz;
         }
 
         public IActionResult Index(Guid id)
         {
-            var user = DataProvider.Get<User>(id);
+            var user = UserBiz.Get(id);
             var inputModel = new EnterModel();
             if (user != null) inputModel.CopySimilarPropertiesFrom(user);
             return View("UserSetPassword", inputModel);
@@ -34,7 +35,7 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var transactionResult = _userService.SetPassword(inputModel.Id, inputModel.Password);
+                var transactionResult = UserBiz.SetPassword(inputModel.Id, inputModel.Password);
                 var resultMessage = "";
                 switch (transactionResult)
                 {

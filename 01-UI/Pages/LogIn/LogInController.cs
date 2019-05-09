@@ -1,27 +1,23 @@
 ﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using myCoreMvc.App;
-using myCoreMvc.Domain;
 using PyaFramework.Core;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using myCoreMvc.App.Providing;
 
 namespace myCoreMvc.UI.Controllers
 {
     [Area("LogIn")]
     public class LogInController : BaseController
     {
-        private IUserService _userService;
+        private readonly IUserBiz UserBiz;
 
-        public LogInController(IUserService userService)
+        public LogInController(IUserBiz userBiz)
         {
-            _userService = userService;
+            UserBiz = userBiz;
         }
 
         public IActionResult SignIn()
@@ -34,7 +30,7 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (await _userService.GetPrincipal(model.UserName, model.PassWord, out ClaimsPrincipal claimsPrincipal))
+                if (await UserBiz.GetPrincipal(model.UserName, model.PassWord, out ClaimsPrincipal claimsPrincipal))
                 {
                     var expiryTime = DateTime.UtcNow.AddSeconds(config.GetValue<int>("AuthenticationSessionLifeTime"));
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using myCoreMvc.App.Consuming;
 using myCoreMvc.Domain;
 using PyaFramework.Core;
 using System;
@@ -8,16 +9,20 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-namespace myCoreMvc.App
+namespace myCoreMvc.App.Providing
 {
-    public class UserServiceMock : IUserService
+    public class UserBizMock : IUserBiz
     {
         private IDataProvider DataProvider;
 
-        public UserServiceMock(IDataProvider dataProvider)
-        {
-            DataProvider = dataProvider;
-        }
+        internal UserBizMock(IDataProvider dataProvider)
+            => DataProvider = dataProvider;
+
+        public IUser Get(Guid id) => DataProvider.Get<User>(id);
+
+        public List<IUser> GetList() => DataProvider.GetList<IUser>();
+
+        public TransactionResult Delete(Guid id) => DataProvider.Delete<IUser>(id);
 
         public Task<bool> GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
         {

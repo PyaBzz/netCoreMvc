@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace myCoreMvc.App
+namespace myCoreMvc.App.Consuming
 {
     public class EfCtx : DbContext
     {

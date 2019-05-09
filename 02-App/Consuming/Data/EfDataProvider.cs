@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using myCoreMvc.Domain;
 
-namespace myCoreMvc.App
+namespace myCoreMvc.App.Consuming
 {
     public class EfDataProvider : IDataProvider
     {

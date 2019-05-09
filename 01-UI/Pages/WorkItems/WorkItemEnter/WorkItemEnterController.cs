@@ -9,18 +9,28 @@ using PyaFramework.Core;
 using PyaFramework.Attributes;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using myCoreMvc.App;
+using myCoreMvc.App.Providing;
 
 namespace myCoreMvc.UI.Controllers
 {
     [Area("WorkItems")]
     public class WorkItemEnterController : BaseController
     {
+        private IWorkItemBiz WorkItemBiz;
+        private IWorkPlanBiz WorkPlanBiz;
+
+        public WorkItemEnterController(IWorkItemBiz workItemBiz, IWorkPlanBiz workPlanBiz)
+        {
+            WorkItemBiz = workItemBiz;
+            WorkPlanBiz = workPlanBiz;
+        }
+
         public IActionResult Index(Guid id)
         {
-            var inputModel = new EnterModel(DataProvider);
+            var inputModel = new EnterModel(WorkItemBiz, WorkPlanBiz);
             if (id != Guid.Empty)
             {
-                var item = DataProvider.Get<WorkItem>(id);
+                var item = WorkItemBiz.Get(id);
                 if (item != null)
                 {
                     inputModel.CopySimilarPropertiesFrom(item);
@@ -46,14 +56,14 @@ namespace myCoreMvc.UI.Controllers
                 {
                     workItem = new WorkItem();
                     workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                    workItem.WorkPlan = DataProvider.Get<WorkPlan>(inputModel.WorkPlan);
-                    transactionResult = DataProvider.Add(workItem);
+                    workItem.WorkPlan = WorkPlanBiz.Get(inputModel.WorkPlan);
+                    transactionResult = WorkItemBiz.Add(workItem);
                 }
                 else
                 {
-                    workItem = DataProvider.Get<WorkItem>(inputModel.Id);
+                    workItem = WorkItemBiz.Get(inputModel.Id);
                     workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                    transactionResult = DataProvider.Update(workItem);
+                    transactionResult = WorkItemBiz.Update(workItem);
                 }
                 var resultMessage = "";
                 switch (transactionResult)
@@ -74,18 +84,24 @@ namespace myCoreMvc.UI.Controllers
 
         public class EnterModel : IClonable
         {
-            private IDataProvider DataProvider;
+            public IWorkItemBiz WorkItemBiz;
+            public IWorkPlanBiz WorkPlanBiz;
 
-            public EnterModel(IDataProvider dataProvider)
+            public EnterModel(IWorkItemBiz workItemBiz, IWorkPlanBiz workPlanBiz)
             {
-                DataProvider = dataProvider;
+                WorkItemBiz = workItemBiz;
+                WorkPlanBiz = workPlanBiz;
             }
 
-            public EnterModel() { }
+            public EnterModel()
+            {
+                //WorkItemBiz = Request.HttpContext.RequestServices.GetService(typeof(IConfiguration)) as IConfiguration; ;
+                //WorkPlanBiz = re;
+            }
 
             public Guid Id { get; set; }
             public Guid WorkPlan { get; set; }
-            public String Reference { get; set; }
+            public string Reference { get; set; }
             public int Priority { get; set; }
 
             [Display(Name = "Item name")]
@@ -93,7 +109,7 @@ namespace myCoreMvc.UI.Controllers
             public string Name { get; set; }
 
             public IEnumerable<SelectListItem> PriorityChoices => WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == Priority });
-            public IEnumerable<SelectListItem> WorkPlanChoices => DataProvider?.GetList<WorkPlan>().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == WorkPlan });
+            public IEnumerable<SelectListItem> WorkPlanChoices => WorkPlanBiz.GetList().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == WorkPlan });
             public string Message = "";
         }
     }

@@ -6,18 +6,24 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PyaFramework.Core;
 using myCoreMvc.App;
+using myCoreMvc.App.Providing;
 
 namespace myCoreMvc.UI.Controllers
 {
     [Area("WorkPlans")]
     public class WorkPlanEnterController : BaseController
     {
+        private readonly IWorkPlanBiz WorkPlanBiz;
+
+        public WorkPlanEnterController(IWorkPlanBiz workPlanBiz)
+            => WorkPlanBiz = workPlanBiz;
+
         public IActionResult Index(Guid id)
         {
             var inputModel = new EnterModel();
             if (id != Guid.Empty)
             {
-                var workPlan = DataProvider.Get<WorkPlan>(id);
+                var workPlan = WorkPlanBiz.Get(id);
                 if (workPlan != null) inputModel.CopySimilarPropertiesFrom(workPlan);
             }
             return View("WorkPlanEnter", inputModel);
@@ -34,13 +40,13 @@ namespace myCoreMvc.UI.Controllers
                 {
                     workPlan = new WorkPlan();
                     workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                    transactionResult = DataProvider.Add(workPlan);
+                    transactionResult = WorkPlanBiz.Add(workPlan);
                 }
                 else
                 {
-                    workPlan = DataProvider.Get<WorkPlan>(inputModel.Id);
+                    workPlan = WorkPlanBiz.Get(inputModel.Id);
                     workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                    transactionResult = DataProvider.Update(workPlan);
+                    transactionResult = WorkPlanBiz.Update(workPlan);
                 }
                 var resultMessage = "";
                 switch (transactionResult)

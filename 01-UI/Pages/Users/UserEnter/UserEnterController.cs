@@ -8,22 +8,23 @@ using PyaFramework.Core;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using myCoreMvc.App;
+using myCoreMvc.App.Providing;
 
 namespace myCoreMvc.UI.Controllers
 {
     [Area("Users")]
     public class UserEnterController : BaseController
     {
-        private IUserService _userService;
+        private readonly IUserBiz UserBiz;
 
-        public UserEnterController(IUserService userService)
+        public UserEnterController(IUserBiz userBiz)
         {
-            _userService = userService;
+            UserBiz = userBiz;
         }
 
         public IActionResult Index(Guid id)
         {
-            var user = DataProvider.Get<User>(id);
+            var user = UserBiz.Get(id);
             var enterModel = new EnterModel();
             if (user != null) enterModel.CopySimilarPropertiesFrom(user);
             return View("UserEnter", enterModel);
@@ -36,7 +37,7 @@ namespace myCoreMvc.UI.Controllers
             {
                 var user = new User();
                 user.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                var transactionResult = _userService.Save(user);
+                var transactionResult = UserBiz.Save(user);
                 var resultMessage = "";
                 switch (transactionResult)
                 {

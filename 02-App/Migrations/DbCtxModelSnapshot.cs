@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using myCoreMvc.App;
+using myCoreMvc.App.Consuming;
 
 namespace myCoreMvc.App.Migrations
 {

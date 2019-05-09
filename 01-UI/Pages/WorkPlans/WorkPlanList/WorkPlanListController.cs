@@ -4,17 +4,23 @@ using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Domain;
 using System.Text.RegularExpressions;
 using PyaFramework.Core;
+using myCoreMvc.App.Providing;
 
 namespace myCoreMvc.UI.Controllers
 {
     [Area("WorkPlans")]
     public class WorkPlanListController : BaseController
     {
+        IWorkPlanBiz WorkPlanBiz;
+
+        public WorkPlanListController(IWorkPlanBiz workPlanBiz)
+            => WorkPlanBiz = workPlanBiz;
+
         public IActionResult Index(string message)
         {
             var listModel = new ListModel
             {
-                Items = DataProvider.GetList<WorkPlan>(),
+                Items = WorkPlanBiz.GetList(),
                 Message = message
             };
             return View("WorkPlanList", listModel);
@@ -25,7 +31,7 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                listModel.Items = DataProvider.GetList<WorkPlan>();
+                listModel.Items = WorkPlanBiz.GetList();
 
                 if (listModel.Search_Name != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
 
@@ -33,7 +39,7 @@ namespace myCoreMvc.UI.Controllers
             }
             else
             {
-                listModel.Items = DataProvider.GetList<WorkPlan>();
+                listModel.Items = WorkPlanBiz.GetList();
             }
             return View("WorkPlanList", listModel);
         }

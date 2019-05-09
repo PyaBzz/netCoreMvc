@@ -10,7 +10,8 @@ using PyaFramework.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
-using myCoreMvc.App;
+using myCoreMvc.App.Consuming;
+using myCoreMvc.App.Providing;
 
 namespace myCoreMvc.UI
 {
@@ -45,11 +46,10 @@ namespace myCoreMvc.UI
             services.AddSingleton<IConfiguration>(config); // Could we bind a config object of type dynamic with all properties and children?
 
             services.AddSingleton(new EfCtx());
-
-            //services.AddSingleton<IDataProvider, EfDataProvider>();
             services.AddSingleton<IDataProvider, DbMock>();
-
             services.AddSingleton<IUserService, UserServiceMock>();
+            services.AddSingleton<IWorkPlanBiz, WorkPlanBiz>();
+            services.AddSingleton<IWorkItemBiz, WorkItemBiz>();
 
             var authBuilder = services.AddAuthentication(options =>
                 {
