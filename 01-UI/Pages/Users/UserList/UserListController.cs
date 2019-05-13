@@ -37,7 +37,7 @@ namespace myCoreMvc.UI.Controllers
 
                 if (listModel.Search_Name != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
 
-                listModel.Items = listModel.Items.AppliedWithFilters<IUser>(listModel.SearchFilters);
+                listModel.Items = listModel.Items.AppliedWithFilters(listModel.SearchFilters);
             }
             else
             {

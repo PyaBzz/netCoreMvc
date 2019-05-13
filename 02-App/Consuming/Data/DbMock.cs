@@ -63,7 +63,7 @@ namespace myCoreMvc.App.Consuming
             var propertyInfos = this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
             var propertyInfo = propertyInfos.SingleOrDefault(pi => pi.PropertyType == typeof(List<T>));
             if (propertyInfo == null) throw new NullReferenceException($"DbMock knows no source collection of type {typeof(T)}.");
-            var property = propertyInfo.GetValue(this) as List<T>;
+            var property = (List<T>)propertyInfo.GetValue(this);
             return property;
         }
 
