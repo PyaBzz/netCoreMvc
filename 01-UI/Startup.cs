@@ -48,6 +48,7 @@ namespace myCoreMvc.UI
             services.AddSingleton(new EfCtx());
             services.AddSingleton<IDataProvider, DbMock>();
             services.AddSingleton<IUserService, UserServiceMock>();
+            services.AddSingleton<IUserBiz, UserBizMock>();
             services.AddSingleton<IWorkPlanBiz, WorkPlanBiz>();
             services.AddSingleton<IWorkItemBiz, WorkItemBiz>();
 

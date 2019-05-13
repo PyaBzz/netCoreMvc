@@ -15,7 +15,7 @@ namespace myCoreMvc.App.Providing
     {
         private IDataProvider DataProvider;
 
-        internal UserBizMock(IDataProvider dataProvider)
+        public UserBizMock(IDataProvider dataProvider)
             => DataProvider = dataProvider;
 
         public IUser Get(Guid id) => DataProvider.Get<User>(id);

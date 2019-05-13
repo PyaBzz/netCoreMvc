@@ -14,7 +14,7 @@ namespace myCoreMvc.App.Consuming
     {
         private IDataProvider DataProvider;
 
-        internal UserServiceMock(IDataProvider dataProvider)
+        public UserServiceMock(IDataProvider dataProvider)
         {
             DataProvider = dataProvider;
         }
