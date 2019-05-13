@@ -16,7 +16,6 @@
         <img src="~/StaticContent/Mushroom-Red-2.png" />
         @if (bool.Parse(config["ShowNavigationToUnauthenticatedUsers"]) || User.Identity.IsAuthenticated)
         {
-            //Task: Update your extension method LinkToAction to include areas and use it for link generation
             <a asp-area="WorkPlans" asp-controller="@(Html.ShortNameOf<WorkPlanListController>())" asp-action="Index">WorkPlans</a>
             <span class="separator"></span>
             <a asp-area="WorkItems" asp-controller="@(Html.ShortNameOf<WorkItemListController>())" asp-action="Index">WorkItems</a>

@@ -10,7 +10,7 @@
 }
 
 <h3>Work Items</h3>
-@(Html.LinkToAction<WorkItemEnterController>(nameof(WorkItemEnterController.Index), "Add"))
+<a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)">Add</a>
 
 <form asp-controller="@(Html.ShortNameOf<WorkItemListController>())" asp-action="@nameof(WorkItemListController.Index)">
     <h3>Search</h3>
@@ -46,10 +46,10 @@
         {
             <tr>
                 <td>@item.WorkPlan</td>
-                <td>@(Html.LinkToAction<WorkItemDetailsController>(nameof(WorkItemDetailsController.Index), item.Reference, item.Id))</td>
+                <td><a asp-controller="@(Html.ShortNameOf<WorkItemDetailsController>())" asp-action="@nameof(WorkItemDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
                 <td>@item.Name</td>
                 <td>@item.Priority</td>
-                <td>@(Html.LinkToAction<WorkItemEnterController>(nameof(WorkItemDetailsController.Index), "Go", item.Id))</td>
+                <td><a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@item.Id">Go</a></td>
             </tr>
         }
     </table>

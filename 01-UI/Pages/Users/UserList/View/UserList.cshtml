@@ -10,7 +10,7 @@
 }
 
 <h3>Users</h3>
-@(Html.LinkToAction<UserEnterController>(nameof(UserEnterController.Index), "Add"))
+<a asp-controller="@(Html.ShortNameOf<UserEnterController>())" asp-action="@nameof(UserEnterController.Index)">Add</a>
 
 <form asp-controller="@(Html.ShortNameOf<UserListController>())" asp-action="@nameof(UserListController.Index)">
     <h3>Search</h3>
@@ -38,13 +38,19 @@
         @foreach (var item in Model.Items)
         {
             <tr>
-                <td>@(Html.LinkToAction<UserDetailsController>(nameof(UserDetailsController.Index), item.Name, item.Id))</td>
+                <td>
+                    <a asp-controller="@(Html.ShortNameOf<UserDetailsController>())" asp-action="@nameof(UserDetailsController.Index)" asp-route-id="@item.Id">Edit</a>
+                </td>
                 <td>@item.Id</td>
                 <td>@item.Hash</td>
                 <td>@item.DateOfBirth.ToShortDateString()</td>
                 <td>@item.Role</td>
-                <td>@(Html.LinkToAction<UserEnterController>(nameof(UserEnterController.Index), "Go", item.Id))</td>
-                <td>@(Html.LinkToAction<UserSetPasswordController>(nameof(UserEnterController.Index), "Go", item.Id))</td>
+                <td>
+                    <a asp-controller="@(Html.ShortNameOf<UserEnterController>())" asp-action="@nameof(UserEnterController.Index)" asp-route-id="@item.Id">Go</a>
+                </td>
+                <td>
+                    <a asp-controller="@(Html.ShortNameOf<UserSetPasswordController>())" asp-action="@nameof(UserSetPasswordController.Index)" asp-route-id="@item.Id">Go</a>
+                </td>
             </tr>
         }
     </table>
