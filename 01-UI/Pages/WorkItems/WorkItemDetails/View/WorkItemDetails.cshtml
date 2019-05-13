@@ -11,9 +11,10 @@
 {
     <h3>WorkItem details</h3>
     <br />
-    <ModelDetails tag-model="Model">
+    <ObjectDetails Object=@Model>
+        <ActionWithConfirm controller-type=@typeof(WorkItemDetailsController) method-name=@nameof(WorkItemDetailsController.Delete) message="Delete this" route-parameter=@Model.Id />
         @(Html.LinkToAction<WorkItemEnterController>(nameof(WorkItemEnterController.Index), "Edit", Model.Id))
-    </ModelDetails>
+    </ObjectDetails>
 }
 else
 {
