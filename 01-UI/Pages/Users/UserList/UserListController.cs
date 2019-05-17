@@ -48,8 +48,8 @@ namespace myCoreMvc.UI.Controllers
 
         public class ListModel
         {
-            public IEnumerable<IUser> Items;
-            public List<Func<IUser, bool>> SearchFilters { get; set; } = new List<Func<IUser, bool>>();
+            public IEnumerable<User> Items;
+            public List<Func<User, bool>> SearchFilters { get; set; } = new List<Func<User, bool>>();
 
             public string Search_Name { get; set; }
 

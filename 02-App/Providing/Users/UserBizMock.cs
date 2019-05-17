@@ -18,11 +18,11 @@ namespace myCoreMvc.App.Providing
         public UserBizMock(IDataProvider dataProvider)
             => DataProvider = dataProvider;
 
-        public IUser Get(Guid id) => DataProvider.Get<User>(id);
+        public User Get(Guid id) => DataProvider.Get<User>(id);
 
-        public List<IUser> GetList() => DataProvider.GetList<IUser>();
+        public List<User> GetList() => DataProvider.GetList<User>();
 
-        public TransactionResult Delete(Guid id) => DataProvider.Delete<IUser>(id);
+        public TransactionResult Delete(Guid id) => DataProvider.Delete<User>(id);
 
         public Task<bool> GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
         {
@@ -49,7 +49,7 @@ namespace myCoreMvc.App.Providing
             return Task.FromResult(true);
         }
 
-        public Task<bool> ValidateCredentials(string userName, string passWord, out IUser iUser)
+        public Task<bool> ValidateCredentials(string userName, string passWord, out User iUser)
         {
             iUser = DataProvider.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
             if (iUser != null)
@@ -63,7 +63,7 @@ namespace myCoreMvc.App.Providing
             return Task.FromResult(false);
         }
 
-        public TransactionResult Save(IUser iUser)
+        public TransactionResult Save(User iUser)
         {
             if (iUser.Id == Guid.Empty)
             {

@@ -61,9 +61,9 @@ namespace myCoreMvc.App.Consuming
         public List<T> GetList<T>() where T : class, IThing
         {
             var propertyInfos = this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
-            var propertyInfo = propertyInfos.SingleOrDefault(pi => typeof(T).IsAssignableFrom(pi.PropertyType.GenericTypeArguments[0]));
+            var propertyInfo = propertyInfos.SingleOrDefault(pi => pi.PropertyType == typeof(List<T>));
             if (propertyInfo == null) throw new NullReferenceException($"DbMock knows no source collection of type {typeof(T)}.");
-            var property = (propertyInfo.GetValue(this) as IEnumerable<object>).Select(i => (T)i).ToList();
+            var property = (List<T>)propertyInfo.GetValue(this);
             return property;
         }
 

@@ -44,13 +44,13 @@ namespace myCoreMvc.App.Consuming
             return Task.FromResult(true);
         }
 
-        public Task<bool> ValidateCredentials(string userName, string passWord, out IUser iUser)
+        public Task<bool> ValidateCredentials(string userName, string passWord, out User user)
         {
-            iUser = DataProvider.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
-            if (iUser != null)
+            user = DataProvider.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
+            if (user != null)
             {
-                var existingHash = iUser.Hash;
-                var hashBytes = KeyDerivation.Pbkdf2(passWord, iUser.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
+                var existingHash = user.Hash;
+                var hashBytes = KeyDerivation.Pbkdf2(passWord, user.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
                 var hash = Convert.ToBase64String(hashBytes);
                 if (hash == existingHash)
                     return Task.FromResult(true);
@@ -58,23 +58,23 @@ namespace myCoreMvc.App.Consuming
             return Task.FromResult(false);
         }
 
-        public TransactionResult Save(IUser iUser)
+        public TransactionResult Save(User user)
         {
-            if (iUser.Id == Guid.Empty)
+            if (user.Id == Guid.Empty)
             {
-                iUser.Salt = new byte[128 / 8];
+                user.Salt = new byte[128 / 8];
                 using (var rng = RandomNumberGenerator.Create())
                 {
-                    rng.GetBytes(iUser.Salt);
+                    rng.GetBytes(user.Salt);
                 }
-                return DataProvider.Add(iUser);
+                return DataProvider.Add(user);
             }
             else
             {
-                var existingUser = DataProvider.Get<User>(iUser.Id);
-                iUser.Salt = existingUser.Salt;
-                iUser.Hash = existingUser.Hash;
-                return DataProvider.Update(iUser);
+                var existingUser = DataProvider.Get<User>(user.Id);
+                user.Salt = existingUser.Salt;
+                user.Hash = existingUser.Hash;
+                return DataProvider.Update(user);
             }
         }
 
