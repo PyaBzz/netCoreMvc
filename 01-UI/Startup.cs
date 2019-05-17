@@ -102,8 +102,8 @@ namespace myCoreMvc.UI
                 o.ViewLocationFormats.Add("JustADummyEntryHereShutTheViewEngineUp" + RazorViewEngine.ViewExtension);
 
                 o.AreaViewLocationFormats.Clear();
-                o.AreaViewLocationFormats.Add("/Pages/{2}/{1}/View/{0}" + RazorViewEngine.ViewExtension);
-                o.AreaViewLocationFormats.Add("/Pages/{2}/View/{0}" + RazorViewEngine.ViewExtension);
+                o.AreaViewLocationFormats.Add("/Pages/{2}/{1}/{0}" + RazorViewEngine.ViewExtension);
+                o.AreaViewLocationFormats.Add("/Pages/{2}/{0}" + RazorViewEngine.ViewExtension);
                 o.AreaViewLocationFormats.Add("/Pages/zzShared/{0}" + RazorViewEngine.ViewExtension);
             });
         }
