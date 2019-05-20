@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 
 namespace myCoreMvc.App.Providing
 {
+    //Task: Apply IWorkPlanBizOf pattern
     public interface IWorkPlanBiz
     {
         WorkPlan Get(Guid id);
