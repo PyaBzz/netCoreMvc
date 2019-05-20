@@ -6,11 +6,12 @@ namespace myCoreMvc.Domain
 {
     public class WorkItem : Thing, IClonable
     {
+        //Task: Is PriorityChoices a responsibility of WorkItem or its Biz class?
         public static readonly int[] PriorityChoices = new[] { 1, 2, 3, 4 };
 
         /*================================  Properties ================================*/
 
-        public String Reference { get; set; }
+        public string Reference { get; set; }
         public int Priority { get; set; }
         [Display(Name = "Item name"), Required]
         public string Name { get; set; }

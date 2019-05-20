@@ -32,13 +32,13 @@ namespace myCoreMvc.UI.Controllers
             if (ModelState.IsValid)
             {
                 listModel.Items = WorkItemBiz.GetList();
+                var searchFilters = new List<Predicate<WorkItem>>();
+                if (listModel.Search_All != null) searchFilters.Add(wi => Regex.IsMatch(wi.GetStringOfProperties(), listModel.Search_All));
+                if (listModel.Search_Reference != null) searchFilters.Add(wi => Regex.IsMatch(wi.Reference, listModel.Search_Reference));
+                if (listModel.Search_Name != null) searchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
+                if (listModel.Search_Priority != null) searchFilters.Add(wi => wi.Priority == listModel.Search_Priority);
 
-                if (listModel.Search_All != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.GetStringOfProperties(), listModel.Search_All));
-                if (listModel.Search_Reference != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Reference, listModel.Search_Reference));
-                if (listModel.Search_Name != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
-                if (listModel.Search_Priority != null) listModel.SearchFilters.Add(wi => wi.Priority == listModel.Search_Priority);
-
-                listModel.Items = listModel.Items.AppliedWithFilters(listModel.SearchFilters); //Task: Should we filter in back-end instead?
+                listModel.Items = listModel.Items.AppliedWithFilters(searchFilters);
             }
             else
             {
@@ -50,7 +50,6 @@ namespace myCoreMvc.UI.Controllers
         public class ListModel
         {
             public IEnumerable<WorkItem> Items;
-            public List<Func<WorkItem, bool>> SearchFilters { get; set; } = new List<Func<WorkItem, bool>>();
 
             public string Search_All { get; set; }
             public string Search_Reference { get; set; }
