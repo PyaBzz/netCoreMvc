@@ -32,10 +32,11 @@ namespace myCoreMvc.UI.Controllers
             if (ModelState.IsValid)
             {
                 listModel.Items = WorkPlanBiz.GetList();
+                var searchFilters = new List<Predicate<WorkPlan>>();
+                if (listModel.Search_Name != null)
+                    searchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
 
-                if (listModel.Search_Name != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
-
-                listModel.Items = listModel.Items.AppliedWithFilters(listModel.SearchFilters);
+                listModel.Items = listModel.Items.AppliedWithFilters(searchFilters);
             }
             else
             {
@@ -47,7 +48,6 @@ namespace myCoreMvc.UI.Controllers
         public class ListModel
         {
             public IEnumerable<WorkPlan> Items;
-            public List<Func<WorkPlan, bool>> SearchFilters { get; set; } = new List<Func<WorkPlan, bool>>();
 
             public string Search_Name { get; set; }
 
