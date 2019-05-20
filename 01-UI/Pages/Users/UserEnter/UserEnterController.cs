@@ -37,7 +37,7 @@ namespace myCoreMvc.UI.Controllers
             {
                 var user = new User();
                 user.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                var transactionResult = UserBiz.Save(user);
+                var transactionResult = UserBiz.Of(user).Save();
                 var resultMessage = "";
                 switch (transactionResult)
                 {

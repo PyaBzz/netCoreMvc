@@ -17,17 +17,15 @@ namespace myCoreMvc.App.Providing
         public UserBiz(IDataProvider dataProvider)
             => DataProvider = dataProvider;
 
-        public User Get(Guid id) => DataProvider.Get<User>(id);
+        User IUserBiz.Get(Guid id) => DataProvider.Get<User>(id);
 
-        public List<User> GetList() => DataProvider.GetList<User>();
+        List<User> IUserBiz.GetList() => DataProvider.GetList<User>();
 
-        public TransactionResult Delete(Guid id) => DataProvider.Delete<User>(id);
-
-        public Task<bool> GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
+        Task<bool> IUserBiz.GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
         {
             claimsPrincipal = null;
 
-            if (ValidateCredentials(userName, passWord, out var user).Result == false)
+            if ((this as IUserBiz).ValidateCredentials(userName, passWord, out var user).Result == false)
                 return Task.FromResult(false);
 
             var claims = new List<Claim>
@@ -48,7 +46,7 @@ namespace myCoreMvc.App.Providing
             return Task.FromResult(true);
         }
 
-        public Task<bool> ValidateCredentials(string userName, string passWord, out User user)
+        Task<bool> IUserBiz.ValidateCredentials(string userName, string passWord, out User user)
         {
             user = DataProvider.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
             if (user != null)
@@ -62,35 +60,7 @@ namespace myCoreMvc.App.Providing
             return Task.FromResult(false);
         }
 
-        public TransactionResult Save(User user)
-        {
-            if (user.Id == Guid.Empty)
-            {
-                user.Salt = new byte[128 / 8];
-                using (var rng = RandomNumberGenerator.Create())
-                {
-                    rng.GetBytes(user.Salt);
-                }
-                return DataProvider.Add(user);
-            }
-            else
-            {
-                var existingUser = DataProvider.Get<User>(user.Id);
-                user.Salt = existingUser.Salt;
-                user.Hash = existingUser.Hash;
-                return DataProvider.Update(user);
-            }
-        }
-
-        public TransactionResult SetPassword(Guid id, string password)
-        {
-            var user = DataProvider.Get<User>(id);
-            if (user == null)
-                return TransactionResult.NotFound;
-
-            var hashBytes = KeyDerivation.Pbkdf2(password, user.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
-            user.Hash = Convert.ToBase64String(hashBytes);
-            return TransactionResult.Updated;
-        }
+        IUserBizOf IUserBiz.Of(User user)
+            => new UserBizOf(DataProvider, user);
     }
 }

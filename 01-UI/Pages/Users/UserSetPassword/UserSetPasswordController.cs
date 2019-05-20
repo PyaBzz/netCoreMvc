@@ -35,7 +35,8 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var transactionResult = UserBiz.SetPassword(inputModel.Id, inputModel.Password);
+                var user = UserBiz.Get(inputModel.Id);
+                var transactionResult = UserBiz.Of(user).SetPassword(inputModel.Password);
                 var resultMessage = "";
                 switch (transactionResult)
                 {

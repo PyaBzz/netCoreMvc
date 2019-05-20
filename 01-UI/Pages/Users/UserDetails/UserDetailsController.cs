@@ -26,7 +26,8 @@ namespace myCoreMvc.UI.Controllers
         public IActionResult Delete(Guid id)
         {
             var result = "";
-            switch (UserBiz.Delete(id))
+            var user = UserBiz.Get(id);
+            switch (UserBiz.Of(user).Delete())
             {
                 case TransactionResult.NotFound: result = "Found no User with the provided Id."; break;
                 case TransactionResult.Deleted: result = "Item deleted."; break;
