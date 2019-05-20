@@ -4,18 +4,17 @@ using myCoreMvc.Domain;
 using PyaFramework.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace myCoreMvc.App.Providing
 {
-    public class UserBizMock : IUserBiz
+    public class UserBiz : IUserBiz
     {
         private IDataProvider DataProvider;
 
-        public UserBizMock(IDataProvider dataProvider)
+        public UserBiz(IDataProvider dataProvider)
             => DataProvider = dataProvider;
 
         public User Get(Guid id) => DataProvider.Get<User>(id);
@@ -49,13 +48,13 @@ namespace myCoreMvc.App.Providing
             return Task.FromResult(true);
         }
 
-        public Task<bool> ValidateCredentials(string userName, string passWord, out User iUser)
+        public Task<bool> ValidateCredentials(string userName, string passWord, out User user)
         {
-            iUser = DataProvider.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
-            if (iUser != null)
+            user = DataProvider.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
+            if (user != null)
             {
-                var existingHash = iUser.Hash;
-                var hashBytes = KeyDerivation.Pbkdf2(passWord, iUser.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
+                var existingHash = user.Hash;
+                var hashBytes = KeyDerivation.Pbkdf2(passWord, user.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
                 var hash = Convert.ToBase64String(hashBytes);
                 if (hash == existingHash)
                     return Task.FromResult(true);
@@ -63,23 +62,23 @@ namespace myCoreMvc.App.Providing
             return Task.FromResult(false);
         }
 
-        public TransactionResult Save(User iUser)
+        public TransactionResult Save(User user)
         {
-            if (iUser.Id == Guid.Empty)
+            if (user.Id == Guid.Empty)
             {
-                iUser.Salt = new byte[128 / 8];
+                user.Salt = new byte[128 / 8];
                 using (var rng = RandomNumberGenerator.Create())
                 {
-                    rng.GetBytes(iUser.Salt);
+                    rng.GetBytes(user.Salt);
                 }
-                return DataProvider.Add(iUser);
+                return DataProvider.Add(user);
             }
             else
             {
-                var existingUser = DataProvider.Get<User>(iUser.Id);
-                iUser.Salt = existingUser.Salt;
-                iUser.Hash = existingUser.Hash;
-                return DataProvider.Update(iUser);
+                var existingUser = DataProvider.Get<User>(user.Id);
+                user.Salt = existingUser.Salt;
+                user.Hash = existingUser.Hash;
+                return DataProvider.Update(user);
             }
         }
 
