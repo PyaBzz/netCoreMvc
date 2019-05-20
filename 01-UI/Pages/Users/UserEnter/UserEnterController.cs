@@ -18,14 +18,14 @@ namespace myCoreMvc.UI.Controllers
         private readonly IUserBiz UserBiz;
 
         public UserEnterController(IUserBiz userBiz)
-        {
-            UserBiz = userBiz;
-        }
+            => UserBiz = userBiz;
 
         public IActionResult Index(Guid id)
         {
             var user = UserBiz.Get(id);
             var enterModel = new EnterModel();
+            enterModel.RoleChoices = AuthConstants.All
+                .Select(c => new SelectListItem { Text = c, Value = c, Selected = c == enterModel.Role });
             if (user != null) enterModel.CopySimilarPropertiesFrom(user);
             return View("UserEnter", enterModel);
         }
@@ -66,7 +66,7 @@ namespace myCoreMvc.UI.Controllers
             public string Name { get; set; }
             public DateTime DateOfBirth { get; set; } = new DateTime(1900, 01, 01);
             public string Role { get; set; }
-            public IEnumerable<SelectListItem> RoleChoices => AuthConstants.All.Select(c => new SelectListItem { Text = c, Value = c, Selected = c == Role });
+            public IEnumerable<SelectListItem> RoleChoices;
             public string Message = "";
         }
     }

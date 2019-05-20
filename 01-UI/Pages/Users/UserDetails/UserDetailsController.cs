@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.App;
 using myCoreMvc.App.Providing;
-using myCoreMvc.Domain;
-using PyaFramework.Core;
 using System;
 
 namespace myCoreMvc.UI.Controllers
@@ -13,9 +11,7 @@ namespace myCoreMvc.UI.Controllers
         private readonly IUserBiz UserBiz;
 
         public UserDetailsController(IUserBiz userBiz)
-        {
-            UserBiz = userBiz;
-        }
+            => UserBiz = userBiz;
 
         public IActionResult Index(Guid id)
         {

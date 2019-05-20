@@ -14,9 +14,7 @@ namespace myCoreMvc.UI.Controllers
         private readonly IUserBiz UserBiz;
 
         public UserListController(IUserBiz userBiz)
-        {
-            UserBiz = userBiz;
-        }
+            => UserBiz = userBiz;
 
         public IActionResult Index(string message)
         {
@@ -34,10 +32,11 @@ namespace myCoreMvc.UI.Controllers
             if (ModelState.IsValid)
             {
                 listModel.Items = UserBiz.GetList();
-
-                if (listModel.Search_Name != null) listModel.SearchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
-
-                listModel.Items = listModel.Items.AppliedWithFilters(listModel.SearchFilters);
+                var searchFilters = new List<Predicate<User>>();
+                if (listModel.Search_Name.HasValue())
+                    searchFilters.Add((User u) => Regex.IsMatch(u.Name, listModel.Search_Name));
+                //Task: Add other search filters
+                listModel.Items = listModel.Items.AppliedWithFilters(searchFilters);
             }
             else
             {
@@ -49,10 +48,7 @@ namespace myCoreMvc.UI.Controllers
         public class ListModel
         {
             public IEnumerable<User> Items;
-            public List<Func<User, bool>> SearchFilters { get; set; } = new List<Func<User, bool>>();
-
             public string Search_Name { get; set; }
-
             public string Message;
         }
     }

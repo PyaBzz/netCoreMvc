@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Linq;
-using myCoreMvc.Domain;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PyaFramework.Core;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
 using myCoreMvc.App;
 using myCoreMvc.App.Providing;
 
@@ -18,15 +14,14 @@ namespace myCoreMvc.UI.Controllers
         private readonly IUserBiz UserBiz;
 
         public UserSetPasswordController(IUserBiz userBiz)
-        {
-            UserBiz = userBiz;
-        }
+            => UserBiz = userBiz;
 
         public IActionResult Index(Guid id)
         {
             var user = UserBiz.Get(id);
             var inputModel = new EnterModel();
-            if (user != null) inputModel.CopySimilarPropertiesFrom(user);
+            if (user != null)
+                inputModel.CopySimilarPropertiesFrom(user);
             return View("UserSetPassword", inputModel);
         }
 
@@ -57,10 +52,9 @@ namespace myCoreMvc.UI.Controllers
         public class EnterModel : IClonable
         {
             public Guid Id { get; set; }
-
             public string Name { get; set; }
             public string Password { get; set; }
-            public string Message = ""; //Task: Do we need these Messages in enter controllers
+            public string Message = ""; //Task: Do we need these Messages in enter controllers?
         }
     }
 }
