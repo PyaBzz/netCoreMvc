@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 
 namespace myCoreMvc.App.Providing
 {
-    //Task: Apply IWorkPlanBizOf pattern
     public interface IWorkPlanBiz
     {
         WorkPlan Get(Guid id);
@@ -16,8 +15,6 @@ namespace myCoreMvc.App.Providing
         List<WorkPlan> GetListIncluding(params Expression<Func<WorkPlan, object>>[] includeProperties);
         List<WorkPlan> GetListIncluding(Func<WorkPlan, bool> predicate, params Expression<Func<WorkPlan, object>>[] includeProperties);
 
-        TransactionResult Add(WorkPlan obj);
-        TransactionResult Update(WorkPlan obj);
-        TransactionResult Delete(Guid id);
+        IWorkPlanBizOf Of(WorkPlan workPlan);
     }
 }

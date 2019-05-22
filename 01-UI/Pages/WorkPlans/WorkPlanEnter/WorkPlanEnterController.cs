@@ -40,13 +40,13 @@ namespace myCoreMvc.UI.Controllers
                 {
                     workPlan = new WorkPlan();
                     workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                    transactionResult = WorkPlanBiz.Add(workPlan);
+                    transactionResult = WorkPlanBiz.Of(workPlan).Add();
                 }
                 else
                 {
                     workPlan = WorkPlanBiz.Get(inputModel.Id);
                     workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                    transactionResult = WorkPlanBiz.Update(workPlan);
+                    transactionResult = WorkPlanBiz.Of(workPlan).Update();
                 }
                 var resultMessage = "";
                 switch (transactionResult)

@@ -22,7 +22,8 @@ namespace myCoreMvc.UI.Controllers
         public IActionResult Delete(Guid id)
         {
             var result = "";
-            switch (WorkPlanBiz.Delete(id))
+            var workPlan = WorkPlanBiz.Get(id);
+            switch (WorkPlanBiz.Of(workPlan).Delete())
             {
                 case TransactionResult.NotFound: result = "Found no WorkPlan with the provided Id."; break;
                 case TransactionResult.Deleted: result = "Item deleted."; break;

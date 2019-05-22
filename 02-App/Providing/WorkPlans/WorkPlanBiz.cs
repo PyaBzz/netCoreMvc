@@ -23,8 +23,7 @@ namespace myCoreMvc.App.Providing
         public List<WorkPlan> GetListIncluding(Func<WorkPlan, bool> predicate, params Expression<Func<WorkPlan, object>>[] includeProperties)
             => DataProvider.GetListIncluding<WorkPlan>(predicate, includeProperties);
 
-        public TransactionResult Add(WorkPlan obj) => DataProvider.Add(obj);
-        public TransactionResult Update(WorkPlan obj) => DataProvider.Update(obj);
-        public TransactionResult Delete(Guid id) => DataProvider.Delete<WorkPlan>(id);
+        IWorkPlanBizOf IWorkPlanBiz.Of(WorkPlan workPlan)
+            => new WorkPlanBizOf(DataProvider, workPlan);
     }
 }

@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace myCoreMvc.App.Providing
 {
-    public interface IUserBiz //Task: Needs Interface Segregation as it has common aspects with IDataProvider
+    #region Lesson
+    //Lesson: Although this interface has common aspects with
+    //IDataProvider we don't use IDataProvider directly in UI
+    #endregion
+    public interface IUserBiz
     {
         User Get(Guid id);
         List<User> GetList();
