@@ -19,12 +19,4 @@ namespace myCoreMvc.App.Providing
         Task<bool> ValidateCredentials(string userName, string passWord, out User user);
         IUserBizOf Of(User user);
     }
-
-    public interface IUserBizOf
-    {
-        User User { get; }
-        TransactionResult Save();
-        TransactionResult SetPassword(string password);
-        TransactionResult Delete();
-    }
 }

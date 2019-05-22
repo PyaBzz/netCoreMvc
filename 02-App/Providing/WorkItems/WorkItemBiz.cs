@@ -26,5 +26,8 @@ namespace myCoreMvc.App.Providing
         public TransactionResult Add(WorkItem obj) => DataProvider.Add(obj);
         public TransactionResult Update(WorkItem obj) => DataProvider.Update(obj);
         public TransactionResult Delete(Guid id) => DataProvider.Delete<WorkItem>(id);
+
+        public IWorkItemBizOf Of(WorkItem workItem)
+            => new WorkItemBizOf(DataProvider, workItem);
     }
 }

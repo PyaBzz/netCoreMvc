@@ -60,13 +60,13 @@ namespace myCoreMvc.UI.Controllers
                     workItem = new WorkItem();
                     workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
                     workItem.WorkPlan = WorkPlanBiz.Get(inputModel.WorkPlan);
-                    transactionResult = WorkItemBiz.Add(workItem);
+                    transactionResult = WorkItemBiz.Of(workItem).Add();
                 }
                 else
                 {
                     workItem = WorkItemBiz.Get(inputModel.Id);
                     workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                    transactionResult = WorkItemBiz.Update(workItem);
+                    transactionResult = WorkItemBiz.Of(workItem).Update();
                 }
                 var resultMessage = "";
                 switch (transactionResult)

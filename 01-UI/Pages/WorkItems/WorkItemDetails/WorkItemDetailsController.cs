@@ -22,7 +22,8 @@ namespace myCoreMvc.UI.Controllers
         public IActionResult Delete(Guid id)
         {
             var result = "";
-            switch (WorkItemBiz.Delete(id))
+            var workItem = WorkItemBiz.Get(id);
+            switch (WorkItemBiz.Of(workItem).Delete())
             {
                 case TransactionResult.NotFound: result = "Found no WorkItem with the provided Id."; break;
                 case TransactionResult.Deleted: result = "Item deleted."; break;
