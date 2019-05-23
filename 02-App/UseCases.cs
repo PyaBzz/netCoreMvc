@@ -1,3 +1,6 @@
+//Task: Translate use cases to test cases and implement them in services.
+
+/*
 1- User
  - Add
  - Check details
@@ -25,3 +28,4 @@
  - Move to another work plan
  - Remove from work plan (assign to backlog or no work plan)
 
+ */
