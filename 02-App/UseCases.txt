@@ -1,0 +1,27 @@
+1- User
+ - Add
+ - Check details
+ - Search
+ - Edit
+ - Set PW
+ - Log in
+ - Verify access permissions
+
+2- WorkPlan
+ - Add
+ - Check details
+ - Search
+ - Edit
+ - Delete
+ - List work items
+ 
+3- WorkItem
+ - Add
+ - Check details
+ - Search
+ - Edit
+ - Delete
+ - Add to work plan
+ - Move to another work plan
+ - Remove from work plan (assign to backlog or no work plan)
+
