@@ -28,6 +28,8 @@ namespace myCoreMvc.UI.Controllers
         public IActionResult Index(Guid id)
         {
             var inputModel = new EnterModel();
+            inputModel.PriorityChoices = WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
+            inputModel.WorkPlanChoices = WorkPlanBiz.GetList().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.WorkPlan });
             if (id != Guid.Empty)
             {
                 var item = WorkItemBiz.Get(id);
