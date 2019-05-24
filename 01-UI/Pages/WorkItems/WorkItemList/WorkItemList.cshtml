@@ -32,7 +32,7 @@
 
 @if (Model.Items != null && Model.Items.Any())
 {
-    <table>
+    <table name="WorkItemList">
         <thead>
             <tr>
                 <td>WorkPlan</td>
@@ -44,7 +44,7 @@
         </thead>
         @foreach (var item in Model.Items)
         {
-            <tr>
+            <tr name="@item.Name">
                 <td>@item.WorkPlan</td>
                 <td><a asp-controller="@(Html.ShortNameOf<WorkItemDetailsController>())" asp-action="@nameof(WorkItemDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
                 <td>@item.Name</td>
