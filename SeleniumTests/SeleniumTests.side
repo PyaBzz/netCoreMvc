@@ -5,7 +5,7 @@
   "url": "http://localhost:60343",
   "tests": [{
     "id": "ad5ddc5b-7849-4387-8ef1-645a4fecc293",
-    "name": "Add FourthItem",
+    "name": "00-Add WorkItem",
     "commands": [{
       "id": "bb4efc00-b8d5-4ecb-b0c1-550937119198",
       "comment": "",
@@ -87,7 +87,7 @@
     }]
   }, {
     "id": "68ecefaf-5cb6-4e0c-ad16-98507031feaa",
-    "name": "Search WorkItem by Name",
+    "name": "02-Search WorkItem by All",
     "commands": [{
       "id": "9cb15eaf-91a8-46c8-b772-1c5927c274ce",
       "comment": "",
@@ -99,7 +99,7 @@
       "id": "4b4b34d4-7e3f-44ac-b3da-53e5983252bf",
       "comment": "",
       "command": "type",
-      "target": "name=Search_Name",
+      "target": "name=Search_All",
       "targets": [
         ["name=Search_Name", "name"],
         ["css=input:nth-child(9)", "css:finder"],
@@ -150,7 +150,7 @@
     }]
   }, {
     "id": "f511996f-9ce9-4db1-a60d-3a05da150e13",
-    "name": "Search WorkItem by Reference",
+    "name": "03-Search WorkItem by Reference",
     "commands": [{
       "id": "74b332c8-232f-4640-993c-38ca504b5b8b",
       "comment": "",
@@ -210,6 +210,204 @@
       "target": "name=FourthItem",
       "targets": [],
       "value": ""
+    }]
+  }, {
+    "id": "9a4dae8d-de15-4f82-8d0b-1231491572b5",
+    "name": "04-Search WorkItem by Name",
+    "commands": [{
+      "id": "364fa7b2-515e-456a-86fc-7bafc9479353",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "52e04986-1eb9-4ca1-bd32-1079e0005535",
+      "comment": "",
+      "command": "type",
+      "target": "name=Search_Name",
+      "targets": [
+        ["name=Search_Name", "name"],
+        ["css=input:nth-child(9)", "css:finder"],
+        ["xpath=//input[@name='Search_Name']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "urth"
+    }, {
+      "id": "b8b20609-df35-4061-a6a4-37e2ba38b52d",
+      "comment": "",
+      "command": "click",
+      "target": "name=Search",
+      "targets": [
+        ["name=Search", "name"],
+        ["css=input:nth-child(14)", "css:finder"],
+        ["xpath=//input[@name='Search']", "xpath:attributes"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3925ecb-2be5-4df7-876a-a115996525e4",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "name=FourthItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "85b7a2d5-fbbd-40e6-bf36-64f8c8ad05d0",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "name=FirstItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9218c3da-024e-4f9e-b4a5-b2bf4d32a51c",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "name=SecondItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3da6b265-a469-47c3-9a6d-38767c11aa5c",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "name=ThirdItem",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "17777587-9b5c-441d-9e9e-644938285c69",
+    "name": "05-Search WorkItem by Priority",
+    "commands": [{
+      "id": "4f7b93a9-28a5-4392-8202-6bcb26876f8d",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "749c4c75-6dac-4ef9-ac2b-f81a3ea1e4fa",
+      "comment": "",
+      "command": "type",
+      "target": "name=Search_Priority",
+      "targets": [
+        ["name=Search_Name", "name"],
+        ["css=input:nth-child(9)", "css:finder"],
+        ["xpath=//input[@name='Search_Name']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "a90923e6-d351-4658-b4f2-3fa45f2d7b2d",
+      "comment": "",
+      "command": "click",
+      "target": "name=Search",
+      "targets": [
+        ["name=Search", "name"],
+        ["css=input:nth-child(14)", "css:finder"],
+        ["xpath=//input[@name='Search']", "xpath:attributes"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aaeac340-c0b4-4c78-84c6-2870e30334f9",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "name=SecondItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ba14e8be-3db8-4e93-9ac7-376039660880",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "name=FourthItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0f311e71-2252-4d11-955c-f9f0a7c53dca",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "name=FirstItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "166c0f6d-50bb-4787-9656-27547434ca51",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "name=ThirdItem",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "943462bb-5389-4f59-b15f-3bb81d0eed31",
+    "name": "01-Edit WorkItem",
+    "commands": [{
+      "id": "ba05303e-7d37-4336-bf8e-ce9472e58191",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bc4e3eac-ddba-4312-b77b-50632d41cdf0",
+      "comment": "",
+      "command": "click",
+      "target": "css=[name=FourthItem] > td:nth-child(5) > a",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "af53efe2-dda0-49d8-a44e-1c15537b47dd",
+      "comment": "",
+      "command": "select",
+      "target": "id=Priority",
+      "targets": [],
+      "value": "label=2"
+    }, {
+      "id": "25c12f1c-848f-4f6a-976b-80ba9d8821e9",
+      "comment": "",
+      "command": "click",
+      "target": "name=Save",
+      "targets": [
+        ["name=Save", "name"],
+        ["css=input:nth-child(15)", "css:finder"],
+        ["xpath=//input[@name='Save']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d751926-cd79-41de-90fa-2df9e207ab6f",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "name=FourthItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "335c18e9-2ddb-48ed-8694-e06146cea450",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[name=FourthItem] > td:nth-child(1)",
+      "targets": [],
+      "value": "Plan2"
+    }, {
+      "id": "3c083ede-816d-430a-910a-5d77ca5b6ae6",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[name=FourthItem] > td:nth-child(2) > a",
+      "targets": [],
+      "value": "Wi22"
+    }, {
+      "id": "355599a4-c767-422d-8715-c88b2e546e79",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[name=FourthItem] > td:nth-child(4)",
+      "targets": [],
+      "value": "2"
     }]
   }],
   "suites": [{
