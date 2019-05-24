@@ -28,52 +28,12 @@
       ],
       "value": ""
     }, {
-      "id": "4fba3a2d-8b7e-452f-8e2c-792c6dc7061f",
-      "comment": "",
-      "command": "click",
-      "target": "id=WorkPlan",
-      "targets": [
-        ["id=WorkPlan", "id"],
-        ["name=WorkPlan", "name"],
-        ["css=#WorkPlan", "css:finder"],
-        ["xpath=//select[@id='WorkPlan']", "xpath:attributes"],
-        ["xpath=//select", "xpath:position"],
-        ["xpath=//select[contains(.,'Plan1\nPlan2')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
       "id": "6a464855-6138-460c-b138-7bfd0dfaf70e",
       "comment": "",
       "command": "select",
       "target": "id=WorkPlan",
       "targets": [],
       "value": "label=Plan2"
-    }, {
-      "id": "0acfd928-7bac-4411-8ff4-aea23a5b4798",
-      "comment": "",
-      "command": "click",
-      "target": "id=WorkPlan",
-      "targets": [
-        ["id=WorkPlan", "id"],
-        ["name=WorkPlan", "name"],
-        ["css=#WorkPlan", "css:finder"],
-        ["xpath=//select[@id='WorkPlan']", "xpath:attributes"],
-        ["xpath=//select", "xpath:position"],
-        ["xpath=//select[contains(.,'Plan1\nPlan2')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "783ccffd-91ae-4c22-b8f1-de667ad924c0",
-      "comment": "",
-      "command": "click",
-      "target": "name=Reference",
-      "targets": [
-        ["name=Reference", "name"],
-        ["css=input:nth-child(6)", "css:finder"],
-        ["xpath=//input[@name='Reference']", "xpath:attributes"],
-        ["xpath=//input[2]", "xpath:position"]
-      ],
-      "value": ""
     }, {
       "id": "fa320e4b-550a-42b7-bfc9-4fc831ec70f6",
       "comment": "",
@@ -99,51 +59,12 @@
       ],
       "value": "FourthItem"
     }, {
-      "id": "eda07c96-7341-4fb7-8ab8-95d70e45164c",
-      "comment": "",
-      "command": "click",
-      "target": "css=label:nth-child(12)",
-      "targets": [
-        ["css=label:nth-child(12)", "css:finder"],
-        ["xpath=//label[4]", "xpath:position"],
-        ["xpath=//label[contains(.,'Priority')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
-      "id": "2d2243f7-3135-4eb1-b1a9-1e056a24068e",
-      "comment": "",
-      "command": "click",
-      "target": "id=Priority",
-      "targets": [
-        ["id=Priority", "id"],
-        ["name=Priority", "name"],
-        ["css=#Priority", "css:finder"],
-        ["xpath=//select[@id='Priority']", "xpath:attributes"],
-        ["xpath=//select[2]", "xpath:position"],
-        ["xpath=//select[contains(.,'1\n2\n3\n4')]", "xpath:innerText"]
-      ],
-      "value": ""
-    }, {
       "id": "3c435b6d-6823-4506-885e-7938f30b9ef0",
       "comment": "",
       "command": "select",
       "target": "id=Priority",
       "targets": [],
       "value": "label=4"
-    }, {
-      "id": "f1ad64bd-bfcc-4293-b005-3307752afae0",
-      "comment": "",
-      "command": "click",
-      "target": "id=Priority",
-      "targets": [
-        ["id=Priority", "id"],
-        ["name=Priority", "name"],
-        ["css=#Priority", "css:finder"],
-        ["xpath=//select[@id='Priority']", "xpath:attributes"],
-        ["xpath=//select[2]", "xpath:position"],
-        ["xpath=//select[contains(.,'1\n2\n3\n4')]", "xpath:innerText"]
-      ],
-      "value": ""
     }, {
       "id": "68094bc4-0f04-4718-b7e0-e73956e5e4d4",
       "comment": "",
@@ -166,32 +87,13 @@
     }]
   }, {
     "id": "68ecefaf-5cb6-4e0c-ad16-98507031feaa",
-    "name": "Search FourthItem",
+    "name": "Search WorkItem by Name",
     "commands": [{
       "id": "9cb15eaf-91a8-46c8-b772-1c5927c274ce",
       "comment": "",
       "command": "open",
       "target": "/",
       "targets": [],
-      "value": ""
-    }, {
-      "id": "ec84cc2f-54e3-4973-aa78-c7355302218c",
-      "comment": "",
-      "command": "setWindowSize",
-      "target": "1900x1140",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "37533199-04b0-45e9-83d9-5e20a7bd2699",
-      "comment": "",
-      "command": "click",
-      "target": "name=Search_Name",
-      "targets": [
-        ["name=Search_Name", "name"],
-        ["css=input:nth-child(9)", "css:finder"],
-        ["xpath=//input[@name='Search_Name']", "xpath:attributes"],
-        ["xpath=//input[3]", "xpath:position"]
-      ],
       "value": ""
     }, {
       "id": "4b4b34d4-7e3f-44ac-b3da-53e5983252bf",
@@ -243,6 +145,69 @@
       "comment": "",
       "command": "verifyElementNotPresent",
       "target": "name=ThirdItem",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "f511996f-9ce9-4db1-a60d-3a05da150e13",
+    "name": "Search WorkItem by Reference",
+    "commands": [{
+      "id": "74b332c8-232f-4640-993c-38ca504b5b8b",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ff5bdb42-29e2-434a-b4dc-c16302f95312",
+      "comment": "",
+      "command": "type",
+      "target": "name=Search_Reference",
+      "targets": [
+        ["name=Search_Name", "name"],
+        ["css=input:nth-child(9)", "css:finder"],
+        ["xpath=//input[@name='Search_Name']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "21"
+    }, {
+      "id": "21e06b91-93e9-47fc-9bef-b0c3c29a4814",
+      "comment": "",
+      "command": "click",
+      "target": "name=Search",
+      "targets": [
+        ["name=Search", "name"],
+        ["css=input:nth-child(14)", "css:finder"],
+        ["xpath=//input[@name='Search']", "xpath:attributes"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6f21b4ad-fb87-49d9-a1dc-64d42845c4d7",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "name=ThirdItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "88040587-c033-4b58-b909-554db441849f",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "name=FirstItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f1c69e1a-df9c-44d7-965a-19678e9aafce",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "name=SecondItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4ff7323c-b631-4a33-a903-09a875730ade",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "name=FourthItem",
       "targets": [],
       "value": ""
     }]
