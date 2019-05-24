@@ -5,7 +5,7 @@
   "url": "http://localhost:60343",
   "tests": [{
     "id": "ad5ddc5b-7849-4387-8ef1-645a4fecc293",
-    "name": "Add the Fourth WorkItem",
+    "name": "Add FourthItem",
     "commands": [{
       "id": "bb4efc00-b8d5-4ecb-b0c1-550937119198",
       "comment": "",
@@ -159,10 +159,92 @@
     }, {
       "id": "4bf0e980-7079-4685-a094-eb4d93a4efd6",
       "comment": "",
-      "command": "verifyText",
-      "target": "css=tr:nth-child(4) > td:nth-child(3)",
+      "command": "verifyElementPresent",
+      "target": "name=FourthItem",
       "targets": [],
-      "value": "FourthItem"
+      "value": ""
+    }]
+  }, {
+    "id": "68ecefaf-5cb6-4e0c-ad16-98507031feaa",
+    "name": "Search FourthItem",
+    "commands": [{
+      "id": "9cb15eaf-91a8-46c8-b772-1c5927c274ce",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ec84cc2f-54e3-4973-aa78-c7355302218c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1900x1140",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "37533199-04b0-45e9-83d9-5e20a7bd2699",
+      "comment": "",
+      "command": "click",
+      "target": "name=Search_Name",
+      "targets": [
+        ["name=Search_Name", "name"],
+        ["css=input:nth-child(9)", "css:finder"],
+        ["xpath=//input[@name='Search_Name']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b4b34d4-7e3f-44ac-b3da-53e5983252bf",
+      "comment": "",
+      "command": "type",
+      "target": "name=Search_Name",
+      "targets": [
+        ["name=Search_Name", "name"],
+        ["css=input:nth-child(9)", "css:finder"],
+        ["xpath=//input[@name='Search_Name']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "urth"
+    }, {
+      "id": "1f0ef02d-7be2-47ae-97af-61dc72b5565d",
+      "comment": "",
+      "command": "click",
+      "target": "name=Search",
+      "targets": [
+        ["name=Search", "name"],
+        ["css=input:nth-child(14)", "css:finder"],
+        ["xpath=//input[@name='Search']", "xpath:attributes"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f99082e-4dfa-4aba-811c-b67977617b09",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "name=FourthItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4b0211d7-83e8-48ff-8f50-16502cc4471e",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "name=FirstItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d1812d12-42a8-40d3-91ac-607c99ddda1e",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "name=SecondItem",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2c99f15f-5c50-443b-a8d7-bcb47a9e735a",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "name=ThirdItem",
+      "targets": [],
+      "value": ""
     }]
   }],
   "suites": [{
