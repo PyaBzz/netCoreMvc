@@ -32,7 +32,7 @@
 
 @if (Model.Items != null && Model.Items.Any())
 {
-    <table name="WorkItemList">
+    <table data-element="WorkItemList">
         <thead>
             <tr>
                 <td>WorkPlan</td>
@@ -44,12 +44,12 @@
         </thead>
         @foreach (var item in Model.Items)
         {
-            <tr name="@item.Name">
-                <td>@item.WorkPlan</td>
-                <td><a asp-controller="@(Html.ShortNameOf<WorkItemDetailsController>())" asp-action="@nameof(WorkItemDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
-                <td>@item.Name</td>
-                <td>@item.Priority</td>
-                <td><a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@item.Id">Go</a></td>
+            <tr data-element="@item.Name">
+                <td data-element="WorkPlan">@item.WorkPlan</td>
+                <td data-element="Reference"><a asp-controller="@(Html.ShortNameOf<WorkItemDetailsController>())" asp-action="@nameof(WorkItemDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
+                <td data-element="Name">@item.Name</td>
+                <td data-element="Priority">@item.Priority</td>
+                <td data-element="Edit"><a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@item.Id">Go</a></td>
             </tr>
         }
     </table>
