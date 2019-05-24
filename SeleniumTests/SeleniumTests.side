@@ -81,30 +81,30 @@
       "id": "4bf0e980-7079-4685-a094-eb4d93a4efd6",
       "comment": "",
       "command": "verifyElementPresent",
-      "target": "name=FourthItem",
+      "target": "css=[data-element=FourthItem]",
       "targets": [],
       "value": ""
     }, {
       "id": "efa5b383-6a97-4979-8e50-e0c538259691",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[name=FourthItem] > td:nth-child(2) > a",
+      "target": "css=[data-element=FourthItem] > [data-element=Reference] > a",
       "targets": [],
       "value": "Wi22"
     }, {
       "id": "a1b73f88-6fe2-455c-9692-d200e79fafcd",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[name=FourthItem] > td:nth-child(3)",
+      "target": "css=[data-element=FourthItem] > [data-element=Name]",
       "targets": [],
       "value": "FourthItem"
     }, {
       "id": "43b9af9e-c468-454a-bcf1-462b69ee0812",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[name=FourthItem] > td:nth-child(4)",
+      "target": "css=[data-element=FourthItem] > [data-element=Priority]",
       "targets": [],
-      "value": "2"
+      "value": "4"
     }]
   }, {
     "id": "68ecefaf-5cb6-4e0c-ad16-98507031feaa",
@@ -372,7 +372,7 @@
       "id": "bc4e3eac-ddba-4312-b77b-50632d41cdf0",
       "comment": "",
       "command": "click",
-      "target": "css=[name=FourthItem] > td:nth-child(5) > a",
+      "target": "css=[data-element=FourthItem] > [data-element=Edit] > a",
       "targets": [
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
@@ -386,7 +386,7 @@
       "id": "b9adb1f0-014f-400e-8c98-dd9e0307029d",
       "comment": "",
       "command": "verifySelectedLabel",
-      "target": "id=WorkPlan",
+      "target": "name=WorkPlan",
       "targets": [],
       "value": "Plan2"
     }, {
@@ -423,6 +423,13 @@
       ],
       "value": "EditedItem"
     }, {
+      "id": "dedb8351-17e1-46fe-bee2-6d96f76468f4",
+      "comment": "",
+      "command": "type",
+      "target": "name=Reference",
+      "targets": [],
+      "value": "Wi22e"
+    }, {
       "id": "af53efe2-dda0-49d8-a44e-1c15537b47dd",
       "comment": "",
       "command": "select",
@@ -445,35 +452,35 @@
       "id": "335c18e9-2ddb-48ed-8694-e06146cea450",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[name=EditedItem] > td:nth-child(1)",
+      "target": "css=[data-element=EditedItem] > [data-element=WorkPlan]",
       "targets": [],
       "value": "Plan2"
     }, {
       "id": "3c083ede-816d-430a-910a-5d77ca5b6ae6",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[name=EditedItem] > td:nth-child(2) > a",
+      "target": "css=[data-element=EditedItem] > [data-element=Reference] > a",
       "targets": [],
-      "value": "Wi22"
+      "value": "Wi22e"
     }, {
       "id": "688f3e9d-4071-4ea1-a21b-8020b5a7780c",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[name=EditedItem] > td:nth-child(3)",
+      "target": "css=[data-element=EditedItem] > [data-element=Name]",
       "targets": [],
       "value": "EditedItem"
     }, {
       "id": "355599a4-c767-422d-8715-c88b2e546e79",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[name=EditedItem] > td:nth-child(4)",
+      "target": "css=[data-element=EditedItem] > [data-element=Priority]",
       "targets": [],
       "value": "2"
     }, {
       "id": "fc5e8e0e-27b6-408d-9a16-66e58449f7cd",
       "comment": "",
       "command": "click",
-      "target": "css=[name=EditedItem] > td:nth-child(5) > a",
+      "target": "css=[data-element=EditedItem] > [data-element=Edit] > a",
       "targets": [
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
@@ -482,6 +489,34 @@
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
+      "value": ""
+    }, {
+      "id": "2b2f2b06-eb18-43a5-af1d-2122d36ebeb0",
+      "comment": "",
+      "command": "type",
+      "target": "name=Reference",
+      "targets": [],
+      "value": "Wi22"
+    }, {
+      "id": "924c06ca-3dd0-4b1b-a7c4-2d001f792880",
+      "comment": "",
+      "command": "type",
+      "target": "name=Name",
+      "targets": [],
+      "value": "FourthItem"
+    }, {
+      "id": "3167826e-d27e-4465-92a0-875e078c9943",
+      "comment": "",
+      "command": "select",
+      "target": "id=Priority",
+      "targets": [],
+      "value": "label=4"
+    }, {
+      "id": "c349e1c0-4f72-4bb7-a84c-9a4e7951d0c0",
+      "comment": "",
+      "command": "click",
+      "target": "name=Save",
+      "targets": [],
       "value": ""
     }]
   }],
