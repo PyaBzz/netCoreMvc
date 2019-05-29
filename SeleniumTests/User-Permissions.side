@@ -1,0 +1,21 @@
+{
+  "id": "8193099c-2813-4365-aee9-a13cd2b98ef4",
+  "version": "2.0",
+  "name": "User-Permissions",
+  "url": "",
+  "tests": [{
+    "id": "23c0785e-0144-4fd6-be70-ebdcd1a0b2fa",
+    "name": "01- Level1AndAbove-Todo",
+    "commands": []
+  }],
+  "suites": [{
+    "id": "3674ad8e-a13a-4853-a9dd-8cad5b5111c2",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["23c0785e-0144-4fd6-be70-ebdcd1a0b2fa"]
+  }],
+  "urls": [],
+  "plugins": []
+}
