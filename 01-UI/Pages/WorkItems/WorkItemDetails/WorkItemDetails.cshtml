@@ -9,7 +9,7 @@
 
 @if (@Model != null)
 {
-    <h3 data-elem="WorkItemDetailsHeader">WorkItem details</h3>
+    <h3 probe="WorkItemDetailsHeader">WorkItem details</h3>
     <br />
     <ObjectDetails Object=@Model>
         <a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@Model.Id">Edit</a>

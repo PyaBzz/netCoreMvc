@@ -9,7 +9,7 @@
     <h2 id="message">@Model.Message</h2>
 }
 
-<h3 data-elem="UserListHeader">Users</h3>
+<h3 probe="UserListHeader">Users</h3>
 <a asp-controller="@(Html.ShortNameOf<UserEnterController>())" asp-action="@nameof(UserEnterController.Index)">Add</a>
 
 <form asp-controller="@(Html.ShortNameOf<UserListController>())" asp-action="@nameof(UserListController.Index)">
@@ -37,18 +37,18 @@
         </thead>
         @foreach (var item in Model.Items)
         {
-            <tr data-elem="@item.Name">
-                <td data-elem="Name">
+            <tr probe="@item.Name">
+                <td probe="Name">
                     <a asp-controller="@(Html.ShortNameOf<UserDetailsController>())" asp-action="@nameof(UserDetailsController.Index)" asp-route-id="@item.Id">@item.Name</a>
                 </td>
-                <td data-elem="Id">@item.Id</td>
-                <td data-elem="Hash">@item.Hash</td>
-                <td data-elem="DateOfBirth">@item.DateOfBirth.ToShortDateString()</td>
-                <td data-elem="Role">@item.Role</td>
-                <td data-elem="Edit">
+                <td probe="Id">@item.Id</td>
+                <td probe="Hash">@item.Hash</td>
+                <td probe="DateOfBirth">@item.DateOfBirth.ToShortDateString()</td>
+                <td probe="Role">@item.Role</td>
+                <td probe="Edit">
                     <a asp-controller="@(Html.ShortNameOf<UserEnterController>())" asp-action="@nameof(UserEnterController.Index)" asp-route-id="@item.Id">Go</a>
                 </td>
-                <td data-elem="SetPassword">
+                <td probe="SetPassword">
                     <a asp-controller="@(Html.ShortNameOf<UserSetPasswordController>())" asp-action="@nameof(UserSetPasswordController.Index)" asp-route-id="@item.Id">Go</a>
                 </td>
             </tr>

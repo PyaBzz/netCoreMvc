@@ -9,7 +9,7 @@
     <h2 id="message">@Model.Message</h2>
 }
 
-<h3 data-elem="WorkItemListHeader">Work Items</h3>
+<h3 probe="WorkItemListHeader">Work Items</h3>
 <a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)">Add</a>
 
 <form asp-controller="@(Html.ShortNameOf<WorkItemListController>())" asp-action="@nameof(WorkItemListController.Index)">
@@ -32,7 +32,7 @@
 
 @if (Model.Items != null && Model.Items.Any())
 {
-    <table data-elem="WorkItemList">
+    <table probe="WorkItemList">
         <thead>
             <tr>
                 <td>WorkPlan</td>
@@ -44,12 +44,12 @@
         </thead>
         @foreach (var item in Model.Items)
         {
-            <tr data-elem="@item.Name">
-                <td data-elem="WorkPlan">@item.WorkPlan</td>
-                <td data-elem="Reference"><a asp-controller="@(Html.ShortNameOf<WorkItemDetailsController>())" asp-action="@nameof(WorkItemDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
-                <td data-elem="Name">@item.Name</td>
-                <td data-elem="Priority">@item.Priority</td>
-                <td data-elem="Edit"><a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@item.Id">Go</a></td>
+            <tr probe="@item.Name">
+                <td probe="WorkPlan">@item.WorkPlan</td>
+                <td probe="Reference"><a asp-controller="@(Html.ShortNameOf<WorkItemDetailsController>())" asp-action="@nameof(WorkItemDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
+                <td probe="Name">@item.Name</td>
+                <td probe="Priority">@item.Priority</td>
+                <td probe="Edit"><a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@item.Id">Go</a></td>
             </tr>
         }
     </table>
