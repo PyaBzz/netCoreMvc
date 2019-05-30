@@ -5,7 +5,7 @@
   "url": "http://localhost:60343",
   "tests": [{
     "id": "ad5ddc5b-7849-4387-8ef1-645a4fecc293",
-    "name": "01-Add User-Todo",
+    "name": "01-Add User",
     "commands": [{
       "id": "bb4efc00-b8d5-4ecb-b0c1-550937119198",
       "comment": "",
@@ -66,7 +66,7 @@
       "command": "type",
       "target": "name=DateOfBirth",
       "targets": [],
-      "value": "2002-02-02"
+      "value": "2002-02-22"
     }, {
       "id": "3c435b6d-6823-4506-885e-7938f30b9ef0",
       "comment": "",
@@ -108,9 +108,9 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "43b9af9e-c468-454a-bcf1-462b69ee0812",
+      "id": "af0b668d-7316-4781-a7f4-c81ae65a711b",
       "comment": "",
-      "command": "verifyElementPresent",
+      "command": "verifyText",
       "target": "css=[data-elem=James] > [data-elem=Hash]",
       "targets": [],
       "value": ""
@@ -120,7 +120,7 @@
       "command": "verifyText",
       "target": "css=[data-elem=James] > [data-elem=DateOfBirth]",
       "targets": [],
-      "value": "02/02/2002"
+      "value": "22/02/2002"
     }, {
       "id": "b1939f51-7db6-419e-b05e-de42acd8a177",
       "comment": "",
@@ -498,7 +498,7 @@
     }]
   }, {
     "id": "7a6af029-a883-4f9a-aa56-e6562c1e293e",
-    "name": "02-Details of User-Todo",
+    "name": "02-Details of User",
     "commands": [{
       "id": "4df5f4b9-5e5e-44aa-957b-52cfe7f22eb3",
       "comment": "",
@@ -514,47 +514,82 @@
       "targets": [],
       "value": "Work Items"
     }, {
+      "id": "16f09fe3-84b4-414e-89ce-2e394ece8e7b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Users",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7c5be9e-483f-448f-a117-b25e86c2d69a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[data-elem=UserListHeader]",
+      "targets": [],
+      "value": "Users"
+    }, {
       "id": "812f37cd-2d71-4e40-b5a2-2804d544fbb0",
       "comment": "",
       "command": "click",
-      "target": "css=[data-elem=ThirdItem] > [data-elem=Reference] > a",
+      "target": "css=[data-elem=James] > [data-elem=Name] > a",
       "targets": [],
       "value": ""
     }, {
       "id": "96a45eb1-44bd-4a86-9870-aa35b339a981",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[data-elem=WorkItemDetailsHeader]",
+      "target": "css=[data-elem=UserDetailsHeader]",
       "targets": [],
-      "value": "WorkItem details"
+      "value": "User details"
     }, {
       "id": "9c4a0331-afc1-4d3d-8bad-a9d212ac21cf",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[data-elem=Reference] > [data-elem=Value]",
+      "target": "css=[data-elem=Name] > [data-elem=Value]",
       "targets": [],
-      "value": "Wi21"
+      "value": "James"
     }, {
       "id": "cd4c8ca0-790c-4757-882f-b54a540a8120",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[data-elem=Priority] > [data-elem=Value]",
+      "target": "css=[data-elem=DateOfBirth] > [data-elem=Value]",
       "targets": [],
-      "value": "3"
+      "value": "22/02/2002 00:00:00"
     }, {
       "id": "04c2a639-6d34-466c-a5a4-212359cc8bd3",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[data-elem=Name] > [data-elem=Value]",
+      "target": "css=[data-elem=Role] > [data-elem=Value]",
       "targets": [],
-      "value": "ThirdItem"
+      "value": "Junior"
+    }, {
+      "id": "c12494de-a855-469b-86c0-0a0dea5f1633",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[data-elem=Salt] > [data-elem=Value]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "28e739db-9eca-4c77-ac78-468cfe2b743b",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[data-elem=Hash] > [data-elem=Value]",
+      "targets": [],
+      "value": ""
     }, {
       "id": "39fe9762-a686-4acc-a10e-da2f91dd68aa",
       "comment": "",
-      "command": "verifyText",
-      "target": "css=[data-elem=WorkPlan] > [data-elem=Value]",
+      "command": "verifyElementPresent",
+      "target": "css=[data-elem=Id] > [data-elem=Value]",
       "targets": [],
-      "value": "Plan2"
+      "value": ""
     }]
   }],
   "suites": [{
