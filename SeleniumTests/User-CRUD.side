@@ -49,6 +49,13 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "4de6e0e0-d5e7-4224-98d9-b8f1a95af98e",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserEnterHeader]",
+      "targets": [],
+      "value": "Add User"
+    }, {
       "id": "fa320e4b-550a-42b7-bfc9-4fc831ec70f6",
       "comment": "",
       "command": "type",
@@ -154,10 +161,10 @@
       "targets": [],
       "value": "Work Items"
     }, {
-      "id": "bc4e3eac-ddba-4312-b77b-50632d41cdf0",
+      "id": "16e38da7-a974-4ba7-9e6a-430927ee0de5",
       "comment": "",
       "command": "click",
-      "target": "css=[probe=FourthItem] > [probe=Edit] > a",
+      "target": "linkText=Users",
       "targets": [
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
@@ -167,6 +174,41 @@
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "1e8dd2e6-68bf-43c0-8c28-1cd3336e7654",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserListHeader]",
+      "targets": [],
+      "value": "Users"
+    }, {
+      "id": "bc4e3eac-ddba-4312-b77b-50632d41cdf0",
+      "comment": "",
+      "command": "click",
+      "target": "css=[probe=James] > [probe=Edit] > a",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea1c9ca4-75c9-44eb-a5e2-3e037a983bb7",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserEnterHeader]",
+      "targets": [],
+      "value": "Edit User"
+    }, {
+      "id": "f3adcfa8-b191-4e4e-98c1-72812f1b864a",
+      "comment": "",
+      "command": "verifyValue",
+      "target": "name=Name",
+      "targets": [],
+      "value": "James"
     }, {
       "id": "b9adb1f0-014f-400e-8c98-dd9e0307029d",
       "comment": "",
@@ -181,13 +223,6 @@
       "target": "name=Reference",
       "targets": [],
       "value": "Wi22"
-    }, {
-      "id": "f3adcfa8-b191-4e4e-98c1-72812f1b864a",
-      "comment": "",
-      "command": "verifyValue",
-      "target": "name=Name",
-      "targets": [],
-      "value": "FourthItem"
     }, {
       "id": "8e6ca920-72c9-4f66-98c7-0b56a0edf325",
       "comment": "",
