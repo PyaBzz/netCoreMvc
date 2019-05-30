@@ -24,7 +24,7 @@
       "id": "5157163e-5c78-46f3-b5b3-a9eea6b98179",
       "comment": "",
       "command": "click",
-      "target": "linkText=Add",
+      "target": "linkText=Users",
       "targets": [
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
@@ -35,43 +35,45 @@
       ],
       "value": ""
     }, {
-      "id": "6a464855-6138-460c-b138-7bfd0dfaf70e",
+      "id": "79192e9d-1fbb-4df0-a34e-81326ed778c8",
       "comment": "",
-      "command": "select",
-      "target": "id=WorkPlan",
+      "command": "verifyText",
+      "target": "css=[data-elem=UserListHeader]",
       "targets": [],
-      "value": "label=Plan2"
+      "value": "Users"
+    }, {
+      "id": "f702446f-60bc-4349-9c85-62fa0405130b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add",
+      "targets": [],
+      "value": ""
     }, {
       "id": "fa320e4b-550a-42b7-bfc9-4fc831ec70f6",
       "comment": "",
       "command": "type",
-      "target": "name=Reference",
+      "target": "name=Name",
       "targets": [
         ["name=Reference", "name"],
         ["css=input:nth-child(6)", "css:finder"],
         ["xpath=//input[@name='Reference']", "xpath:attributes"],
         ["xpath=//input[2]", "xpath:position"]
       ],
-      "value": "Wi22"
+      "value": "James"
     }, {
-      "id": "dbb25d12-0b3c-49f6-a193-deadb45e149d",
+      "id": "6a464855-6138-460c-b138-7bfd0dfaf70e",
       "comment": "",
       "command": "type",
-      "target": "name=Name",
-      "targets": [
-        ["name=Name", "name"],
-        ["css=input:nth-child(9)", "css:finder"],
-        ["xpath=//input[@name='Name']", "xpath:attributes"],
-        ["xpath=//input[3]", "xpath:position"]
-      ],
-      "value": "FourthItem"
+      "target": "name=DateOfBirth",
+      "targets": [],
+      "value": "2002-02-02"
     }, {
       "id": "3c435b6d-6823-4506-885e-7938f30b9ef0",
       "comment": "",
       "command": "select",
-      "target": "id=Priority",
+      "target": "name=Role",
       "targets": [],
-      "value": "label=4"
+      "value": "Junior"
     }, {
       "id": "68094bc4-0f04-4718-b7e0-e73956e5e4d4",
       "comment": "",
@@ -88,30 +90,51 @@
       "id": "4bf0e980-7079-4685-a094-eb4d93a4efd6",
       "comment": "",
       "command": "verifyElementPresent",
-      "target": "css=[data-elem=FourthItem]",
+      "target": "css=[data-elem=James]",
       "targets": [],
       "value": ""
     }, {
       "id": "efa5b383-6a97-4979-8e50-e0c538259691",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[data-elem=FourthItem] > [data-elem=Reference] > a",
+      "target": "css=[data-elem=James] > [data-elem=Name] > a",
       "targets": [],
-      "value": "Wi22"
+      "value": "James"
     }, {
       "id": "a1b73f88-6fe2-455c-9692-d200e79fafcd",
       "comment": "",
-      "command": "verifyText",
-      "target": "css=[data-elem=FourthItem] > [data-elem=Name]",
+      "command": "verifyElementPresent",
+      "target": "css=[data-elem=James] > [data-elem=Id]",
       "targets": [],
-      "value": "FourthItem"
+      "value": ""
     }, {
       "id": "43b9af9e-c468-454a-bcf1-462b69ee0812",
       "comment": "",
-      "command": "verifyText",
-      "target": "css=[data-elem=FourthItem] > [data-elem=Priority]",
+      "command": "verifyElementPresent",
+      "target": "css=[data-elem=James] > [data-elem=Hash]",
       "targets": [],
-      "value": "4"
+      "value": ""
+    }, {
+      "id": "cd95d3d6-56bc-4378-a5a7-4f9786304c86",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[data-elem=James] > [data-elem=DateOfBirth]",
+      "targets": [],
+      "value": "02/02/2002"
+    }, {
+      "id": "b1939f51-7db6-419e-b05e-de42acd8a177",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[data-elem=James] > [data-elem=Edit] > a",
+      "targets": [],
+      "value": "Go"
+    }, {
+      "id": "03fffdfc-f61a-4a17-a6c7-69e5dda38465",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[data-elem=James] > [data-elem=SetPassword] > a",
+      "targets": [],
+      "value": "Go"
     }]
   }, {
     "id": "943462bb-5389-4f59-b15f-3bb81d0eed31",

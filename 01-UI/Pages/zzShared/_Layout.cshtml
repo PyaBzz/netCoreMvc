@@ -24,7 +24,7 @@
             <span class="separator"></span>
             <a asp-area="Level2Only" asp-controller="@(Html.ShortNameOf<Level2OnlyController>())" asp-action="Index">@AuthConstants.Level2PolicyName</a>
             <span class="separator"></span>
-            <a asp-area="Users" asp-controller="UserList" asp-action="Index">UsersList</a>
+            <a asp-area="Users" asp-controller="UserList" asp-action="Index">Users</a>
         }
 
         @if (User.Identity.IsAuthenticated)
