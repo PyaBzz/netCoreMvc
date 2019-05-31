@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PyaFramework.Core;
 using myCoreMvc.App;
 using myCoreMvc.App.Providing;
+using System.ComponentModel.DataAnnotations;
 using PyaFramework.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
@@ -52,8 +53,10 @@ namespace myCoreMvc.UI.Controllers
 
         public class EnterModel : IClonable
         {
+            [Required]
             public Guid Id { get; set; }
             public string Name { get; set; }
+            [Required]
             public string Password { get; set; }
             public string Message = ""; //Task: Do we need these Messages in enter controllers?
         }
