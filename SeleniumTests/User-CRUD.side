@@ -145,7 +145,7 @@
     }]
   }, {
     "id": "943462bb-5389-4f59-b15f-3bb81d0eed31",
-    "name": "03-Edit User-Todo",
+    "name": "03-Edit User",
     "commands": [{
       "id": "ba05303e-7d37-4336-bf8e-ce9472e58191",
       "comment": "",
@@ -212,24 +212,17 @@
     }, {
       "id": "b9adb1f0-014f-400e-8c98-dd9e0307029d",
       "comment": "",
-      "command": "verifySelectedLabel",
-      "target": "name=WorkPlan",
-      "targets": [],
-      "value": "Plan2"
-    }, {
-      "id": "0caa3b74-4c66-4ad6-9071-a60dc4614a1f",
-      "comment": "",
       "command": "verifyValue",
-      "target": "name=Reference",
+      "target": "name=DateOfBirth",
       "targets": [],
-      "value": "Wi22"
+      "value": "2002-02-22"
     }, {
       "id": "8e6ca920-72c9-4f66-98c7-0b56a0edf325",
       "comment": "",
       "command": "verifySelectedLabel",
-      "target": "id=Priority",
+      "target": "name=Role",
       "targets": [],
-      "value": "4"
+      "value": "Junior"
     }, {
       "id": "a03106f1-61ef-4bad-9a25-a848eaefa6fb",
       "comment": "",
@@ -241,21 +234,21 @@
         ["xpath=//input[@name='Name']", "xpath:attributes"],
         ["xpath=//input[3]", "xpath:position"]
       ],
-      "value": "EditedItem"
+      "value": "EditedUser"
     }, {
-      "id": "dedb8351-17e1-46fe-bee2-6d96f76468f4",
+      "id": "414eea63-19df-4920-89a7-f6223ba20175",
       "comment": "",
       "command": "type",
-      "target": "name=Reference",
+      "target": "name=DateOfBirth",
       "targets": [],
-      "value": "Wi22e"
+      "value": "2003-03-23"
     }, {
-      "id": "af53efe2-dda0-49d8-a44e-1c15537b47dd",
+      "id": "4ebc65a4-c231-4d65-9064-8b9f21e68b43",
       "comment": "",
       "command": "select",
-      "target": "id=Priority",
+      "target": "name=Role",
       "targets": [],
-      "value": "label=2"
+      "value": "Senior"
     }, {
       "id": "25c12f1c-848f-4f6a-976b-80ba9d8821e9",
       "comment": "",
@@ -269,38 +262,31 @@
       ],
       "value": ""
     }, {
-      "id": "335c18e9-2ddb-48ed-8694-e06146cea450",
+      "id": "b7374275-a418-4377-bc43-bc5ba89757b8",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=EditedUser]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b77d7e1c-c42e-40f7-8f7a-545a53f96639",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=EditedItem] > [probe=WorkPlan]",
+      "target": "css=[probe=EditedUser] > [probe=Name] > a",
       "targets": [],
-      "value": "Plan2"
+      "value": "EditedUser"
     }, {
-      "id": "3c083ede-816d-430a-910a-5d77ca5b6ae6",
+      "id": "4c76a338-1952-4343-bcd9-baed853aff82",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=EditedItem] > [probe=Reference] > a",
+      "target": "css=[probe=EditedUser] > [probe=DateOfBirth]",
       "targets": [],
-      "value": "Wi22e"
+      "value": "23/03/2003"
     }, {
-      "id": "688f3e9d-4071-4ea1-a21b-8020b5a7780c",
-      "comment": "",
-      "command": "verifyText",
-      "target": "css=[probe=EditedItem] > [probe=Name]",
-      "targets": [],
-      "value": "EditedItem"
-    }, {
-      "id": "355599a4-c767-422d-8715-c88b2e546e79",
-      "comment": "",
-      "command": "verifyText",
-      "target": "css=[probe=EditedItem] > [probe=Priority]",
-      "targets": [],
-      "value": "2"
-    }, {
-      "id": "fc5e8e0e-27b6-408d-9a16-66e58449f7cd",
+      "id": "d308e188-b813-4a64-91f5-bf6b29e63db8",
       "comment": "",
       "command": "click",
-      "target": "css=[probe=EditedItem] > [probe=Edit] > a",
+      "target": "css=[probe=EditedUser] > [probe=Edit] > a",
       "targets": [
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
@@ -311,37 +297,47 @@
       ],
       "value": ""
     }, {
-      "id": "2b2f2b06-eb18-43a5-af1d-2122d36ebeb0",
-      "comment": "",
-      "command": "type",
-      "target": "name=Reference",
-      "targets": [],
-      "value": "Wi22"
-    }, {
-      "id": "924c06ca-3dd0-4b1b-a7c4-2d001f792880",
+      "id": "ea3b2f62-68a8-4f85-81d7-bd7dd38a24a5",
       "comment": "",
       "command": "type",
       "target": "name=Name",
-      "targets": [],
-      "value": "FourthItem"
+      "targets": [
+        ["name=Reference", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='Reference']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "James"
     }, {
-      "id": "3167826e-d27e-4465-92a0-875e078c9943",
+      "id": "46488cdd-92f6-4e79-89a3-1787edc139fa",
+      "comment": "",
+      "command": "type",
+      "target": "name=DateOfBirth",
+      "targets": [],
+      "value": "2002-02-22"
+    }, {
+      "id": "b57fe620-2245-45f3-a1fd-c036647a4e63",
       "comment": "",
       "command": "select",
-      "target": "id=Priority",
+      "target": "name=Role",
       "targets": [],
-      "value": "label=4"
+      "value": "Junior"
     }, {
-      "id": "c349e1c0-4f72-4bb7-a84c-9a4e7951d0c0",
+      "id": "63a458a6-0947-4462-a466-f426f36a3d46",
       "comment": "",
       "command": "click",
       "target": "name=Save",
-      "targets": [],
+      "targets": [
+        ["name=Save", "name"],
+        ["css=input:nth-child(15)", "css:finder"],
+        ["xpath=//input[@name='Save']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
       "value": ""
     }]
   }, {
     "id": "6ead18da-bc9c-42b5-a9c9-3eabe25f96d2",
-    "name": "04-Delete User-Todo",
+    "name": "04-Delete User",
     "commands": [{
       "id": "6ed9fb3d-66a4-4f2f-904c-35a26d1d6753",
       "comment": "",
@@ -357,19 +353,40 @@
       "targets": [],
       "value": "Work Items"
     }, {
+      "id": "e54cc5c0-27c8-478d-b0a4-0dc038888518",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Users",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "856936e2-f0e5-4f9a-a3dc-76ab8b630ba5",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserListHeader]",
+      "targets": [],
+      "value": "Users"
+    }, {
       "id": "b1f22127-e894-4f1c-a55a-ab7928b689f0",
       "comment": "",
       "command": "click",
-      "target": "css=[probe=FourthItem] > [probe=Reference] > a",
+      "target": "css=[probe=James] > [probe=Name] > a",
       "targets": [],
       "value": ""
     }, {
-      "id": "14d06e5c-9b45-4adf-aebf-9a586834db1e",
+      "id": "e5e37e08-07d8-4c87-b485-e16e211dc463",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemDetailsHeader]",
+      "target": "css=[probe=UserDetailsHeader]",
       "targets": [],
-      "value": "WorkItem details"
+      "value": "User details"
     }, {
       "id": "712eb510-ac78-4627-bcb1-2544a3651e38",
       "comment": "",
@@ -408,34 +425,27 @@
       "id": "0c53caf7-94fe-417e-b28a-8cdf578255a3",
       "comment": "",
       "command": "verifyElementPresent",
-      "target": "css=[probe=FirstItem]",
+      "target": "css=[probe=Adam]",
       "targets": [],
       "value": ""
     }, {
       "id": "34cc6032-42c7-45fa-b9ea-d08cc59ee061",
       "comment": "",
       "command": "verifyElementPresent",
-      "target": "css=[probe=SecondItem]",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "0ae8bd94-afa7-472c-942f-24b489d1e4d4",
-      "comment": "",
-      "command": "verifyElementPresent",
-      "target": "css=[probe=ThirdItem]",
+      "target": "css=[probe=Sam]",
       "targets": [],
       "value": ""
     }, {
       "id": "b4acac31-9bb1-4ebf-9585-3e184aebb592",
       "comment": "",
       "command": "verifyElementNotPresent",
-      "target": "css=[probe=FourthItem]",
+      "target": "css=[probe=James]",
       "targets": [],
       "value": ""
     }]
   }, {
     "id": "17777587-9b5c-441d-9e9e-644938285c69",
-    "name": "05-Search User by Name-Todo",
+    "name": "05-Search User by Name",
     "commands": [{
       "id": "4f7b93a9-28a5-4392-8202-6bcb26876f8d",
       "comment": "",
@@ -451,17 +461,38 @@
       "targets": [],
       "value": "Work Items"
     }, {
+      "id": "ef60b7e3-494f-40ee-bed4-cf49a2ddb4cd",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Users",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d336ccb-ed87-4e42-8234-67a9e7f75d9b",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserListHeader]",
+      "targets": [],
+      "value": "Users"
+    }, {
       "id": "749c4c75-6dac-4ef9-ac2b-f81a3ea1e4fa",
       "comment": "",
       "command": "type",
-      "target": "name=Search_Priority",
+      "target": "name=Search_Name",
       "targets": [
         ["name=Search_Name", "name"],
         ["css=input:nth-child(9)", "css:finder"],
         ["xpath=//input[@name='Search_Name']", "xpath:attributes"],
         ["xpath=//input[3]", "xpath:position"]
       ],
-      "value": "1"
+      "value": "Jim"
     }, {
       "id": "a90923e6-d351-4658-b4f2-3fa45f2d7b2d",
       "comment": "",
@@ -478,56 +509,21 @@
       "id": "0f311e71-2252-4d11-955c-f9f0a7c53dca",
       "comment": "",
       "command": "verifyElementPresent",
-      "target": "css=[probe=FirstItem]",
+      "target": "css=[probe=Jim]",
       "targets": [],
       "value": ""
     }, {
       "id": "aaeac340-c0b4-4c78-84c6-2870e30334f9",
       "comment": "",
       "command": "verifyElementNotPresent",
-      "target": "css=[probe=SecondItem]",
+      "target": "css=[probe=Sam]",
       "targets": [],
       "value": ""
     }, {
       "id": "166c0f6d-50bb-4787-9656-27547434ca51",
       "comment": "",
       "command": "verifyElementNotPresent",
-      "target": "css=[probe=ThirdItem]",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "82b5f991-cb72-40e8-b433-93ccc3aae730",
-      "comment": "",
-      "command": "type",
-      "target": "name=Search_Priority",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "4b5c3b73-3e3c-40ec-896a-405323332ad0",
-      "comment": "",
-      "command": "click",
-      "target": "name=Search",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "f2e411a2-346c-4925-b35d-1bbc72c21cdb",
-      "comment": "",
-      "command": "verifyElementPresent",
-      "target": "css=[probe=FirstItem]",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "a71b6720-8e4c-4bc7-8838-ee5fc26e6d1a",
-      "comment": "",
-      "command": "verifyElementPresent",
-      "target": "css=[probe=SecondItem]",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "a60fea4e-8886-4fce-9d74-f35d5782bcdc",
-      "comment": "",
-      "command": "verifyElementPresent",
-      "target": "css=[probe=ThirdItem]",
+      "target": "css=[probe=Adam]",
       "targets": [],
       "value": ""
     }]
