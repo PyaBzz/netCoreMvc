@@ -115,7 +115,7 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "af0b668d-7316-4781-a7f4-c81ae65a711b",
+      "id": "7d8c6e02-b3b0-440c-b6e1-929b4cb1ff6f",
       "comment": "",
       "command": "verifyText",
       "target": "css=[probe=James] > [probe=Hash]",
@@ -128,6 +128,13 @@
       "target": "css=[probe=James] > [probe=DateOfBirth]",
       "targets": [],
       "value": "22/02/2002"
+    }, {
+      "id": "af0b668d-7316-4781-a7f4-c81ae65a711b",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=James] > [probe=Role]",
+      "targets": [],
+      "value": "Junior"
     }, {
       "id": "b1939f51-7db6-419e-b05e-de42acd8a177",
       "comment": "",
@@ -142,6 +149,27 @@
       "target": "css=[probe=James] > [probe=SetPassword] > a",
       "targets": [],
       "value": "Go"
+    }, {
+      "id": "37afe4a1-eebc-41d7-9f81-0ae20087d48b",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Jim]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5544328d-15df-4569-92a6-cef2c21bc544",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Sam]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "79fa5b83-b02d-4fd4-a610-40ac0ca3c779",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Adam]",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "943462bb-5389-4f59-b15f-3bb81d0eed31",
@@ -243,13 +271,6 @@
       "targets": [],
       "value": "2003-03-23"
     }, {
-      "id": "4ebc65a4-c231-4d65-9064-8b9f21e68b43",
-      "comment": "",
-      "command": "select",
-      "target": "name=Role",
-      "targets": [],
-      "value": "Senior"
-    }, {
       "id": "25c12f1c-848f-4f6a-976b-80ba9d8821e9",
       "comment": "",
       "command": "click",
@@ -260,6 +281,34 @@
         ["xpath=//input[@name='Save']", "xpath:attributes"],
         ["xpath=//input[4]", "xpath:position"]
       ],
+      "value": ""
+    }, {
+      "id": "c4981e73-2ac9-4c70-901b-3662cc7ad440",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Jim]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "90a846f9-948a-4642-bfb5-1417b52f6ed9",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Sam]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a69b4385-fd84-45c0-afde-95bf2bd07593",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Adam]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "36244870-f32d-49ad-a3b9-be27dc7201c1",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "css=[probe=James]",
+      "targets": [],
       "value": ""
     }, {
       "id": "b7374275-a418-4377-bc43-bc5ba89757b8",
@@ -316,7 +365,7 @@
       "targets": [],
       "value": "2002-02-22"
     }, {
-      "id": "b57fe620-2245-45f3-a1fd-c036647a4e63",
+      "id": "4ebc65a4-c231-4d65-9064-8b9f21e68b43",
       "comment": "",
       "command": "select",
       "target": "name=Role",
@@ -334,10 +383,45 @@
         ["xpath=//input[4]", "xpath:position"]
       ],
       "value": ""
+    }, {
+      "id": "50e9bdbe-98a5-4440-a869-218252e7d534",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Jim]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e4544873-2489-45be-9e2e-412b3711c135",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Sam]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c569dd0a-4fad-46dc-848e-62562253ee67",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Adam]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8bee0b4b-f86d-4f8f-8f31-d2699c87af04",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=James]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3a7cb891-8b55-4aa7-a7f8-c716df405bcd",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "css=[probe=EditedUser]",
+      "targets": [],
+      "value": ""
     }]
   }, {
     "id": "6ead18da-bc9c-42b5-a9c9-3eabe25f96d2",
-    "name": "05-Delete User",
+    "name": "06-Delete User",
     "commands": [{
       "id": "6ed9fb3d-66a4-4f2f-904c-35a26d1d6753",
       "comment": "",
@@ -445,7 +529,7 @@
     }]
   }, {
     "id": "17777587-9b5c-441d-9e9e-644938285c69",
-    "name": "06-Search User by Name",
+    "name": "07-Search User by Name",
     "commands": [{
       "id": "4f7b93a9-28a5-4392-8202-6bcb26876f8d",
       "comment": "",
@@ -664,7 +748,7 @@
       "id": "0809f9ba-7ab1-49de-83d7-bd7284604ac5",
       "comment": "",
       "command": "click",
-      "target": "css=[probe=Jim] > [probe=SetPassword] > a",
+      "target": "css=[probe=James] > [probe=SetPassword] > a",
       "targets": [
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
@@ -680,7 +764,7 @@
       "command": "verifyText",
       "target": "css=[probe=UserSetPwHeader]",
       "targets": [],
-      "value": "Set Password for Jim"
+      "value": "Set Password for James"
     }, {
       "id": "81cb5aaf-c2b5-4c4b-b36b-1c5580a7b9e5",
       "comment": "",
@@ -707,6 +791,13 @@
       "target": "css=[probe=UserListHeader]",
       "targets": [],
       "value": "Users"
+    }, {
+      "id": "5be1492b-6de8-44ec-a623-511f8631727a",
+      "comment": "",
+      "command": "verifyNotText",
+      "target": "css=[probe=James] > [probe=Hash]",
+      "targets": [],
+      "value": ""
     }, {
       "id": "431d0687-0f2c-4d4f-902f-5ca368274a26",
       "comment": "",
@@ -739,7 +830,7 @@
         ["xpath=//input[@name='UserName']", "xpath:attributes"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "jim"
+      "value": "James"
     }, {
       "id": "2b668f31-27dc-444c-983f-95c21c8f9af3",
       "comment": "",
@@ -828,6 +919,218 @@
       "target": "css=[probe=Message]",
       "targets": [],
       "value": "Access Denied!"
+    }, {
+      "id": "178361ae-afd2-4e5c-87c0-3aeb285e999d",
+      "comment": "",
+      "command": "click",
+      "target": "css=[probe=SignOut]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4fc2c8f1-297f-42e5-b782-073e126646de",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=LogInHeader]",
+      "targets": [],
+      "value": "Log in"
+    }]
+  }, {
+    "id": "b5d8fbc2-3c3f-478e-9361-aa14ebf70148",
+    "name": "05-Set User Access",
+    "commands": [{
+      "id": "01c332bb-18bf-49cd-a32f-9123a62cee12",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4f5fb9ea-2ab2-4956-8791-bacddb43e1af",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=WorkItemListHeader]",
+      "targets": [],
+      "value": "Work Items"
+    }, {
+      "id": "0d76eea6-fd56-4b60-97f1-ca4620d49d1a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Users",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d708b938-a068-4d88-bd12-eeb5f599968e",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserListHeader]",
+      "targets": [],
+      "value": "Users"
+    }, {
+      "id": "47fc0e6c-03ef-4265-aecb-9076e76c20a6",
+      "comment": "",
+      "command": "click",
+      "target": "css=[probe=James] > [probe=Edit] > a",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d3a7c839-4de7-4532-b8f1-9c2b6cde0bae",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserEnterHeader]",
+      "targets": [],
+      "value": "Edit User"
+    }, {
+      "id": "e28dea1c-7f70-49d7-b4c5-ff791329fa6a",
+      "comment": "",
+      "command": "verifySelectedLabel",
+      "target": "name=Role",
+      "targets": [],
+      "value": "Junior"
+    }, {
+      "id": "fd01219f-bc13-48a1-89ae-bb660a072d83",
+      "comment": "",
+      "command": "select",
+      "target": "name=Role",
+      "targets": [],
+      "value": "Senior"
+    }, {
+      "id": "ce6a402f-3014-4ebd-906b-3d340876ac34",
+      "comment": "",
+      "command": "click",
+      "target": "name=Save",
+      "targets": [
+        ["name=Save", "name"],
+        ["css=input:nth-child(15)", "css:finder"],
+        ["xpath=//input[@name='Save']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b03d236b-89c7-4dce-98ae-6bf7ab9ad4e1",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserListHeader]",
+      "targets": [],
+      "value": "Users"
+    }, {
+      "id": "6aa66124-a6ad-456a-bea8-c0d1e6fbbb78",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=James] > [probe=Role]",
+      "targets": [],
+      "value": "Senior"
+    }, {
+      "id": "0788a85c-affe-4777-9e16-ff8f577b64c8",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Level2AtLeast",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5ebc6a72-b2eb-413d-9eb1-e823df18cc44",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=LogInHeader]",
+      "targets": [],
+      "value": "Log in"
+    }, {
+      "id": "9f0fc52f-fc0b-468d-8a4a-7a6ce9da0cde",
+      "comment": "",
+      "command": "type",
+      "target": "name=UserName",
+      "targets": [
+        ["name=UserName", "name"],
+        ["css=input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='UserName']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "James"
+    }, {
+      "id": "de21804f-fc70-443c-ace2-7ed5a7b08ea1",
+      "comment": "",
+      "command": "type",
+      "target": "name=PassWord",
+      "targets": [
+        ["name=PassWord", "name"],
+        ["css=input:nth-child(5)", "css:finder"],
+        ["xpath=//input[@name='PassWord']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "7325d07d-a834-42df-98ca-618a679c547d",
+      "comment": "",
+      "command": "click",
+      "target": "css=[probe=\"LogIn\"]",
+      "targets": [
+        ["css=input:nth-child(7)", "css:finder"],
+        ["xpath=//input[@value='Log In']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dd9e87be-2e40-489a-80a9-c5edcde10bcb",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=Message]",
+      "targets": [],
+      "value": "Access level 2 granted"
+    }, {
+      "id": "4af6f1b1-e250-42a9-93c2-e7a66d81341f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Level1AtLeast",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "67c26266-a74b-4fa1-a95a-e33886c1a65a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=Message]",
+      "targets": [],
+      "value": "Access level 1 granted"
+    }, {
+      "id": "8267e7b4-d564-4a4f-9b1b-8cdd8fe4b794",
+      "comment": "",
+      "command": "click",
+      "target": "css=[probe=SignOut]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4c15c1af-ae9f-4ac3-acab-a48acb8ba324",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=LogInHeader]",
+      "targets": [],
+      "value": "Log in"
     }]
   }],
   "suites": [{
