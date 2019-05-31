@@ -17,7 +17,7 @@ namespace myCoreMvc.UI
         {
             var protectedControllers = new[]
             {
-                typeof(Level1OnlyController)
+                typeof(Level1AtLeastController)
             };
 
             if (protectedControllers.Contains(model.ControllerType))
