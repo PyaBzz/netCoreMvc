@@ -1,11 +1,11 @@
 {
   "id": "2886a69a-746c-4d2d-ac65-c11786e230cb",
   "version": "2.0",
-  "name": "myCoreMvcUiTests",
+  "name": "WorkItem-CRUD",
   "url": "http://localhost:60343",
   "tests": [{
     "id": "ad5ddc5b-7849-4387-8ef1-645a4fecc293",
-    "name": "00-Add WorkItem",
+    "name": "01-Add WorkItem",
     "commands": [{
       "id": "bb4efc00-b8d5-4ecb-b0c1-550937119198",
       "comment": "",
@@ -115,7 +115,7 @@
     }]
   }, {
     "id": "943462bb-5389-4f59-b15f-3bb81d0eed31",
-    "name": "02-Edit WorkItem",
+    "name": "03-Edit WorkItem",
     "commands": [{
       "id": "ba05303e-7d37-4336-bf8e-ce9472e58191",
       "comment": "",
@@ -283,7 +283,7 @@
     }]
   }, {
     "id": "6ead18da-bc9c-42b5-a9c9-3eabe25f96d2",
-    "name": "03-Delete WorkItem",
+    "name": "04-Delete WorkItem",
     "commands": [{
       "id": "6ed9fb3d-66a4-4f2f-904c-35a26d1d6753",
       "comment": "",
@@ -377,7 +377,7 @@
     }]
   }, {
     "id": "68ecefaf-5cb6-4e0c-ad16-98507031feaa",
-    "name": "04-Search WorkItem by All",
+    "name": "05-Search WorkItem by All",
     "commands": [{
       "id": "9cb15eaf-91a8-46c8-b772-1c5927c274ce",
       "comment": "",
@@ -475,7 +475,7 @@
     }]
   }, {
     "id": "f511996f-9ce9-4db1-a60d-3a05da150e13",
-    "name": "05-Search WorkItem by Reference",
+    "name": "06-Search WorkItem by Reference",
     "commands": [{
       "id": "74b332c8-232f-4640-993c-38ca504b5b8b",
       "comment": "",
@@ -573,7 +573,7 @@
     }]
   }, {
     "id": "9a4dae8d-de15-4f82-8d0b-1231491572b5",
-    "name": "06-Search WorkItem by Name",
+    "name": "07-Search WorkItem by Name",
     "commands": [{
       "id": "364fa7b2-515e-456a-86fc-7bafc9479353",
       "comment": "",
@@ -671,7 +671,7 @@
     }]
   }, {
     "id": "17777587-9b5c-441d-9e9e-644938285c69",
-    "name": "07-Search WorkItem by Priority",
+    "name": "08-Search WorkItem by Priority",
     "commands": [{
       "id": "4f7b93a9-28a5-4392-8202-6bcb26876f8d",
       "comment": "",
@@ -769,7 +769,7 @@
     }]
   }, {
     "id": "7a6af029-a883-4f9a-aa56-e6562c1e293e",
-    "name": "01-Details of WorkItem",
+    "name": "02-Details of WorkItem",
     "commands": [{
       "id": "4df5f4b9-5e5e-44aa-957b-52cfe7f22eb3",
       "comment": "",

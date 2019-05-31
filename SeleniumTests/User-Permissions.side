@@ -1,21 +1,636 @@
 {
-  "id": "8193099c-2813-4365-aee9-a13cd2b98ef4",
+  "id": "2886a69a-746c-4d2d-ac65-c11786e230cb",
   "version": "2.0",
-  "name": "User-Permissions",
-  "url": "",
+  "name": "User-CRUD",
+  "url": "http://localhost:60343",
   "tests": [{
-    "id": "23c0785e-0144-4fd6-be70-ebdcd1a0b2fa",
-    "name": "01- Level1AndAbove-Todo",
-    "commands": []
+    "id": "ad5ddc5b-7849-4387-8ef1-645a4fecc293",
+    "name": "01-Add User",
+    "commands": [{
+      "id": "bb4efc00-b8d5-4ecb-b0c1-550937119198",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f74be6b1-9d81-4d64-8718-220ecb0d7f67",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=WorkItemListHeader]",
+      "targets": [],
+      "value": "Work Items"
+    }, {
+      "id": "5157163e-5c78-46f3-b5b3-a9eea6b98179",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Users",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "79192e9d-1fbb-4df0-a34e-81326ed778c8",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserListHeader]",
+      "targets": [],
+      "value": "Users"
+    }, {
+      "id": "f702446f-60bc-4349-9c85-62fa0405130b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4de6e0e0-d5e7-4224-98d9-b8f1a95af98e",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserEnterHeader]",
+      "targets": [],
+      "value": "Add User"
+    }, {
+      "id": "fa320e4b-550a-42b7-bfc9-4fc831ec70f6",
+      "comment": "",
+      "command": "type",
+      "target": "name=Name",
+      "targets": [
+        ["name=Reference", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='Reference']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "James"
+    }, {
+      "id": "6a464855-6138-460c-b138-7bfd0dfaf70e",
+      "comment": "",
+      "command": "type",
+      "target": "name=DateOfBirth",
+      "targets": [],
+      "value": "2002-02-22"
+    }, {
+      "id": "3c435b6d-6823-4506-885e-7938f30b9ef0",
+      "comment": "",
+      "command": "select",
+      "target": "name=Role",
+      "targets": [],
+      "value": "Junior"
+    }, {
+      "id": "68094bc4-0f04-4718-b7e0-e73956e5e4d4",
+      "comment": "",
+      "command": "click",
+      "target": "name=Save",
+      "targets": [
+        ["name=Save", "name"],
+        ["css=input:nth-child(15)", "css:finder"],
+        ["xpath=//input[@name='Save']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4bf0e980-7079-4685-a094-eb4d93a4efd6",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=James]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "efa5b383-6a97-4979-8e50-e0c538259691",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=James] > [probe=Name] > a",
+      "targets": [],
+      "value": "James"
+    }, {
+      "id": "a1b73f88-6fe2-455c-9692-d200e79fafcd",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=James] > [probe=Id]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "af0b668d-7316-4781-a7f4-c81ae65a711b",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=James] > [probe=Hash]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cd95d3d6-56bc-4378-a5a7-4f9786304c86",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=James] > [probe=DateOfBirth]",
+      "targets": [],
+      "value": "22/02/2002"
+    }, {
+      "id": "b1939f51-7db6-419e-b05e-de42acd8a177",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=James] > [probe=Edit] > a",
+      "targets": [],
+      "value": "Go"
+    }, {
+      "id": "03fffdfc-f61a-4a17-a6c7-69e5dda38465",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=James] > [probe=SetPassword] > a",
+      "targets": [],
+      "value": "Go"
+    }]
+  }, {
+    "id": "943462bb-5389-4f59-b15f-3bb81d0eed31",
+    "name": "03-Edit User",
+    "commands": [{
+      "id": "ba05303e-7d37-4336-bf8e-ce9472e58191",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ed1163b4-7df7-403e-aa62-7a877b02c568",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=WorkItemListHeader]",
+      "targets": [],
+      "value": "Work Items"
+    }, {
+      "id": "16e38da7-a974-4ba7-9e6a-430927ee0de5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Users",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e8dd2e6-68bf-43c0-8c28-1cd3336e7654",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserListHeader]",
+      "targets": [],
+      "value": "Users"
+    }, {
+      "id": "bc4e3eac-ddba-4312-b77b-50632d41cdf0",
+      "comment": "",
+      "command": "click",
+      "target": "css=[probe=James] > [probe=Edit] > a",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea1c9ca4-75c9-44eb-a5e2-3e037a983bb7",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserEnterHeader]",
+      "targets": [],
+      "value": "Edit User"
+    }, {
+      "id": "f3adcfa8-b191-4e4e-98c1-72812f1b864a",
+      "comment": "",
+      "command": "verifyValue",
+      "target": "name=Name",
+      "targets": [],
+      "value": "James"
+    }, {
+      "id": "b9adb1f0-014f-400e-8c98-dd9e0307029d",
+      "comment": "",
+      "command": "verifyValue",
+      "target": "name=DateOfBirth",
+      "targets": [],
+      "value": "2002-02-22"
+    }, {
+      "id": "8e6ca920-72c9-4f66-98c7-0b56a0edf325",
+      "comment": "",
+      "command": "verifySelectedLabel",
+      "target": "name=Role",
+      "targets": [],
+      "value": "Junior"
+    }, {
+      "id": "a03106f1-61ef-4bad-9a25-a848eaefa6fb",
+      "comment": "",
+      "command": "type",
+      "target": "name=Name",
+      "targets": [
+        ["name=Name", "name"],
+        ["css=input:nth-child(9)", "css:finder"],
+        ["xpath=//input[@name='Name']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "EditedUser"
+    }, {
+      "id": "414eea63-19df-4920-89a7-f6223ba20175",
+      "comment": "",
+      "command": "type",
+      "target": "name=DateOfBirth",
+      "targets": [],
+      "value": "2003-03-23"
+    }, {
+      "id": "4ebc65a4-c231-4d65-9064-8b9f21e68b43",
+      "comment": "",
+      "command": "select",
+      "target": "name=Role",
+      "targets": [],
+      "value": "Senior"
+    }, {
+      "id": "25c12f1c-848f-4f6a-976b-80ba9d8821e9",
+      "comment": "",
+      "command": "click",
+      "target": "name=Save",
+      "targets": [
+        ["name=Save", "name"],
+        ["css=input:nth-child(15)", "css:finder"],
+        ["xpath=//input[@name='Save']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7374275-a418-4377-bc43-bc5ba89757b8",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=EditedUser]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b77d7e1c-c42e-40f7-8f7a-545a53f96639",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=EditedUser] > [probe=Name] > a",
+      "targets": [],
+      "value": "EditedUser"
+    }, {
+      "id": "4c76a338-1952-4343-bcd9-baed853aff82",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=EditedUser] > [probe=DateOfBirth]",
+      "targets": [],
+      "value": "23/03/2003"
+    }, {
+      "id": "d308e188-b813-4a64-91f5-bf6b29e63db8",
+      "comment": "",
+      "command": "click",
+      "target": "css=[probe=EditedUser] > [probe=Edit] > a",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea3b2f62-68a8-4f85-81d7-bd7dd38a24a5",
+      "comment": "",
+      "command": "type",
+      "target": "name=Name",
+      "targets": [
+        ["name=Reference", "name"],
+        ["css=input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@name='Reference']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "James"
+    }, {
+      "id": "46488cdd-92f6-4e79-89a3-1787edc139fa",
+      "comment": "",
+      "command": "type",
+      "target": "name=DateOfBirth",
+      "targets": [],
+      "value": "2002-02-22"
+    }, {
+      "id": "b57fe620-2245-45f3-a1fd-c036647a4e63",
+      "comment": "",
+      "command": "select",
+      "target": "name=Role",
+      "targets": [],
+      "value": "Junior"
+    }, {
+      "id": "63a458a6-0947-4462-a466-f426f36a3d46",
+      "comment": "",
+      "command": "click",
+      "target": "name=Save",
+      "targets": [
+        ["name=Save", "name"],
+        ["css=input:nth-child(15)", "css:finder"],
+        ["xpath=//input[@name='Save']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "6ead18da-bc9c-42b5-a9c9-3eabe25f96d2",
+    "name": "04-Delete User",
+    "commands": [{
+      "id": "6ed9fb3d-66a4-4f2f-904c-35a26d1d6753",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b2fd31ec-9195-4224-a05a-0b9b359c8357",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=WorkItemListHeader]",
+      "targets": [],
+      "value": "Work Items"
+    }, {
+      "id": "e54cc5c0-27c8-478d-b0a4-0dc038888518",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Users",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "856936e2-f0e5-4f9a-a3dc-76ab8b630ba5",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserListHeader]",
+      "targets": [],
+      "value": "Users"
+    }, {
+      "id": "b1f22127-e894-4f1c-a55a-ab7928b689f0",
+      "comment": "",
+      "command": "click",
+      "target": "css=[probe=James] > [probe=Name] > a",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e5e37e08-07d8-4c87-b485-e16e211dc463",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserDetailsHeader]",
+      "targets": [],
+      "value": "User details"
+    }, {
+      "id": "712eb510-ac78-4627-bcb1-2544a3651e38",
+      "comment": "",
+      "command": "chooseCancelOnNextConfirmation",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b0251a3c-4242-418d-8103-ad1b3cf70b88",
+      "comment": "",
+      "command": "click",
+      "target": "css=[probe=Delete]",
+      "targets": [
+        ["id=ActionWithConfirm41", "id"],
+        ["css=#ActionWithConfirm41", "css:finder"],
+        ["xpath=//button[@id='ActionWithConfirm41']", "xpath:attributes"],
+        ["xpath=//actionwithconfirm/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Delete')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "89063402-3171-4af1-9848-b0af1708fb57",
+      "comment": "",
+      "command": "chooseOkOnNextConfirmation",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d42665f7-a6d1-4267-8c09-6bd0b64aa16b",
+      "comment": "",
+      "command": "click",
+      "target": "css=[probe=Delete]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0c53caf7-94fe-417e-b28a-8cdf578255a3",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Adam]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "34cc6032-42c7-45fa-b9ea-d08cc59ee061",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Sam]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b4acac31-9bb1-4ebf-9585-3e184aebb592",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "css=[probe=James]",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "17777587-9b5c-441d-9e9e-644938285c69",
+    "name": "05-Search User by Name",
+    "commands": [{
+      "id": "4f7b93a9-28a5-4392-8202-6bcb26876f8d",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f8009957-4919-4921-97ab-1c48824510e3",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=WorkItemListHeader]",
+      "targets": [],
+      "value": "Work Items"
+    }, {
+      "id": "ef60b7e3-494f-40ee-bed4-cf49a2ddb4cd",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Users",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d336ccb-ed87-4e42-8234-67a9e7f75d9b",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserListHeader]",
+      "targets": [],
+      "value": "Users"
+    }, {
+      "id": "749c4c75-6dac-4ef9-ac2b-f81a3ea1e4fa",
+      "comment": "",
+      "command": "type",
+      "target": "name=Search_Name",
+      "targets": [
+        ["name=Search_Name", "name"],
+        ["css=input:nth-child(9)", "css:finder"],
+        ["xpath=//input[@name='Search_Name']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "Jim"
+    }, {
+      "id": "a90923e6-d351-4658-b4f2-3fa45f2d7b2d",
+      "comment": "",
+      "command": "click",
+      "target": "name=Search",
+      "targets": [
+        ["name=Search", "name"],
+        ["css=input:nth-child(14)", "css:finder"],
+        ["xpath=//input[@name='Search']", "xpath:attributes"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f311e71-2252-4d11-955c-f9f0a7c53dca",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Jim]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "aaeac340-c0b4-4c78-84c6-2870e30334f9",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "css=[probe=Sam]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "166c0f6d-50bb-4787-9656-27547434ca51",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "css=[probe=Adam]",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "7a6af029-a883-4f9a-aa56-e6562c1e293e",
+    "name": "02-Details of User",
+    "commands": [{
+      "id": "4df5f4b9-5e5e-44aa-957b-52cfe7f22eb3",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "97001a2b-289f-4f9f-824c-3f7cac756ddd",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=WorkItemListHeader]",
+      "targets": [],
+      "value": "Work Items"
+    }, {
+      "id": "16f09fe3-84b4-414e-89ce-2e394ece8e7b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Users",
+      "targets": [
+        ["linkText=Add", "linkText"],
+        ["css=body > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//body/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7c5be9e-483f-448f-a117-b25e86c2d69a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserListHeader]",
+      "targets": [],
+      "value": "Users"
+    }, {
+      "id": "812f37cd-2d71-4e40-b5a2-2804d544fbb0",
+      "comment": "",
+      "command": "click",
+      "target": "css=[probe=James] > [probe=Name] > a",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "96a45eb1-44bd-4a86-9870-aa35b339a981",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=UserDetailsHeader]",
+      "targets": [],
+      "value": "User details"
+    }, {
+      "id": "9c4a0331-afc1-4d3d-8bad-a9d212ac21cf",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=Name] > [probe=Value]",
+      "targets": [],
+      "value": "James"
+    }, {
+      "id": "cd4c8ca0-790c-4757-882f-b54a540a8120",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=DateOfBirth] > [probe=Value]",
+      "targets": [],
+      "value": "22/02/2002 00:00:00"
+    }, {
+      "id": "04c2a639-6d34-466c-a5a4-212359cc8bd3",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=[probe=Role] > [probe=Value]",
+      "targets": [],
+      "value": "Junior"
+    }, {
+      "id": "c12494de-a855-469b-86c0-0a0dea5f1633",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Salt] > [probe=Value]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "28e739db-9eca-4c77-ac78-468cfe2b743b",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Hash] > [probe=Value]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "39fe9762-a686-4acc-a10e-da2f91dd68aa",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=[probe=Id] > [probe=Value]",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
-    "id": "3674ad8e-a13a-4853-a9dd-8cad5b5111c2",
-    "name": "Default Suite",
+    "id": "b8d96c5f-f8cd-4b01-8284-33c7cba90d35",
+    "name": "",
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["23c0785e-0144-4fd6-be70-ebdcd1a0b2fa"]
+    "tests": ["ad5ddc5b-7849-4387-8ef1-645a4fecc293"]
   }],
-  "urls": [],
+  "urls": ["http://localhost:60343/"],
   "plugins": []
 }
