@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PyaFramework.Core;
 using myCoreMvc.App;
 using myCoreMvc.App.Providing;
+using PyaFramework.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
 {
@@ -39,7 +40,7 @@ namespace myCoreMvc.UI.Controllers
                     case TransactionResult.NotFound: resultMessage = "User not found"; break;
                     default: resultMessage = transactionResult.ToString(); break;
                 }
-                return RedirectToAction(nameof(UserListController.Index), ShortNameOf<UserListController>(), new { message = resultMessage });  // Prevents re-submission by refresh
+                return RedirectToAction(nameof(UserListController.Index), ShortName.Of<UserListController>(), new { message = resultMessage });  // Prevents re-submission by refresh
             }
             else
             {

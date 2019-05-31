@@ -5,14 +5,14 @@
 @model WorkItem
 @{ ViewBag.Title = "WorkItem Details"; }
 
-<a asp-controller="@(Html.ShortNameOf<WorkItemListController>())" asp-action="@nameof(WorkItemListController.Index)">Back</a>
+<a asp-controller="@(ShortName.Of<WorkItemListController>())" asp-action="@nameof(WorkItemListController.Index)">Back</a>
 
 @if (@Model != null)
 {
     <h3 probe="WorkItemDetailsHeader">WorkItem details</h3>
     <br />
     <ObjectDetails Object=@Model>
-        <a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@Model.Id">Edit</a>
+        <a asp-controller="@(ShortName.Of<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@Model.Id">Edit</a>
         <ActionWithConfirm controller-type="@typeof(WorkItemDetailsController)" method-name="@nameof(WorkItemDetailsController.Delete)" message="Delete this" route-parameter="@Model.Id" />
     </ObjectDetails>
 }

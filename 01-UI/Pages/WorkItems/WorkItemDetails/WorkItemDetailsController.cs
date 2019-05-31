@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.App;
 using myCoreMvc.App.Providing;
+using PyaFramework.CoreMvc;
 using System;
 
 namespace myCoreMvc.UI.Controllers
@@ -29,7 +30,7 @@ namespace myCoreMvc.UI.Controllers
                 case TransactionResult.Deleted: result = "Item deleted."; break;
                 default: result = "Found no WorkItem with the provided Id."; break;
             }
-            return RedirectToAction(nameof(WorkItemListController.Index), ShortNameOf<WorkItemListController>(), new { message = result });  // Prevents re-submission by refresh
+            return RedirectToAction(nameof(WorkItemListController.Index), ShortName.Of<WorkItemListController>(), new { message = result });  // Prevents re-submission by refresh
         }
     }
 }

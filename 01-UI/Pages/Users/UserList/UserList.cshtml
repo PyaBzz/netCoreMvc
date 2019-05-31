@@ -10,9 +10,9 @@
 }
 
 <h3 probe="UserListHeader">Users</h3>
-<a asp-controller="@(Html.ShortNameOf<UserEnterController>())" asp-action="@nameof(UserEnterController.Index)">Add</a>
+<a asp-controller="@(ShortName.Of<UserEnterController>())" asp-action="@nameof(UserEnterController.Index)">Add</a>
 
-<form asp-controller="@(Html.ShortNameOf<UserListController>())" asp-action="@nameof(UserListController.Index)">
+<form asp-controller="@(ShortName.Of<UserListController>())" asp-action="@nameof(UserListController.Index)">
     <h3>Search</h3>
     <label asp-for=@Model.Search_Name>Name</label>
     <input type="text" name="Search_Name" value="@Model.Search_Name" />
@@ -39,17 +39,17 @@
         {
             <tr probe="@item.Name">
                 <td probe="@nameof(item.Name)">
-                    <a asp-controller="@(Html.ShortNameOf<UserDetailsController>())" asp-action="@nameof(UserDetailsController.Index)" asp-route-id="@item.Id">@item.Name</a>
+                    <a asp-controller="@(ShortName.Of<UserDetailsController>())" asp-action="@nameof(UserDetailsController.Index)" asp-route-id="@item.Id">@item.Name</a>
                 </td>
                 <td probe="@nameof(item.Id)">@item.Id</td>
                 <td probe="@nameof(item.Hash)">@item.Hash</td>
                 <td probe="@nameof(item.DateOfBirth)">@item.DateOfBirth.ToShortDateString()</td>
                 <td probe="@nameof(item.Role)">@item.Role</td>
                 <td probe="Edit">
-                    <a asp-controller="@(Html.ShortNameOf<UserEnterController>())" asp-action="@nameof(UserEnterController.Index)" asp-route-id="@item.Id">Go</a>
+                    <a asp-controller="@(ShortName.Of<UserEnterController>())" asp-action="@nameof(UserEnterController.Index)" asp-route-id="@item.Id">Go</a>
                 </td>
                 <td probe="SetPassword">
-                    <a asp-controller="@(Html.ShortNameOf<UserSetPasswordController>())" asp-action="@nameof(UserSetPasswordController.Index)" asp-route-id="@item.Id">Go</a>
+                    <a asp-controller="@(ShortName.Of<UserSetPasswordController>())" asp-action="@nameof(UserSetPasswordController.Index)" asp-route-id="@item.Id">Go</a>
                 </td>
             </tr>
         }

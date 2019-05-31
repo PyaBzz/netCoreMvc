@@ -10,7 +10,7 @@
     {<text> @Model.Message </text>}
 </h2>
 
-<a asp-controller="@(Html.ShortNameOf<WorkPlanListController>())" asp-action="@nameof(WorkPlanListController.Index)">Back</a>
+<a asp-controller="@(ShortName.Of<WorkPlanListController>())" asp-action="@nameof(WorkPlanListController.Index)">Back</a>
 
 @if (Model.Id == Guid.Empty)
 {<h3>Add WorkPlan</h3>}

@@ -10,6 +10,7 @@ using PyaFramework.Attributes;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using myCoreMvc.App;
 using myCoreMvc.App.Providing;
+using PyaFramework.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
 {
@@ -77,7 +78,7 @@ namespace myCoreMvc.UI.Controllers
                     case TransactionResult.Added: resultMessage = "New item added"; break;
                     default: resultMessage = transactionResult.ToString(); break;
                 }
-                return RedirectToAction(nameof(WorkItemListController.Index), ShortNameOf<WorkItemListController>(), new { message = resultMessage });  // Prevents re-submission by refresh
+                return RedirectToAction(nameof(WorkItemListController.Index), ShortName.Of<WorkItemListController>(), new { message = resultMessage });  // Prevents re-submission by refresh
             }
             else
             {

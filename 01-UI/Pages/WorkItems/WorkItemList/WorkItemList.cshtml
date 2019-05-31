@@ -10,9 +10,9 @@
 }
 
 <h3 probe="WorkItemListHeader">Work Items</h3>
-<a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)">Add</a>
+<a asp-controller="@(ShortName.Of<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)">Add</a>
 
-<form asp-controller="@(Html.ShortNameOf<WorkItemListController>())" asp-action="@nameof(WorkItemListController.Index)">
+<form asp-controller="@(ShortName.Of<WorkItemListController>())" asp-action="@nameof(WorkItemListController.Index)">
     <h3>Search</h3>
     <label asp-for=@Model.Search_All>All</label>
     <input type="text" name="Search_All" value="@Model.Search_All" />
@@ -46,10 +46,10 @@
         {
             <tr probe="@item.Name">
                 <td probe="@nameof(item.WorkPlan)">@item.WorkPlan</td>
-                <td probe="@nameof(item.Reference)"><a asp-controller="@(Html.ShortNameOf<WorkItemDetailsController>())" asp-action="@nameof(WorkItemDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
+                <td probe="@nameof(item.Reference)"><a asp-controller="@(ShortName.Of<WorkItemDetailsController>())" asp-action="@nameof(WorkItemDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
                 <td probe="@nameof(item.Name)">@item.Name</td>
                 <td probe="@nameof(item.Priority)">@item.Priority</td>
-                <td probe="Edit"><a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@item.Id">Go</a></td>
+                <td probe="Edit"><a asp-controller="@(ShortName.Of<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@item.Id">Go</a></td>
             </tr>
         }
     </table>
