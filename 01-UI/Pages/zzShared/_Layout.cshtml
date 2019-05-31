@@ -30,13 +30,13 @@
         @if (User.Identity.IsAuthenticated)
         {
             <form method="post" asp-area="LogIn" asp-controller="@(ShortName.Of<LogInController>())" asp-action="@nameof(LogInController.SignOut)" style="display: inline">
-                <button type="submit">Sign Out @User.Identity.Name</button>
+                <button type="submit" probe="SignOut">Sign Out @User.Identity.Name</button>
             </form>
         }
         else
         {
             <form method="get" asp-area="LogIn" asp-controller="@(ShortName.Of<LogInController>())" asp-action="@nameof(LogInController.SignIn)" style="display: inline">
-                <button type="submit">Sign In</button>
+                <button type="submit" probe="SignIn">Sign In</button>
             </form>
         }
     </header>

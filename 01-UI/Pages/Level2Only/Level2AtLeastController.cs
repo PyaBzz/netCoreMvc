@@ -12,7 +12,7 @@ namespace myCoreMvc.UI.Controllers
     {
         public ActionResult Index()
         {
-            return View("MessageOnly", $"Access Access level 2 granted granted");
+            return View("MessageOnly", $"Access level 2 granted");
         }
     }
 }
