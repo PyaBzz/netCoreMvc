@@ -37,7 +37,7 @@ namespace myCoreMvc.UI.Controllers
 
                     await HttpContext.SignInAsync(AuthConstants.SchemeName, claimsPrincipal);
                     if (returnUrl != null) return Redirect(returnUrl);
-                    return RedirectToAction(nameof(WorkItemListController.Index), ShortName.Of<WorkItemListController>(), new { area = "WorkItems", message = "You're in!" });
+                    return RedirectToAction(nameof(WorkItemListController.Index), Short<WorkItemListController>.Name, new { area = "WorkItems", message = "You're in!" });
                 }
             }
             return View(model);

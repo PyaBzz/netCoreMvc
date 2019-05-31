@@ -30,7 +30,7 @@ namespace myCoreMvc.UI.Controllers
                 case TransactionResult.Deleted: result = "Item deleted."; break;
                 default: result = "Found no WorkItem with the provided Id."; break;
             }
-            return RedirectToAction(nameof(WorkItemListController.Index), ShortName.Of<WorkItemListController>(), new { message = result });  // Prevents re-submission by refresh
+            return RedirectToAction(nameof(WorkItemListController.Index), Short<WorkItemListController>.Name, new { message = result });  // Prevents re-submission by refresh
         }
     }
 }

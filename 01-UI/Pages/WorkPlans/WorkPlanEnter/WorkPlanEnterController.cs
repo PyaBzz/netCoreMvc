@@ -56,7 +56,7 @@ namespace myCoreMvc.UI.Controllers
                     case TransactionResult.Added: resultMessage = "New item added"; break;
                     default: resultMessage = transactionResult.ToString(); break;
                 }
-                return RedirectToAction(nameof(WorkPlanListController.Index), ShortName.Of<WorkPlanListController>(), new { message = resultMessage });  // Prevents re-submission by refresh
+                return RedirectToAction(nameof(WorkPlanListController.Index), Short<WorkPlanListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
             }
             else
             {

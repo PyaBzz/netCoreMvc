@@ -30,7 +30,7 @@ namespace myCoreMvc.UI.Controllers
                 case TransactionResult.Deleted: result = "Item deleted."; break;
                 default: result = "Found no User with the provided Id."; break;
             }
-            return RedirectToAction(nameof(UserListController.Index), ShortName.Of<UserListController>(), new { area = "Users", message = result });  // Prevents re-submission by refresh
+            return RedirectToAction(nameof(UserListController.Index), Short<UserListController>.Name, new { area = "Users", message = result });  // Prevents re-submission by refresh
         }
     }
 }

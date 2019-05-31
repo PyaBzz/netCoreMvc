@@ -41,7 +41,7 @@ namespace myCoreMvc.UI.Controllers
                     case TransactionResult.NotFound: resultMessage = "User not found"; break;
                     default: resultMessage = transactionResult.ToString(); break;
                 }
-                return RedirectToAction(nameof(UserListController.Index), ShortName.Of<UserListController>(), new { message = resultMessage });  // Prevents re-submission by refresh
+                return RedirectToAction(nameof(UserListController.Index), Short<UserListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
             }
             else
             {

@@ -5,14 +5,14 @@
 @model User
 @{ ViewBag.Title = "User Details"; }
 
-<a asp-controller="@(ShortName.Of<UserListController>())" asp-action="@nameof(UserListController.Index)">Back</a>
+<a asp-controller="@(Short<UserListController>.Name)" asp-action="@nameof(UserListController.Index)">Back</a>
 
 @if (@Model != null)
 {
     <h3 probe="UserDetailsHeader">User details</h3>
     <br />
     <ObjectDetails object=@Model>
-        <a asp-controller="@(ShortName.Of<UserEnterController>())" asp-action="@nameof(UserEnterController.Index)" asp-route-id="@Model.Id">Edit</a>
+        <a asp-controller="@(Short<UserEnterController>.Name)" asp-action="@nameof(UserEnterController.Index)" asp-route-id="@Model.Id">Edit</a>
         <ActionWithConfirm controller-type="@typeof(UserDetailsController)" method-name="@nameof(UserDetailsController.Delete)" message="Delete this" item-name="@typeof(User).Name" route-parameter="@Model.Id" />
     </ObjectDetails>
 }

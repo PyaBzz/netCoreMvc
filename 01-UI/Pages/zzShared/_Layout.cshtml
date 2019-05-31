@@ -16,26 +16,26 @@
         <img src="~/StaticContent/Mushroom-Red-2.png" />
         @if (bool.Parse(config["ShowNavigationToUnauthenticatedUsers"]) || User.Identity.IsAuthenticated)
         {
-            <a asp-area="WorkPlans" asp-controller="@(ShortName.Of<WorkPlanListController>())" asp-action="Index">WorkPlans</a>
+            <a asp-area="WorkPlans" asp-controller="@(Short<WorkPlanListController>.Name)" asp-action="Index">WorkPlans</a>
             <span class="separator"></span>
-            <a asp-area="WorkItems" asp-controller="@(ShortName.Of<WorkItemListController>())" asp-action="Index">WorkItems</a>
+            <a asp-area="WorkItems" asp-controller="@(Short<WorkItemListController>.Name)" asp-action="Index">WorkItems</a>
             <span class="separator"></span>
-            <a asp-area="Level1Only" asp-controller="@(ShortName.Of<Level1AtLeastController>())" asp-action="Index">@(ShortName.Of<Level1AtLeastController>())</a>
+            <a asp-area="Level1Only" asp-controller="@(Short<Level1AtLeastController>.Name)" asp-action="Index">@(Short<Level1AtLeastController>.Name)</a>
             <span class="separator"></span>
-            <a asp-area="Level2Only" asp-controller="@(ShortName.Of<Level2AtLeastController>())" asp-action="Index">@(ShortName.Of<Level2AtLeastController>())</a>
+            <a asp-area="Level2Only" asp-controller="@(Short<Level2AtLeastController>.Name)" asp-action="Index">@(Short<Level2AtLeastController>.Name)</a>
             <span class="separator"></span>
             <a asp-area="Users" asp-controller="UserList" asp-action="Index">Users</a>
         }
 
         @if (User.Identity.IsAuthenticated)
         {
-            <form method="post" asp-area="LogIn" asp-controller="@(ShortName.Of<LogInController>())" asp-action="@nameof(LogInController.SignOut)" style="display: inline">
+            <form method="post" asp-area="LogIn" asp-controller="@(Short<LogInController>.Name)" asp-action="@nameof(LogInController.SignOut)" style="display: inline">
                 <button type="submit" probe="SignOut">Sign Out @User.Identity.Name</button>
             </form>
         }
         else
         {
-            <form method="get" asp-area="LogIn" asp-controller="@(ShortName.Of<LogInController>())" asp-action="@nameof(LogInController.SignIn)" style="display: inline">
+            <form method="get" asp-area="LogIn" asp-controller="@(Short<LogInController>.Name)" asp-action="@nameof(LogInController.SignIn)" style="display: inline">
                 <button type="submit" probe="SignIn">Sign In</button>
             </form>
         }
