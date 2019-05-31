@@ -45,10 +45,10 @@
         @foreach (var item in Model.Items)
         {
             <tr probe="@item.Name">
-                <td probe="WorkPlan">@item.WorkPlan</td>
-                <td probe="Reference"><a asp-controller="@(Html.ShortNameOf<WorkItemDetailsController>())" asp-action="@nameof(WorkItemDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
-                <td probe="Name">@item.Name</td>
-                <td probe="Priority">@item.Priority</td>
+                <td probe="@nameof(item.WorkPlan)">@item.WorkPlan</td>
+                <td probe="@nameof(item.Reference)"><a asp-controller="@(Html.ShortNameOf<WorkItemDetailsController>())" asp-action="@nameof(WorkItemDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
+                <td probe="@nameof(item.Name)">@item.Name</td>
+                <td probe="@nameof(item.Priority)">@item.Priority</td>
                 <td probe="Edit"><a asp-controller="@(Html.ShortNameOf<WorkItemEnterController>())" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@item.Id">Go</a></td>
             </tr>
         }

@@ -38,13 +38,13 @@
         @foreach (var item in Model.Items)
         {
             <tr probe="@item.Name">
-                <td probe="Name">
+                <td probe="@nameof(item.Name)">
                     <a asp-controller="@(Html.ShortNameOf<UserDetailsController>())" asp-action="@nameof(UserDetailsController.Index)" asp-route-id="@item.Id">@item.Name</a>
                 </td>
-                <td probe="Id">@item.Id</td>
-                <td probe="Hash">@item.Hash</td>
-                <td probe="DateOfBirth">@item.DateOfBirth.ToShortDateString()</td>
-                <td probe="Role">@item.Role</td>
+                <td probe="@nameof(item.Id)">@item.Id</td>
+                <td probe="@nameof(item.Hash)">@item.Hash</td>
+                <td probe="@nameof(item.DateOfBirth)">@item.DateOfBirth.ToShortDateString()</td>
+                <td probe="@nameof(item.Role)">@item.Role</td>
                 <td probe="Edit">
                     <a asp-controller="@(Html.ShortNameOf<UserEnterController>())" asp-action="@nameof(UserEnterController.Index)" asp-route-id="@item.Id">Go</a>
                 </td>
