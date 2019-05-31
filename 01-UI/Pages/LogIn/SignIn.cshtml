@@ -4,9 +4,7 @@
 
 @model LogInController.EnterModel
 
-<h2>
-    Log in
-</h2>
+<h2 probe="LogInHeader">Log in</h2>
 
 @if (!ViewContext.ModelState.IsValid)
 {
@@ -20,5 +18,5 @@
      <label>Password</label>
      <input type="text" name="@nameof(Model.PassWord)" placeholder="Pass word" value="@Model.PassWord" />
      <br />
-     <input type="submit" value="Log In" />
+     <input type="submit" value="Log In" probe="LogIn" />
  </form>
