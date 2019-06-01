@@ -36,9 +36,12 @@ namespace myCoreMvc.UI
             // and inject A into B's constructor.
             #endregion
 
-            services.AddSingleton(new LoggerFactory()
-                .AddConsole((category, logLevel) => category.Contains("Microsoft") == false)
-                .CreateLogger("myCoreMvc"));
+            services.AddLogging(iLoggingBuilder =>
+            {
+                iLoggingBuilder.AddFilter("Microsoft", LogLevel.Warning);
+                iLoggingBuilder.AddConsole();
+            });
+
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
