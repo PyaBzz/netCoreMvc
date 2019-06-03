@@ -62,7 +62,7 @@ namespace myCoreMvc.UI
 
             authBuilder.AddCookie(options =>
                 {
-                    options.LoginPath = $"/{AreaOf<LogInController>.Name}/{Short<LogInController>.Name}/{nameof(LogInController.SignIn)}"; //Task: Replace hardcoded values. Search for "path" to find similar instances
+                    options.LoginPath = $"/{AreaOf<LogInController>.Name}/{Short<LogInController>.Name}/{nameof(LogInController.SignIn)}";
                     options.AccessDeniedPath = $"/{AreaOf<LogInController>.Name}/{Short<LogInController>.Name}/{nameof(LogInController.Denied)}";
                     options.Cookie.Name = config.GetSection("Authentication").GetValue<string>("CookieName");
                     options.Cookie.MaxAge = TimeSpan.FromSeconds(config.GetSection("Authentication").GetValue<int>("AuthenticationSessionLifeTime"));

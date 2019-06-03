@@ -35,7 +35,6 @@ namespace myCoreMvc.UI.Controllers
                 var searchFilters = new List<Predicate<User>>();
                 if (listModel.Search_Name.HasValue())
                     searchFilters.Add((User u) => Regex.IsMatch(u.Name, listModel.Search_Name));
-                //Task: Add other search filters
                 listModel.Items = listModel.Items.AppliedWithFilters(searchFilters);
             }
             else
