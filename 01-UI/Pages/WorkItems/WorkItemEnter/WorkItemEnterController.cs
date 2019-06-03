@@ -49,11 +49,14 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Task: What are these lines of comment?!
+                #region Lesson
+                // We could work with ModelState errors in details using the following:
                 // ModelState.AddModelError("Reference", "It must be in blabla format!")
                 // ModelState.AddModelError("", "This is an object level error rather than property level.")
                 // @Html.ValidationSummary(true)
                 // @Html.ValidationMessageFor(p => p.Reference)
+                #endregion
+
                 inputModel.PriorityChoices = WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
                 inputModel.WorkPlanChoices = WorkPlanBiz.GetList().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.WorkPlan });
                 WorkItem workItem;
@@ -90,6 +93,15 @@ namespace myCoreMvc.UI.Controllers
 
         public class EnterModel : IClonable
         {
+            #region Lesson
+            //View models should be simpe data containers.
+            //They should contain no behavior and neither expose nor hold any dependencies.
+            //This forces the Razor views to be simple and stupid and hence most maintainable.
+            //When you follow that practice, only the controller will (and should) have dependencies.
+            //Then the controller should set necessary properties on the VM
+            //This may require filtering or policy enforcement based on business requirements none of which is a concern of VM!
+            #endregion
+
             public Guid Id { get; set; }
             [Display(Name = "Item name")]
             [ValidateAlphanumeric(3, 16)]
@@ -103,9 +115,3 @@ namespace myCoreMvc.UI.Controllers
         }
     }
 }
-//Lesson: View models should be simpe data containers.
-//They should contain no behavior and neither expose nor hold any dependencies.
-//This forces the Razor views to be simple and stupid and hence most maintainable.
-//When you follow that practice, only the controller will (and should) have dependencies.
-//Then the controller should set necessary properties on the VM
-//This may require filtering or policy enforcement based on business requirements none of which is a concern of VM!

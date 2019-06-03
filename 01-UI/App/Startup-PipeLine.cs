@@ -14,12 +14,12 @@ namespace myCoreMvc.UI
 
         public void Configure(IHostingEnvironment env, IApplicationBuilder appBuilder)
         {
-            //Lesson:
-            #region
+            #region Lesson
             // The "IsDevelopment" method returns true only if EnvironmentName equals EnvironmentName.Development (string)
             // Our environment is currently called "DevProj"
             //if (env.IsDevelopment()) appBuilder.UseDeveloperExceptionPage();
             #endregion
+
             appBuilder.UseDeveloperExceptionPage();
 
             appBuilder.UseMiddleware<CustomMiddleware>();

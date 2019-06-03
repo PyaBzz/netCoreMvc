@@ -21,8 +21,7 @@ namespace myCoreMvc.UI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //Lesson:
-            #region
+            #region Lesson
             // There seems to be no way to access services outside NetCore DI container.
             // The only ways to resolve them to an instance are:
             // 1- Constructor injection
