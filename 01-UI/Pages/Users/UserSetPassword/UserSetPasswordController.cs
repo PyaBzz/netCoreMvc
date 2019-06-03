@@ -58,7 +58,7 @@ namespace myCoreMvc.UI.Controllers
             public string Name { get; set; }
             [Required]
             public string Password { get; set; }
-            public string Message = ""; //Task: Do we need these Messages in enter controllers?
+            public string Message = "";
         }
     }
 }

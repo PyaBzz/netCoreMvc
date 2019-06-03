@@ -4,10 +4,7 @@
 @model myCoreMvc.UI.Controllers.WorkItemListController.ListModel
 @{ ViewBag.Title = "WorkItems";}
 
-@if (Model.Message != null && Model.Message != string.Empty)
-{
-    <h2 id="message">@Model.Message</h2>
-}
+<h2 id="message">@Model.Message</h2>
 
 <h3 probe="WorkItemListHeader">Work Items</h3>
 <a asp-controller="@(Short<WorkItemEnterController>.Name)" asp-action="@nameof(WorkItemEnterController.Index)">Add</a>

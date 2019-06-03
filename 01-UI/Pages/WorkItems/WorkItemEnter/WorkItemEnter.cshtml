@@ -1,5 +1,4 @@
-﻿@using System.Linq;
-@using myCoreMvc.UI.Controllers;
+﻿@using myCoreMvc.UI.Controllers;
 @using PyaFramework.CoreMvc
 
 @model WorkItemEnterController.EnterModel
@@ -7,10 +6,7 @@
     var addMode = Model.Id == Guid.Empty;
 }
 
-<h2>
-    @if (Model.Message != null && Model.Message != string.Empty)
-    {<text> @Model.Message </text>}
-</h2>
+<h2 id="message">@Model.Message</h2>
 
 <a asp-controller="@(Short<WorkItemListController>.Name)" asp-action="@nameof(WorkItemListController.Index)">Back</a>
 

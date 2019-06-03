@@ -4,10 +4,7 @@
 @model myCoreMvc.UI.Controllers.UserListController.ListModel
 @{ ViewBag.Title = "Users";}
 
-@if (Model.Message != null && Model.Message != string.Empty)
-{
-    <h2 id="message">@Model.Message</h2>
-}
+<h2 id="message">@Model.Message</h2>
 
 <h3 probe="UserListHeader">Users</h3>
 <a asp-controller="@(Short<UserEnterController>.Name)" asp-action="@nameof(UserEnterController.Index)">Add</a>

@@ -5,10 +5,7 @@
 @model UserEnterController.EnterModel
 @{ ViewBag.Title = "User Details"; }
 
-<h2>
-    @if (Model.Message != null && Model.Message != string.Empty)
-    {<text> @Model.Message </text>}
-</h2>
+<h2 id="message">@Model.Message</h2>
 
 <a asp-controller="@(Short<UserListController>.Name)" asp-action="@nameof(UserListController.Index)">Back</a>
 
