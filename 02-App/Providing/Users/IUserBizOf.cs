@@ -10,6 +10,7 @@ namespace myCoreMvc.App.Providing
     public interface IUserBizOf
     {
         User User { get; }
+
         TransactionResult Save();
         TransactionResult SetPassword(string password);
         TransactionResult Delete();

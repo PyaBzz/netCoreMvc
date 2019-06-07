@@ -18,6 +18,7 @@ namespace myCoreMvc.App.Providing
         List<User> GetList();
         Task<bool> GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal);
         Task<bool> ValidateCredentials(string userName, string passWord, out User user);
+
         IUserBizOf Of(User user);
     }
 }

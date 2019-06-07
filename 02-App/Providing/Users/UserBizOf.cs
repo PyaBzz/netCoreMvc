@@ -23,6 +23,7 @@ namespace myCoreMvc.App.Providing
 
         TransactionResult IUserBizOf.Save()
         {
+            //Task: Is this the best way to determine if the object is new?
             if (User.Id == Guid.Empty)
             {
                 User.Salt = new byte[128 / 8];
@@ -30,15 +31,8 @@ namespace myCoreMvc.App.Providing
                 {
                     rng.GetBytes(User.Salt);
                 }
-                return DataProvider.Add(User);
             }
-            else
-            {
-                var existingUser = DataProvider.Get<User>(User.Id);
-                User.Salt = existingUser.Salt;
-                User.Hash = existingUser.Hash;
-                return DataProvider.Update(User);
-            }
+            return DataProvider.Save(User);
         }
 
         TransactionResult IUserBizOf.SetPassword(string password)

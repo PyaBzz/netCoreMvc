@@ -59,5 +59,10 @@ namespace myCoreMvc.App.Consuming
             Ctx.Set<T>().Remove(target);
             return Ctx.SaveChanges() == 0 ? TransactionResult.NotFound : TransactionResult.Deleted;
         }
+
+        TransactionResult IDataProvider.Save<T>(T obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

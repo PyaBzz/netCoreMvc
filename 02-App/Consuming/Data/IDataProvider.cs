@@ -23,8 +23,7 @@ namespace myCoreMvc.App.Consuming
         // we'd have to cast the subclass to Thing or use "as List<Thing>"
         #endregion
 
-        TransactionResult Add<T>(T obj) where T : class, IThing;
-        TransactionResult Update<T>(T obj) where T : class, IThing;
+        TransactionResult Save<T>(T obj) where T : class, IThing;
         TransactionResult Delete<T>(Guid id) where T : class, IThing;
     }
 }

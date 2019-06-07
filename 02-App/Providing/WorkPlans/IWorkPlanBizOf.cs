@@ -9,8 +9,7 @@ namespace myCoreMvc.App.Providing
     {
         WorkPlan WorkPlan { get; }
 
-        TransactionResult Add();
-        TransactionResult Update();
+        TransactionResult Save();
         TransactionResult Delete();
     }
 }

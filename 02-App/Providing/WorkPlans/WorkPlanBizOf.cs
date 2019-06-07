@@ -17,8 +17,7 @@ namespace myCoreMvc.App.Providing
             WorkPlan = workPlan;
         }
 
-        TransactionResult IWorkPlanBizOf.Add() => DataProvider.Add(WorkPlan);
-        TransactionResult IWorkPlanBizOf.Update() => DataProvider.Update(WorkPlan);
+        TransactionResult IWorkPlanBizOf.Save() => DataProvider.Save(WorkPlan);
         TransactionResult IWorkPlanBizOf.Delete() => DataProvider.Delete<WorkPlan>(WorkPlan.Id);
     }
 }

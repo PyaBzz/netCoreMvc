@@ -77,7 +77,16 @@ namespace myCoreMvc.App.Consuming
         public T Get<T>(Guid id) where T : class, IThing
             => GetList<T>().SingleOrDefault(i => i.Id == id);
 
-        public TransactionResult Add<T>(T obj) where T : class, IThing
+        public TransactionResult Save<T>(T obj) where T : class, IThing
+        {
+            //Task: Is this the best way to determine if the object is new?
+            if (obj.Id == Guid.Empty)
+                return Add<T>(obj);
+            else
+                return Update<T>(obj);
+        }
+
+        private TransactionResult Add<T>(T obj) where T : class, IThing
         {
             obj.Id = Guid.NewGuid();
             var targetSource = GetList<T>();
@@ -85,14 +94,12 @@ namespace myCoreMvc.App.Consuming
             return TransactionResult.Added;
         }
 
-        public TransactionResult Update<T>(T obj) where T : class, IThing
+        private TransactionResult Update<T>(T obj) where T : class, IThing
         {
             var targetSource = GetList<T>();//Task: Use filtering query instead of LINQ!
             var existingObj = targetSource.SingleOrDefault(e => e.Id == obj.Id);
             if (existingObj == null)
-            {
                 return TransactionResult.NotFound;
-            }
             else
             {
                 existingObj.CopyPropertiesFrom(obj);

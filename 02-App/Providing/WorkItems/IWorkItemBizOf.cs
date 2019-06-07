@@ -9,8 +9,7 @@ namespace myCoreMvc.App.Providing
     {
         WorkItem WorkItem { get; }
 
-        TransactionResult Add();
-        TransactionResult Update();
+        TransactionResult Save();
         TransactionResult Delete();
     }
 }

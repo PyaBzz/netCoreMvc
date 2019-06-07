@@ -17,8 +17,7 @@ namespace myCoreMvc.App.Providing
             WorkItem = workItem;
         }
 
-        TransactionResult IWorkItemBizOf.Add() => DataProvider.Add(WorkItem);
-        TransactionResult IWorkItemBizOf.Update() => DataProvider.Update(WorkItem);
+        TransactionResult IWorkItemBizOf.Save() => DataProvider.Save(WorkItem);
         TransactionResult IWorkItemBizOf.Delete() => DataProvider.Delete<WorkItem>(WorkItem.Id);
     }
 }

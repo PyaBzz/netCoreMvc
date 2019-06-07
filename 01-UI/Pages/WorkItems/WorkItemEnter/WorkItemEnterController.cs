@@ -59,28 +59,23 @@ namespace myCoreMvc.UI.Controllers
 
                 inputModel.PriorityChoices = WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
                 inputModel.WorkPlanChoices = WorkPlanBiz.GetList().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.WorkPlan });
-                WorkItem workItem;
-                TransactionResult transactionResult;
-                if (inputModel.Id == Guid.Empty)
-                {
-                    workItem = new WorkItem();
-                    workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                    workItem.WorkPlan = WorkPlanBiz.Get(inputModel.WorkPlan);
-                    transactionResult = WorkItemBiz.Of(workItem).Add();
-                }
-                else
-                {
-                    workItem = WorkItemBiz.Get(inputModel.Id);
-                    workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                    transactionResult = WorkItemBiz.Of(workItem).Update();
-                }
-                var resultMessage = "";
+
+                var workItem = inputModel.Id == Guid.Empty
+                    ? new WorkItem()
+                    : WorkItemBiz.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
+
+                workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
+                workItem.WorkPlan = WorkPlanBiz.Get(inputModel.WorkPlan); //Task: This is because the getter method from DataProvider is shallow. Could we make it deep to return WorkPlan as well?
+                var transactionResult = WorkItemBiz.Of(workItem).Save();
+
+                string resultMessage;
                 switch (transactionResult)
                 {
                     case TransactionResult.Updated: resultMessage = "Item updated"; break;
                     case TransactionResult.Added: resultMessage = "New item added"; break;
                     default: resultMessage = transactionResult.ToString(); break;
                 }
+
                 return RedirectToAction(nameof(WorkItemListController.Index), Short<WorkItemListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
             }
             else

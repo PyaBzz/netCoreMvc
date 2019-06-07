@@ -35,27 +35,21 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                WorkPlan workPlan;
-                TransactionResult transactionResult;
-                if (inputModel.Id == Guid.Empty)
-                {
-                    workPlan = new WorkPlan();
-                    workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                    transactionResult = WorkPlanBiz.Of(workPlan).Add();
-                }
-                else
-                {
-                    workPlan = WorkPlanBiz.Get(inputModel.Id);
-                    workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                    transactionResult = WorkPlanBiz.Of(workPlan).Update();
-                }
-                var resultMessage = "";
+                var workPlan = inputModel.Id == Guid.Empty
+                    ? new WorkPlan()
+                    : WorkPlanBiz.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
+
+                workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
+                var transactionResult = WorkPlanBiz.Of(workPlan).Save();
+
+                string resultMessage;
                 switch (transactionResult)
                 {
                     case TransactionResult.Updated: resultMessage = "Item updated"; break;
                     case TransactionResult.Added: resultMessage = "New item added"; break;
                     default: resultMessage = transactionResult.ToString(); break;
                 }
+
                 return RedirectToAction(nameof(WorkPlanListController.Index), Short<WorkPlanListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
             }
             else
