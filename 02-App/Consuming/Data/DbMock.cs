@@ -69,19 +69,13 @@ namespace myCoreMvc.App.Consuming
 
         //Task: Replace Func with Predicate
         public List<T> GetList<T>(Func<T, bool> func) where T : class, IThing
-        {
-            return GetList<T>().Where(i => func(i)).ToList();
-        }
+            => GetList<T>().Where(i => func(i)).ToList();
 
         public T Get<T>(Func<T, bool> func) where T : class, IThing
-        {
-            return GetList<T>().SingleOrDefault(i => func(i));
-        }
+            => GetList<T>().SingleOrDefault(i => func(i));
 
         public T Get<T>(Guid id) where T : class, IThing
-        {
-            return GetList<T>().SingleOrDefault(i => i.Id == id);
-        }
+            => GetList<T>().SingleOrDefault(i => i.Id == id);
 
         public TransactionResult Add<T>(T obj) where T : class, IThing
         {
