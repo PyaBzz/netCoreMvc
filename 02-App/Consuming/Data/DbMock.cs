@@ -67,6 +67,7 @@ namespace myCoreMvc.App.Consuming
             return property;
         }
 
+        //Task: Replace Func with Predicate
         public List<T> GetList<T>(Func<T, bool> func) where T : class, IThing
         {
             return GetList<T>().Where(i => func(i)).ToList();
@@ -114,9 +115,11 @@ namespace myCoreMvc.App.Consuming
             return TransactionResult.Deleted;
         }
 
+        // These are meant to determine depth of eager loading in an ORM
         public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
             => GetList<T>();
 
+        // These are meant to determine depth of eager loading in an ORM
         public List<T> GetListIncluding<T>(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
             => GetList(predicate);
     }
