@@ -36,7 +36,10 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User();
+                var user = inputModel.Id == Guid.Empty
+                    ? new User()
+                    : UserBiz.Get(inputModel.Id);
+
                 user.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
                 var transactionResult = UserBiz.Of(user).Save();
                 var resultMessage = "";
