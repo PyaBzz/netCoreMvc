@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using PyaFramework.Core;
+using Py.Core;
 
 namespace myCoreMvc.Domain
 {

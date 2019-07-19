@@ -4,12 +4,12 @@ using myCoreMvc.Domain;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using PyaFramework.Core;
+using Py.Core;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using myCoreMvc.App;
 using myCoreMvc.App.Providing;
-using PyaFramework.CoreMvc;
+using Py.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
 {

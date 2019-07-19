@@ -5,12 +5,12 @@ using myCoreMvc.Domain;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using PyaFramework.Core;
-using PyaFramework.Attributes;
+using Py.Core;
+using Py.Attributes;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using myCoreMvc.App;
 using myCoreMvc.App.Providing;
-using PyaFramework.CoreMvc;
+using Py.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
 {

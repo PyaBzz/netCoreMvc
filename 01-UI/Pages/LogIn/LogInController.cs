@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using PyaFramework.Core;
+using Py.Core;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using myCoreMvc.App.Providing;
-using PyaFramework.CoreMvc;
+using Py.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
 {

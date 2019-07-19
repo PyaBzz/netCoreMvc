@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Domain;
 using System.Text.RegularExpressions;
-using PyaFramework.Core;
+using Py.Core;
 using myCoreMvc.App.Providing;
 
 namespace myCoreMvc.UI.Controllers

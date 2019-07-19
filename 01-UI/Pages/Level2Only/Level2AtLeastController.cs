@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PyaFramework.Core;
+using Py.Core;
 using Microsoft.AspNetCore.Authorization;
-using PyaFramework.CoreMvc;
+using Py.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
 {

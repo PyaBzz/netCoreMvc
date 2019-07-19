@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using myCoreMvc.Domain;
-using PyaFramework.Core;
+using Py.Core;
 
 namespace myCoreMvc.App.Consuming
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.App;
 using myCoreMvc.App.Providing;
-using PyaFramework.CoreMvc;
+using Py.CoreMvc;
 using System;
 
 namespace myCoreMvc.UI.Controllers

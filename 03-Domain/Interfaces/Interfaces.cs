@@ -1,4 +1,4 @@
-﻿using PyaFramework.Core;
+﻿using Py.Core;
 using System;
 
 namespace myCoreMvc.Domain

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using myCoreMvc.Domain;
-using PyaFramework;
+using Py;
 using System;
 using System.Collections.Generic;
 using System.Linq;

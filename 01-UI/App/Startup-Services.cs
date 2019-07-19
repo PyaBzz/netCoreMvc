@@ -2,13 +2,13 @@
 using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using PyaFramework.Core;
+using Py.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using myCoreMvc.App.Consuming;
 using myCoreMvc.App.Providing;
-using PyaFramework.CoreMvc;
+using Py.CoreMvc;
 using myCoreMvc.UI.Controllers;
 
 namespace myCoreMvc.UI

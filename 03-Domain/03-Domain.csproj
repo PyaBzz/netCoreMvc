@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PyaFramework\PyaFramework.csproj" />
+    <ProjectReference Include="..\..\Py\Py.csproj" />
   </ItemGroup>
 
 </Project>
