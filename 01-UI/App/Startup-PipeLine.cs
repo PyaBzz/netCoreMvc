@@ -35,7 +35,7 @@ namespace myCoreMvc.UI
 
             appBuilder.UseAuthentication();
 
-            //Experience: When this is put before Authentication middleware it doesn't work. Why?
+            //ToDo: When this is put before Authentication middleware it doesn't work. Why?
             appBuilder.UseMiddleware<AntiForgeryTokenValidatorMiddleware>();
 
             appBuilder.UseMvc(routes =>

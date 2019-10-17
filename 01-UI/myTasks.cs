@@ -1,13 +1,13 @@
 ﻿//Task: Based on the PluralSight course add logging to DbCtx to logg SQL commands to the console.
 
-//FuturePlan: Further develop upon authorisation and authentication
+//ToDo: Further develop upon authorisation and authentication
 
-//Experiment: Google Authentication using OIDC based on:
+//ToDo: Google Authentication using OIDC based on:
 //https://app.pluralsight.com/player?course=aspdotnet-core-fundamentals&author=scott-allen&name=aspdotnet-core-fundamentals-m7&clip=5&mode=live
 
-//FuturePlan: OnBound and similar methods are in fact attributes declared in "Msharp.Framework.Mvc.Version\src\Attributes"
+//ToDo: OnBound and similar methods are in fact attributes declared in "Msharp.Framework.Mvc.Version\src\Attributes"
 // See if you can use OnActionExecuting() and OnActionExecuted() or similar methods from these pages to achieve similar functionality:
 // https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.mvc.controller.onactionexecuting?view=aspnetcore-2.1
 // https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/controllers-and-routing/understanding-action-filters-cs
 
-//Experience: Look into object mapping solutions like AutoMapper to learn best practices.
+//ToDo: Look into object mapping solutions like AutoMapper to learn best practices.
