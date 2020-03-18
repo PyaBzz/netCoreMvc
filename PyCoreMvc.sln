@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-Domain", "03-Domain\03-D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-Persisence", "04-Persisence\04-Persisence.csproj", "{D0A5BCE5-2021-46E7-A42E-B28843D95C47}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Py", "..\Py\Py.csproj", "{D8BCC60C-15BA-421D-81CA-E0354DE207C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PyCore", "..\PyCore\PyCore.csproj", "{D8BCC60C-15BA-421D-81CA-E0354DE207C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Py\Py.csproj" />
+    <ProjectReference Include="..\..\PyCore\PyCore.csproj" />
   </ItemGroup>
 
 </Project>
