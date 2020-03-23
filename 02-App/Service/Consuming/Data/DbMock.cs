@@ -29,11 +29,14 @@ namespace myCoreMvc.App.Consuming
 
             try
             {
+                var directory = Assembly.GetExecutingAssembly().GetDirectory();
+
                 //Todo: Don't hardcode file path
-                var workPlanDataPath = "C:\\Projects\\PyCoreMvc\\02-App\\Service\\Consuming\\Data\\DbMockWorkPlans.xml";
+                var workPlansResourcePath = Path.Combine(directory, "Resources\\DbMockWorkPlans.xml");
+
                 var serialiser = new XmlSerializer(typeof(WorkPlan));
 
-                using (var stream = File.OpenRead(workPlanDataPath))
+                using (var stream = File.OpenRead(workPlansResourcePath))
                 {
                     using (var xmlRdr = XmlReader.Create(stream))
                     {
