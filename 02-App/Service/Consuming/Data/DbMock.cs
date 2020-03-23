@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Security.Cryptography;
+using System.Xml;
+using System.Xml.Serialization;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using myCoreMvc.Domain;
 using Py.Core;
@@ -22,11 +25,33 @@ namespace myCoreMvc.App.Consuming
 
         public DbMock()
         {
-            WorkPlans = new List<WorkPlan>
+            WorkPlans = new List<WorkPlan>();
+
+            try
             {
-                new WorkPlan { Id = Guid.Parse("60f9fc29-083f-4ed2-a3e2-3948b503c25f"), Name = "Plan1" },
-                new WorkPlan { Id = Guid.Parse("53c88402-4092-4834-8e7f-6ce70057cdc5"), Name = "Plan2" }
-            };
+                //Todo: Don't hardcode file path
+                var workPlanDataPath = "C:\\Projects\\PyCoreMvc\\02-App\\Service\\Consuming\\Data\\DbMockWorkPlans.xml";
+                var serialiser = new XmlSerializer(typeof(WorkPlan));
+
+                using (var stream = File.OpenRead(workPlanDataPath))
+                {
+                    using (var xmlRdr = XmlReader.Create(stream))
+                    {
+                        while (xmlRdr.Read())
+                        {
+                            if (xmlRdr.NodeType == XmlNodeType.Element && xmlRdr.Name == "WorkPlan")
+                            {
+                                var workPlan = serialiser.Deserialize(xmlRdr) as WorkPlan;
+                                WorkPlans.Add(workPlan);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             WorkItems = new List<WorkItem>
             {

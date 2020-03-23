@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WorkPlans>
+  <WorkPlan>
+    <Id>60f9fc29-083f-4ed2-a3e2-3948b503c25f</Id>
+    <Name>Plan1</Name>
+  </WorkPlan>
+  <WorkPlan>
+    <Id>53c88402-4092-4834-8e7f-6ce70057cdc5</Id>
+    <Name>Plan2</Name>
+  </WorkPlan>
+</WorkPlans>

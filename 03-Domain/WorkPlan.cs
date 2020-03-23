@@ -11,7 +11,8 @@ namespace myCoreMvc.Domain
         [Display(Name = "Plan name"), Required]
         public string Name { get; set; }
 
-        public IEnumerable<WorkItem> WorkItems { get; set; }
+        //Todo: Make calculated
+        //public List<WorkItem> WorkItems { get; set; }
 
         /*==================================  Methods =================================*/
 
