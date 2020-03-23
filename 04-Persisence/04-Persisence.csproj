@@ -5,4 +5,9 @@
     <RootNamespace>_04_Persisence</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Consuming\" />
+    <Folder Include="Services\Providing\" />
+  </ItemGroup>
+
 </Project>
