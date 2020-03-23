@@ -27,10 +27,10 @@ namespace myCoreMvc.App.Consuming
         {
             WorkPlans = new List<WorkPlan>();
 
+            var directory = Assembly.GetExecutingAssembly().GetDirectory();
+
             try
             {
-                var directory = Assembly.GetExecutingAssembly().GetDirectory();
-
                 //Todo: Don't hardcode file path
                 var workPlansResourcePath = Path.Combine(directory, "Resources\\DbMockWorkPlans.xml");
 
@@ -56,12 +56,39 @@ namespace myCoreMvc.App.Consuming
                 Console.WriteLine(e.Message);
             }
 
-            WorkItems = new List<WorkItem>
+            WorkItems = new List<WorkItem>();
+
+            try
             {
-                new WorkItem { Id = Guid.Parse("7073ad87-4695-4a0b-b2c3-fa794d5ffa21"), Reference = "Wi11", Priority = 1, Name = "FirstItem", WorkPlan = Get<WorkPlan>(Guid.Parse("60f9fc29-083f-4ed2-a3e2-3948b503c25f"))},
-                new WorkItem { Id = Guid.Parse("5fc4bfcf-24e0-430a-8889-03b2f31387e1"), Reference = "Wi12", Priority = 2, Name = "SecondItem", WorkPlan = Get<WorkPlan>(Guid.Parse("60f9fc29-083f-4ed2-a3e2-3948b503c25f"))},
-                new WorkItem { Id = Guid.Parse("eb66287b-1cde-421e-868e-a0df5b21a90d"), Reference = "Wi21", Priority = 3, Name = "ThirdItem", WorkPlan = Get<WorkPlan>(Guid.Parse("53c88402-4092-4834-8e7f-6ce70057cdc5"))}
-            };
+                //Todo: Don't hardcode file path
+                var workItemsResourcePath = Path.Combine(directory, "Resources\\DbMockWorkItems.xml");
+
+                var serialiser = new XmlSerializer(typeof(WorkItem));
+
+                using (var stream = File.OpenRead(workItemsResourcePath))
+                {
+                    using (var xmlRdr = XmlReader.Create(stream))
+                    {
+                        while (xmlRdr.Read())
+                        {
+                            if (xmlRdr.NodeType == XmlNodeType.Element && xmlRdr.Name == "WorkItem")
+                            {
+                                var workItem = serialiser.Deserialize(xmlRdr) as WorkItem;
+                                WorkItems.Add(workItem);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            foreach (var workItem in WorkItems)
+            {
+                workItem.WorkPlan = Get<WorkPlan>(workItem.WorkPlanId);
+            }
 
             using (var rng = RandomNumberGenerator.Create())
             {

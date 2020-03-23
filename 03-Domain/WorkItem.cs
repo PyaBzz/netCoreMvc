@@ -15,6 +15,8 @@ namespace myCoreMvc.Domain
         public int Priority { get; set; }
         [Display(Name = "Item name"), Required]
         public string Name { get; set; }
+        public Guid WorkPlanId { get; set; }
+
         public WorkPlan WorkPlan { get; set; }
 
         /*==================================  Methods =================================*/

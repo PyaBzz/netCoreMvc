@@ -32,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\DbMockWorkItems.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\DbMockWorkPlans.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

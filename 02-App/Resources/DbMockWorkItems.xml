@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WorkItems>
+  <WorkItem>
+    <Id>7073ad87-4695-4a0b-b2c3-fa794d5ffa21</Id>
+    <Reference>Wi11</Reference>
+    <Priority>1</Priority>
+    <Name>FirstItem</Name>
+    <WorkPlanId>60f9fc29-083f-4ed2-a3e2-3948b503c25f</WorkPlanId>
+  </WorkItem>
+  <WorkItem>
+    <Id>5fc4bfcf-24e0-430a-8889-03b2f31387e1</Id>
+    <Reference>Wi12</Reference>
+    <Priority>2</Priority>
+    <Name>SecondItem</Name>
+    <WorkPlanId>60f9fc29-083f-4ed2-a3e2-3948b503c25f</WorkPlanId>
+  </WorkItem>
+  <WorkItem>
+    <Id>eb66287b-1cde-421e-868e-a0df5b21a90d</Id>
+    <Reference>Wi21</Reference>
+    <Priority>3</Priority>
+    <Name>ThirdItem</Name>
+    <WorkPlanId>53c88402-4092-4834-8e7f-6ce70057cdc5</WorkPlanId>
+  </WorkItem>
+</WorkItems>
