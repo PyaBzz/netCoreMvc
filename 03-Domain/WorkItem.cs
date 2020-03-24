@@ -12,9 +12,12 @@ namespace myCoreMvc.Domain
         /*================================  Properties ================================*/
 
         public string Reference { get; set; }
+
         public int Priority { get; set; }
+
         [Display(Name = "Item name"), Required]
         public string Name { get; set; }
+
         public Guid WorkPlanId { get; set; }
 
         public WorkPlan WorkPlan { get; set; }
