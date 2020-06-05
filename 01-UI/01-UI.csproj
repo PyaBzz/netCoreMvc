@@ -5,13 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="A_PooyasFramework\**" />
-    <Content Remove="A_PooyasFramework\**" />
-    <EmbeddedResource Remove="A_PooyasFramework\**" />
-    <None Remove="A_PooyasFramework\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove=".gitignore" />
   </ItemGroup>
 
