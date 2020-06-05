@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Py.Core;
+using Baz.Core;
 using Microsoft.AspNetCore.Authorization;
-using Py.CoreMvc;
+using Baz.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
 {

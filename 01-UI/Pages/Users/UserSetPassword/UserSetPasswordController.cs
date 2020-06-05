@@ -2,11 +2,11 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Py.Core;
+using Baz.Core;
 using myCoreMvc.App;
 using myCoreMvc.App.Providing;
 using System.ComponentModel.DataAnnotations;
-using Py.CoreMvc;
+using Baz.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using myCoreMvc.App.Consuming;
 using myCoreMvc.Domain;
-using Py.Core;
+using Baz.Core;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;

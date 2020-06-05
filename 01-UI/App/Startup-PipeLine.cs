@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
-using Py.Middleware;
+using Baz.Middleware;
 
 namespace myCoreMvc.UI
 {

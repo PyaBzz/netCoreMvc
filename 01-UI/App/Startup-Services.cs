@@ -2,13 +2,13 @@
 using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Py.Core;
+using Baz.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using myCoreMvc.App.Consuming;
 using myCoreMvc.App.Providing;
-using Py.CoreMvc;
+using Baz.CoreMvc;
 using myCoreMvc.UI.Controllers;
 
 namespace myCoreMvc.UI

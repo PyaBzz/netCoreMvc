@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Py.Core;
+using Baz.Core;
 
 namespace myCoreMvc.Domain
 {

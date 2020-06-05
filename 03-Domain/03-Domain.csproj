@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PyCore\PyCore.csproj" />
+    <ProjectReference Include="..\..\bazCore\BazCore.csproj" />
   </ItemGroup>
 
 </Project>

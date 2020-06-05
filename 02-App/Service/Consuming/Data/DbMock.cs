@@ -9,7 +9,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using myCoreMvc.Domain;
-using Py.Core;
+using Baz.Core;
 
 namespace myCoreMvc.App.Consuming
 {

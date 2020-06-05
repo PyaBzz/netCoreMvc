@@ -9,7 +9,11 @@
                 "build",
                 "${workspaceFolder}/01-UI/01-UI.csproj"
             ],
-            "problemMatcher": "$tsc"
+            "problemMatcher": "$tsc",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": "publish",
