@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\bazCore\BazCore.csproj" />
+    <ProjectReference Include="..\..\netCore\BazCore.csproj" />
   </ItemGroup>
 
 </Project>
