@@ -38,9 +38,10 @@ namespace myCoreMvc.UI
             //ToDo: When this is put before Authentication middleware it doesn't work. Why?
             appBuilder.UseMiddleware<AntiForgeryTokenValidatorMiddleware>();
 
-            appBuilder.UseMvc(routes =>
+            appBuilder.UseRouting();
+            appBuilder.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(name: "default", template: "{area=WorkItems}/{controller=WorkItemList}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: "default", "{area=WorkItems}/{controller=WorkItemList}/{action=Index}/{id?}");
             });
         }
     }
