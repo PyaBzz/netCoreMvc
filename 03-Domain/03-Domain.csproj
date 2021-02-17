@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\netCore\Baz\Baz.csproj" />
+    <PackageReference Include="bazdasoo" Version="0.0.1" />
   </ItemGroup>
 
 </Project>

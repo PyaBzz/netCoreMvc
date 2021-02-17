@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03-Domain", "03-Domain\03-D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04-Persisence", "04-Persisence\04-Persisence.csproj", "{D0A5BCE5-2021-46E7-A42E-B28843D95C47}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BazCore", "..\netCore\Baz\Baz.csproj", "{D8BCC60C-15BA-421D-81CA-E0354DE207C6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{D0A5BCE5-2021-46E7-A42E-B28843D95C47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0A5BCE5-2021-46E7-A42E-B28843D95C47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0A5BCE5-2021-46E7-A42E-B28843D95C47}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8BCC60C-15BA-421D-81CA-E0354DE207C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8BCC60C-15BA-421D-81CA-E0354DE207C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8BCC60C-15BA-421D-81CA-E0354DE207C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8BCC60C-15BA-421D-81CA-E0354DE207C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
