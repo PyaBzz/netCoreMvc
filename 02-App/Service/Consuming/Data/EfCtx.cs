@@ -1,30 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore;
-using myCoreMvc.Domain;
-using Baz;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// using Microsoft.EntityFrameworkCore;
+// using myCoreMvc.Domain;
+// using Baz;
+// using System;
+// using System.Collections.Generic;
+// using System.Linq;
+// using System.Threading.Tasks;
 
-namespace myCoreMvc.App.Consuming
-{
-    public class EfCtx : DbContext
-    {
-        /*==================================  Methods =================================*/
+// namespace myCoreMvc.App.Consuming
+// {
+//     public class EfCtx : DbContext
+//     {
+//         /*==================================  Methods =================================*/
 
-        public EfCtx() { } // Only to get Get-DbContext command of EF to work
+//         public EfCtx() { } // Only to get Get-DbContext command of EF to work
 
-        public EfCtx(DbContextOptions options) : base(options) { } // Necessary to be able to configure EF
+//         public EfCtx(DbContextOptions options) : base(options) { } // Necessary to be able to configure EF
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("SERVER=.\\sqlexpress; Database=myCoreMvc; MultipleActiveResultSets=True; Integrated Security=SSPI;");
-        }
+//         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//         {
+//             optionsBuilder.UseSqlServer("SERVER=.\\sqlexpress; Database=myCoreMvc; MultipleActiveResultSets=True; Integrated Security=SSPI;");
+//         }
 
-        /*==================================  Properties =================================*/
+//         /*==================================  Properties =================================*/
 
-        public DbSet<WorkItem> WorkItems { get; set; }
-        public DbSet<WorkPlan> WorkPlans { get; set; }
-        public DbSet<User> Users { get; set; }
-    }
-}
+//         public DbSet<WorkItem> WorkItems { get; set; }
+//         public DbSet<WorkPlan> WorkPlans { get; set; }
+//         public DbSet<User> Users { get; set; }
+//     }
+// }
