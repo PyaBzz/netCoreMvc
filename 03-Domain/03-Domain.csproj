@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>_02_Domain</RootNamespace>
   </PropertyGroup>
 
@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\netCore\BazCore.csproj" />
+    <ProjectReference Include="..\..\netCore\BazCore\BazCore.csproj" />
   </ItemGroup>
 
 </Project>
