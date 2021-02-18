@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>_04_Persisence</RootNamespace>
+    <RootNamespace>_04_Data</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
