@@ -50,6 +50,7 @@ namespace myCoreMvc.UI
             services.AddSingleton<IUserBiz, UserBiz>();
             services.AddSingleton<IWorkPlanBiz, WorkPlanBiz>();
             services.AddSingleton<IWorkItemBiz, WorkItemBiz>();
+            services.AddSingleton<SqlClient, SqlClient>();
 
             var authBuilder = services.AddAuthentication(options =>
                 {

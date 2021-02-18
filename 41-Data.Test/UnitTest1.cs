@@ -1,14 +1,14 @@
 using System;
 using Xunit;
 
-namespace _41_Data.Test
+namespace DataTest
 {
-    public class UnitTest1
+    public class SqlClientTest
     {
         [Fact]
-        public void Test1()
+        public void Constructor_GetsAConfigObject(SqlClient client)
         {
-
+            Assert.NotNull(client.config);
         }
     }
 }
