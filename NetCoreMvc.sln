@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10-UI", "10-UI\10-UI.csproj", "{B1DC254F-05CE-403E-8179-122DF47EAC34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10-Ui", "10-Ui\10-Ui.csproj", "{B1DC254F-05CE-403E-8179-122DF47EAC34}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "20-App", "20-App\20-App.csproj", "{D107B43A-448C-47D5-A961-64A81845045F}"
 EndProject

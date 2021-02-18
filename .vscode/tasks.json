@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/10-UI/10-UI.csproj"
+                "${workspaceFolder}/10-Ui/10-Ui.csproj"
             ],
             "problemMatcher": "$tsc",
             "group": {
@@ -21,7 +21,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/10-UI/10-UI.csproj"
+                "${workspaceFolder}/10-Ui/10-Ui.csproj"
             ],
             "problemMatcher": "$tsc"
         },
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/10-UI/10-UI.csproj"
+                "${workspaceFolder}/10-Ui/10-Ui.csproj"
             ],
             "problemMatcher": "$tsc"
         }
