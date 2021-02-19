@@ -1,7 +1,6 @@
 {
-    "Key00": "Value00",
-    "Key01": "Value01",
-    "Key02": "Value02",
+    "ConnectionString": "server=.;Integrated Security=false;User ID=sa;Password=adminPass1",
+    "DbName": "baz",
 
     "ShowNavigationToUnauthenticatedUsers": "True",
 
