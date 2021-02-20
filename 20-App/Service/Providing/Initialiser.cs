@@ -11,7 +11,7 @@ namespace myCoreMvc.App.Providing
         public static void Run(string connectionStr, string dbName)
         {
             var outputDir = Assembly.GetExecutingAssembly().GetDirectory();
-            var scriptPath = Path.Combine(outputDir, "Sql//Initial.sql");
+            var scriptPath = Path.Combine(outputDir, "Sql//Init.sql");
             var scriptText = File.ReadAllText(scriptPath);
 
             Console.WriteLine("Connecting to SQL server");
