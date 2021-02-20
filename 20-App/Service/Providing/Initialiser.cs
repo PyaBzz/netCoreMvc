@@ -10,21 +10,18 @@ namespace myCoreMvc.App.Providing
     {
         public static void Run(string connectionStr, string dbName)
         {
-            var directory = Assembly.GetExecutingAssembly().GetDirectory();
-            var longPath = Path.Combine(directory, "..//..//..//..//20-App//Sql//Initial.sql");
-            var relativePath = Path.GetFullPath(longPath);
-            Console.WriteLine(relativePath);
-            var queryStr = File.ReadAllText(relativePath);
-            Console.WriteLine(queryStr);
+            var outputDir = Assembly.GetExecutingAssembly().GetDirectory();
+            var scriptPath = Path.Combine(outputDir, "Sql//Initial.sql");
+            var scriptText = File.ReadAllText(scriptPath);
 
             Console.WriteLine("Connecting to SQL server");
             using (var connection = new SqlConnection(connectionStr))
             {
                 connection.Open();
-                var command = new SqlCommand(queryStr, connection);
+                var command = new SqlCommand(scriptText, connection);
                 var result = command.ExecuteNonQuery();
-                Console.WriteLine(result);
-                Console.WriteLine("Database has been created successfully!");
+                if (result == -1)
+                    Console.WriteLine("Database has been created successfully!");
             }
         }
 
