@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Baz.Core;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using myCoreMvc.App.Consuming;
 using myCoreMvc.App.Providing;
 
 namespace myCoreMvc.UI
@@ -18,10 +19,7 @@ namespace myCoreMvc.UI
             var lastArg = argCount > 0 ? args[argCount - 1] : string.Empty; //Todo: Add an extension
             if (lastArg == "init" || lastArg == "destroy")
             {
-                var config = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("settings.json")
-                    .Build();
+                var config = ConfigFactory.Get();
                 var connectionStr = config.GetValue<string>("ConnectionString");
                 string scriptRelPath;
                 if (lastArg == "init")

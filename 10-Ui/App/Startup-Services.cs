@@ -37,11 +37,7 @@ namespace myCoreMvc.UI
                 iLoggingBuilder.AddConsole();
             });
 
-
-            var config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("settings.json")
-                .Build();
+            var config = ConfigFactory.Get();
 
             services.AddSingleton<IConfiguration>(config); // Could we bind a config object of type dynamic with all properties and children?
 
