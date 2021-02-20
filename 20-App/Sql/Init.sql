@@ -12,7 +12,7 @@ END
 GO
 
 USE bazDb
-IF NOT EXISTS (SELECT * FROM bazDb.INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'WorkPlans')
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'WorkPlans')
 BEGIN
     print 'Creating WorkPlans'
     CREATE TABLE WorkPlans
@@ -28,7 +28,7 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT * FROM bazDb.INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'WorkItems')
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'WorkItems')
 BEGIN
     print 'Creating WorkItems'
     CREATE TABLE WorkItems
@@ -44,7 +44,7 @@ END
 
 GO
 
-IF NOT EXISTS (SELECT * FROM bazDb.INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'Users')
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'Users')
 BEGIN
     print 'Creating Users'
     CREATE TABLE Users

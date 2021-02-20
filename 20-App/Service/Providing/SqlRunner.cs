@@ -12,7 +12,7 @@ namespace myCoreMvc.App.Providing
     {
         public static void Run(string connectionStr, string relativeScriptPath)
         {
-            var outputDir = Assembly.GetExecutingAssembly().GetDirectory();
+            var outputDir = Assembly.GetExecutingAssembly().GetDirectory(); //Todo: If merged into the extension method what assembly dir does it return?
             var scriptPath = Path.Combine(outputDir, relativeScriptPath);
             var scriptText = File.ReadAllText(scriptPath);
             var scriptBatches = Regex.Split(scriptText, "go", RegexOptions.IgnoreCase);
