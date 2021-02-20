@@ -1,0 +1,38 @@
+using System;
+using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using Baz.Core;
+
+namespace myCoreMvc.App.Providing
+{
+    public static class SqlRunner
+    {
+        public static void Run(string connectionStr, string relativeScriptPath)
+        {
+            var outputDir = Assembly.GetExecutingAssembly().GetDirectory();
+            var scriptPath = Path.Combine(outputDir, relativeScriptPath);
+            var scriptText = File.ReadAllText(scriptPath);
+            var scriptBatches = Regex.Split(scriptText, "go", RegexOptions.IgnoreCase);
+            var batchCount = scriptBatches.Count();
+
+            Console.WriteLine("Connecting to SQL server");
+            using (var connection = new SqlConnection(connectionStr))
+            {
+                connection.Open();
+                var command = new SqlCommand();
+                command.Connection = connection;
+                Console.WriteLine($"Running {batchCount} sql batches");
+                for (var i = 0; i < batchCount; i++)
+                {
+                    command.CommandText = scriptBatches[i];
+                    var result = command.ExecuteNonQuery();
+                    if (result == -1)
+                        Console.WriteLine($"Batch {i} executed");
+                }
+            }
+        }
+    }
+}

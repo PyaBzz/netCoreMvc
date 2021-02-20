@@ -1,6 +1,7 @@
 {
-    "ConnectionString": "server=.;Integrated Security=false;User ID=sa;Password=adminPass1",
-    "DbName": "baz",
+    "ConnectionString": "server=.; Integrated Security=false; User ID=sa; Password=adminPass1;",
+    "initScriptRelPath": "Sql//Init.sql",
+    "destroyScriptRelPath": "Sql//Destroy.sql",
 
     "ShowNavigationToUnauthenticatedUsers": "True",
 

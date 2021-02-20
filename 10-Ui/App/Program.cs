@@ -15,15 +15,19 @@ namespace myCoreMvc.UI
         public static void Main(string[] args)
         {
             var lastArg = args[args.Count() - 1]; //Todo: Add an extension
-            if (lastArg == "init")
+            if (lastArg == "init" || lastArg == "destroy")
             {
                 var config = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("settings.json")
                     .Build();
                 var connectionStr = config.GetValue<string>("ConnectionString");
-                var dbName = config.GetValue<string>("DbName");
-                Initialiser.Run(connectionStr,dbName);
+                string scriptRelPath;
+                if (lastArg == "init")
+                    scriptRelPath = config.GetValue<string>("initScriptRelPath");
+                else
+                    scriptRelPath = config.GetValue<string>("destroyScriptRelPath");
+                SqlRunner.Run(connectionStr, scriptRelPath);
             }
             else
             {

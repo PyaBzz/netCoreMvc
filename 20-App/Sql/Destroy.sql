@@ -1,13 +1,19 @@
-DECLARE @DbName nvarchar(50)
-SET @DbName = N'bazDb'
 
-IF EXISTS (SELECT * FROM master.sys.databases WHERE name = @DbName)
-    BEGIN
-    EXEC ('USE ' + @DbName)
+IF EXISTS (SELECT * FROM master.sys.databases WHERE name = 'bazDb')
+BEGIN
+    PRINT 'Destroying DB'
     EXEC sp_msforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'
-    EXEC sp_msforeachtable 'DROP ?'
+    EXEC sp_msforeachtable 'DROP TABLE bazDb.?'
     
     USE MASTER
-    EXEC('ALTER DATABASE ' + @DbName + ' SET single_user WITH ROLLBACK IMMEDIATE')
-    EXEC('DROP DATABASE ' + @DbName)
-end
+    ALTER DATABASE bazDb SET single_user WITH ROLLBACK IMMEDIATE
+    DROP DATABASE bazDb
+END
+ELSE
+BEGIN
+    PRINT 'DB not found'
+END
+
+PRINT N'Database destroyed'
+GO
+WAITFOR DELAY '00:00:01'
