@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Baz.Core;
 using myCoreMvc.App;
-using myCoreMvc.App.Providing;
+using myCoreMvc.App.Services;
 using System.ComponentModel.DataAnnotations;
 using Baz.CoreMvc;
 

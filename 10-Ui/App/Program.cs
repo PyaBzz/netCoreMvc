@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using Baz.Core;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using myCoreMvc.App.Consuming;
-using myCoreMvc.App.Providing;
+using myCoreMvc.App.Services;
 
 namespace myCoreMvc.UI
 {

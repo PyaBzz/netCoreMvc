@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace myCoreMvc.App.Consuming
+namespace myCoreMvc.App.Services
 {
     public interface IDataProvider
     {

@@ -9,7 +9,7 @@ using Baz.Core;
 using Baz.Attributes;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using myCoreMvc.App;
-using myCoreMvc.App.Providing;
+using myCoreMvc.App.Services;
 using Baz.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers

@@ -6,8 +6,7 @@ using Baz.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
-using myCoreMvc.App.Consuming;
-using myCoreMvc.App.Providing;
+using myCoreMvc.App.Services;
 using Baz.CoreMvc;
 using myCoreMvc.UI.Controllers;
 

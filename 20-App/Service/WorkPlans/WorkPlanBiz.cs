@@ -1,10 +1,9 @@
-﻿using myCoreMvc.App.Consuming;
-using myCoreMvc.Domain;
+﻿using myCoreMvc.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace myCoreMvc.App.Providing
+namespace myCoreMvc.App.Services
 {
     public class WorkPlanBiz : IWorkPlanBiz
     {

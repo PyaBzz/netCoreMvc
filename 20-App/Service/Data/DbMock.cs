@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using myCoreMvc.Domain;
 using Baz.Core;
 
-namespace myCoreMvc.App.Consuming
+namespace myCoreMvc.App.Services
 {
     public class DbMock : IDataProvider
     {

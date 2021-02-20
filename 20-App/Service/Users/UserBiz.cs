@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using myCoreMvc.App.Consuming;
 using myCoreMvc.Domain;
 using Baz.Core;
 using System;
@@ -8,7 +7,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-namespace myCoreMvc.App.Providing
+namespace myCoreMvc.App.Services
 {
     public class UserBiz : IUserBiz
     {

@@ -6,7 +6,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using myCoreMvc.App.Providing;
+using myCoreMvc.App.Services;
 using Baz.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers

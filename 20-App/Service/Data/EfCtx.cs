@@ -6,7 +6,7 @@
 // using System.Linq;
 // using System.Threading.Tasks;
 
-// namespace myCoreMvc.App.Consuming
+// namespace myCoreMvc.App.Services
 // {
 //     public class EfCtx : DbContext
 //     {

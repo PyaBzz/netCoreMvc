@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.App;
-using myCoreMvc.App.Providing;
+using myCoreMvc.App.Services;
 using Baz.CoreMvc;
 using System;
 

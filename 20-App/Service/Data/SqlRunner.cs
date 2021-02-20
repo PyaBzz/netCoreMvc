@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Baz.Core;
 
-namespace myCoreMvc.App.Providing
+namespace myCoreMvc.App.Services
 {
     public static class SqlRunner
     {

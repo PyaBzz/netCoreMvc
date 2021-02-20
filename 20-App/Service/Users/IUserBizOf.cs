@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace myCoreMvc.App.Providing
+namespace myCoreMvc.App.Services
 {
     public interface IUserBizOf
     {

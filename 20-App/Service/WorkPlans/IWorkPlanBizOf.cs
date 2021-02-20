@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace myCoreMvc.App.Providing
+namespace myCoreMvc.App.Services
 {
-    public interface IWorkItemBizOf
+    public interface IWorkPlanBizOf
     {
-        WorkItem WorkItem { get; }
+        WorkPlan WorkPlan { get; }
 
         TransactionResult Save();
         TransactionResult Delete();

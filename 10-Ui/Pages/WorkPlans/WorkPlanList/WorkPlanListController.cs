@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using myCoreMvc.Domain;
 using System.Text.RegularExpressions;
 using Baz.Core;
-using myCoreMvc.App.Providing;
+using myCoreMvc.App.Services;
 
 namespace myCoreMvc.UI.Controllers
 {

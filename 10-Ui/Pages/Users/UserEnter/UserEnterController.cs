@@ -8,7 +8,7 @@ using Baz.Core;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using myCoreMvc.App;
-using myCoreMvc.App.Providing;
+using myCoreMvc.App.Services;
 using Baz.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
