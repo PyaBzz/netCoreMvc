@@ -14,7 +14,8 @@ namespace myCoreMvc.UI
     {
         public static void Main(string[] args)
         {
-            var lastArg = args[args.Count() - 1]; //Todo: Add an extension
+            var argCount = args.Count();
+            var lastArg = argCount > 0 ? args[argCount - 1] : string.Empty; //Todo: Add an extension
             if (lastArg == "init" || lastArg == "destroy")
             {
                 var config = new ConfigurationBuilder()
