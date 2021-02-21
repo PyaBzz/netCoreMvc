@@ -5,20 +5,20 @@ namespace myCoreMvc.App.Services
 {
     public static class ConfigFactory
     {
-        private static Config product;
+        private static Config config;
 
         public static Config Get()
         {
-            if (product == null)
+            if (config == null)
             {
-                product = new Config();
+                config = new Config();
                 IConfiguration iConfig = new ConfigurationBuilder()
                         .SetBasePath(Directory.GetCurrentDirectory())
                         .AddJsonFile("settings.json")
                         .Build();
-                iConfig.Bind(product);
+                iConfig.Bind(config);
             }
-            return product;
+            return config;
         }
     }
 }
