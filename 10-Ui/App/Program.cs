@@ -19,12 +19,12 @@ namespace myCoreMvc.UI
             if (lastArg == "init" || lastArg == "destroy")
             {
                 var config = ConfigFactory.Get();
-                var connectionStr = config.GetValue<string>("ConnectionString");
+                var connectionStr = config.ConnectionString;
                 string scriptRelPath;
                 if (lastArg == "init")
-                    scriptRelPath = config.GetValue<string>("initScriptRelPath");
+                    scriptRelPath = config.InitScriptRelPath;
                 else
-                    scriptRelPath = config.GetValue<string>("destroyScriptRelPath");
+                    scriptRelPath = config.DestroyScriptRelPath;
                 SqlRunner.Run(connectionStr, scriptRelPath);
             }
             else

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using myCoreMvc.App.Services;
 using Baz.CoreMvc;
 using myCoreMvc.UI.Controllers;
+using myCoreMvc.App;
 
 namespace myCoreMvc.UI
 {
@@ -38,7 +39,7 @@ namespace myCoreMvc.UI
 
             var config = ConfigFactory.Get();
 
-            services.AddSingleton<IConfiguration>(config); // Could we bind a config object of type dynamic with all properties and children?
+            services.AddSingleton<Config>(config);
 
             // services.AddSingleton(new EfCtx());
             services.AddSingleton<IDataProvider, DbMock>();
@@ -58,8 +59,8 @@ namespace myCoreMvc.UI
                 {
                     options.LoginPath = $"/{AreaOf<LogInController>.Name}/{Short<LogInController>.Name}/{nameof(LogInController.SignIn)}";
                     options.AccessDeniedPath = $"/{AreaOf<LogInController>.Name}/{Short<LogInController>.Name}/{nameof(LogInController.Denied)}";
-                    options.Cookie.Name = config.GetSection("Authentication").GetValue<string>("CookieName");
-                    options.Cookie.MaxAge = TimeSpan.FromSeconds(config.GetSection("Authentication").GetValue<int>("AuthenticationSessionLifeTime"));
+                    options.Cookie.Name = config.Authentication.CookieName;
+                    options.Cookie.MaxAge = TimeSpan.FromSeconds(config.Authentication.SessionLifeTime);
                 });
 
             services.AddAuthorization(options =>

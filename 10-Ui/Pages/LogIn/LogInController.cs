@@ -8,6 +8,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using myCoreMvc.App.Services;
 using Baz.CoreMvc;
+using myCoreMvc.App;
 
 namespace myCoreMvc.UI.Controllers
 {
@@ -27,13 +28,13 @@ namespace myCoreMvc.UI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignIn(EnterModel model, string returnUrl, [FromServices] IConfiguration config)
+        public async Task<IActionResult> SignIn(EnterModel model, string returnUrl, [FromServices] Config config)
         {
             if (ModelState.IsValid)
             {
                 if (await UserBiz.GetPrincipal(model.UserName, model.PassWord, out ClaimsPrincipal claimsPrincipal))
                 {
-                    var expiryTime = DateTime.UtcNow.AddSeconds(config.GetValue<int>("AuthenticationSessionLifeTime"));
+                    var expiryTime = DateTime.UtcNow.AddSeconds(config.Authentication.SessionLifeTime);
 
                     await HttpContext.SignInAsync(AuthConstants.SchemeName, claimsPrincipal);
                     if (returnUrl != null) return Redirect(returnUrl);
