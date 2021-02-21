@@ -3,7 +3,7 @@
     "InitScriptRelPath": "Sql//Init.sql",
     "DestroyScriptRelPath": "Sql//Destroy.sql",
 
-    "ShowNavigationToUnauthenticatedUsers": "True",
+    "ShowNavToUnknownUsers": true,
 
     "WorkItem": {
         "Id": "98e5d9e4-8dfe-4682-88bf-8dfbe614de4d",

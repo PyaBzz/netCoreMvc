@@ -30,7 +30,7 @@ namespace myCoreMvc.App
         public string ConnectionString { get; set; }
         public string InitScriptRelPath { get; set; }
         public string DestroyScriptRelPath { get; set; }
-        public bool ShowNavigationToUnauthenticatedUsers { get; set; }
+        public bool ShowNavToUnknownUsers { get; set; }
         public AuthConfig Authentication { get; set; }
     }
 

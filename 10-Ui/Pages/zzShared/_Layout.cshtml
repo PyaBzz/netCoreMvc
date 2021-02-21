@@ -1,10 +1,10 @@
 ﻿@using System.Reflection
+@using myCoreMvc.App
 @using myCoreMvc.UI.Controllers
 @using Baz.Core
 @using Baz.CoreMvc
-@using Microsoft.Extensions.Configuration
 
-@{var config = Context.RequestServices.GetService(typeof(IConfiguration)) as IConfiguration;}
+@{var config = Context.RequestServices.GetService(typeof(Config)) as Config;}
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@
 <body>
     <header>
         <img src="~/StaticContent/Mushroom-Red-2.png" />
-        @if (bool.Parse(config["ShowNavigationToUnauthenticatedUsers"]) || User.Identity.IsAuthenticated)
+        @if (config.ShowNavToUnknownUsers || User.Identity.IsAuthenticated)
         {
             <a asp-area="WorkPlans" asp-controller="@(Short<WorkPlanListController>.Name)" asp-action="Index">WorkPlans</a>
             <span class="separator"></span>
