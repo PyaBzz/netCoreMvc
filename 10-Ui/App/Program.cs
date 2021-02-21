@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Baz.Core;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using myCoreMvc.App.Services;
+using myCoreMvc.App;
 
 namespace myCoreMvc.UI
 {
@@ -19,13 +16,12 @@ namespace myCoreMvc.UI
             if (lastArg == "init" || lastArg == "destroy")
             {
                 var config = ConfigFactory.Get();
-                var connectionStr = config.ConnectionString;
                 string scriptRelPath;
                 if (lastArg == "init")
                     scriptRelPath = config.InitScriptRelPath;
                 else
                     scriptRelPath = config.DestroyScriptRelPath;
-                SqlRunner.Run(connectionStr, scriptRelPath);
+                SqlRunner.Run(scriptRelPath);
             }
             else
             {

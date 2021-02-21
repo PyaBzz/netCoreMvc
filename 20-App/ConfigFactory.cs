@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Microsoft.Extensions.Configuration;
 
-namespace myCoreMvc.App.Services
+namespace myCoreMvc.App
 {
     public static class ConfigFactory
     {

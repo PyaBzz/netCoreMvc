@@ -6,11 +6,11 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Baz.Core;
 
-namespace myCoreMvc.App.Services
+namespace myCoreMvc.App
 {
     public static class SqlRunner
     {
-        public static void Run(string connectionStr, string relativeScriptPath)
+        public static void Run(string relativeScriptPath)
         {
             var outputDir = Assembly.GetExecutingAssembly().GetDirectory(); //Todo: If merged into the extension method what assembly dir does it return?
             var scriptPath = Path.Combine(outputDir, relativeScriptPath);
@@ -19,7 +19,7 @@ namespace myCoreMvc.App.Services
             var batchCount = scriptBatches.Count();
 
             Console.WriteLine("Connecting to SQL server");
-            using (var connection = new SqlConnection(connectionStr))
+            using (var connection = SqlConFactory.Get())
             {
                 connection.Open();
                 var command = new SqlCommand();
