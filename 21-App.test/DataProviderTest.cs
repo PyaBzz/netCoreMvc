@@ -2,6 +2,8 @@ using System;
 using Xunit;
 using myCoreMvc.App.Services;
 using myCoreMvc.Domain;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace myCoreMvc.Test.Data
 {
@@ -12,7 +14,13 @@ namespace myCoreMvc.Test.Data
         [Fact]
         public void GetList_GetsTheRightType()
         {
-            Assert.IsType<WorkPlan>(dp.GetList<WorkPlan>()[0]);
+            Assert.IsType<List<WorkPlan>>(dp.GetList<WorkPlan>());
+        }
+
+        [Fact]
+        public void GetList_GetsAllItems()
+        {
+            Assert.StrictEqual(dp.GetList<WorkPlan>().Count(), 2);
         }
     }
 }
