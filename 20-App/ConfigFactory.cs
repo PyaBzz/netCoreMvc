@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using Microsoft.Extensions.Configuration;
 
 namespace myCoreMvc.App
@@ -21,23 +20,5 @@ namespace myCoreMvc.App
             }
             return config;
         }
-    }
-}
-
-namespace myCoreMvc.App
-{
-    public class Config
-    {
-        public Dictionary<string,string> ConnectionStr { get; set; }
-        public string InitScriptRelPath { get; set; }
-        public string DestroyScriptRelPath { get; set; }
-        public bool ShowNavToUnknownUsers { get; set; }
-        public AuthConfig Authentication { get; set; }
-    }
-
-    public class AuthConfig
-    {
-        public string CookieName { get; set; }
-        public int SessionLifeTime { get; set; }
     }
 }

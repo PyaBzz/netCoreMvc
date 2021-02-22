@@ -14,7 +14,7 @@
 <body>
     <header>
         <img src="~/StaticContent/Mushroom-Red-2.png" />
-        @if (config.ShowNavToUnknownUsers || User.Identity.IsAuthenticated)
+        @if (config.Authentication.ShowNavToUnknownUsers || User.Identity.IsAuthenticated)
         {
             <a asp-area="WorkPlans" asp-controller="@(Short<WorkPlanListController>.Name)" asp-action="Index">WorkPlans</a>
             <span class="separator"></span>
