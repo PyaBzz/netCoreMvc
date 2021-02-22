@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace myCoreMvc.App.Services
 {
-    public class DataProvider : IDataProvider
+    public class DataRepo : IDataRepo
     {
         public T Get<T>(Guid id) where T : class, IThing
         {

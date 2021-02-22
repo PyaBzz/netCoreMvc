@@ -7,9 +7,9 @@ using System.Collections.Generic;
 
 namespace myCoreMvc.Test.Data
 {
-    public class DataProviderTest
+    public class DataRepoTest
     {
-        private readonly IDataProvider dp = new DataProvider();
+        private readonly IDataRepo dp = new DataRepo();
 
         [Fact]
         public void GetList_GetsTheRightType()

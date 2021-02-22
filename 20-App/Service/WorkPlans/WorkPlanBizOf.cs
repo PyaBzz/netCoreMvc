@@ -7,16 +7,16 @@ namespace myCoreMvc.App.Services
 {
     public class WorkPlanBizOf : IWorkPlanBizOf
     {
-        private IDataProvider DataProvider;
+        private IDataRepo DataRepo;
         public WorkPlan WorkPlan { get; }
 
-        public WorkPlanBizOf(IDataProvider dataProvider, WorkPlan workPlan)
+        public WorkPlanBizOf(IDataRepo dataRepo, WorkPlan workPlan)
         {
-            DataProvider = dataProvider;
+            DataRepo = dataRepo;
             WorkPlan = workPlan;
         }
 
-        TransactionResult IWorkPlanBizOf.Save() => DataProvider.Save(WorkPlan);
-        TransactionResult IWorkPlanBizOf.Delete() => DataProvider.Delete<WorkPlan>(WorkPlan.Id);
+        TransactionResult IWorkPlanBizOf.Save() => DataRepo.Save(WorkPlan);
+        TransactionResult IWorkPlanBizOf.Delete() => DataRepo.Delete<WorkPlan>(WorkPlan.Id);
     }
 }

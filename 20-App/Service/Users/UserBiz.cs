@@ -11,14 +11,14 @@ namespace myCoreMvc.App.Services
 {
     public class UserBiz : IUserBiz
     {
-        private IDataProvider DataProvider;
+        private IDataRepo DataRepo;
 
-        public UserBiz(IDataProvider dataProvider)
-            => DataProvider = dataProvider;
+        public UserBiz(IDataRepo dataRepo)
+            => DataRepo = dataRepo;
 
-        User IUserBiz.Get(Guid id) => DataProvider.Get<User>(id);
+        User IUserBiz.Get(Guid id) => DataRepo.Get<User>(id);
 
-        List<User> IUserBiz.GetList() => DataProvider.GetList<User>();
+        List<User> IUserBiz.GetList() => DataRepo.GetList<User>();
 
         Task<bool> IUserBiz.GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
         {
@@ -47,7 +47,7 @@ namespace myCoreMvc.App.Services
 
         Task<bool> IUserBiz.ValidateCredentials(string userName, string passWord, out User user)
         {
-            user = DataProvider.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
+            user = DataRepo.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
             if (user != null)
             {
                 var existingHash = user.Hash;
@@ -60,6 +60,6 @@ namespace myCoreMvc.App.Services
         }
 
         IUserBizOf IUserBiz.Of(User user)
-            => new UserBizOf(DataProvider, user);
+            => new UserBizOf(DataRepo, user);
     }
 }

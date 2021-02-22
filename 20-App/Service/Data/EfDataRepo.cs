@@ -7,7 +7,7 @@
 
 // namespace myCoreMvc.App.Services
 // {
-//     public class EfDataProvider : IDataProvider
+//     public class EfDataRepo : IDataRepo
 //     {
 //         /*==================================  Fields =================================*/
 
@@ -15,12 +15,12 @@
 
 //         /*==================================  Methods =================================*/
 
-//         public EfDataProvider(EfCtx ctx)
+//         public EfDataRepo(EfCtx ctx)
 //         {
 //             Ctx = ctx;
 //         }
 
-//         /*==================================  Methods of IDataProvider =================================*/
+//         /*==================================  Methods of IDataRepo =================================*/
 
 //         public TransactionResult Add<T>(T obj) where T : class, IThing
 //         {
@@ -60,7 +60,7 @@
 //             return Ctx.SaveChanges() == 0 ? TransactionResult.NotFound : TransactionResult.Deleted;
 //         }
 
-//         TransactionResult IDataProvider.Save<T>(T obj)
+//         TransactionResult IDataRepo.Save<T>(T obj)
 //         {
 //             throw new NotImplementedException();
 //         }

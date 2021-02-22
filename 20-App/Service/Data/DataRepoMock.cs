@@ -13,7 +13,7 @@ using Baz.Core;
 
 namespace myCoreMvc.App.Services
 {
-    public class DbMock : IDataProvider
+    public class DataRepoMock : IDataRepo
     {
         /*================================  Properties ================================*/
 
@@ -23,7 +23,7 @@ namespace myCoreMvc.App.Services
 
         /*==================================  Constructors ==================================*/
 
-        public DbMock()
+        public DataRepoMock()
         {
             WorkPlans = new List<WorkPlan>();
 
@@ -117,7 +117,7 @@ namespace myCoreMvc.App.Services
         {
             var propertyInfos = this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
             var propertyInfo = propertyInfos.SingleOrDefault(pi => pi.PropertyType == typeof(List<T>));
-            if (propertyInfo == null) throw new NullReferenceException($"DbMock knows no source collection of type {typeof(T)}.");
+            if (propertyInfo == null) throw new NullReferenceException($"{this.GetType()} knows no source collection of type {typeof(T)}.");
             var property = (List<T>)propertyInfo.GetValue(this);
             return property;
         }

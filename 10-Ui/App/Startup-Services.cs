@@ -42,7 +42,7 @@ namespace myCoreMvc.UI
             services.AddSingleton<Config>(config);
 
             // services.AddSingleton(new EfCtx());
-            services.AddSingleton<IDataProvider, DataProvider>();
+            services.AddSingleton<IDataRepo, DataRepo>();
             services.AddSingleton<IUserBiz, UserBiz>();
             services.AddSingleton<IWorkPlanBiz, WorkPlanBiz>();
             services.AddSingleton<IWorkItemBiz, WorkItemBiz>();

@@ -65,7 +65,7 @@ namespace myCoreMvc.UI.Controllers
                     : WorkItemBiz.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
 
                 workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                workItem.WorkPlan = WorkPlanBiz.Get(inputModel.WorkPlan); //Task: This is because the getter method from DataProvider is shallow. Could we make it deep to return WorkPlan as well?
+                workItem.WorkPlan = WorkPlanBiz.Get(inputModel.WorkPlan); //Task: This is because the getter method from DataRepo is shallow. Could we make it deep to return WorkPlan as well?
                 var transactionResult = WorkItemBiz.Of(workItem).Save();
 
                 string resultMessage;

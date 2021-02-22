@@ -9,7 +9,7 @@ namespace myCoreMvc.App.Services
 {
     #region Lesson
     //Although this interface has common aspects with
-    //IDataProvider we don't use IDataProvider directly in UI
+    //IDataRepo we don't use IDataRepo directly in UI
     #endregion
 
     public interface IUserBiz

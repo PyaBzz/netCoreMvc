@@ -11,12 +11,12 @@ namespace myCoreMvc.App.Services
 {
     public class UserBizOf : IUserBizOf
     {
-        private IDataProvider DataProvider;
+        private IDataRepo DataRepo;
         public User User { get; }
 
-        public UserBizOf(IDataProvider dataProvider, User user)
+        public UserBizOf(IDataRepo dataRepo, User user)
         {
-            DataProvider = dataProvider;
+            DataRepo = dataRepo;
             User = user;
         }
 
@@ -31,7 +31,7 @@ namespace myCoreMvc.App.Services
                     rng.GetBytes(User.Salt);
                 }
             }
-            return DataProvider.Save(User);
+            return DataRepo.Save(User);
         }
 
         TransactionResult IUserBizOf.SetPassword(string password)
@@ -44,6 +44,6 @@ namespace myCoreMvc.App.Services
             return TransactionResult.Updated;
         }
 
-        TransactionResult IUserBizOf.Delete() => DataProvider.Delete<User>(User.Id);
+        TransactionResult IUserBizOf.Delete() => DataRepo.Delete<User>(User.Id);
     }
 }

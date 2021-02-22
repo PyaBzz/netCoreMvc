@@ -7,16 +7,16 @@ namespace myCoreMvc.App.Services
 {
     public class WorkItemBizOf : IWorkItemBizOf
     {
-        private readonly IDataProvider DataProvider;
+        private readonly IDataRepo DataRepo;
         public WorkItem WorkItem { get; }
 
-        public WorkItemBizOf(IDataProvider dataProvider, WorkItem workItem)
+        public WorkItemBizOf(IDataRepo dataRepo, WorkItem workItem)
         {
-            DataProvider = dataProvider;
+            DataRepo = dataRepo;
             WorkItem = workItem;
         }
 
-        TransactionResult IWorkItemBizOf.Save() => DataProvider.Save(WorkItem);
-        TransactionResult IWorkItemBizOf.Delete() => DataProvider.Delete<WorkItem>(WorkItem.Id);
+        TransactionResult IWorkItemBizOf.Save() => DataRepo.Save(WorkItem);
+        TransactionResult IWorkItemBizOf.Delete() => DataRepo.Delete<WorkItem>(WorkItem.Id);
     }
 }

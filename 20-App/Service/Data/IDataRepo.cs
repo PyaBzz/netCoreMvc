@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace myCoreMvc.App.Services
 {
-    public interface IDataProvider
+    public interface IDataRepo
     {
         T Get<T>(Guid id) where T : class, IThing;
         T Get<T>(Func<T, bool> func) where T : class, IThing;
