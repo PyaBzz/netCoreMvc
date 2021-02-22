@@ -1,17 +1,17 @@
 {
-    "ConnectionString": "server=.; Integrated Security=false; User ID=sa; Password=adminPass1;",
+    "ConnectionStr": {
+        "Init": "server=.; Integrated Security=false; User ID=sa; Password=adminPass1;",
+        "Normal": "server=.; Integrated Security=false; User ID=sa; Password=adminPass1; Database=bazDb"
+    },
     "InitScriptRelPath": "Sql//Init.sql",
     "DestroyScriptRelPath": "Sql//Destroy.sql",
-
     "ShowNavToUnknownUsers": true,
-
     "WorkItem": {
         "Id": "98e5d9e4-8dfe-4682-88bf-8dfbe614de4d",
         "Reference": "Wi22",
         "Priority": "4",
         "Name": "FourthItem"
     },
-
     "Authentication": {
         "CookieName": "myCoreMvc.Auth",
         "SessionLifeTime": "10"

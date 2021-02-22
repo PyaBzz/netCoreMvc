@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Microsoft.Extensions.Configuration;
 
 namespace myCoreMvc.App
@@ -27,7 +28,7 @@ namespace myCoreMvc.App
 {
     public class Config
     {
-        public string ConnectionString { get; set; }
+        public Dictionary<string,string> ConnectionStr { get; set; }
         public string InitScriptRelPath { get; set; }
         public string DestroyScriptRelPath { get; set; }
         public bool ShowNavToUnknownUsers { get; set; }

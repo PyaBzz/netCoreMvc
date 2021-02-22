@@ -17,14 +17,19 @@ BEGIN
     print 'Creating WorkPlans'
     CREATE TABLE WorkPlans
     (
-        id INT PRIMARY KEY,
-        name VARCHAR(20)
+        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        Name VARCHAR(20)
     )
 END
 ELSE
 BEGIN
     PRINT 'WorkPlans already exists'
 END
+
+GO
+
+INSERT INTO WorkPlans VALUES ('DA98695E-A126-44E0-984B-DBFAEE50031B', 'WorkPlanA')
+INSERT INTO WorkPlans VALUES ('DC2A8B2C-80FD-4344-8D30-67E94E4E77E6', 'WorkPlanB')
 
 GO
 
