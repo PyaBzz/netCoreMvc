@@ -19,7 +19,7 @@ namespace myCoreMvc.App
             var batchCount = scriptBatches.Count();
 
             Console.WriteLine("Connecting to SQL server");
-            using (var connection = SqlConFactory.GetInit())
+            using (var connection = SqlConFactory.Get(true))
             {
                 connection.Open();
                 var command = new SqlCommand();
