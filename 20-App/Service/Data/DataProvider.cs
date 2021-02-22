@@ -13,7 +13,11 @@ namespace myCoreMvc.App.Services
     {
         public T Get<T>(Guid id) where T : class, IThing
         {
-            throw new NotImplementedException();
+            using (var conn = SqlConFactory.Get())
+            {
+                var reader = conn.QuerySingle($"SELECT * FROM {typeof(T).Name}s WHERE Id = '{id.ToString()}'");
+                return reader.Single<T>();
+            }
         }
         public T Get<T>(Func<T, bool> func) where T : class, IThing
         {
@@ -24,7 +28,7 @@ namespace myCoreMvc.App.Services
         {
             using (var conn = SqlConFactory.Get())
             {
-                var reader = conn.QueryMultiple("select * from WorkPlans");
+                var reader = conn.QueryMultiple($"SELECT * FROM {typeof(T).Name}s");
                 return reader.Read<T>().ToList();
             }
         }

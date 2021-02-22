@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="settings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\DbMockWorkItems.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

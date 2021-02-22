@@ -12,7 +12,7 @@ namespace myCoreMvc.UI
         //###                          Pipeline                          ###
         //##################################################################
 
-        public void Configure(IHostingEnvironment env, IApplicationBuilder appBuilder)
+        public void Configure(IWebHostEnvironment env, IApplicationBuilder appBuilder)
         {
             #region Lesson
             // The "IsDevelopment" method returns true only if EnvironmentName equals EnvironmentName.Development (string)
