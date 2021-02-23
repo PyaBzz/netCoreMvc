@@ -11,11 +11,18 @@ namespace myCoreMvc.App.Services
 {
     public class DataRepo : IDataRepo
     {
+        private readonly Dictionary<Type, string> TableNames = new Dictionary<Type, string>{
+            {typeof(WorkPlan), "WorkPlans"},
+            {typeof(WorkItem), "WorkItems"},
+            {typeof(User), "Users"}
+        };
+
         public T Get<T>(Guid id) where T : class, IThing
         {
             using (var conn = SqlConFactory.Get())
             {
-                var reader = conn.QuerySingle<T>($"SELECT * FROM {typeof(T).Name}s WHERE Id = @Id", new { Id = id.ToString() });
+                var tableName = TableNames[typeof(T)];
+                var reader = conn.QuerySingle<T>($"SELECT * FROM {tableName} WHERE Id = @Id", new { Id = id.ToString() });
                 return reader;
             }
         }
@@ -24,7 +31,7 @@ namespace myCoreMvc.App.Services
             throw new NotImplementedException();
         }
 
-        public List<T> GetList<T>() where T : class, IThing
+        public List<T> GetList<T>() where T : class, IThing //Todo: Combine GetList methods with optional predicate
         {
             using (var conn = SqlConFactory.Get())
             {

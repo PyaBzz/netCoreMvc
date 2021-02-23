@@ -15,6 +15,8 @@ namespace myCoreMvc.Test.Data
         public void GetList_GetsTheRightType()
         {
             Assert.IsType<List<WorkPlan>>(dp.GetList<WorkPlan>());
+            Assert.IsType<List<WorkItem>>(dp.GetList<WorkItem>());
+            Assert.IsType<List<User>>(dp.GetList<User>());
         }
 
         [Fact]
