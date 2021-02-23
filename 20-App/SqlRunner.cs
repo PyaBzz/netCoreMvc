@@ -10,7 +10,26 @@ namespace myCoreMvc.App
 {
     public static class SqlRunner
     {
-        public static void Run(string relativeScriptPath)
+        public static bool MigrateIfNeeded(string[] args)
+        {
+            var lastArg = GetLast(args).ToLower();
+            if (IsDbMigration(lastArg))
+            {
+                var config = ConfigFactory.Get();
+                string scriptRelPath;
+                if (lastArg == "make")
+                    scriptRelPath = config.Database.ScriptPath["Make"];
+                else if (lastArg == "populate")
+                    scriptRelPath = config.Database.ScriptPath["Populate"];
+                else
+                    scriptRelPath = config.Database.ScriptPath["Destroy"];
+                Run(scriptRelPath);
+                return true;
+            }
+            return false;
+        }
+
+        private static void Run(string relativeScriptPath)
         {
             var outputDir = Assembly.GetExecutingAssembly().GetDirectory(); //Todo: If merged into the extension method what assembly dir does it return?
             var scriptPath = Path.Combine(outputDir, relativeScriptPath);
@@ -33,6 +52,17 @@ namespace myCoreMvc.App
                         Console.WriteLine($"Batch {i} executed");
                 }
             }
+        }
+
+        private static string GetLast(string[] args)
+        {
+            var paramCount = args.Count();
+            return paramCount > 0 ? args[paramCount - 1] : string.Empty; //Todo: Add an extension
+        }
+
+        private static bool IsDbMigration(string lastArg)
+        {
+            return lastArg == "make" || lastArg == "populate" || lastArg == "destroy";
         }
     }
 }
