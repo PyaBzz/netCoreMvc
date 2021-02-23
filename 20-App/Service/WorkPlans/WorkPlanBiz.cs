@@ -13,13 +13,13 @@ namespace myCoreMvc.App.Services
             => DataRepo = dataRepo;
 
         public WorkPlan Get(Guid id) => DataRepo.Get<WorkPlan>(id);
-        public WorkPlan Get(Func<WorkPlan, bool> func) => DataRepo.Get<WorkPlan>(func);
+        public WorkPlan Get(Predicate<WorkPlan> func) => DataRepo.Get<WorkPlan>(func);
 
         public List<WorkPlan> GetList() => DataRepo.GetList<WorkPlan>();
-        public List<WorkPlan> GetList(Func<WorkPlan, bool> func) => DataRepo.GetList<WorkPlan>(func);
+        public List<WorkPlan> GetList(Predicate<WorkPlan> func) => DataRepo.GetList<WorkPlan>(func);
         public List<WorkPlan> GetListIncluding(params Expression<Func<WorkPlan, object>>[] includeProperties)
             => DataRepo.GetListIncluding<WorkPlan>(includeProperties);
-        public List<WorkPlan> GetListIncluding(Func<WorkPlan, bool> predicate, params Expression<Func<WorkPlan, object>>[] includeProperties)
+        public List<WorkPlan> GetListIncluding(Predicate<WorkPlan> predicate, params Expression<Func<WorkPlan, object>>[] includeProperties)
             => DataRepo.GetListIncluding<WorkPlan>(predicate, includeProperties);
 
         IWorkPlanBizOf IWorkPlanBiz.Of(WorkPlan workPlan)

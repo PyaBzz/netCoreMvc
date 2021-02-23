@@ -10,12 +10,10 @@ namespace myCoreMvc.App.Services
     public interface IDataRepo
     {
         T Get<T>(Guid id) where T : class, IThing;
-        T Get<T>(Func<T, bool> func) where T : class, IThing; //Todo: Replace with predicate
-
-        List<T> GetList<T>() where T : class, IThing;
-        List<T> GetList<T>(Func<T, bool> func) where T : class, IThing;
+        T Get<T>(Predicate<T> func) where T : class, IThing;
+        List<T> GetList<T>(Predicate<T> predicate = null) where T : class, IThing;
         List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, IThing;
-        List<T> GetListIncluding<T>(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing;
+        List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing;
 
         #region Lesson
         //Why don't we say: TransactionResult Add(Thing obj)?

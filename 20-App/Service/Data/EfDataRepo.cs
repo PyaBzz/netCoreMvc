@@ -30,15 +30,15 @@
 
 //         public T Get<T>(Guid id) where T : class, IThing => Ctx.Set<T>().Find(id); //Find() is more performant than GetList etc.
 
-//         public T Get<T>(Func<T, bool> func) where T : class, IThing => Ctx.Set<T>().SingleOrDefault(t => func(t)); //Single() is a Linq to Entity execution method
+//         public T Get<T>(Predicate<T> func) where T : class, IThing => Ctx.Set<T>().SingleOrDefault(t => func(t)); //Single() is a Linq to Entity execution method
 
 //         public List<T> GetList<T>() where T : class, IThing => Ctx.Set<T>().ToList(); //ToList() is a Linq to Entity execution method
 
-//         public List<T> GetList<T>(Func<T, bool> func) where T : class, IThing => Ctx.Set<T>().Where(t => func(t)).ToList();
+//         public List<T> GetList<T>(Predicate<T> func) where T : class, IThing => Ctx.Set<T>().Where(t => func(t)).ToList();
 
 //         public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, IThing => GetQueryableIncluding<T>(includeProperties).ToList();
 
-//         public List<T> GetListIncluding<T>(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
+//         public List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
 //             => GetQueryableIncluding<T>(includeProperties).Where(predicate).ToList();
 
 //         private IQueryable<T> GetQueryableIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, IThing

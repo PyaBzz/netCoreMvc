@@ -13,13 +13,13 @@ namespace myCoreMvc.App.Services
             => DataRepo = dataRepo;
 
         public WorkItem Get(Guid id) => DataRepo.Get<WorkItem>(id);
-        public WorkItem Get(Func<WorkItem, bool> func) => DataRepo.Get<WorkItem>(func);
+        public WorkItem Get(Predicate<WorkItem> func) => DataRepo.Get<WorkItem>(func);
 
         public List<WorkItem> GetList() => DataRepo.GetList<WorkItem>();
-        public List<WorkItem> GetList(Func<WorkItem, bool> func) => DataRepo.GetList<WorkItem>(func);
+        public List<WorkItem> GetList(Predicate<WorkItem> func) => DataRepo.GetList<WorkItem>(func);
         public List<WorkItem> GetListIncluding(params Expression<Func<WorkItem, object>>[] includeProperties)
             => DataRepo.GetListIncluding<WorkItem>(includeProperties);
-        public List<WorkItem> GetListIncluding(Func<WorkItem, bool> predicate, params Expression<Func<WorkItem, object>>[] includeProperties)
+        public List<WorkItem> GetListIncluding(Predicate<WorkItem> predicate, params Expression<Func<WorkItem, object>>[] includeProperties)
             => DataRepo.GetListIncluding<WorkItem>(predicate, includeProperties);
 
         public IWorkItemBizOf Of(WorkItem workItem)

@@ -26,23 +26,23 @@ namespace myCoreMvc.App.Services
                 return reader;
             }
         }
-        public T Get<T>(Func<T, bool> func) where T : class, IThing
+        public T Get<T>(Predicate<T> func) where T : class, IThing
         {
             throw new NotImplementedException();
         }
 
-        public List<T> GetList<T>() where T : class, IThing //Todo: Combine GetList methods with optional predicate
+        public List<T> GetList<T>(Predicate<T> predicate = null) where T : class, IThing
         {
-            using (var conn = SqlConFactory.Get())
+            if (predicate == null)
             {
-                var reader = conn.QueryMultiple($"SELECT * FROM {typeof(T).Name}s");
-                return reader.Read<T>().ToList();
+                using (var conn = SqlConFactory.Get())
+                {
+                    var reader = conn.QueryMultiple($"SELECT * FROM {typeof(T).Name}s");
+                    return reader.Read<T>().ToList();
+                }
             }
-        }
-
-        public List<T> GetList<T>(Func<T, bool> func) where T : class, IThing
-        {
-            throw new NotImplementedException();
+            else
+                throw new NotImplementedException();
         }
 
         public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
@@ -50,7 +50,7 @@ namespace myCoreMvc.App.Services
             throw new NotImplementedException();
         }
 
-        public List<T> GetListIncluding<T>(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
+        public List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
         {
             throw new NotImplementedException();
         }

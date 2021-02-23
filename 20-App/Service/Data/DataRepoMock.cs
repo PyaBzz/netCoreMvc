@@ -113,7 +113,7 @@ namespace myCoreMvc.App.Services
 
         /*==================================  Methods =================================*/
 
-        public List<T> GetList<T>() where T : class, IThing
+        private List<T> GetList<T>() where T : class, IThing
         {
             var propertyInfos = this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
             var propertyInfo = propertyInfos.SingleOrDefault(pi => pi.PropertyType == typeof(List<T>));
@@ -122,11 +122,15 @@ namespace myCoreMvc.App.Services
             return property;
         }
 
-        //Task: Replace Func with Predicate
-        public List<T> GetList<T>(Func<T, bool> func) where T : class, IThing
-            => GetList<T>().Where(i => func(i)).ToList();
+        public List<T> GetList<T>(Predicate<T> predicate = null) where T : class, IThing
+        {
+            if (predicate == null)
+                return GetList<T>();
+            else
+                return GetList<T>().Where(x => predicate(x)).ToList();
+        }
 
-        public T Get<T>(Func<T, bool> func) where T : class, IThing
+        public T Get<T>(Predicate<T> func) where T : class, IThing
             => GetList<T>().SingleOrDefault(i => func(i));
 
         public T Get<T>(Guid id) where T : class, IThing
@@ -176,7 +180,7 @@ namespace myCoreMvc.App.Services
             => GetList<T>();
 
         // These are meant to determine depth of eager loading in an ORM
-        public List<T> GetListIncluding<T>(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
+        public List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
             => GetList(predicate);
     }
 }
