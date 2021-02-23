@@ -23,7 +23,7 @@ namespace myCoreMvc.App.Services
 
         /*==================================  Constructors ==================================*/
 
-        public DataRepoMock()
+        public DataRepoMock(Config config)
         {
             WorkPlans = new List<WorkPlan>();
 
@@ -31,12 +31,11 @@ namespace myCoreMvc.App.Services
 
             try
             {
-                //Todo: Don't hardcode file path
-                var workPlansResourcePath = Path.Combine(directory, "Resources\\DbMockWorkPlans.xml");
+                var sourceFilePath = Path.Combine(directory, config.Data.Path.XmlSource["WorkPlans"]);
 
                 var serialiser = new XmlSerializer(typeof(WorkPlan));
 
-                using (var stream = File.OpenRead(workPlansResourcePath))
+                using (var stream = File.OpenRead(sourceFilePath))
                 {
                     using (var xmlRdr = XmlReader.Create(stream))
                     {
@@ -60,12 +59,11 @@ namespace myCoreMvc.App.Services
 
             try
             {
-                //Todo: Don't hardcode file path
-                var workItemsResourcePath = Path.Combine(directory, "Resources\\DbMockWorkItems.xml");
+                var sourceFilePath = Path.Combine(directory, config.Data.Path.XmlSource["WorkItems"]);
 
                 var serialiser = new XmlSerializer(typeof(WorkItem));
 
-                using (var stream = File.OpenRead(workItemsResourcePath))
+                using (var stream = File.OpenRead(sourceFilePath))
                 {
                     using (var xmlRdr = XmlReader.Create(stream))
                     {
