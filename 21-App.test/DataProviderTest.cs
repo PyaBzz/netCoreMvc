@@ -22,5 +22,11 @@ namespace myCoreMvc.Test.Data
         {
             Assert.StrictEqual(dp.GetList<WorkPlan>().Count(), 2);
         }
+
+        [Fact]
+        public void Get_GetsById()
+        {
+            Assert.StrictEqual(dp.Get<WorkPlan>(new Guid("DC2A8B2C-80FD-4344-8D30-67E94E4E77E6")).Name, "WorkPlanB");
+        }
     }
 }

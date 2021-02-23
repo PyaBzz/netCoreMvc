@@ -10,7 +10,7 @@ namespace myCoreMvc.App.Services
     public interface IDataRepo
     {
         T Get<T>(Guid id) where T : class, IThing;
-        T Get<T>(Func<T, bool> func) where T : class, IThing;
+        T Get<T>(Func<T, bool> func) where T : class, IThing; //Todo: Replace with predicate
 
         List<T> GetList<T>() where T : class, IThing;
         List<T> GetList<T>(Func<T, bool> func) where T : class, IThing;
