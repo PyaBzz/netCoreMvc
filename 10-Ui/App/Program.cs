@@ -9,7 +9,7 @@ namespace myCoreMvc.UI
     {
         public static void Main(string[] args)
         {
-            if (SqlRunner.MigrateIfNeeded(args))
+            if (DbMigrator.MigrateIfNeeded(args))
             {
                 return;
             }

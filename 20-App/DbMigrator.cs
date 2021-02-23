@@ -8,12 +8,12 @@ using Baz.Core;
 
 namespace myCoreMvc.App
 {
-    public static class SqlRunner
+    public static class DbMigrator
     {
         public static bool MigrateIfNeeded(string[] args)
         {
             var lastArg = GetLast(args).ToLower();
-            if (IsDbMigration(lastArg))
+            if (ShouldMigrate(lastArg))
             {
                 var config = ConfigFactory.Get();
                 string scriptRelPath;
@@ -24,9 +24,21 @@ namespace myCoreMvc.App
                 else
                     scriptRelPath = config.Database.ScriptPath["Destroy"];
                 Run(scriptRelPath);
+                Console.WriteLine("Migration done");
                 return true;
             }
             return false;
+        }
+
+        private static string GetLast(string[] args)
+        {
+            var paramCount = args.Count();
+            return paramCount > 0 ? args[paramCount - 1] : string.Empty; //Todo: Add an extension
+        }
+
+        private static bool ShouldMigrate(string lastArg)
+        {
+            return lastArg == "make" || lastArg == "populate" || lastArg == "destroy";
         }
 
         private static void Run(string relativeScriptPath)
@@ -52,17 +64,6 @@ namespace myCoreMvc.App
                         Console.WriteLine($"Batch {i} executed");
                 }
             }
-        }
-
-        private static string GetLast(string[] args)
-        {
-            var paramCount = args.Count();
-            return paramCount > 0 ? args[paramCount - 1] : string.Empty; //Todo: Add an extension
-        }
-
-        private static bool IsDbMigration(string lastArg)
-        {
-            return lastArg == "make" || lastArg == "populate" || lastArg == "destroy";
         }
     }
 }
