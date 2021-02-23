@@ -11,14 +11,15 @@ namespace myCoreMvc.UI
     {
         public static void Main(string[] args)
         {
-            var argCount = args.Count();
-            var lastArg = argCount > 0 ? args[argCount - 1] : string.Empty; //Todo: Add an extension
-            if (lastArg == "init" || lastArg == "destroy")
+            var lastArg = GetLast(args).ToLower();
+            if (IsDbMigration(lastArg))
             {
                 var config = ConfigFactory.Get();
                 string scriptRelPath;
-                if (lastArg == "init")
-                    scriptRelPath = config.Database.ScriptPath["Init"];
+                if (lastArg == "make")
+                    scriptRelPath = config.Database.ScriptPath["Make"];
+                else if (lastArg == "populate")
+                    scriptRelPath = config.Database.ScriptPath["Populate"];
                 else
                     scriptRelPath = config.Database.ScriptPath["Destroy"];
                 SqlRunner.Run(scriptRelPath);
@@ -33,6 +34,17 @@ namespace myCoreMvc.UI
                     .Build();
                 host.Run();
             }
+        }
+
+        private static bool IsDbMigration(string lastArg)
+        {
+            return lastArg == "make" || lastArg == "populate" || lastArg == "destroy";
+        }
+
+        private static string GetLast(string[] args)
+        {
+            var paramCount = args.Count();
+            return paramCount > 0 ? args[paramCount - 1] : string.Empty; //Todo: Add an extension
         }
     }
 }

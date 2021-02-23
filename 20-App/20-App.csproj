@@ -27,7 +27,10 @@
     <None Update="Resources\DbMockWorkPlans.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Sql\Init.sql">
+    <None Update="Sql\Make.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Sql\Populate.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Sql\Destroy.sql">

@@ -5,8 +5,9 @@
             "Normal": "server=.; Integrated Security=false; User ID=sa; Password=adminPass1; Database=bazDb"
         },
         "ScriptPath": {
-            "Init": "Sql//Init.sql",
-            "Destroy": "Sql//Destroy.sql",
+            "Make": "Sql//Make.sql",
+            "Populate": "Sql//Populate.sql",
+            "Destroy": "Sql//Destroy.sql"
         }
     },
     "Authentication": {
