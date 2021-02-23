@@ -8,8 +8,8 @@ namespace myCoreMvc.App
         {
             var config = ConfigFactory.Get();
             var connectionStr = isInit
-            ? config.Database.ConnectionStr["Init"]
-            : config.Database.ConnectionStr["Normal"];
+            ? config.Data.ConnectionStr["Init"]
+            : config.Data.ConnectionStr["Normal"];
             return new SqlConnection(connectionStr);
         }
     }

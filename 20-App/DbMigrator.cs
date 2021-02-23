@@ -18,11 +18,11 @@ namespace myCoreMvc.App
                 var config = ConfigFactory.Get();
                 string scriptRelPath;
                 if (lastArg == "make")
-                    scriptRelPath = config.Database.ScriptPath["Make"];
+                    scriptRelPath = config.Data.Path.Script["Make"];
                 else if (lastArg == "populate")
-                    scriptRelPath = config.Database.ScriptPath["Populate"];
+                    scriptRelPath = config.Data.Path.Script["Populate"];
                 else
-                    scriptRelPath = config.Database.ScriptPath["Destroy"];
+                    scriptRelPath = config.Data.Path.Script["Destroy"];
                 Run(scriptRelPath);
                 Console.WriteLine("Migration done");
                 return true;

@@ -21,10 +21,10 @@
     <None Update="settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\DbMockWorkItems.xml">
+    <None Update="Sources\WorkItems.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\DbMockWorkPlans.xml">
+    <None Update="Sources\WorkPlans.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Sql\Make.sql">
