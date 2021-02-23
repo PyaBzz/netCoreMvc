@@ -15,8 +15,8 @@ namespace myCoreMvc.App.Services
         {
             using (var conn = SqlConFactory.Get())
             {
-                var reader = conn.QuerySingle($"SELECT * FROM {typeof(T).Name}s WHERE Id = '{id.ToString()}'");
-                return reader.Single<T>();
+                var reader = conn.QuerySingle<T>($"SELECT * FROM {typeof(T).Name}s WHERE Id = @Id", new { Id = id.ToString() });
+                return reader;
             }
         }
         public T Get<T>(Func<T, bool> func) where T : class, IThing
