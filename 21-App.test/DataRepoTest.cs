@@ -31,6 +31,13 @@ namespace myCoreMvc.Test.Data
         }
 
         [Fact]
+        public void GetList_Filters_IfPredicate()
+        {
+            Assert.StrictEqual("Plan2", dataRepo.GetList<WorkPlan>(wp => wp.Name == "Plan2").First().Name);
+            Assert.StrictEqual(1, dataRepo.GetList<WorkPlan>(wp => wp.Name == "Plan2").Count());
+        }
+
+        [Fact]
         public void Get_GetsById()
         {
             Assert.StrictEqual("Plan2", dataRepo.Get<WorkPlan>(new Guid("53c88402-4092-4834-8e7f-6ce70057cdc5")).Name);
