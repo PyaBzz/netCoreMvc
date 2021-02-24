@@ -15,78 +15,19 @@ namespace myCoreMvc.App.Services
 {
     public class DataRepoMock : IDataRepo
     {
-        /*================================  Properties ================================*/
+        private Config _Config;
+        private List<WorkPlan> WorkPlans;
+        private List<WorkItem> WorkItems;
+        private List<User> Users;
 
-        private List<WorkPlan> WorkPlans { get; set; }
-        private List<WorkItem> WorkItems { get; set; }
-        private List<User> Users { get; set; }
-
-        /*==================================  Constructors ==================================*/
-
-        public DataRepoMock(Config config)
+        public DataRepoMock(Config conf)
         {
-            WorkPlans = new List<WorkPlan>();
-
-            var directory = Assembly.GetExecutingAssembly().GetDirectory();
-
-            try
-            {
-                var sourceFilePath = Path.Combine(directory, config.Data.Path.XmlSource["WorkPlans"]);
-
-                var serialiser = new XmlSerializer(typeof(WorkPlan));
-
-                using (var stream = File.OpenRead(sourceFilePath))
-                {
-                    using (var xmlRdr = XmlReader.Create(stream))
-                    {
-                        while (xmlRdr.Read())
-                        {
-                            if (xmlRdr.NodeType == XmlNodeType.Element && xmlRdr.Name == "WorkPlan")
-                            {
-                                var workPlan = serialiser.Deserialize(xmlRdr) as WorkPlan;
-                                WorkPlans.Add(workPlan);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            WorkItems = new List<WorkItem>();
-
-            try
-            {
-                var sourceFilePath = Path.Combine(directory, config.Data.Path.XmlSource["WorkItems"]);
-
-                var serialiser = new XmlSerializer(typeof(WorkItem));
-
-                using (var stream = File.OpenRead(sourceFilePath))
-                {
-                    using (var xmlRdr = XmlReader.Create(stream))
-                    {
-                        while (xmlRdr.Read())
-                        {
-                            if (xmlRdr.NodeType == XmlNodeType.Element && xmlRdr.Name == "WorkItem")
-                            {
-                                var workItem = serialiser.Deserialize(xmlRdr) as WorkItem;
-                                WorkItems.Add(workItem);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            this._Config = conf;
+            WorkPlans = ReadFromXml<WorkPlan>();
+            WorkItems = ReadFromXml<WorkItem>();
 
             foreach (var workItem in WorkItems)
-            {
                 workItem.WorkPlan = Get<WorkPlan>(workItem.WorkPlanId);
-            }
 
             using (var rng = RandomNumberGenerator.Create())
             {
@@ -109,30 +50,62 @@ namespace myCoreMvc.App.Services
             }
         }
 
-        /*==================================  Methods =================================*/
-
-        private List<T> GetList<T>() where T : class, IThing
+        private List<T> ReadFromXml<T>() where T : class
         {
-            var propertyInfos = this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
-            var propertyInfo = propertyInfos.SingleOrDefault(pi => pi.PropertyType == typeof(List<T>));
-            if (propertyInfo == null) throw new NullReferenceException($"{this.GetType()} knows no source collection of type {typeof(T)}.");
-            var property = (List<T>)propertyInfo.GetValue(this);
-            return property;
+            var res = new List<T>();
+            var outputDir = Assembly.GetExecutingAssembly().GetDirectory();
+            var typeName = typeof(T).Name;
+            try
+            {
+                var sourceFilePath = Path.Combine(outputDir, _Config.Data.Path.XmlSource[typeName + "s"]);
+                var serialiser = new XmlSerializer(typeof(T));
+
+                using (var stream = File.OpenRead(sourceFilePath))
+                {
+                    using (var xmlRdr = XmlReader.Create(stream))
+                    {
+                        while (xmlRdr.Read())
+                        {
+                            if (xmlRdr.NodeType == XmlNodeType.Element && xmlRdr.Name == typeName)
+                            {
+                                var workPlan = serialiser.Deserialize(xmlRdr) as T;
+                                res.Add(workPlan);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return res;
         }
+
+        private List<T> GetField<T>() where T : class, IThing
+        {
+            var fieldInfos = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
+            var fieldInfo = fieldInfos.SingleOrDefault(pi => pi.FieldType == typeof(List<T>));
+            if (fieldInfo == null)
+                throw new NullReferenceException($"{this.GetType()} knows no source collection of type {typeof(T)}.");
+            return (List<T>)fieldInfo.GetValue(this);
+        }
+
+        /*==================================  Interface Methods =================================*/
 
         public List<T> GetList<T>(Predicate<T> predicate = null) where T : class, IThing
         {
             if (predicate == null)
-                return GetList<T>();
+                return GetField<T>();
             else
-                return GetList<T>().Where(x => predicate(x)).ToList();
+                return GetField<T>().Where(x => predicate(x)).ToList();
         }
 
         public T Get<T>(Predicate<T> func) where T : class, IThing
-            => GetList<T>().SingleOrDefault(i => func(i));
+            => GetField<T>().SingleOrDefault(i => func(i));
 
         public T Get<T>(Guid id) where T : class, IThing
-            => GetList<T>().SingleOrDefault(i => i.Id == id);
+            => GetField<T>().SingleOrDefault(i => i.Id == id);
 
         public TransactionResult Save<T>(T obj) where T : class, IThing
         {
@@ -146,14 +119,14 @@ namespace myCoreMvc.App.Services
         private TransactionResult Add<T>(T obj) where T : class, IThing
         {
             obj.Id = Guid.NewGuid();
-            var targetSource = GetList<T>();
+            var targetSource = GetField<T>();
             targetSource.Add(obj);
             return TransactionResult.Added;
         }
 
         private TransactionResult Update<T>(T obj) where T : class, IThing
         {
-            var targetSource = GetList<T>();//Task: Use filtering query instead of LINQ!
+            var targetSource = GetField<T>();//Task: Use filtering query instead of LINQ!
             var existingObj = targetSource.SingleOrDefault(e => e.Id == obj.Id);
             if (existingObj == null)
                 return TransactionResult.NotFound;
@@ -166,7 +139,7 @@ namespace myCoreMvc.App.Services
 
         public TransactionResult Delete<T>(Guid id) where T : class, IThing
         {
-            var targetSource = GetList<T>();
+            var targetSource = GetField<T>();
             var existingObj = targetSource.SingleOrDefault(e => e.Id == id);
             if (existingObj == null) return TransactionResult.NotFound;
             targetSource.Remove(existingObj);
@@ -175,7 +148,7 @@ namespace myCoreMvc.App.Services
 
         // These are meant to determine depth of eager loading in an ORM
         public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
-            => GetList<T>();
+            => GetField<T>();
 
         // These are meant to determine depth of eager loading in an ORM
         public List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
