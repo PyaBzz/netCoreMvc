@@ -33,7 +33,7 @@ namespace myCoreMvc.Test.Data
         [Fact]
         public void Get_GetsById()
         {
-            Assert.StrictEqual("WorkPlanB", dataRepo.Get<WorkPlan>(new Guid("DC2A8B2C-80FD-4344-8D30-67E94E4E77E6")).Name);
+            Assert.StrictEqual("Plan2", dataRepo.Get<WorkPlan>(new Guid("53c88402-4092-4834-8e7f-6ce70057cdc5")).Name);
         }
     }
 }
