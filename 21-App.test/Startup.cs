@@ -10,8 +10,10 @@ namespace myCoreMvc.App.Test
 
             services.AddSingleton<Config>(ConfigFactory.Get());
 
-            // services.AddTransient<IDataRepo, DataRepoMock>();
-            services.AddTransient<IDataRepo, DataRepo>();
+            services.AddTransient<IDataRepo, DataRepoMock>();
+            // services.AddTransient<IDataRepo, DataRepo>();
+
+            services.AddTransient<IWorkplanRepo, WorkplanRepoMock>();
         }
     }
 }
