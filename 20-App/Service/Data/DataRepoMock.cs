@@ -82,7 +82,7 @@ namespace myCoreMvc.App.Services
             return res;
         }
 
-        private List<T> GetField<T>() where T : class, IThing
+        private List<T> GetField<T>() where T : class, ISavable
         {
             var fieldInfos = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.NonPublic);
             var fieldInfo = fieldInfos.SingleOrDefault(pi => pi.FieldType == typeof(List<T>));
@@ -93,7 +93,7 @@ namespace myCoreMvc.App.Services
 
         /*==================================  Interface Methods =================================*/
 
-        public List<T> GetList<T>(Predicate<T> predicate = null) where T : class, IThing
+        public List<T> GetList<T>(Predicate<T> predicate = null) where T : class, ISavable
         {
             if (predicate == null)
                 return GetField<T>();
@@ -101,13 +101,13 @@ namespace myCoreMvc.App.Services
                 return GetField<T>().Where(x => predicate(x)).ToList();
         }
 
-        public T Get<T>(Predicate<T> func) where T : class, IThing
+        public T Get<T>(Predicate<T> func) where T : class, ISavable
             => GetField<T>().SingleOrDefault(i => func(i));
 
-        public T Get<T>(Guid id) where T : class, IThing
+        public T Get<T>(Guid id) where T : class, ISavable
             => GetField<T>().SingleOrDefault(i => i.Id == id);
 
-        public TransactionResult Save<T>(T obj) where T : class, IThing
+        public TransactionResult Save<T>(T obj) where T : class, ISavable
         {
             //Task: Is this the best way to determine if the object is new?
             if (obj.Id == Guid.Empty)
@@ -116,7 +116,7 @@ namespace myCoreMvc.App.Services
                 return Update<T>(obj);
         }
 
-        private TransactionResult Add<T>(T obj) where T : class, IThing
+        private TransactionResult Add<T>(T obj) where T : class, ISavable
         {
             obj.Id = Guid.NewGuid();
             var targetSource = GetField<T>();
@@ -124,7 +124,7 @@ namespace myCoreMvc.App.Services
             return TransactionResult.Added;
         }
 
-        private TransactionResult Update<T>(T obj) where T : class, IThing
+        private TransactionResult Update<T>(T obj) where T : class, ISavable
         {
             var targetSource = GetField<T>();//Task: Use filtering query instead of LINQ!
             var existingObj = targetSource.SingleOrDefault(e => e.Id == obj.Id);
@@ -137,7 +137,7 @@ namespace myCoreMvc.App.Services
             }
         }
 
-        public TransactionResult Delete<T>(Guid id) where T : class, IThing
+        public TransactionResult Delete<T>(Guid id) where T : class, ISavable
         {
             var targetSource = GetField<T>();
             var existingObj = targetSource.SingleOrDefault(e => e.Id == id);
@@ -147,11 +147,11 @@ namespace myCoreMvc.App.Services
         }
 
         // These are meant to determine depth of eager loading in an ORM
-        public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
+        public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, ISavable
             => GetField<T>();
 
         // These are meant to determine depth of eager loading in an ORM
-        public List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
+        public List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, ISavable
             => GetList(predicate);
     }
 }

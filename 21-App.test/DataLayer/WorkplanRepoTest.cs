@@ -5,7 +5,7 @@ using myCoreMvc.Domain;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace myCoreMvc.Test.Data
+namespace myCoreMvc.Test.DataLayer
 {
     public class WorkplanRepoTest
     {

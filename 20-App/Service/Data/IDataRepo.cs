@@ -9,11 +9,11 @@ namespace myCoreMvc.App.Services
 {
     public interface IDataRepo
     {
-        T Get<T>(Guid id) where T : class, IThing;
-        T Get<T>(Predicate<T> func) where T : class, IThing;
-        List<T> GetList<T>(Predicate<T> predicate = null) where T : class, IThing;
-        List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, IThing;
-        List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing;
+        T Get<T>(Guid id) where T : class, ISavable;
+        T Get<T>(Predicate<T> func) where T : class, ISavable;
+        List<T> GetList<T>(Predicate<T> predicate = null) where T : class, ISavable;
+        List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, ISavable;
+        List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, ISavable;
 
         #region Lesson
         //Why don't we say: TransactionResult Add(Thing obj)?
@@ -21,7 +21,7 @@ namespace myCoreMvc.App.Services
         // we'd have to cast the subclass to Thing or use "as List<Thing>"
         #endregion
 
-        TransactionResult Save<T>(T obj) where T : class, IThing;
-        TransactionResult Delete<T>(Guid id) where T : class, IThing;
+        TransactionResult Save<T>(T obj) where T : class, ISavable;
+        TransactionResult Delete<T>(Guid id) where T : class, ISavable;
     }
 }

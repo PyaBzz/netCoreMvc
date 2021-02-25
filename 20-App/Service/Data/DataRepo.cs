@@ -17,7 +17,7 @@ namespace myCoreMvc.App.Services
             {typeof(User), "Users"}
         };
 
-        public T Get<T>(Guid id) where T : class, IThing
+        public T Get<T>(Guid id) where T : class, ISavable
         {
             using (var conn = SqlConFactory.Get())
             {
@@ -26,12 +26,12 @@ namespace myCoreMvc.App.Services
                 return reader;
             }
         }
-        public T Get<T>(Predicate<T> func) where T : class, IThing
+        public T Get<T>(Predicate<T> func) where T : class, ISavable
         {
             throw new NotImplementedException();
         }
 
-        public List<T> GetList<T>(Predicate<T> predicate = null) where T : class, IThing
+        public List<T> GetList<T>(Predicate<T> predicate = null) where T : class, ISavable
         {
             if (predicate == null)
             {
@@ -45,12 +45,12 @@ namespace myCoreMvc.App.Services
                 throw new NotImplementedException();
         }
 
-        public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
+        public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, ISavable
         {
             throw new NotImplementedException();
         }
 
-        public List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, IThing
+        public List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, ISavable
         {
             throw new NotImplementedException();
         }
@@ -61,12 +61,12 @@ namespace myCoreMvc.App.Services
         // we'd have to cast the subclass to Thing or use "as List<Thing>"
         #endregion
 
-        public TransactionResult Save<T>(T obj) where T : class, IThing
+        public TransactionResult Save<T>(T obj) where T : class, ISavable
         {
             throw new NotImplementedException();
         }
 
-        public TransactionResult Delete<T>(Guid id) where T : class, IThing
+        public TransactionResult Delete<T>(Guid id) where T : class, ISavable
         {
             throw new NotImplementedException();
         }

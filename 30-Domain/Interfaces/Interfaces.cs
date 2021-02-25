@@ -3,12 +3,12 @@ using System;
 
 namespace myCoreMvc.Domain
 {
-    public interface IThing : IClonable
+    public interface ISavable : IClonable
     {
         Guid Id { get; set; }
     }
 
-    public interface IUser : IThing
+    public interface IUser : ISavable
     {
         string Name { get; set; }
         DateTime DateOfBirth { get; set; }
