@@ -18,19 +18,19 @@ namespace myCoreMvc.UI.Controllers
     public class WorkItemEnterController : BaseController
     {
         private readonly IWorkItemBiz WorkItemBiz;
-        private readonly IWorkPlanBiz WorkPlanBiz;
+        private readonly IWorkplanRepo WorkPlanRepo;
 
-        public WorkItemEnterController(IWorkItemBiz workItemBiz, IWorkPlanBiz workPlanBiz)
+        public WorkItemEnterController(IWorkItemBiz workItemBiz, IWorkplanRepo workPlanBiz)
         {
             WorkItemBiz = workItemBiz;
-            WorkPlanBiz = workPlanBiz;
+            WorkPlanRepo = workPlanBiz;
         }
 
         public IActionResult Index(Guid id)
         {
             var inputModel = new EnterModel();
             inputModel.PriorityChoices = WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
-            inputModel.WorkPlanChoices = WorkPlanBiz.GetList().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.WorkPlan });
+            inputModel.WorkPlanChoices = WorkPlanRepo.GetAll().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.WorkPlan });
             if (id != Guid.Empty)
             {
                 var item = WorkItemBiz.Get(id);
@@ -58,14 +58,14 @@ namespace myCoreMvc.UI.Controllers
                 #endregion
 
                 inputModel.PriorityChoices = WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
-                inputModel.WorkPlanChoices = WorkPlanBiz.GetList().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.WorkPlan });
+                inputModel.WorkPlanChoices = WorkPlanRepo.GetAll().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.WorkPlan });
 
                 var workItem = inputModel.Id == Guid.Empty
                     ? new WorkItem()
                     : WorkItemBiz.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
 
                 workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                workItem.WorkPlan = WorkPlanBiz.Get(inputModel.WorkPlan); //Task: This is because the getter method from DataRepo is shallow. Could we make it deep to return WorkPlan as well?
+                workItem.WorkPlan = WorkPlanRepo.Get(inputModel.WorkPlan); //Task: This is because the getter method from DataRepo is shallow. Could we make it deep to return WorkPlan as well?
                 var transactionResult = WorkItemBiz.Of(workItem).Save();
 
                 string resultMessage;

@@ -9,22 +9,21 @@ namespace myCoreMvc.UI.Controllers
     [Area("WorkPlans")]
     public class WorkPlanDetailsController : BaseController
     {
-        private readonly IWorkPlanBiz WorkPlanBiz;
+        private readonly IWorkplanRepo WorkPlanRepo;
 
-        public WorkPlanDetailsController(IWorkPlanBiz workPlanBiz)
-            => WorkPlanBiz = workPlanBiz;
+        public WorkPlanDetailsController(IWorkplanRepo repo)
+            => WorkPlanRepo = repo;
 
         public IActionResult Index(Guid id)
         {
-            var viewModel = WorkPlanBiz.Get(id);
+            var viewModel = WorkPlanRepo.Get(id);
             return View("WorkPlanDetails", viewModel);
         }
 
         public IActionResult Delete(Guid id)
         {
             var result = "";
-            var workPlan = WorkPlanBiz.Get(id);
-            switch (WorkPlanBiz.Of(workPlan).Delete())
+            switch (WorkPlanRepo.Delete(id))
             {
                 case TransactionResult.NotFound: result = "Found no WorkPlan with the provided Id."; break;
                 case TransactionResult.Deleted: result = "Item deleted."; break;

@@ -14,17 +14,17 @@ namespace myCoreMvc.UI.Controllers
     [Area("WorkPlans")]
     public class WorkPlanEnterController : BaseController
     {
-        private readonly IWorkPlanBiz WorkPlanBiz;
+        private readonly IWorkplanRepo WorkPlanRepo;
 
-        public WorkPlanEnterController(IWorkPlanBiz workPlanBiz)
-            => WorkPlanBiz = workPlanBiz;
+        public WorkPlanEnterController(IWorkplanRepo repo)
+            => WorkPlanRepo = repo;
 
         public IActionResult Index(Guid id)
         {
             var inputModel = new EnterModel();
             if (id != Guid.Empty)
             {
-                var workPlan = WorkPlanBiz.Get(id);
+                var workPlan = WorkPlanRepo.Get(id);
                 if (workPlan != null) inputModel.CopySimilarPropertiesFrom(workPlan);
             }
             return View("WorkPlanEnter", inputModel);
@@ -37,10 +37,10 @@ namespace myCoreMvc.UI.Controllers
             {
                 var workPlan = inputModel.Id == Guid.Empty
                     ? new WorkPlan()
-                    : WorkPlanBiz.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
+                    : WorkPlanRepo.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
 
                 workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                var transactionResult = WorkPlanBiz.Of(workPlan).Save();
+                var transactionResult = WorkPlanRepo.Save(workPlan);
 
                 string resultMessage;
                 switch (transactionResult)

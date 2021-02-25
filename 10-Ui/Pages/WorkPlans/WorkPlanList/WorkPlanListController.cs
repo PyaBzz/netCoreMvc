@@ -11,16 +11,16 @@ namespace myCoreMvc.UI.Controllers
     [Area("WorkPlans")]
     public class WorkPlanListController : BaseController
     {
-        IWorkPlanBiz WorkPlanBiz;
+        IWorkplanRepo WorkPlanRepo;
 
-        public WorkPlanListController(IWorkPlanBiz workPlanBiz)
-            => WorkPlanBiz = workPlanBiz;
+        public WorkPlanListController(IWorkplanRepo repo)
+            => WorkPlanRepo = repo;
 
         public IActionResult Index(string message)
         {
             var listModel = new ListModel
             {
-                Items = WorkPlanBiz.GetList(),
+                Items = WorkPlanRepo.GetAll(),
                 Message = message
             };
             return View("WorkPlanList", listModel);
@@ -31,7 +31,7 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                listModel.Items = WorkPlanBiz.GetList();
+                listModel.Items = WorkPlanRepo.GetAll();
                 var searchFilters = new List<Predicate<WorkPlan>>();
                 if (listModel.Search_Name != null)
                     searchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
@@ -40,7 +40,7 @@ namespace myCoreMvc.UI.Controllers
             }
             else
             {
-                listModel.Items = WorkPlanBiz.GetList();
+                listModel.Items = WorkPlanRepo.GetAll();
             }
             return View("WorkPlanList", listModel);
         }

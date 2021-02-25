@@ -5,11 +5,7 @@ using System.Linq.Expressions;
 
 namespace myCoreMvc.App.Services
 {
-    public interface IWorkPlanBizOf
+    public class WorkplanService : IWorkplanService
     {
-        WorkPlan WorkPlan { get; }
-
-        TransactionResult Save();
-        TransactionResult Delete();
     }
 }
