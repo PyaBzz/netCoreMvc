@@ -45,7 +45,7 @@ namespace myCoreMvc.Test.DataLayer
         {
             Assert.StrictEqual(
                 repo.Get("53c88402-4092-4834-8e7f-6ce70057cdc5"),
-                repo.Get("53c88402-4092-4834-8e7f-6ce70057cdc5")
+                repo.Get("53C88402-4092-4834-8E7F-6CE70057CDC5")
                 );
         }
     }
