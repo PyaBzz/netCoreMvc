@@ -9,6 +9,7 @@ namespace myCoreMvc.Test.DataLayer
 {
     public class WorkplanRepoTest
     {
+        private readonly string _plan2Id = "53c88402-4092-4834-8e7f-6ce70057cdc5";
         private readonly IWorkplanRepo repo;
 
         public WorkplanRepoTest(IWorkplanRepo rep)
@@ -31,22 +32,19 @@ namespace myCoreMvc.Test.DataLayer
         [Fact]
         public void Get_GetsByGuid()
         {
-            Assert.StrictEqual("Plan2", repo.Get(new Guid("53c88402-4092-4834-8e7f-6ce70057cdc5")).Name);
+            Assert.StrictEqual("Plan2", repo.Get(new Guid(_plan2Id)).Name);
         }
 
         [Fact]
         public void Get_GetsByStringId()
         {
-            Assert.StrictEqual("Plan2", repo.Get("53c88402-4092-4834-8e7f-6ce70057cdc5").Name);
+            Assert.StrictEqual("Plan2", repo.Get(_plan2Id).Name);
         }
 
         [Fact]
         public void Get_IsCaseInsensitiveToId()
         {
-            Assert.StrictEqual(
-                repo.Get("53c88402-4092-4834-8e7f-6ce70057cdc5"),
-                repo.Get("53C88402-4092-4834-8E7F-6CE70057CDC5")
-                );
+            Assert.StrictEqual(repo.Get(_plan2Id), repo.Get(_plan2Id.ToUpper()));
         }
     }
 }
