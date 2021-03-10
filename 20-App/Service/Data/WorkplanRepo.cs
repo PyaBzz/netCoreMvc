@@ -19,6 +19,7 @@ namespace myCoreMvc.App.Services
         {
             throw new NotImplementedException();
         }
+
         public List<WorkPlan> GetAll()
         {
             using (var conn = SqlConFactory.Get())
@@ -28,22 +29,26 @@ namespace myCoreMvc.App.Services
             }
 
         }
-        public WorkPlan Get(Guid id)
+
+        public WorkPlan Get(string id)
         {
             using (var conn = SqlConFactory.Get())
             {
-                return conn.QuerySingle<WorkPlan>($"SELECT * FROM WorkPlans WHERE Id = @Id", new { Id = id.ToString() });
+                return conn.QuerySingle<WorkPlan>($"SELECT * FROM WorkPlans WHERE Id = @Id", new { Id = id });
             }
         }
-        public WorkPlan Get(string id)
-            => Get(new Guid(id));
-        public TransactionResult Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+
+        public WorkPlan Get(Guid id) => Get(id.ToString());
+
         public TransactionResult Delete(string id)
         {
-            throw new NotImplementedException();
+            using (var conn = SqlConFactory.Get())
+            {
+                conn.Execute($"DELETE FROM WorkPlans WHERE Id = @Id", new { Id = id });
+            }
+            return TransactionResult.Deleted;
         }
+
+        public TransactionResult Delete(Guid id) => Delete(id.ToString());
     }
 }

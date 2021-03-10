@@ -30,15 +30,15 @@ namespace myCoreMvc.Test.DataLayer
         }
 
         [Fact]
-        public void Get_GetsByGuid()
-        {
-            Assert.StrictEqual("Plan2", repo.Get(new Guid(_plan2Id)).Name);
-        }
-
-        [Fact]
         public void Get_GetsByStringId()
         {
             Assert.StrictEqual("Plan2", repo.Get(_plan2Id).Name);
+        }
+
+        [Fact]
+        public void Get_GetsByGuid()
+        {
+            Assert.StrictEqual("Plan2", repo.Get(new Guid(_plan2Id)).Name);
         }
 
         [Fact]
