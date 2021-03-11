@@ -17,7 +17,18 @@ namespace myCoreMvc.App.Services
 
         public TransactionResult Save(WorkPlan wp)
         {
-            throw new NotImplementedException();
+            using (var conn = SqlConFactory.Get())
+            {
+                try
+                {
+                    conn.Execute($"INSERT INTO WorkPlans (Id, Name) VALUES (@Id, @Name)", new { Id = wp.Id, Name = wp.Name });
+                    return TransactionResult.Added;
+                }
+                catch
+                {
+                    return TransactionResult.Failed;
+                }
+            }
         }
 
         public List<WorkPlan> GetAll()
@@ -34,7 +45,14 @@ namespace myCoreMvc.App.Services
         {
             using (var conn = SqlConFactory.Get())
             {
-                return conn.QuerySingle<WorkPlan>($"SELECT * FROM WorkPlans WHERE Id = @Id", new { Id = id });
+                try
+                {
+                    return conn.QuerySingle<WorkPlan>($"SELECT * FROM WorkPlans WHERE Id = @Id", new { Id = id });
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
 
