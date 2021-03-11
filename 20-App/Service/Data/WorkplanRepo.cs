@@ -21,7 +21,7 @@ namespace myCoreMvc.App.Services
             {
                 try
                 {
-                    conn.Execute($"INSERT INTO WorkPlans (Id, Name) VALUES (@Id, @Name)", new { Id = wp.Id, Name = wp.Name });
+                    conn.Execute($"INSERT INTO WorkPlans (Id, Name) VALUES (@Id, @Name)", wp);
                     return TransactionResult.Added;
                 }
                 catch
