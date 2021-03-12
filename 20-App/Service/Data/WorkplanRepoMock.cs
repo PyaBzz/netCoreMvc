@@ -57,20 +57,18 @@ namespace myCoreMvc.App.Services
 
         public TransactionResult Save(WorkPlan wp)
         {
-            wp.Id = Guid.NewGuid(); //Todo: Can we delegate Id generation to sql?
+            // wp.Id = Guid.NewGuid(); //Todo: Can we delegate Id generation to sql?
             Data.Add(wp);
             return TransactionResult.Added;
         }
-        public List<WorkPlan> GetAll()
-            => Data;
-        public WorkPlan Get(Guid id)
-            => Data.SingleOrDefault(i => i.Id == id);
-        public WorkPlan Get(string id)
-            => Get(new Guid(id));
+        public List<WorkPlan> GetAll() => Data;
+        public WorkPlan Get(Guid id) => Data.SingleOrDefault(i => i.Id == id);
+        public WorkPlan Get(string id) => Get(new Guid(id));
         public TransactionResult Delete(Guid id)
         {
             var target = Data.SingleOrDefault(e => e.Id == id);
-            if (target == null) return TransactionResult.NotFound;
+            if (target == null)
+                return TransactionResult.NotFound;
             Data.Remove(target);
             return TransactionResult.Deleted;
         }
