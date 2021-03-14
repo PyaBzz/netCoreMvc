@@ -64,6 +64,19 @@ namespace myCoreMvc.App.Services
         public List<WorkPlan> GetAll() => Data;
         public WorkPlan Get(Guid id) => Data.SingleOrDefault(i => i.Id == id);
         public WorkPlan Get(string id) => Get(new Guid(id));
+
+        public TransactionResult Update(WorkPlan wp)
+        {
+            var target = Get(wp.Id);
+            if (target == null)
+                return TransactionResult.NotFound;
+            else
+            {
+                target.Name = wp.Name;
+                return TransactionResult.Updated;
+            }
+        }
+
         public TransactionResult Delete(Guid id)
         {
             var target = Data.SingleOrDefault(e => e.Id == id);

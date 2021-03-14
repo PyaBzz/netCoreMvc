@@ -62,6 +62,20 @@ namespace myCoreMvc.Test.DataLayer
         }
 
         [Fact]
+        public void Update_UpdatesName()
+        {
+            var wpToChange = repo.Get(_plan1Id);
+            var originalName = wpToChange.Name;
+            var newName = "updated";
+            wpToChange.Name = newName;
+            Assert.StrictEqual(TransactionResult.Updated, repo.Update(wpToChange));
+            Assert.StrictEqual(newName, repo.Get(_plan1Id).Name);
+            wpToChange.Name = originalName;
+            Assert.StrictEqual(TransactionResult.Updated, repo.Update(wpToChange));
+            Assert.StrictEqual(originalName, repo.Get(_plan1Id).Name);
+        }
+
+        [Fact]
         public void Delete_DeletesByStringId()
         {
             Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(_plan2Id));

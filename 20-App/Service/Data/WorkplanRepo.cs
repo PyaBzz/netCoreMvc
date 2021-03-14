@@ -53,6 +53,15 @@ namespace myCoreMvc.App.Services
 
         public WorkPlan Get(Guid id) => Get(id.ToString());
 
+        public TransactionResult Update(WorkPlan wp)
+        {
+            using (var conn = SqlConFactory.Get())
+            {
+                conn.Execute($"UPDATE WorkPlans SET Name = @Name WHERE Id = @Id", wp);
+            }
+            return TransactionResult.Updated;
+        }
+
         public TransactionResult Delete(string id)
         {
             using (var conn = SqlConFactory.Get())
