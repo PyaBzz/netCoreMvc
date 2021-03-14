@@ -8,6 +8,7 @@ using myCoreMvc.App;
 
 namespace myCoreMvc.Test.DataLayer
 {
+    [Trait("Group", "Data")]
     public class WorkplanRepoTest
     {
         private readonly string _plan1Id = "60f9fc29-083f-4ed2-a3e2-3948b503c25f";
