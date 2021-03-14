@@ -40,7 +40,7 @@ namespace myCoreMvc.UI.Controllers
                     : WorkPlanRepo.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
 
                 workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                var transactionResult = WorkPlanRepo.Save(workPlan);
+                var transactionResult = WorkPlanRepo.Add(workPlan);
 
                 string resultMessage;
                 switch (transactionResult)

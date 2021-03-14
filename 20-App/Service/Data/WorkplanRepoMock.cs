@@ -55,7 +55,7 @@ namespace myCoreMvc.App.Services
 
         /*==================================  Interface Methods =================================*/
 
-        public TransactionResult Save(WorkPlan wp)
+        public TransactionResult Add(WorkPlan wp)
         {
             // wp.Id = Guid.NewGuid(); //Todo: Can we delegate Id generation to sql?
             Data.Add(wp);

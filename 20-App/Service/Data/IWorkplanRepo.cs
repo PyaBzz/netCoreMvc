@@ -6,7 +6,7 @@ namespace myCoreMvc.App.Services
 {
     public interface IWorkplanRepo
     {
-        TransactionResult Save(WorkPlan obj);
+        TransactionResult Add(WorkPlan wp);
         List<WorkPlan> GetAll();
         WorkPlan Get(Guid id);
         WorkPlan Get(string id);

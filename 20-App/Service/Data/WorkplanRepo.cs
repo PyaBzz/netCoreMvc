@@ -10,7 +10,7 @@ namespace myCoreMvc.App.Services
     {
         /*==================================  Interface Methods =================================*/
 
-        public TransactionResult Save(WorkPlan wp)
+        public TransactionResult Add(WorkPlan wp)
         {
             using (var conn = SqlConFactory.Get())
             {

@@ -25,7 +25,7 @@ namespace myCoreMvc.Test.DataLayer
         public void Save_Saves()
         {
             Assert.Null(repo.Get(_plan3Id));
-            Assert.StrictEqual(TransactionResult.Added, repo.Save(new WorkPlan { Id = new Guid(_plan3Id), Name = "Plan3" }));
+            Assert.StrictEqual(TransactionResult.Added, repo.Add(new WorkPlan { Id = new Guid(_plan3Id), Name = "Plan3" }));
             Assert.StrictEqual(3, repo.GetAll().Count());
             Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(_plan3Id));
             Assert.StrictEqual(2, repo.GetAll().Count());
@@ -67,7 +67,7 @@ namespace myCoreMvc.Test.DataLayer
             Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(_plan2Id));
             Assert.Null(repo.Get(_plan2Id));
             Assert.StrictEqual(1, repo.GetAll().Count());
-            Assert.StrictEqual(TransactionResult.Added, repo.Save(new WorkPlan { Id = new Guid(_plan2Id), Name = "Plan2" }));
+            Assert.StrictEqual(TransactionResult.Added, repo.Add(new WorkPlan { Id = new Guid(_plan2Id), Name = "Plan2" }));
             Assert.StrictEqual(2, repo.GetAll().Count());
         }
     }
