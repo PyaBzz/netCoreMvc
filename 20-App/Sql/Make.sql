@@ -33,8 +33,11 @@ BEGIN
     print 'Creating WorkItems'
     CREATE TABLE WorkItems
     (
-        student_id INT,
-        course_id INT,
+        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        Reference VARCHAR(20),
+        Priority INT,
+        Name VARCHAR(20),
+        WorkPlanId  UNIQUEIDENTIFIER
     )
 END
 ELSE

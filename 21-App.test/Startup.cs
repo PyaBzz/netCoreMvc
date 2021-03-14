@@ -14,6 +14,10 @@ namespace myCoreMvc.App.Test
             // services.AddTransient<IDataRepo, DataRepo>();
 
             services.AddTransient<IWorkplanRepo, WorkplanRepoMock>();
+            // services.AddTransient<IWorkplanRepo, WorkplanRepo>();
+
+            // services.AddTransient<IWorkItemRepo, WorkItemRepoMock>();
+            services.AddTransient<IWorkItemRepo, WorkItemRepo>();
         }
     }
 }
