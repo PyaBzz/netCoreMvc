@@ -18,39 +18,8 @@ namespace myCoreMvc.App.Services
         public WorkplanRepoMock(Config conf)
         {
             this._Config = conf;
-            Data = ReadFromXml<WorkPlan>();
-        }
-
-        private List<T> ReadFromXml<T>() where T : class //Todo: Make reusable in all mocked repos
-        {
-            var res = new List<T>();
-            var outputDir = Assembly.GetExecutingAssembly().GetDirectory();
-            var typeName = typeof(T).Name;
-            try
-            {
-                var sourceFilePath = Path.Combine(outputDir, _Config.Data.Path.XmlSource[typeName + "s"]);
-                var serialiser = new XmlSerializer(typeof(T));
-
-                using (var stream = File.OpenRead(sourceFilePath))
-                {
-                    using (var xmlRdr = XmlReader.Create(stream))
-                    {
-                        while (xmlRdr.Read())
-                        {
-                            if (xmlRdr.NodeType == XmlNodeType.Element && xmlRdr.Name == typeName)
-                            {
-                                var workPlan = serialiser.Deserialize(xmlRdr) as T;
-                                res.Add(workPlan);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            return res;
+            var xmlReader = new XmlReader<WorkPlan>(conf);
+            Data = xmlReader.Read();
         }
 
         /*==================================  Interface Methods =================================*/
