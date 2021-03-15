@@ -18,6 +18,9 @@ namespace myCoreMvc.App.Test
 
             services.AddTransient<IWorkItemRepo, WorkItemRepoMock>();
             // services.AddTransient<IWorkItemRepo, WorkItemRepo>();
+
+            // services.AddTransient<IUserRepo, UserRepoMock>();
+            services.AddTransient<IUserRepo, UserRepo>();
         }
     }
 }

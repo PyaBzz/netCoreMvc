@@ -52,8 +52,12 @@ BEGIN
     print 'Creating Users'
     CREATE TABLE Users
     (
-        id INT,
+        Id UNIQUEIDENTIFIER PRIMARY KEY,
         Name VARCHAR(20),
+        DateOfBirth DATE,
+        Role VARCHAR(20),
+        Salt VARBINARY,
+        Hash VARBINARY
     )
 END
 ELSE
