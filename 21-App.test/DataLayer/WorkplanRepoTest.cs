@@ -23,7 +23,7 @@ namespace myCoreMvc.Test.DataLayer
         }
 
         [Fact]
-        public void Save_Saves()
+        public void Add_Adds()
         {
             Assert.Null(repo.Get(_plan3Id));
             Assert.StrictEqual(TransactionResult.Added, repo.Add(new WorkPlan { Id = new Guid(_plan3Id), Name = "Plan3" }));

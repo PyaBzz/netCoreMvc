@@ -26,7 +26,7 @@ namespace myCoreMvc.Test.DataLayer
         }
 
         [Fact]
-        public void Save_Saves()
+        public void Add_Adds()
         {
             var newRef = "Wi22";
             var newId = _ids[newRef];
