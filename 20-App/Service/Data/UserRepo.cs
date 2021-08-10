@@ -16,13 +16,6 @@ namespace myCoreMvc.App.Services
             {
                 conn.Execute($"INSERT INTO Users (Id, Name) VALUES (@Id, @Name)", x);
                 return x;
-                // try
-                // {
-                // }
-                // catch
-                // {
-                //     throw;
-                // }
             }
         }
 

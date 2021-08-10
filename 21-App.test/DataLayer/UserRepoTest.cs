@@ -117,7 +117,7 @@ namespace myCoreMvc.Test.DataLayer
             var newName = "updated";
             recordToChange.Name = newName;
             Assert.Same(recordToChange, repo.Update(recordToChange));
-            Assert.StrictEqual(newName, repo.Get(_Jim.Id).Name); //Todo: Could be same?
+            Assert.StrictEqual(newName, repo.Get(_Jim.Id).Name);
             recordToChange.Name = originalName;
             Assert.Same(recordToChange, repo.Update(recordToChange));
             Assert.StrictEqual(originalName, repo.Get(_Jim.Id).Name);

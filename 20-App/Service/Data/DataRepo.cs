@@ -1,74 +1,76 @@
-﻿using Dapper;
-using myCoreMvc.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿// using Dapper;
+// using myCoreMvc.Domain;
+// using System;
+// using System.Collections.Generic;
+// using System.Linq;
+// using System.Linq.Expressions;
+// using System.Security.Claims;
+// using System.Threading.Tasks;
 
-namespace myCoreMvc.App.Services
-{
-    public class DataRepo : IDataRepo
-    {
-        private readonly Dictionary<Type, string> TableNames = new Dictionary<Type, string>{
-            {typeof(WorkPlan), "WorkPlans"},
-            {typeof(WorkItem), "WorkItems"},
-            {typeof(User), "Users"}
-        };
+// Todo: Delete this file
 
-        public T Get<T>(Guid id) where T : class, ISavable
-        {
-            using (var conn = SqlConFactory.Get())
-            {
-                var tableName = TableNames[typeof(T)];
-                var reader = conn.QuerySingle<T>($"SELECT * FROM {tableName} WHERE Id = @Id", new { Id = id.ToString() });
-                return reader;
-            }
-        }
-        public T Get<T>(Predicate<T> func) where T : class, ISavable
-        {
-            throw new NotImplementedException();
-        }
+// namespace myCoreMvc.App.Services
+// {
+//     public class DataRepo : IDataRepo
+//     {
+//         private readonly Dictionary<Type, string> TableNames = new Dictionary<Type, string>{
+//             {typeof(WorkPlan), "WorkPlans"},
+//             {typeof(WorkItem), "WorkItems"},
+//             {typeof(User), "Users"}
+//         };
 
-        public List<T> GetList<T>(Predicate<T> predicate = null) where T : class, ISavable
-        {
-            if (predicate == null)
-            {
-                using (var conn = SqlConFactory.Get())
-                {
-                    var reader = conn.QueryMultiple($"SELECT * FROM {typeof(T).Name}s");
-                    return reader.Read<T>().ToList();
-                }
-            }
-            else
-                throw new NotImplementedException();
-        }
+//         public T Get<T>(Guid id) where T : class, ISavable
+//         {
+//             using (var conn = SqlConFactory.Get())
+//             {
+//                 var tableName = TableNames[typeof(T)];
+//                 var reader = conn.QuerySingle<T>($"SELECT * FROM {tableName} WHERE Id = @Id", new { Id = id.ToString() });
+//                 return reader;
+//             }
+//         }
+//         public T Get<T>(Predicate<T> func) where T : class, ISavable
+//         {
+//             throw new NotImplementedException();
+//         }
 
-        public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, ISavable
-        {
-            throw new NotImplementedException();
-        }
+//         public List<T> GetList<T>(Predicate<T> predicate = null) where T : class, ISavable
+//         {
+//             if (predicate == null)
+//             {
+//                 using (var conn = SqlConFactory.Get())
+//                 {
+//                     var reader = conn.QueryMultiple($"SELECT * FROM {typeof(T).Name}s");
+//                     return reader.Read<T>().ToList();
+//                 }
+//             }
+//             else
+//                 throw new NotImplementedException();
+//         }
 
-        public List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, ISavable
-        {
-            throw new NotImplementedException();
-        }
+//         public List<T> GetListIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : class, ISavable
+//         {
+//             throw new NotImplementedException();
+//         }
 
-        #region Lesson
-        //Why don't we say: TransactionResult Add(Thing obj)?
-        // Because then in order to use it with any derived class off Thing,
-        // we'd have to cast the subclass to Thing or use "as List<Thing>"
-        #endregion
+//         public List<T> GetListIncluding<T>(Predicate<T> predicate, params Expression<Func<T, object>>[] includeProperties) where T : class, ISavable
+//         {
+//             throw new NotImplementedException();
+//         }
 
-        public T Save<T>(T obj) where T : class, ISavable
-        {
-            throw new NotImplementedException();
-        }
+//         #region Lesson
+//         //Why don't we say: TransactionResult Add(Thing obj)?
+//         // Because then in order to use it with any derived class off Thing,
+//         // we'd have to cast the subclass to Thing or use "as List<Thing>"
+//         #endregion
 
-        public void Delete<T>(Guid id) where T : class, ISavable
-        {
-            throw new NotImplementedException();
-        }
-    }
-}
+//         public T Save<T>(T obj) where T : class, ISavable
+//         {
+//             throw new NotImplementedException();
+//         }
+
+//         public void Delete<T>(Guid id) where T : class, ISavable
+//         {
+//             throw new NotImplementedException();
+//         }
+//     }
+// }
