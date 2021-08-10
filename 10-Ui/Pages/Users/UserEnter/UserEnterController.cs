@@ -34,29 +34,30 @@ namespace myCoreMvc.UI.Controllers
         [HttpPost]
         public IActionResult Index(EnterModel inputModel)
         {
-            if (ModelState.IsValid)
-            {
-                var user = inputModel.Id == Guid.Empty
-                    ? new User()
-                    : UserBiz.Get(inputModel.Id);
+            throw new NotImplementedException();
+            // if (ModelState.IsValid)
+            // {
+            //     var user = inputModel.Id == Guid.Empty
+            //         ? new User()
+            //         : UserBiz.Get(inputModel.Id);
 
-                user.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                var transactionResult = UserBiz.Of(user).Save();
-                var resultMessage = "";
-                switch (transactionResult)
-                {
-                    case TransactionResult.Updated: resultMessage = "Item updated"; break;
-                    case TransactionResult.Added: resultMessage = "New item added"; break;
-                    default: resultMessage = transactionResult.ToString(); break;
-                }
-                return RedirectToAction(nameof(UserListController.Index), Short<UserListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
-            }
-            else
-            {
-                inputModel.Message = "Invalid values for: "
-                    + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
-                return View("UserEnter", inputModel);
-            }
+            //     user.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
+            //     var transactionResult = UserBiz.Of(user).Save();
+            //     var resultMessage = "";
+            //     switch (transactionResult)
+            //     {
+            //         case TransactionResult.Updated: resultMessage = "Item updated"; break;
+            //         case TransactionResult.Added: resultMessage = "New item added"; break;
+            //         default: resultMessage = transactionResult.ToString(); break;
+            //     }
+            //     return RedirectToAction(nameof(UserListController.Index), Short<UserListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
+            // }
+            // else
+            // {
+            //     inputModel.Message = "Invalid values for: "
+            //         + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
+            //     return View("UserEnter", inputModel);
+            // }
         }
 
         public class EnterModel : IClonable

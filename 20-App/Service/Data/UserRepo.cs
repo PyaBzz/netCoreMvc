@@ -10,19 +10,19 @@ namespace myCoreMvc.App.Services
     {
         /*==================================  Interface Methods =================================*/
 
-        public TransactionResult Add(User x)
+        public User Add(User x)
         {
             using (var conn = SqlConFactory.Get())
             {
-                try
-                {
-                    conn.Execute($"INSERT INTO Users (Id, Name) VALUES (@Id, @Name)", x);
-                    return TransactionResult.Added;
-                }
-                catch
-                {
-                    return TransactionResult.Failed;
-                }
+                conn.Execute($"INSERT INTO Users (Id, Name) VALUES (@Id, @Name)", x);
+                return x;
+                // try
+                // {
+                // }
+                // catch
+                // {
+                //     throw;
+                // }
             }
         }
 
@@ -44,33 +44,35 @@ namespace myCoreMvc.App.Services
                 {
                     return conn.QuerySingle<User>($"SELECT * FROM Users WHERE Id = @Id", new { Id = id });
                 }
-                catch
+                catch (Exception e)
                 {
-                    return null;
+                    if (e is InvalidOperationException)
+                        return null;
+                    else
+                        throw;
                 }
             }
         }
 
         public User Get(Guid id) => Get(id.ToString());
 
-        public TransactionResult Update(User x)
+        public User Update(User x)
         {
             using (var conn = SqlConFactory.Get())
             {
                 conn.Execute($"UPDATE Users SET Name = @Name WHERE Id = @Id", x);
             }
-            return TransactionResult.Updated;
+            return x;
         }
 
-        public TransactionResult Delete(string id)
+        public void Delete(string id)
         {
             using (var conn = SqlConFactory.Get())
             {
                 conn.Execute($"DELETE FROM Users WHERE Id = @Id", new { Id = id });
             }
-            return TransactionResult.Deleted;
         }
 
-        public TransactionResult Delete(Guid id) => Delete(id.ToString());
+        public void Delete(Guid id) => Delete(id.ToString());
     }
 }

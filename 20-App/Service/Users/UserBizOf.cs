@@ -20,7 +20,7 @@ namespace myCoreMvc.App.Services
             User = user;
         }
 
-        TransactionResult IUserBizOf.Save()
+        User IUserBizOf.Save()
         {
             //Task: Is this the best way to determine if the object is new?
             if (User.Id == Guid.Empty)
@@ -34,16 +34,13 @@ namespace myCoreMvc.App.Services
             return DataRepo.Save(User);
         }
 
-        TransactionResult IUserBizOf.SetPassword(string password)
+        User IUserBizOf.SetPassword(string password)
         {
-            if (User == null)
-                return TransactionResult.NotFound;
-
             var hashBytes = KeyDerivation.Pbkdf2(password, User.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
             User.Hash = Convert.ToBase64String(hashBytes);
-            return TransactionResult.Updated;
+            return User;
         }
 
-        TransactionResult IUserBizOf.Delete() => DataRepo.Delete<User>(User.Id);
+        void IUserBizOf.Delete() => DataRepo.Delete<User>(User.Id);
     }
 }

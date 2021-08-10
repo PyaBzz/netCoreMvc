@@ -24,40 +24,39 @@ namespace myCoreMvc.App.Services
 
         /*==================================  Interface Methods =================================*/
 
-        public TransactionResult Add(WorkPlan wp)
+        public WorkPlan Add(WorkPlan wp)
         {
             // wp.Id = Guid.NewGuid(); //Todo: Can we delegate Id generation to sql?
             Data.Add(wp);
-            return TransactionResult.Added;
+            return wp;
         }
         public List<WorkPlan> GetAll() => Data;
         public WorkPlan Get(Guid id) => Data.SingleOrDefault(i => i.Id == id);
         public WorkPlan Get(string id) => Get(new Guid(id));
 
-        public TransactionResult Update(WorkPlan wp)
+        public WorkPlan Update(WorkPlan wp)
         {
             var target = Get(wp.Id);
             if (target == null)
-                return TransactionResult.NotFound;
+                throw new Exception("Not found");
             else
             {
                 target.Name = wp.Name;
-                return TransactionResult.Updated;
+                return wp;
             }
         }
 
-        public TransactionResult Delete(Guid id)
+        public void Delete(Guid id)
         {
             var target = Data.SingleOrDefault(e => e.Id == id);
             if (target == null)
-                return TransactionResult.NotFound;
+                throw new Exception("Not found");
             Data.Remove(target);
-            return TransactionResult.Deleted;
         }
-        public TransactionResult Delete(string id)
+        public void Delete(string id)
         {
             var guid = new Guid(id);
-            return Delete(guid);
+            Delete(guid);
         }
     }
 }

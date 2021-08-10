@@ -107,7 +107,7 @@ namespace myCoreMvc.App.Services
         public T Get<T>(Guid id) where T : class, ISavable
             => GetField<T>().SingleOrDefault(i => i.Id == id);
 
-        public TransactionResult Save<T>(T obj) where T : class, ISavable
+        public T Save<T>(T obj) where T : class, ISavable
         {
             //Task: Is this the best way to determine if the object is new?
             if (obj.Id == Guid.Empty)
@@ -116,34 +116,33 @@ namespace myCoreMvc.App.Services
                 return Update<T>(obj);
         }
 
-        private TransactionResult Add<T>(T obj) where T : class, ISavable
+        private T Add<T>(T obj) where T : class, ISavable
         {
             obj.Id = Guid.NewGuid();
             var targetSource = GetField<T>();
             targetSource.Add(obj);
-            return TransactionResult.Added;
+            return obj;
         }
 
-        private TransactionResult Update<T>(T obj) where T : class, ISavable
+        private T Update<T>(T obj) where T : class, ISavable
         {
             var targetSource = GetField<T>();//Task: Use filtering query instead of LINQ!
             var existingObj = targetSource.SingleOrDefault(e => e.Id == obj.Id);
             if (existingObj == null)
-                return TransactionResult.NotFound;
+                throw new Exception("Not found");
             else
             {
                 existingObj.CopyPropertiesFrom(obj);
-                return TransactionResult.Updated;
+                return existingObj;
             }
         }
 
-        public TransactionResult Delete<T>(Guid id) where T : class, ISavable
+        public void Delete<T>(Guid id) where T : class, ISavable
         {
             var targetSource = GetField<T>();
             var existingObj = targetSource.SingleOrDefault(e => e.Id == id);
-            if (existingObj == null) return TransactionResult.NotFound;
+            if (existingObj == null) throw new Exception("Not found");
             targetSource.Remove(existingObj);
-            return TransactionResult.Deleted;
         }
 
         // These are meant to determine depth of eager loading in an ORM

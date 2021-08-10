@@ -11,8 +11,8 @@ namespace myCoreMvc.App.Services
     {
         User User { get; }
 
-        TransactionResult Save();
-        TransactionResult SetPassword(string password);
-        TransactionResult Delete();
+        User Save();
+        User SetPassword(string password);
+        void Delete();
     }
 }

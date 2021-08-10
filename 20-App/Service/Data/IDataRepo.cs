@@ -21,7 +21,7 @@ namespace myCoreMvc.App.Services
         // we'd have to cast the subclass to Thing or use "as List<Thing>"
         #endregion
 
-        TransactionResult Save<T>(T obj) where T : class, ISavable;
-        TransactionResult Delete<T>(Guid id) where T : class, ISavable;
+        T Save<T>(T obj) where T : class, ISavable;
+        void Delete<T>(Guid id) where T : class, ISavable;
     }
 }

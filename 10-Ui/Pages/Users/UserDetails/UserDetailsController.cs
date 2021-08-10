@@ -22,15 +22,16 @@ namespace myCoreMvc.UI.Controllers
 
         public IActionResult Delete(Guid id)
         {
+            throw new NotImplementedException();
             var result = "";
             var user = UserBiz.Get(id);
-            switch (UserBiz.Of(user).Delete())
-            {
-                case TransactionResult.NotFound: result = "Found no User with the provided Id."; break;
-                case TransactionResult.Deleted: result = "Item deleted."; break;
-                default: result = "Found no User with the provided Id."; break;
-            }
-            return RedirectToAction(nameof(UserListController.Index), Short<UserListController>.Name, new { area = "Users", message = result });  // Prevents re-submission by refresh
+            // switch (UserBiz.Of(user).Delete())
+            // {
+            //     case TransactionResult.NotFound: result = "Found no User with the provided Id."; break;
+            //     case TransactionResult.Deleted: result = "Item deleted."; break;
+            //     default: result = "Found no User with the provided Id."; break;
+            // }
+            // return RedirectToAction(nameof(UserListController.Index), Short<UserListController>.Name, new { area = "Users", message = result });  // Prevents re-submission by refresh
         }
     }
 }

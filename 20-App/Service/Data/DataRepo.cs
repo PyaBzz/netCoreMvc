@@ -61,12 +61,12 @@ namespace myCoreMvc.App.Services
         // we'd have to cast the subclass to Thing or use "as List<Thing>"
         #endregion
 
-        public TransactionResult Save<T>(T obj) where T : class, ISavable
+        public T Save<T>(T obj) where T : class, ISavable
         {
             throw new NotImplementedException();
         }
 
-        public TransactionResult Delete<T>(Guid id) where T : class, ISavable
+        public void Delete<T>(Guid id) where T : class, ISavable
         {
             throw new NotImplementedException();
         }

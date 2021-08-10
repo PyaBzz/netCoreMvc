@@ -6,12 +6,12 @@ namespace myCoreMvc.App.Services
 {
     public interface IUserRepo
     {
-        TransactionResult Add(User x);
+        User Add(User x);  //Todo: Should the DB/repo generate ID's and we return them here?
         List<User> GetAll();
         User Get(Guid id);
         User Get(string id);
-        TransactionResult Update(User x);
-        TransactionResult Delete(Guid id);
-        TransactionResult Delete(string id);
+        User Update(User x);
+        void Delete(Guid id);
+        void Delete(string id);
     }
 }

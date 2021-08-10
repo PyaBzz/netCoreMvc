@@ -9,7 +9,7 @@ namespace myCoreMvc.App.Services
     {
         WorkItem WorkItem { get; }
 
-        TransactionResult Save();
-        TransactionResult Delete();
+        WorkItem Save();
+        void Delete();
     }
 }

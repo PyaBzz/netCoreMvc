@@ -32,15 +32,16 @@ namespace myCoreMvc.Test.DataLayer
             var newId = _ids[newRef];
             Assert.Null(repo.Get(newId));
             var newName = "FourthItem";
-            Assert.StrictEqual(TransactionResult.Added, repo.Add(new WorkItem
+            var newItem = new WorkItem
             {
                 Id = new Guid(newId),
                 Name = newName,
                 Reference = newRef
-            }));
+            };
+            Assert.StrictEqual(newItem, repo.Add(newItem));
             Assert.StrictEqual(4, repo.GetAll().Count());
             Assert.StrictEqual(newName, repo.Get(newId).Name);
-            Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(newId));
+            repo.Delete(newId);
             Assert.StrictEqual(3, repo.GetAll().Count());
         }
 
@@ -81,24 +82,25 @@ namespace myCoreMvc.Test.DataLayer
             var originalName = wiToChange.Name;
             var newName = "updated";
             wiToChange.Name = newName;
-            Assert.StrictEqual(TransactionResult.Updated, repo.Update(wiToChange));
+            Assert.StrictEqual(wiToChange, repo.Update(wiToChange));
             Assert.StrictEqual(newName, repo.Get(_ids["Wi11"]).Name);
             wiToChange.Name = originalName;
-            Assert.StrictEqual(TransactionResult.Updated, repo.Update(wiToChange));
+            Assert.StrictEqual(wiToChange, repo.Update(wiToChange));
             Assert.StrictEqual(originalName, repo.Get(_ids["Wi11"]).Name);
         }
 
         [Fact]
         public void Delete_DeletesByStringId()
         {
-            Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(_ids["Wi12"]));
+            repo.Delete(_ids["Wi12"]);
             Assert.Null(repo.Get(_ids["Wi12"]));
             Assert.StrictEqual(2, repo.GetAll().Count());
-            Assert.StrictEqual(TransactionResult.Added, repo.Add(new WorkItem
+            var newItem = new WorkItem
             {
                 Id = new Guid(_ids["Wi12"]),
                 Name = "SecondItem"
-            }));
+            };
+            Assert.StrictEqual(newItem, repo.Add(newItem));
             Assert.StrictEqual(3, repo.GetAll().Count());
         }
     }

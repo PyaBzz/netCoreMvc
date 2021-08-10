@@ -10,19 +10,12 @@ namespace myCoreMvc.App.Services
     {
         /*==================================  Interface Methods =================================*/
 
-        public TransactionResult Add(WorkItem obj)
+        public WorkItem Add(WorkItem x)
         {
             using (var conn = SqlConFactory.Get())
             {
-                try
-                {
-                    conn.Execute($"INSERT INTO WorkItems (Id, Name) VALUES (@Id, @Name)", obj);
-                    return TransactionResult.Added;
-                }
-                catch
-                {
-                    return TransactionResult.Failed;
-                }
+                conn.Execute($"INSERT INTO WorkItems (Id, Name) VALUES (@Id, @Name)", x);
+                return x;
             }
         }
 
@@ -40,37 +33,29 @@ namespace myCoreMvc.App.Services
         {
             using (var conn = SqlConFactory.Get())
             {
-                try
-                {
-                    return conn.QuerySingle<WorkItem>($"SELECT * FROM WorkItems WHERE Id = @Id", new { Id = id });
-                }
-                catch
-                {
-                    return null;
-                }
+                return conn.QuerySingle<WorkItem>($"SELECT * FROM WorkItems WHERE Id = @Id", new { Id = id });
             }
         }
 
         public WorkItem Get(Guid id) => Get(id.ToString());
 
-        public TransactionResult Update(WorkItem wp)
+        public WorkItem Update(WorkItem x)
         {
             using (var conn = SqlConFactory.Get())
             {
-                conn.Execute($"UPDATE WorkItems SET Name = @Name WHERE Id = @Id", wp);
+                conn.Execute($"UPDATE WorkItems SET Name = @Name WHERE Id = @Id", x);
+                return x;
             }
-            return TransactionResult.Updated;
         }
 
-        public TransactionResult Delete(string id)
+        public void Delete(string id)
         {
             using (var conn = SqlConFactory.Get())
             {
                 conn.Execute($"DELETE FROM WorkItems WHERE Id = @Id", new { Id = id });
             }
-            return TransactionResult.Deleted;
         }
 
-        public TransactionResult Delete(Guid id) => Delete(id.ToString());
+        public void Delete(Guid id) => Delete(id.ToString());
     }
 }

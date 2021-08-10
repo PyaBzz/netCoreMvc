@@ -47,6 +47,7 @@ namespace myCoreMvc.UI.Controllers
         //[CustomExceptionFilter]
         public IActionResult Index(EnterModel inputModel)
         {
+            throw new NotImplementedException();
             if (ModelState.IsValid)
             {
                 #region Lesson
@@ -57,26 +58,26 @@ namespace myCoreMvc.UI.Controllers
                 // @Html.ValidationMessageFor(p => p.Reference)
                 #endregion
 
-                inputModel.PriorityChoices = WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
-                inputModel.WorkPlanChoices = WorkPlanRepo.GetAll().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.WorkPlan });
+                // inputModel.PriorityChoices = WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
+                // inputModel.WorkPlanChoices = WorkPlanRepo.GetAll().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.WorkPlan });
 
-                var workItem = inputModel.Id == Guid.Empty
-                    ? new WorkItem()
-                    : WorkItemBiz.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
+                // var workItem = inputModel.Id == Guid.Empty
+                //     ? new WorkItem()
+                //     : WorkItemBiz.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
 
-                workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                workItem.WorkPlan = WorkPlanRepo.Get(inputModel.WorkPlan); //Task: This is because the getter method from DataRepo is shallow. Could we make it deep to return WorkPlan as well?
-                var transactionResult = WorkItemBiz.Of(workItem).Save();
+                // workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
+                // workItem.WorkPlan = WorkPlanRepo.Get(inputModel.WorkPlan); //Task: This is because the getter method from DataRepo is shallow. Could we make it deep to return WorkPlan as well?
+                // var transactionResult = WorkItemBiz.Of(workItem).Save();
 
-                string resultMessage;
-                switch (transactionResult)
-                {
-                    case TransactionResult.Updated: resultMessage = "Item updated"; break;
-                    case TransactionResult.Added: resultMessage = "New item added"; break;
-                    default: resultMessage = transactionResult.ToString(); break;
-                }
+                // string resultMessage;
+                // switch (transactionResult)
+                // {
+                //     case TransactionResult.Updated: resultMessage = "Item updated"; break;
+                //     case TransactionResult.Added: resultMessage = "New item added"; break;
+                //     default: resultMessage = transactionResult.ToString(); break;
+                // }
 
-                return RedirectToAction(nameof(WorkItemListController.Index), Short<WorkItemListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
+                // return RedirectToAction(nameof(WorkItemListController.Index), Short<WorkItemListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
             }
             else
             {

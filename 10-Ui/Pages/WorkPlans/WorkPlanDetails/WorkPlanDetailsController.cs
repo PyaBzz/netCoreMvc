@@ -22,14 +22,15 @@ namespace myCoreMvc.UI.Controllers
 
         public IActionResult Delete(Guid id)
         {
-            var result = "";
-            switch (WorkPlanRepo.Delete(id))
-            {
-                case TransactionResult.NotFound: result = "Found no WorkPlan with the provided Id."; break;
-                case TransactionResult.Deleted: result = "Item deleted."; break;
-                default: result = "Found no WorkPlan with the provided Id."; break;
-            }
-            return RedirectToAction(nameof(WorkPlanListController.Index), Short<WorkPlanListController>.Name, new { message = result });  // Prevents re-submission by refresh
+            throw new NotImplementedException();
+            // var result = "";
+            // switch (WorkPlanRepo.Delete(id))
+            // {
+            //     case TransactionResult.NotFound: result = "Found no WorkPlan with the provided Id."; break;
+            //     case TransactionResult.Deleted: result = "Item deleted."; break;
+            //     default: result = "Found no WorkPlan with the provided Id."; break;
+            // }
+            // return RedirectToAction(nameof(WorkPlanListController.Index), Short<WorkPlanListController>.Name, new { message = result });  // Prevents re-submission by refresh
         }
     }
 }

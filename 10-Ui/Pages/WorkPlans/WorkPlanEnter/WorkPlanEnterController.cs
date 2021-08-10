@@ -33,31 +33,32 @@ namespace myCoreMvc.UI.Controllers
         [HttpPost]
         public IActionResult Index(EnterModel inputModel)
         {
-            if (ModelState.IsValid)
-            {
-                var workPlan = inputModel.Id == Guid.Empty
-                    ? new WorkPlan()
-                    : WorkPlanRepo.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
+            throw new NotImplementedException();
+            // if (ModelState.IsValid)
+            // {
+            //     var workPlan = inputModel.Id == Guid.Empty
+            //         ? new WorkPlan()
+            //         : WorkPlanRepo.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
 
-                workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                var transactionResult = WorkPlanRepo.Add(workPlan);
+            //     workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
+            //     var transactionResult = WorkPlanRepo.Add(workPlan);
 
-                string resultMessage;
-                switch (transactionResult)
-                {
-                    case TransactionResult.Updated: resultMessage = "Item updated"; break;
-                    case TransactionResult.Added: resultMessage = "New item added"; break;
-                    default: resultMessage = transactionResult.ToString(); break;
-                }
+            //     string resultMessage;
+            //     switch (transactionResult)
+            //     {
+            //         case TransactionResult.Updated: resultMessage = "Item updated"; break;
+            //         case TransactionResult.Added: resultMessage = "New item added"; break;
+            //         default: resultMessage = transactionResult.ToString(); break;
+            //     }
 
-                return RedirectToAction(nameof(WorkPlanListController.Index), Short<WorkPlanListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
-            }
-            else
-            {
-                inputModel.Message = "Invalid values for: "
-                    + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
-                return View("WorkPlanEnter", inputModel);
-            }
+            //     return RedirectToAction(nameof(WorkPlanListController.Index), Short<WorkPlanListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
+            // }
+            // else
+            // {
+            //     inputModel.Message = "Invalid values for: "
+            //         + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
+            //     return View("WorkPlanEnter", inputModel);
+            // }
         }
 
         public class EnterModel : IClonable

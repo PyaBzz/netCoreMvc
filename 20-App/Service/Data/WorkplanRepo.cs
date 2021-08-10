@@ -10,19 +10,12 @@ namespace myCoreMvc.App.Services
     {
         /*==================================  Interface Methods =================================*/
 
-        public TransactionResult Add(WorkPlan wp)
+        public WorkPlan Add(WorkPlan wp)
         {
             using (var conn = SqlConFactory.Get())
             {
-                try
-                {
-                    conn.Execute($"INSERT INTO WorkPlans (Id, Name) VALUES (@Id, @Name)", wp);
-                    return TransactionResult.Added;
-                }
-                catch
-                {
-                    return TransactionResult.Failed;
-                }
+                conn.Execute($"INSERT INTO WorkPlans (Id, Name) VALUES (@Id, @Name)", wp);
+                return wp;
             }
         }
 
@@ -53,24 +46,23 @@ namespace myCoreMvc.App.Services
 
         public WorkPlan Get(Guid id) => Get(id.ToString());
 
-        public TransactionResult Update(WorkPlan wp)
+        public WorkPlan Update(WorkPlan wp)
         {
             using (var conn = SqlConFactory.Get())
             {
                 conn.Execute($"UPDATE WorkPlans SET Name = @Name WHERE Id = @Id", wp);
+                return wp;
             }
-            return TransactionResult.Updated;
         }
 
-        public TransactionResult Delete(string id)
+        public void Delete(string id)
         {
             using (var conn = SqlConFactory.Get())
             {
                 conn.Execute($"DELETE FROM WorkPlans WHERE Id = @Id", new { Id = id });
             }
-            return TransactionResult.Deleted;
         }
 
-        public TransactionResult Delete(Guid id) => Delete(id.ToString());
+        public void Delete(Guid id) => Delete(id.ToString());
     }
 }

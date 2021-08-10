@@ -16,7 +16,7 @@ namespace myCoreMvc.App.Services
             WorkItem = workItem;
         }
 
-        TransactionResult IWorkItemBizOf.Save() => DataRepo.Save(WorkItem);
-        TransactionResult IWorkItemBizOf.Delete() => DataRepo.Delete<WorkItem>(WorkItem.Id);
+        WorkItem IWorkItemBizOf.Save() => DataRepo.Save(WorkItem);
+        void IWorkItemBizOf.Delete() => DataRepo.Delete<WorkItem>(WorkItem.Id);
     }
 }

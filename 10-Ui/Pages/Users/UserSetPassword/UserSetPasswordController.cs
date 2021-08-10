@@ -30,25 +30,26 @@ namespace myCoreMvc.UI.Controllers
         [HttpPost]
         public IActionResult Index(EnterModel inputModel)
         {
-            if (ModelState.IsValid)
-            {
-                var user = UserBiz.Get(inputModel.Id);
-                var transactionResult = UserBiz.Of(user).SetPassword(inputModel.Password);
-                var resultMessage = "";
-                switch (transactionResult)
-                {
-                    case TransactionResult.Updated: resultMessage = "Password updated"; break;
-                    case TransactionResult.NotFound: resultMessage = "User not found"; break;
-                    default: resultMessage = transactionResult.ToString(); break;
-                }
-                return RedirectToAction(nameof(UserListController.Index), Short<UserListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
-            }
-            else
-            {
-                inputModel.Message = "Invalid values for: "
-                    + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
-                return View("UserSetPassword", inputModel);
-            }
+            throw new NotImplementedException();
+            // if (ModelState.IsValid)
+            // {
+            //     var user = UserBiz.Get(inputModel.Id);
+            //     var transactionResult = UserBiz.Of(user).SetPassword(inputModel.Password);
+            //     var resultMessage = "";
+            //     switch (transactionResult)
+            //     {
+            //         case TransactionResult.Updated: resultMessage = "Password updated"; break;
+            //         case TransactionResult.NotFound: resultMessage = "User not found"; break;
+            //         default: resultMessage = transactionResult.ToString(); break;
+            //     }
+            //     return RedirectToAction(nameof(UserListController.Index), Short<UserListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
+            // }
+            // else
+            // {
+            //     inputModel.Message = "Invalid values for: "
+            //         + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
+            //     return View("UserSetPassword", inputModel);
+            // }
         }
 
         public class EnterModel : IClonable

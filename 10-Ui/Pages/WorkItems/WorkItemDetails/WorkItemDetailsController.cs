@@ -22,15 +22,16 @@ namespace myCoreMvc.UI.Controllers
 
         public IActionResult Delete(Guid id)
         {
-            var result = "";
-            var workItem = WorkItemBiz.Get(id);
-            switch (WorkItemBiz.Of(workItem).Delete())
-            {
-                case TransactionResult.NotFound: result = "Found no WorkItem with the provided Id."; break;
-                case TransactionResult.Deleted: result = "Item deleted."; break;
-                default: result = "Found no WorkItem with the provided Id."; break;
-            }
-            return RedirectToAction(nameof(WorkItemListController.Index), Short<WorkItemListController>.Name, new { message = result });  // Prevents re-submission by refresh
+            throw new NotImplementedException();
+            // var result = "";
+            // var workItem = WorkItemBiz.Get(id);
+            // switch (WorkItemBiz.Of(workItem).Delete())
+            // {
+            //     case TransactionResult.NotFound: result = "Found no WorkItem with the provided Id."; break;
+            //     case TransactionResult.Deleted: result = "Item deleted."; break;
+            //     default: result = "Found no WorkItem with the provided Id."; break;
+            // }
+            // return RedirectToAction(nameof(WorkItemListController.Index), Short<WorkItemListController>.Name, new { message = result });  // Prevents re-submission by refresh
         }
     }
 }

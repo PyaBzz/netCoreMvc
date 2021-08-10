@@ -26,9 +26,10 @@ namespace myCoreMvc.Test.DataLayer
         public void Add_Adds()
         {
             Assert.Null(repo.Get(_plan3Id));
-            Assert.StrictEqual(TransactionResult.Added, repo.Add(new WorkPlan { Id = new Guid(_plan3Id), Name = "Plan3" }));
+            var newPlan = new WorkPlan { Id = new Guid(_plan3Id), Name = "Plan3" };
+            Assert.StrictEqual(newPlan, repo.Add(newPlan));
             Assert.StrictEqual(3, repo.GetAll().Count());
-            Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(_plan3Id));
+            repo.Delete(_plan3Id);
             Assert.StrictEqual(2, repo.GetAll().Count());
         }
 
@@ -69,20 +70,21 @@ namespace myCoreMvc.Test.DataLayer
             var originalName = wpToChange.Name;
             var newName = "updated";
             wpToChange.Name = newName;
-            Assert.StrictEqual(TransactionResult.Updated, repo.Update(wpToChange));
+            Assert.StrictEqual(wpToChange, repo.Update(wpToChange));
             Assert.StrictEqual(newName, repo.Get(_plan1Id).Name);
             wpToChange.Name = originalName;
-            Assert.StrictEqual(TransactionResult.Updated, repo.Update(wpToChange));
+            Assert.StrictEqual(wpToChange, repo.Update(wpToChange));
             Assert.StrictEqual(originalName, repo.Get(_plan1Id).Name);
         }
 
         [Fact]
         public void Delete_DeletesByStringId()
         {
-            Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(_plan2Id));
+            repo.Delete(_plan2Id);
             Assert.Null(repo.Get(_plan2Id));
             Assert.StrictEqual(1, repo.GetAll().Count());
-            Assert.StrictEqual(TransactionResult.Added, repo.Add(new WorkPlan { Id = new Guid(_plan2Id), Name = "Plan2" }));
+            var newPlan = new WorkPlan { Id = new Guid(_plan2Id), Name = "Plan2" };
+            Assert.StrictEqual(newPlan, repo.Add(newPlan));
             Assert.StrictEqual(2, repo.GetAll().Count());
         }
     }

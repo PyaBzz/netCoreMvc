@@ -65,10 +65,10 @@ namespace myCoreMvc.Test.DataLayer
         {
             Assert.StrictEqual(0, repo.GetAll().Count());
             Assert.Null(repo.Get(_Jim.Id));
-            Assert.StrictEqual(TransactionResult.Added, repo.Add(_Jim));
+            Assert.StrictEqual(_Jim, repo.Add(_Jim));
             Assert.StrictEqual(1, repo.GetAll().Count());
             Assert.StrictEqual(_Jim.Name, repo.Get(_Jim.Id).Name);
-            Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(_Jim.Id));
+            repo.Delete(_Jim.Id);
             Assert.StrictEqual(0, repo.GetAll().Count());
         }
 
@@ -87,49 +87,50 @@ namespace myCoreMvc.Test.DataLayer
         [Fact]
         public void Get_GetsByStringId()
         {
-            Assert.StrictEqual(TransactionResult.Added, repo.Add(_Jim));
+            Assert.StrictEqual(_Jim, repo.Add(_Jim));
             Assert.StrictEqual(_Jim.Name, repo.Get(_Jim.Id.ToString()).Name);
-            Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(_Jim.Id));
+            repo.Delete(_Jim.Id);
         }
 
         [Fact]
         public void Get_GetsByGuid()
         {
-            Assert.StrictEqual(TransactionResult.Added, repo.Add(_Jim));
+            Assert.StrictEqual(_Jim, repo.Add(_Jim));
             Assert.StrictEqual(_Jim.Name, repo.Get(_Jim.Id).Name);
-            Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(_Jim.Id));
+            repo.Delete(_Jim.Id);
         }
 
         [Fact]
         public void Get_IsCaseInsensitiveToId()
         {
-            Assert.StrictEqual(TransactionResult.Added, repo.Add(_Jim));
+            Assert.StrictEqual(_Jim, repo.Add(_Jim));
             Assert.StrictEqual(repo.Get(_Jim.Id.ToString().ToLower()), repo.Get(_Jim.Id.ToString().ToUpper()));
-            Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(_Jim.Id));
+            repo.Delete(_Jim.Id);
         }
 
-        //Todo: Complete these
-
-        // [Fact]
-        // public void Update_UpdatesName()
-        // {
-        //     var wiToChange = repo.Get(_ids["Wi11"]);
-        //     var originalName = wiToChange.Name;
-        //     var newName = "updated";
-        //     wiToChange.Name = newName;
-        //     Assert.StrictEqual(TransactionResult.Updated, repo.Update(wiToChange));
-        //     Assert.StrictEqual(newName, repo.Get(_ids["Wi11"]).Name);
-        //     wiToChange.Name = originalName;
-        //     Assert.StrictEqual(TransactionResult.Updated, repo.Update(wiToChange));
-        //     Assert.StrictEqual(originalName, repo.Get(_ids["Wi11"]).Name);
-        // }
+        [Fact]
+        public void Update_UpdatesName()
+        {
+            Assert.Same(_Jim, repo.Add(_Jim));
+            var recordToChange = repo.Get(_Jim.Id);
+            var originalName = recordToChange.Name;
+            var newName = "updated";
+            recordToChange.Name = newName;
+            Assert.Same(recordToChange, repo.Update(recordToChange));
+            Assert.StrictEqual(newName, repo.Get(_Jim.Id).Name); //Todo: Could be same?
+            recordToChange.Name = originalName;
+            Assert.Same(recordToChange, repo.Update(recordToChange));
+            Assert.StrictEqual(originalName, repo.Get(_Jim.Id).Name);
+            repo.Delete(_Jim.Id);
+        }
 
         [Fact]
         public void Delete_DeletesByStringId()
         {
-            Assert.StrictEqual(TransactionResult.Added, repo.Add(_Jim));
-            Assert.StrictEqual(_Jim.Name, repo.Get(_Jim.Id.ToString()).Name);
-            Assert.StrictEqual(TransactionResult.Deleted, repo.Delete(_Jim.Id.ToString()));
+            Assert.StrictEqual(_Jim, repo.Add(_Jim));
+            Assert.StrictEqual(_Jim.Name, repo.Get(_Jim.Id).Name);
+            repo.Delete(_Jim.Id);
+            Assert.Null(repo.Get(_Jim.Id));
         }
     }
 }
