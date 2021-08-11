@@ -8,15 +8,30 @@ namespace myCoreMvc.App.Services
 {
     public class UserRepo : IUserRepo
     {
-        /*==================================  Interface Methods =================================*/
-
-        public User Add(User x)
+        private User Add(User x)
         {
             using (var conn = SqlConFactory.Get())
             {
-                conn.Execute($"INSERT INTO Users (Id, Name) VALUES (@Id, @Name)", x);
+                var id = conn.ExecuteScalar<Guid>("INSERT INTO Users (Name, DateOfBirth, Role, Salt, Hash) OUTPUT INSERTED.Id VALUES (@Name, @DateOfBirth, @Role, @Salt, @Hash)", x);
+                x.Id = id;
                 return x;
             }
+        }
+
+        private User Update(User x)
+        {
+            using (var conn = SqlConFactory.Get())
+            {
+                conn.Execute($"UPDATE Users SET Name = @Name WHERE Id = @Id", x);
+            }
+            return x;
+        }
+
+        /*==================================  Interface Methods =================================*/
+
+        public User Save(User x)
+        {
+            return x.Id.HasValue ? Update(x) : Add(x);
         }
 
         public List<User> GetAll()
@@ -35,7 +50,7 @@ namespace myCoreMvc.App.Services
             {
                 try
                 {
-                    return conn.QuerySingle<User>($"SELECT * FROM Users WHERE Id = @Id", new { Id = id });
+                    return conn.QuerySingle<User>($"SELECT * FROM Users WHERE Id = @Id", new { Id = new Guid(id) });
                 }
                 catch (Exception e)
                 {
@@ -47,15 +62,12 @@ namespace myCoreMvc.App.Services
             }
         }
 
-        public User Get(Guid id) => Get(id.ToString());
-
-        public User Update(User x)
+        public User Get(Guid? id)
         {
-            using (var conn = SqlConFactory.Get())
-            {
-                conn.Execute($"UPDATE Users SET Name = @Name WHERE Id = @Id", x);
-            }
-            return x;
+            if (id.HasValue)
+                return Get(id.Value.ToString());
+            else
+                throw new Exception("The provided nullable GUID has no value");
         }
 
         public void Delete(string id)
@@ -66,6 +78,6 @@ namespace myCoreMvc.App.Services
             }
         }
 
-        public void Delete(Guid id) => Delete(id.ToString());
+        public void Delete(Guid? id) => Delete(id.ToString());
     }
 }

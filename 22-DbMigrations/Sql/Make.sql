@@ -56,8 +56,8 @@ BEGIN
         Name VARCHAR(20),
         DateOfBirth DATE,
         Role VARCHAR(20),
-        Salt VARBINARY,
-        Hash VARBINARY
+        Salt VARBINARY(128),
+        Hash VARCHAR(90)
     )
 END
 ELSE

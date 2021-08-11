@@ -17,6 +17,10 @@ namespace myCoreMvc.App.Services
         }
 
         WorkItem IWorkItemBizOf.Save() => DataRepo.Save(WorkItem);
-        void IWorkItemBizOf.Delete() => DataRepo.Delete<WorkItem>(WorkItem.Id);
+        void IWorkItemBizOf.Delete()
+        {
+            throw new NotImplementedException();
+            // DataRepo.Delete<WorkItem>(WorkItem.Id);
+        }
     }
 }

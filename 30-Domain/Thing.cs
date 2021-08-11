@@ -5,7 +5,7 @@ namespace myCoreMvc.Domain
 {
     public class Thing : ISavable, IClonable
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
         public override bool Equals(object obj)
         {

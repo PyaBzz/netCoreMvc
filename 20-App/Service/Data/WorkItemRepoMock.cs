@@ -30,20 +30,29 @@ namespace myCoreMvc.App.Services
             Data.Add(x);
             return x;
         }
+
         public List<WorkItem> GetAll() => Data;
-        public WorkItem Get(Guid id) => Data.SingleOrDefault(i => i.Id == id);
+
+        public WorkItem Get(Guid id)
+        {
+            throw new NotImplementedException();
+            // Data.SingleOrDefault(i => i.Id == id);
+        }
+
         public WorkItem Get(string id) => Get(new Guid(id));
 
         public WorkItem Update(WorkItem x)
         {
-            var target = Get(x.Id);
-            if (target == null)
-                throw new Exception("Not found");
-            else
-            {
-                target.Name = x.Name;
-                return x;
-            }
+            throw new NotImplementedException();
+
+            // var target = Get(x.Id);
+            // if (target == null)
+            //     throw new Exception("Not found");
+            // else
+            // {
+            //     target.Name = x.Name;
+            //     return x;
+            // }
         }
 
         public void Delete(Guid id)

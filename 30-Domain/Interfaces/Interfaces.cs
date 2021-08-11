@@ -5,7 +5,7 @@ namespace myCoreMvc.Domain
 {
     public interface ISavable : IClonable
     {
-        Guid Id { get; set; }
+        Guid? Id { get; set; }
     }
 
     public interface IUser : ISavable

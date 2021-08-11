@@ -41,6 +41,10 @@ namespace myCoreMvc.App.Services
             return User;
         }
 
-        void IUserBizOf.Delete() => DataRepo.Delete<User>(User.Id);
+        void IUserBizOf.Delete()
+        {
+            throw new NotImplementedException();
+            // DataRepo.Delete<User>(User.Id);
+        }
     }
 }

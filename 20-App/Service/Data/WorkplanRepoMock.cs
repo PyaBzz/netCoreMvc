@@ -31,7 +31,7 @@ namespace myCoreMvc.App.Services
             return wp;
         }
         public List<WorkPlan> GetAll() => Data;
-        public WorkPlan Get(Guid id) => Data.SingleOrDefault(i => i.Id == id);
+        public WorkPlan Get(Guid? id) => Data.SingleOrDefault(i => i.Id == id);
         public WorkPlan Get(string id) => Get(new Guid(id));
 
         public WorkPlan Update(WorkPlan wp)
