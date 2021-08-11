@@ -17,7 +17,7 @@ BEGIN
     print 'Creating WorkPlans'
     CREATE TABLE WorkPlans
     (
-        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        Id UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
         Name VARCHAR(20)
     )
 END
@@ -33,7 +33,7 @@ BEGIN
     print 'Creating WorkItems'
     CREATE TABLE WorkItems
     (
-        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        Id UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
         Reference VARCHAR(20),
         Priority INT,
         Name VARCHAR(20),
@@ -52,7 +52,7 @@ BEGIN
     print 'Creating Users'
     CREATE TABLE Users
     (
-        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        Id UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
         Name VARCHAR(20),
         DateOfBirth DATE,
         Role VARCHAR(20),

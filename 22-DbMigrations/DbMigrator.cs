@@ -5,8 +5,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Baz.Core;
+using myCoreMvc.App;
 
-namespace myCoreMvc.App
+namespace myCoreMvc.DbMigrations
 {
     public static class DbMigrator
     {
