@@ -12,5 +12,7 @@ namespace myCoreMvc.App.Services
         User Get(string id);
         void Delete(Guid? id);
         void Delete(string id);
+
+        void DeleteAll();
     }
 }

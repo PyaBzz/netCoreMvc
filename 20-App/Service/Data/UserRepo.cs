@@ -22,7 +22,7 @@ namespace myCoreMvc.App.Services
         {
             using (var conn = SqlConFactory.Get())
             {
-                conn.Execute($"UPDATE Users SET Name = @Name WHERE Id = @Id", x);
+                conn.Execute($"UPDATE Users SET Name = @Name, DateOfBirth = @DateOfBirth, Role = @Role, Salt = @Salt, Hash = @Hash WHERE Id = @Id", x);
             }
             return x;
         }
@@ -46,26 +46,26 @@ namespace myCoreMvc.App.Services
 
         public User Get(string id)
         {
-            using (var conn = SqlConFactory.Get())
-            {
-                try
-                {
-                    return conn.QuerySingle<User>($"SELECT * FROM Users WHERE Id = @Id", new { Id = new Guid(id) });
-                }
-                catch (Exception e)
-                {
-                    if (e is InvalidOperationException)
-                        return null;
-                    else
-                        throw;
-                }
-            }
+            return Get(new Guid(id));
         }
 
         public User Get(Guid? id)
         {
             if (id.HasValue)
-                return Get(id.Value.ToString());
+                using (var conn = SqlConFactory.Get())
+                {
+                    try
+                    {
+                        return conn.QuerySingle<User>($"SELECT * FROM Users WHERE Id = @Id", new { Id = id });
+                    }
+                    catch (Exception e)
+                    {
+                        if (e is InvalidOperationException)
+                            return null;
+                        else
+                            throw;
+                    }
+                }
             else
                 throw new Exception("The provided nullable GUID has no value");
         }
@@ -79,5 +79,13 @@ namespace myCoreMvc.App.Services
         }
 
         public void Delete(Guid? id) => Delete(id.ToString());
+
+        public void DeleteAll()
+        {
+            using (var conn = SqlConFactory.Get())
+            {
+                conn.Execute("DELETE FROM Users");
+            }
+        }
     }
 }

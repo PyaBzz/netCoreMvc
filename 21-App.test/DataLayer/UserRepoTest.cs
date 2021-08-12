@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace myCoreMvc.Test.DataLayer
 {
     [Trait("Group", "Data")]
-    public class UserRepoTest
+    public class UserRepoTest : IDisposable
     {
         private readonly User jim, sam, adam;
 
@@ -54,18 +54,41 @@ namespace myCoreMvc.Test.DataLayer
             }
         }
 
+        public void Dispose()
+        {
+            repo.DeleteAll();
+        }
+
         [Fact]
-        public void Save_Assigns_Id_To_New_Records()
+        public void Save_AssignsIdToNewRecords()
         {
             Assert.False(jim.Id.HasValue);
             repo.Save(jim);
             Assert.True(jim.Id.HasValue);
             Assert.StrictEqual(jim, repo.Get(jim.Id));
-            repo.Delete(jim.Id);
         }
 
         [Fact]
-        public void Save_Saves_Details_Of_New_Records()
+        public void Save_PreservesIdOfExistingRecords()
+        {
+            Assert.False(jim.Id.HasValue);
+            repo.Save(jim);
+            var id1 = jim.Id.Value;
+            repo.Save(jim);
+            var id2 = jim.Id.Value;
+            Assert.StrictEqual(id1, id2);
+        }
+
+        [Fact]
+        public void Save_AssignsUniqueIds()
+        {
+            repo.Save(jim);
+            repo.Save(sam);
+            Assert.NotEqual(jim.Id.Value, sam.Id.Value);
+        }
+
+        [Fact]
+        public void Save_SavesDetailsOfNewRecords()
         {
             repo.Save(jim);
             var retrievedJim = repo.Get(jim.Id);
@@ -79,64 +102,79 @@ namespace myCoreMvc.Test.DataLayer
         }
 
         [Fact]
+        public void Save_UpdatesName()
+        {
+            repo.Save(jim);
+            var recordToChange = repo.Get(jim.Id);
+            var originalName = recordToChange.Name;
+            var newName = "updated";
+            recordToChange.Name = newName;
+            repo.Save(recordToChange);
+            Assert.StrictEqual(newName, repo.Get(jim.Id).Name);
+        }
+
+        [Fact]
         public void GetAll_GetsTheRightType()
         {
             Assert.IsType<List<User>>(repo.GetAll());
         }
 
-        // [Fact]
-        // public void GetAll_GetsAllItems()
-        // {
-        //     Assert.StrictEqual(0, repo.GetAll().Count());
-        // }
+        [Fact]
+        public void GetAll_GetsAllItems()
+        {
+            Assert.StrictEqual(0, repo.GetAll().Count());
+            repo.Save(jim);
+            Assert.StrictEqual(1, repo.GetAll().Count());
+            repo.Save(sam);
+            Assert.StrictEqual(2, repo.GetAll().Count());
+            repo.Save(adam);
+            Assert.StrictEqual(3, repo.GetAll().Count());
+        }
 
-        // [Fact]
-        // public void Get_GetsByStringId()
-        // {
-        //     Assert.StrictEqual(_Jim, repo.Save(_Jim));
-        //     Assert.StrictEqual(_Jim.Name, repo.Get(_Jim.Id.ToString()).Name);
-        //     repo.Delete(_Jim.Id);
-        // }
+        [Fact]
+        public void Get_GetsByGuid()
+        {
+            repo.Save(jim);
+            Assert.StrictEqual(jim, repo.Get(jim.Id));
+        }
 
-        // [Fact]
-        // public void Get_GetsByGuid()
-        // {
-        //     Assert.StrictEqual(_Jim, repo.Save(_Jim));
-        //     Assert.StrictEqual(_Jim.Name, repo.Get(_Jim.Id).Name);
-        //     repo.Delete(_Jim.Id);
-        // }
+        [Fact]
+        public void Get_GetsByStringId()
+        {
+            repo.Save(jim);
+            Assert.StrictEqual(jim, repo.Get(jim.Id.ToString()));
+        }
 
-        // [Fact]
-        // public void Get_IsCaseInsensitiveToId()
-        // {
-        //     Assert.StrictEqual(_Jim, repo.Save(_Jim));
-        //     Assert.StrictEqual(repo.Get(_Jim.Id.ToString().ToLower()), repo.Get(_Jim.Id.ToString().ToUpper()));
-        //     repo.Delete(_Jim.Id);
-        // }
+        [Fact]
+        public void Get_IsCaseInsensitiveToId()
+        {
+            repo.Save(jim);
+            Assert.StrictEqual(repo.Get(jim.Id.ToString().ToLower()), repo.Get(jim.Id.ToString().ToUpper()));
+        }
 
-        // [Fact]
-        // public void Update_UpdatesName()
-        // {
-        //     Assert.Same(_Jim, repo.Save(_Jim));
-        //     var recordToChange = repo.Get(_Jim.Id);
-        //     var originalName = recordToChange.Name;
-        //     var newName = "updated";
-        //     recordToChange.Name = newName;
-        //     Assert.Same(recordToChange, repo.Save(recordToChange));
-        //     Assert.StrictEqual(newName, repo.Get(_Jim.Id).Name);
-        //     recordToChange.Name = originalName;
-        //     Assert.Same(recordToChange, repo.Save(recordToChange));
-        //     Assert.StrictEqual(originalName, repo.Get(_Jim.Id).Name);
-        //     repo.Delete(_Jim.Id);
-        // }
+        [Fact]
+        public void Get_ReturnsNewObject()
+        {
+            repo.Save(jim);
+            var retrievedObject = repo.Get(jim.Id);
+            Assert.StrictEqual(jim, retrievedObject);
+            Assert.NotSame(jim, retrievedObject);
+        }
 
-        // [Fact]
-        // public void Delete_DeletesByStringId()
-        // {
-        //     Assert.StrictEqual(_Jim, repo.Save(_Jim));
-        //     Assert.StrictEqual(_Jim.Name, repo.Get(_Jim.Id).Name);
-        //     repo.Delete(_Jim.Id);
-        //     Assert.Null(repo.Get(_Jim.Id));
-        // }
+        [Fact]
+        public void Delete_DeletesByGuid()
+        {
+            repo.Save(jim);
+            repo.Delete(jim.Id);
+            Assert.Null(repo.Get(jim.Id));
+        }
+
+        [Fact]
+        public void Delete_DeletesByStringId()
+        {
+            repo.Save(jim);
+            repo.Delete(jim.Id.ToString());
+            Assert.Null(repo.Get(jim.Id));
+        }
     }
 }
