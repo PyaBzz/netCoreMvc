@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace myCoreMvc.DbMigrations
@@ -7,13 +8,14 @@ namespace myCoreMvc.DbMigrations
     {
         public static void Main(string[] args)
         {
-            if (DbMigrator.MigrateIfNeeded(args))
+            var paramCount = args.Length;
+            if (paramCount == 2)
             {
-                return;
+                DbMigrator.Go(args[0], args[1]);
             }
             else
             {
-                Console.WriteLine("No migration specified");
+                throw new ArgumentException("Exactly two parameters are required");
             }
         }
     }

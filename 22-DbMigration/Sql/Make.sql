@@ -1,8 +1,8 @@
 
-IF NOT EXISTS (SELECT * FROM master.sys.databases WHERE name = 'bazDb')
+IF NOT EXISTS (SELECT * FROM master.sys.databases WHERE name = '##dbname##')
 BEGIN
-    PRINT 'Creating bazDb'
-    CREATE DATABASE bazDb
+    PRINT 'Creating ##dbname##'
+    CREATE DATABASE ##dbname##
 END
 ELSE
 BEGIN
@@ -11,7 +11,7 @@ END
 
 GO
 
-USE bazDb
+USE ##dbname##
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'WorkPlans')
 BEGIN
     print 'Creating WorkPlans'

@@ -1,5 +1,5 @@
 clear
-cd 22-DbMigrations
-dotnet run Destroy
-dotnet run Make
-dotnet run Populate
+cd 22-DbMigration
+dotnet run prod Destroy
+dotnet run prod Make
+dotnet run prod Populate
