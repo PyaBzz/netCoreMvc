@@ -2,7 +2,8 @@
     "Data": {
         "ConnectionStr": {
             "Init": "server=.; Integrated Security=false; User ID=sa; Password=adminPass1;",
-            "Normal": "server=.; Integrated Security=false; User ID=sa; Password=adminPass1; Database=bazDb"
+            "Test": "server=.; Integrated Security=false; User ID=sa; Password=adminPass1; Database=bazDbTest",
+            "Prod": "server=.; Integrated Security=false; User ID=sa; Password=adminPass1; Database=bazDb"
         },
         "Path": {
             "Script": {

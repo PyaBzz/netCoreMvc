@@ -7,7 +7,7 @@ namespace myCoreMvc.App.Test
     {
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddTransient<IDbConFactory, DbTestConFactory>();
             services.AddSingleton<Config>(ConfigFactory.Get());
 
             // services.AddTransient<IDataRepo, DataRepoMock>();

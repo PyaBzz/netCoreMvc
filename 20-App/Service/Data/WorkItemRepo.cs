@@ -8,11 +8,17 @@ namespace myCoreMvc.App.Services
 {
     public class WorkItemRepo : IWorkItemRepo
     {
+        private readonly IDbConFactory dbConFactory;
+        public WorkItemRepo(IDbConFactory conFac)
+        {
+            dbConFactory = conFac;
+        }
+
         /*==================================  Interface Methods =================================*/
 
         public WorkItem Add(WorkItem x)
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 conn.Execute($"INSERT INTO WorkItems (Id, Name) VALUES (@Id, @Name)", x);
                 return x;
@@ -21,7 +27,7 @@ namespace myCoreMvc.App.Services
 
         public List<WorkItem> GetAll()
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 var reader = conn.QueryMultiple($"SELECT * FROM WorkItems");
                 return reader.Read<WorkItem>().ToList();
@@ -31,7 +37,7 @@ namespace myCoreMvc.App.Services
 
         public WorkItem Get(string id)
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 return conn.QuerySingle<WorkItem>($"SELECT * FROM WorkItems WHERE Id = @Id", new { Id = id });
             }
@@ -41,7 +47,7 @@ namespace myCoreMvc.App.Services
 
         public WorkItem Update(WorkItem x)
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 conn.Execute($"UPDATE WorkItems SET Name = @Name WHERE Id = @Id", x);
                 return x;
@@ -50,7 +56,7 @@ namespace myCoreMvc.App.Services
 
         public void Delete(string id)
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 conn.Execute($"DELETE FROM WorkItems WHERE Id = @Id", new { Id = id });
             }

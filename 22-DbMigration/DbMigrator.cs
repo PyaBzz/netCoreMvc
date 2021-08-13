@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Baz.Core;
 using myCoreMvc.App;
+using myCoreMvc.App.Services;
 
 namespace myCoreMvc.DbMigrations
 {
@@ -15,6 +16,7 @@ namespace myCoreMvc.DbMigrations
         private static readonly Dictionary<string, string> dbs = new Dictionary<string, string> { { "test", "bazDbTest" }, { "prod", "bazDb" } };
         private static readonly Dictionary<string, string> ops = new Dictionary<string, string> { { "Destroy", "Destroy" }, { "Make", "Make" }, { "Populate", "Populate" } };
         private static readonly string dbNamePlaceholder = "##dbname##";
+        private static readonly IDbConFactory dbConFactory = new DbConFactory();
         public static void Go(string db, string op)
         {
             string dbname, operation;
@@ -46,7 +48,7 @@ namespace myCoreMvc.DbMigrations
             Console.WriteLine("Connecting to SQL server");
             Console.WriteLine($"Executing script: {scriptPath}");
             Console.WriteLine($"On database: {dbname}");
-            using (var conn = SqlConFactory.Get(true))
+            using (var conn = dbConFactory.GetInit())
             {
                 conn.Open();
                 var command = new SqlCommand();

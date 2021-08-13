@@ -8,9 +8,16 @@ namespace myCoreMvc.App.Services
 {
     public class UserRepo : IUserRepo
     {
+        private readonly IDbConFactory dbConFactory;
+
+        public UserRepo(IDbConFactory conFac)
+        {
+            dbConFactory = conFac;
+        }
+
         private User Add(User x)
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 var id = conn.ExecuteScalar<Guid>("INSERT INTO Users (Name, DateOfBirth, Role, Salt, Hash) OUTPUT INSERTED.Id VALUES (@Name, @DateOfBirth, @Role, @Salt, @Hash)", x);
                 x.Id = id;
@@ -20,7 +27,7 @@ namespace myCoreMvc.App.Services
 
         private User Update(User x)
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 conn.Execute($"UPDATE Users SET Name = @Name, DateOfBirth = @DateOfBirth, Role = @Role, Salt = @Salt, Hash = @Hash WHERE Id = @Id", x);
             }
@@ -36,7 +43,7 @@ namespace myCoreMvc.App.Services
 
         public List<User> GetAll()
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 var reader = conn.QueryMultiple($"SELECT * FROM Users");
                 return reader.Read<User>().ToList();
@@ -52,7 +59,7 @@ namespace myCoreMvc.App.Services
         public User Get(Guid? id)
         {
             if (id.HasValue)
-                using (var conn = SqlConFactory.Get())
+                using (var conn = dbConFactory.Get())
                 {
                     try
                     {
@@ -72,7 +79,7 @@ namespace myCoreMvc.App.Services
 
         public void Delete(string id)
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 conn.Execute($"DELETE FROM Users WHERE Id = @Id", new { Id = id });
             }
@@ -82,7 +89,7 @@ namespace myCoreMvc.App.Services
 
         public void DeleteAll()
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 conn.Execute("DELETE FROM Users");
             }

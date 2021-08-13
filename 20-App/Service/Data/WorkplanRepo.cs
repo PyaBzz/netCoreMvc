@@ -8,11 +8,17 @@ namespace myCoreMvc.App.Services
 {
     public class WorkplanRepo : IWorkplanRepo
     {
+        private readonly IDbConFactory dbConFactory;
+        public WorkplanRepo(IDbConFactory conFac)
+        {
+            dbConFactory = conFac;
+        }
+
         /*==================================  Interface Methods =================================*/
 
         public WorkPlan Add(WorkPlan wp)
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 conn.Execute($"INSERT INTO WorkPlans (Id, Name) VALUES (@Id, @Name)", wp);
                 return wp;
@@ -21,7 +27,7 @@ namespace myCoreMvc.App.Services
 
         public List<WorkPlan> GetAll()
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 var reader = conn.QueryMultiple($"SELECT * FROM WorkPlans");
                 return reader.Read<WorkPlan>().ToList();
@@ -31,7 +37,7 @@ namespace myCoreMvc.App.Services
 
         public WorkPlan Get(string id)
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 try
                 {
@@ -48,7 +54,7 @@ namespace myCoreMvc.App.Services
 
         public WorkPlan Update(WorkPlan wp)
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 conn.Execute($"UPDATE WorkPlans SET Name = @Name WHERE Id = @Id", wp);
                 return wp;
@@ -57,7 +63,7 @@ namespace myCoreMvc.App.Services
 
         public void Delete(string id)
         {
-            using (var conn = SqlConFactory.Get())
+            using (var conn = dbConFactory.Get())
             {
                 conn.Execute($"DELETE FROM WorkPlans WHERE Id = @Id", new { Id = id });
             }
