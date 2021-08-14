@@ -14,13 +14,12 @@ namespace myCoreMvc.Test.DataLayer
     public class UserRepoTest : IDisposable
     {
         private readonly User jim, sam, adam;
-
         private readonly IUserRepo repo;
 
-        public UserRepoTest(IUserRepo rep)
+        public UserRepoTest(IUserRepo rep, ISaltFactory saltFac)
         {
             this.repo = rep;
-            var salts = new SaltFactory().GetMany(3);
+            var salts = saltFac.GetMany(3);
 
             jim = new User
             {

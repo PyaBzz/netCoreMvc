@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 
 namespace myCoreMvc.App.Services
 {
-    public class SaltFactory
+    public class SaltFactory : ISaltFactory
     {
+        public const int LENGTH = 16;
+
         public Byte[] Get()
         {
-            var res = new Byte[128 / 8];
+            var res = new Byte[LENGTH];
             using (var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(res);
@@ -28,7 +30,7 @@ namespace myCoreMvc.App.Services
             {
                 for (var i = 0; i < count; i++)
                 {
-                    res[i] = new byte[128 / 8];
+                    res[i] = new byte[LENGTH];
                     rng.GetBytes(res[i]);
                 }
             }
