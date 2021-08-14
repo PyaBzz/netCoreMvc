@@ -20,38 +20,32 @@ namespace myCoreMvc.Test.DataLayer
         public UserRepoTest(IUserRepo rep)
         {
             this.repo = rep;
+            var salts = new SaltFactory().GetMany(3);
 
-            using (var rng = RandomNumberGenerator.Create())
+            jim = new User
             {
-                var Salts = new[] { new byte[128 / 8], new byte[128 / 8], new byte[128 / 8] };
-                foreach (var salt in Salts)
-                    rng.GetBytes(salt);
-
-                jim = new User
-                {
-                    Salt = Salts[0],
-                    Name = "Jim",
-                    Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("jjj", Salts[0], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
-                    DateOfBirth = new DateTime(2018, 01, 22),
-                    Role = AuthConstants.JuniorRoleName
-                };
-                sam = new User
-                {
-                    Salt = Salts[1],
-                    Name = "Sam",
-                    Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("sss", Salts[1], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
-                    DateOfBirth = new DateTime(2010, 01, 22),
-                    Role = AuthConstants.SeniorRoleName
-                };
-                adam = new User
-                {
-                    Salt = Salts[2],
-                    Name = "Adam",
-                    Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("aaa", Salts[2], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
-                    DateOfBirth = new DateTime(2000, 01, 22),
-                    Role = AuthConstants.AdminRoleName
-                };
-            }
+                Salt = salts[0],
+                Name = "Jim",
+                Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("jjj", salts[0], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
+                DateOfBirth = new DateTime(2018, 01, 22),
+                Role = AuthConstants.JuniorRoleName
+            };
+            sam = new User
+            {
+                Salt = salts[1],
+                Name = "Sam",
+                Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("sss", salts[1], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
+                DateOfBirth = new DateTime(2010, 01, 22),
+                Role = AuthConstants.SeniorRoleName
+            };
+            adam = new User
+            {
+                Salt = salts[2],
+                Name = "Adam",
+                Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("aaa", salts[2], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
+                DateOfBirth = new DateTime(2000, 01, 22),
+                Role = AuthConstants.AdminRoleName
+            };
         }
 
         public void Dispose()
