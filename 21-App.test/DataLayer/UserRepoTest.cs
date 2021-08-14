@@ -3,9 +3,7 @@ using Xunit;
 using myCoreMvc.App.Services;
 using myCoreMvc.Domain;
 using System.Linq;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Baz.Core;
-using System.Security.Cryptography;
 using System.Collections.Generic;
 
 namespace myCoreMvc.Test.DataLayer
@@ -16,35 +14,14 @@ namespace myCoreMvc.Test.DataLayer
         private readonly User jim, sam, adam;
         private readonly IUserRepo repo;
 
-        public UserRepoTest(IUserRepo rep, ISaltFactory saltFac)
+        public UserRepoTest(IUserRepo rep, IHashFactory hashFac)
         {
             this.repo = rep;
-            var salts = saltFac.GetMany(3);
+            var salts = hashFac.GetSalt(3);
 
-            jim = new User
-            {
-                Salt = salts[0],
-                Name = "Jim",
-                Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("jjj", salts[0], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
-                DateOfBirth = new DateTime(2018, 01, 22),
-                Role = AuthConstants.JuniorRoleName
-            };
-            sam = new User
-            {
-                Salt = salts[1],
-                Name = "Sam",
-                Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("sss", salts[1], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
-                DateOfBirth = new DateTime(2010, 01, 22),
-                Role = AuthConstants.SeniorRoleName
-            };
-            adam = new User
-            {
-                Salt = salts[2],
-                Name = "Adam",
-                Hash = Convert.ToBase64String(KeyDerivation.Pbkdf2("aaa", salts[2], KeyDerivationPrf.HMACSHA512, 100, 256 / 8)),
-                DateOfBirth = new DateTime(2000, 01, 22),
-                Role = AuthConstants.AdminRoleName
-            };
+            jim = new User { Salt = salts[0], Name = "Jim", Hash = hashFac.GetHash("jjj", salts[0]), DateOfBirth = new DateTime(2018, 01, 22), Role = AuthConstants.JuniorRoleName };
+            sam = new User { Salt = salts[1], Name = "Sam", Hash = hashFac.GetHash("sss", salts[1]), DateOfBirth = new DateTime(2010, 01, 22), Role = AuthConstants.SeniorRoleName };
+            adam = new User { Salt = salts[2], Name = "Adam", Hash = hashFac.GetHash("aaa", salts[2]), DateOfBirth = new DateTime(2000, 01, 22), Role = AuthConstants.AdminRoleName };
         }
 
         public void Dispose()

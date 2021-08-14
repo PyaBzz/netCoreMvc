@@ -9,7 +9,7 @@ namespace myCoreMvc.App.Test
         {
             services.AddSingleton<Config>(ConfigFactory.Get());
             services.AddTransient<IDbConFactory, DbTestConFactory>();
-            services.AddTransient<ISaltFactory, SaltFactory>();
+            services.AddTransient<IHashFactory, HashFactory>();
 
             // services.AddTransient<IDataRepo, DataRepoMock>();
             // services.AddTransient<IDataRepo, DataRepo>();

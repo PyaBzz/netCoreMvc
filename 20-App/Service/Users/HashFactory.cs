@@ -1,19 +1,14 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using myCoreMvc.Domain;
-using Baz.Core;
 using System;
-using System.Collections.Generic;
-using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
 
 namespace myCoreMvc.App.Services
 {
-    public class SaltFactory : ISaltFactory
+    public class HashFactory : IHashFactory
     {
         public const int LENGTH = 16;
 
-        public Byte[] Get()
+        public Byte[] GetSalt()
         {
             var res = new Byte[LENGTH];
             using (var rng = RandomNumberGenerator.Create())
@@ -23,7 +18,7 @@ namespace myCoreMvc.App.Services
             return res;
         }
 
-        public Byte[][] GetMany(int count)
+        public Byte[][] GetSalt(int count)
         {
             Byte[][] res = new Byte[count][];
             using (var rng = RandomNumberGenerator.Create())
@@ -35,6 +30,11 @@ namespace myCoreMvc.App.Services
                 }
             }
             return res;
+        }
+
+        public string GetHash(string password, byte[] salt)
+        { //Todo: Unit test this
+            return Convert.ToBase64String(KeyDerivation.Pbkdf2(password, salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8));
         }
     }
 }

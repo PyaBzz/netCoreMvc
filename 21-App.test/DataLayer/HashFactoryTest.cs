@@ -1,22 +1,16 @@
 using System;
 using Xunit;
 using myCoreMvc.App.Services;
-using myCoreMvc.Domain;
-using System.Linq;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Baz.Core;
-using System.Security.Cryptography;
-using System.Collections.Generic;
 
 namespace myCoreMvc.Test
 {
     [Trait("Group", "Etc")]
-    public class SaltFactoryTest : IDisposable
+    public class HashFactoryTest : IDisposable
     {
         private const int LENGTH = 16;
-        private readonly ISaltFactory factory;
+        private readonly IHashFactory factory;
 
-        public SaltFactoryTest(ISaltFactory saltFac)
+        public HashFactoryTest(IHashFactory saltFac)
         {
             this.factory = saltFac;
         }
@@ -28,22 +22,22 @@ namespace myCoreMvc.Test
         [Fact]
         public void Get_GetsTheRightLength()
         {
-            var salt = factory.Get();
+            var salt = factory.GetSalt();
             Assert.StrictEqual(LENGTH, salt.Length);
         }
 
         [Fact]
         public void Get_GetsNonZeroValues()
         {
-            var salt = factory.Get();
+            var salt = factory.GetSalt();
             Assert.Contains(salt, x => x != 0);
         }
 
         [Fact]
         public void Get_GetsUniqueSalts()
         {
-            var salt1 = factory.Get();
-            var salt2 = factory.Get();
+            var salt1 = factory.GetSalt();
+            var salt2 = factory.GetSalt();
             for (var i = 0; i < LENGTH; i++)
             {
                 salt1[i] = (byte)(salt1[i] ^ salt2[i]);
