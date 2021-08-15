@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace myCoreMvc.Domain
 {
-    public class User : Thing, IUser
+    public class User : Thing
     {
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }

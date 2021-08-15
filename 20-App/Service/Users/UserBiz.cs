@@ -11,14 +11,14 @@ namespace myCoreMvc.App.Services
 {
     public class UserBiz : IUserBiz
     {
-        private IDataRepo DataRepo;
+        // private IDataRepo DataRepo;
 
-        public UserBiz(IDataRepo dataRepo)
-            => DataRepo = dataRepo;
+        // public UserBiz(IDataRepo dataRepo)
+        //     => DataRepo = dataRepo;
 
-        User IUserBiz.Get(Guid id) => DataRepo.Get<User>(id);
+        User IUserBiz.Get(Guid id) => throw new NotImplementedException();
 
-        List<User> IUserBiz.GetList() => DataRepo.GetList<User>();
+        List<User> IUserBiz.GetList() => throw new NotImplementedException();
 
         Task<bool> IUserBiz.GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
         {
@@ -47,19 +47,20 @@ namespace myCoreMvc.App.Services
 
         Task<bool> IUserBiz.ValidateCredentials(string userName, string passWord, out User user)
         {
-            user = DataRepo.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
-            if (user != null)
-            {
-                var existingHash = user.Hash;
-                var hashBytes = KeyDerivation.Pbkdf2(passWord, user.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
-                var hash = Convert.ToBase64String(hashBytes);
-                if (hash == existingHash)
-                    return Task.FromResult(true);
-            }
-            return Task.FromResult(false);
+            throw new NotImplementedException();
+            // user = DataRepo.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
+            // if (user != null)
+            // {
+            //     var existingHash = user.Hash;
+            //     var hashBytes = KeyDerivation.Pbkdf2(passWord, user.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
+            //     var hash = Convert.ToBase64String(hashBytes);
+            //     if (hash == existingHash)
+            //         return Task.FromResult(true);
+            // }
+            // return Task.FromResult(false);
         }
 
         IUserBizOf IUserBiz.Of(User user)
-            => new UserBizOf(DataRepo, user);
+            => throw new NotImplementedException();
     }
 }

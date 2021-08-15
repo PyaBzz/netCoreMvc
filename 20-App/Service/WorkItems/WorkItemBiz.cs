@@ -7,22 +7,22 @@ namespace myCoreMvc.App.Services
 {
     public class WorkItemBiz : IWorkItemBiz
     {
-        private readonly IDataRepo DataRepo;
+        // private readonly IDataRepo DataRepo;
 
-        public WorkItemBiz(IDataRepo dataRepo)
-            => DataRepo = dataRepo;
+        // public WorkItemBiz(IDataRepo dataRepo)
+        //     => DataRepo = dataRepo;
 
-        public WorkItem Get(Guid id) => DataRepo.Get<WorkItem>(id);
-        public WorkItem Get(Predicate<WorkItem> func) => DataRepo.Get<WorkItem>(func);
+        public WorkItem Get(Guid id) => throw new NotImplementedException();
+        public WorkItem Get(Predicate<WorkItem> func) => throw new NotImplementedException();
 
-        public List<WorkItem> GetList() => DataRepo.GetList<WorkItem>();
-        public List<WorkItem> GetList(Predicate<WorkItem> func) => DataRepo.GetList<WorkItem>(func);
+        public List<WorkItem> GetList() => throw new NotImplementedException();
+        public List<WorkItem> GetList(Predicate<WorkItem> func) => throw new NotImplementedException();
         public List<WorkItem> GetListIncluding(params Expression<Func<WorkItem, object>>[] includeProperties)
-            => DataRepo.GetListIncluding<WorkItem>(includeProperties);
+            => throw new NotImplementedException();
         public List<WorkItem> GetListIncluding(Predicate<WorkItem> predicate, params Expression<Func<WorkItem, object>>[] includeProperties)
-            => DataRepo.GetListIncluding<WorkItem>(predicate, includeProperties);
+            => throw new NotImplementedException();
 
         public IWorkItemBizOf Of(WorkItem workItem)
-            => new WorkItemBizOf(DataRepo, workItem);
+            => throw new NotImplementedException();
     }
 }

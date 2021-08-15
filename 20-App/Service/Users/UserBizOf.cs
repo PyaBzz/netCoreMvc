@@ -11,27 +11,28 @@ namespace myCoreMvc.App.Services
 {
     public class UserBizOf : IUserBizOf
     {
-        private IDataRepo DataRepo;
+        // private IDataRepo DataRepo;
         public User User { get; }
 
-        public UserBizOf(IDataRepo dataRepo, User user)
-        {
-            DataRepo = dataRepo;
-            User = user;
-        }
+        // public UserBizOf(IDataRepo dataRepo, User user)
+        // {
+        //     DataRepo = dataRepo;
+        //     User = user;
+        // }
 
         User IUserBizOf.Save()
         {
+            throw new NotImplementedException();
             //Task: Is this the best way to determine if the object is new?
-            if (User.Id == Guid.Empty)
-            {
-                User.Salt = new byte[128 / 8];
-                using (var rng = RandomNumberGenerator.Create())
-                {
-                    rng.GetBytes(User.Salt);
-                }
-            }
-            return DataRepo.Save(User);
+            // if (User.Id == Guid.Empty)
+            // {
+            //     User.Salt = new byte[128 / 8];
+            //     using (var rng = RandomNumberGenerator.Create())
+            //     {
+            //         rng.GetBytes(User.Salt);
+            //     }
+            // }
+            // return DataRepo.Save(User);
         }
 
         User IUserBizOf.SetPassword(string password)

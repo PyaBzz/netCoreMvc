@@ -26,7 +26,6 @@ namespace myCoreMvc.App.Services
 
         public WorkItem Add(WorkItem x)
         {
-            // wp.Id = Guid.NewGuid(); //Todo: Can we delegate Id generation to sql?
             Data.Add(x);
             return x;
         }
