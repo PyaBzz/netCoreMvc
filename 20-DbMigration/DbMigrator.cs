@@ -8,26 +8,38 @@ using System.Text.RegularExpressions;
 using Baz.Core;
 using myCoreMvc.App;
 using myCoreMvc.App.Services;
+using myCoreMvc.Persistence;
 
 namespace myCoreMvc.DbMigrations
 {
     public static class DbMigrator
     {
-        private static readonly Dictionary<string, string> dbs = new Dictionary<string, string> { { "test", "bazDbTest" }, { "prod", "bazDb" } };
-        private static readonly Dictionary<string, string> ops = new Dictionary<string, string> { { "Destroy", "Destroy" }, { "Make", "Make" }, { "Populate", "Populate" } };
+        private static readonly Dictionary<string, string> dbEnvMap = new Dictionary<string, string> { { "test", "bazDbTest" }, { "prod", "bazDb" } };
+        private static readonly string[] opNames = new[] { "Destroy", "Make", "Populate" };
         private static readonly string dbNamePlaceholder = "##dbname##";
         private static readonly IDbConFactory dbConFactory = new DbConFactory();
-        public static void Go(string db, string op)
+        public static void Go(string[] args)
         {
-            string dbname, operation;
-            if (dbs.TryGetValue(db, out dbname) == false)
-                throw new ArgumentException($"Invalid database specified {db}. Database must be in [{dbs.Keys.ToString(", ")}]");
+            string dbname;
+            var dbEnv = args[0];
+            var ops = args.Skip(1);
+            if (dbEnvMap.TryGetValue(dbEnv, out dbname) == false)
+                throw new ArgumentException($"Invalid database specified {dbEnv}. Database must be in [{dbEnvMap.Keys.ToString(", ")}]");
 
-            if (ops.TryGetValue(op, out operation) == false)
-                throw new ArgumentException($"Invalid operation specified {op}. Operation must be in [{ops.Keys.ToString(", ")}]");
+            foreach (var op in ops)
+            {
+                if (opNames.Contains(op) == false)
+                    throw new ArgumentException($"Invalid operation specified {op}. Operation must be in [{opNames.ToString(", ")}]");
+            }
 
-            var scrRelPath = ConfigFactory.Get().Data.Path.Script[operation];
-            RunScript(scrRelPath, dbname);
+            foreach (var op in ops)
+            {
+                if (opNames.Contains(op) == false)
+                    throw new ArgumentException($"Invalid operation specified {op}. Operation must be in [{opNames.ToString(", ")}]");
+                var scrRelPath = ConfigFactory.Get().Data.Path.Script[op];
+                RunScript(scrRelPath, dbname);
+            }
+
             Console.WriteLine("Migration done");
             Console.WriteLine();
         }
@@ -40,9 +52,9 @@ namespace myCoreMvc.DbMigrations
             var scrBatches = Regex.Split(scrText, "go", RegexOptions.IgnoreCase);
             var batchCount = scrBatches.Count();
 
-            Console.WriteLine("Connecting to SQL server");
             Console.WriteLine($"Executing script: {absPath}");
-            Console.WriteLine($"On database: {dbname}");
+            Console.WriteLine($"Target database: {dbname}");
+            Console.WriteLine("Connecting to SQL server");
             using (var conn = dbConFactory.GetInit())
             {
                 conn.Open();
@@ -56,6 +68,7 @@ namespace myCoreMvc.DbMigrations
                     if (result == -1)
                         Console.WriteLine($"Batch {i} executed");
                 }
+                Console.WriteLine();
             }
         }
     }

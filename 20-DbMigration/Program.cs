@@ -9,14 +9,11 @@ namespace myCoreMvc.DbMigrations
         public static void Main(string[] args)
         {
             var paramCount = args.Length;
-            if (paramCount == 2)
-            {
-                DbMigrator.Go(args[0], args[1]);
-            }
-            else
+            if (paramCount < 2)
             {
                 throw new ArgumentException("Exactly two parameters are required");
             }
+            DbMigrator.Go(args);
         }
     }
 }
