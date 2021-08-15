@@ -3,7 +3,7 @@ using Baz.Core;
 
 namespace myCoreMvc.Domain
 {
-    public class Thing : ISavable, IClonable
+    public abstract class Thing : ISavable, IClonable
     {
         public Guid? Id { get; set; }
 
