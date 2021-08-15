@@ -20,33 +20,28 @@ namespace myCoreMvc.DbMigrations
         public static void Go(string db, string op)
         {
             string dbname, operation;
-            if (dbs.Keys.Contains(db))
-                dbname = dbs[db];
-            else
-                throw new ArgumentException($"Invalid database specified {db}. Database must be among {dbs.Keys.ToString(", ")}.");
+            if (dbs.TryGetValue(db, out dbname) == false)
+                throw new ArgumentException($"Invalid database specified {db}. Database must be in [{dbs.Keys.ToString(", ")}]");
 
-            if (ops.Keys.Contains(op))
-                operation = ops[op];
-            else
-                throw new ArgumentException($"Invalid operation specified {op}. Operation must be among {ops.Keys.ToString(", ")}.");
+            if (ops.TryGetValue(op, out operation) == false)
+                throw new ArgumentException($"Invalid operation specified {op}. Operation must be in [{ops.Keys.ToString(", ")}]");
 
-            var scriptRelPaths = ConfigFactory.Get().Data.Path.Script;
-            var theRelPath = scriptRelPaths[operation];
-            Run(dbname, theRelPath);
+            var scrRelPath = ConfigFactory.Get().Data.Path.Script[operation];
+            RunScript(scrRelPath, dbname);
             Console.WriteLine("Migration done");
             Console.WriteLine();
         }
 
-        private static void Run(string dbname, string relativeScriptPath)
+        private static void RunScript(string relPath, string dbname)
         {
             var outputDir = Assembly.GetExecutingAssembly().GetDirectory(); //Todo: If merged into the extension method what assembly dir does it return?
-            var scriptPath = Path.Combine(outputDir, relativeScriptPath);
-            var scriptText = File.ReadAllText(scriptPath).Replace(dbNamePlaceholder, dbname);
-            var scriptBatches = Regex.Split(scriptText, "go", RegexOptions.IgnoreCase);
-            var batchCount = scriptBatches.Count();
+            var absPath = Path.Combine(outputDir, relPath);
+            var scrText = File.ReadAllText(absPath).Replace(dbNamePlaceholder, dbname);
+            var scrBatches = Regex.Split(scrText, "go", RegexOptions.IgnoreCase);
+            var batchCount = scrBatches.Count();
 
             Console.WriteLine("Connecting to SQL server");
-            Console.WriteLine($"Executing script: {scriptPath}");
+            Console.WriteLine($"Executing script: {absPath}");
             Console.WriteLine($"On database: {dbname}");
             using (var conn = dbConFactory.GetInit())
             {
@@ -56,7 +51,7 @@ namespace myCoreMvc.DbMigrations
                 Console.WriteLine($"Running {batchCount} sql batches");
                 for (var i = 0; i < batchCount; i++)
                 {
-                    command.CommandText = scriptBatches[i];
+                    command.CommandText = scrBatches[i];
                     var result = command.ExecuteNonQuery();
                     if (result == -1)
                         Console.WriteLine($"Batch {i} executed");
