@@ -7,7 +7,7 @@ using System.Linq;
 using Baz.Core;
 using System.Collections.Generic;
 
-namespace myCoreMvc.Test.DataLayer
+namespace myCoreMvc.Persistence.Test
 {
     [Trait("Group", "Repos")]
     public class UserRepoTest : IDisposable

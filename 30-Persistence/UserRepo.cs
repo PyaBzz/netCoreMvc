@@ -50,13 +50,9 @@ namespace myCoreMvc.Persistence
                 var reader = conn.QueryMultiple($"SELECT * FROM Users");
                 return reader.Read<User>().ToList();
             }
-
         }
 
-        public User Get(string id)
-        {
-            return Get(new Guid(id));
-        }
+        public User Get(string id) => Get(new Guid(id));
 
         public User Get(Guid? id)
         {

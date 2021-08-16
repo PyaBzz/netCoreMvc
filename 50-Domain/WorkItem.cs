@@ -15,7 +15,7 @@ namespace myCoreMvc.Domain
 
         public int Priority { get; set; }
 
-        [Display(Name = "Item name"), Required]
+        [Display(Name = "Item name"), Required] //Todo: Not a concern of Domain
         public string Name { get; set; }
 
         public Guid WorkPlanId { get; set; }

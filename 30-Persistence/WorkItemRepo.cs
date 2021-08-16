@@ -10,20 +10,36 @@ namespace myCoreMvc.Persistence
     public class WorkItemRepo : IWorkItemRepo
     {
         private readonly IDbConFactory dbConFactory;
+
         public WorkItemRepo(IDbConFactory conFac)
         {
             dbConFactory = conFac;
         }
 
-        /*==================================  Interface Methods =================================*/
-
-        public WorkItem Add(WorkItem x)
+        private WorkItem Add(WorkItem x)
         {
             using (var conn = dbConFactory.Get())
             {
-                conn.Execute($"INSERT INTO WorkItems (Id, Name) VALUES (@Id, @Name)", x);
+                var id = conn.ExecuteScalar<Guid>($"INSERT INTO WorkItems (Name) OUTPUT INSERTED.Id VALUES (@Name)", x);
+                x.Id = id;
                 return x;
             }
+        }
+
+        private WorkItem Update(WorkItem x)
+        {
+            using (var conn = dbConFactory.Get())
+            {
+                conn.Execute($"UPDATE WorkItems SET Name = @Name WHERE Id = @Id", x);
+            }
+            return x;
+        }
+
+        /*==================================  Interface Methods =================================*/
+
+        public WorkItem Save(WorkItem x)
+        {
+            return x.Id.HasValue ? Update(x) : Add(x);
         }
 
         public List<WorkItem> GetAll()
@@ -33,26 +49,29 @@ namespace myCoreMvc.Persistence
                 var reader = conn.QueryMultiple($"SELECT * FROM WorkItems");
                 return reader.Read<WorkItem>().ToList();
             }
-
         }
 
-        public WorkItem Get(string id)
-        {
-            using (var conn = dbConFactory.Get())
-            {
-                return conn.QuerySingle<WorkItem>($"SELECT * FROM WorkItems WHERE Id = @Id", new { Id = id });
-            }
-        }
+        public WorkItem Get(string id) => Get(new Guid(id));
 
-        public WorkItem Get(Guid id) => Get(id.ToString());
-
-        public WorkItem Update(WorkItem x)
+        public WorkItem Get(Guid? id)
         {
-            using (var conn = dbConFactory.Get())
-            {
-                conn.Execute($"UPDATE WorkItems SET Name = @Name WHERE Id = @Id", x);
-                return x;
-            }
+            if (id.HasValue)
+                using (var conn = dbConFactory.Get())
+                {
+                    try
+                    {
+                        return conn.QuerySingle<WorkItem>($"SELECT * FROM WorkItems WHERE Id = @Id", new { Id = id });
+                    }
+                    catch (Exception e)
+                    {
+                        if (e is InvalidOperationException)
+                            return null;
+                        else
+                            throw;
+                    }
+                }
+            else
+                throw new Exception("The provided nullable GUID has no value");
         }
 
         public void Delete(string id)
@@ -63,6 +82,14 @@ namespace myCoreMvc.Persistence
             }
         }
 
-        public void Delete(Guid id) => Delete(id.ToString());
+        public void Delete(Guid? id) => Delete(id.ToString());
+
+        public void DeleteAll()
+        {
+            using (var conn = dbConFactory.Get())
+            {
+                conn.Execute("DELETE FROM WorkItems");
+            }
+        }
     }
 }
