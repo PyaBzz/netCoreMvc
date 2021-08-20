@@ -8,11 +8,11 @@ using Dapper;
 
 namespace myCoreMvc.Persistence
 {
-    public class UserRepo : IUserRepo
+    public class UserRepo : CrudRepo<User>, IUserRepo
     {
         private readonly IDbConFactory dbConFactory;
 
-        public UserRepo(IDbConFactory conFac)
+        public UserRepo(IDbConFactory conFac) : base(conFac)
         {
             dbConFactory = conFac;
         }
@@ -38,59 +38,9 @@ namespace myCoreMvc.Persistence
 
         /*==================================  Interface Methods =================================*/
 
-        public User Save(User x)
+        public override User Save(User x)
         {
             return x.Id.HasValue ? Update(x) : Add(x);
-        }
-
-        public List<User> GetAll()
-        {
-            using (var conn = dbConFactory.Get())
-            {
-                var reader = conn.QueryMultiple($"SELECT * FROM Users");
-                return reader.Read<User>().ToList();
-            }
-        }
-
-        public User Get(string id) => Get(new Guid(id));
-
-        public User Get(Guid? id)
-        {
-            if (id.HasValue)
-                using (var conn = dbConFactory.Get())
-                {
-                    try
-                    {
-                        return conn.QuerySingle<User>($"SELECT * FROM Users WHERE Id = @Id", new { Id = id });
-                    }
-                    catch (Exception e)
-                    {
-                        if (e is InvalidOperationException)
-                            return null;
-                        else
-                            throw;
-                    }
-                }
-            else
-                throw new Exception("The provided nullable GUID has no value");
-        }
-
-        public void Delete(string id)
-        {
-            using (var conn = dbConFactory.Get())
-            {
-                conn.Execute($"DELETE FROM Users WHERE Id = @Id", new { Id = id });
-            }
-        }
-
-        public void Delete(Guid? id) => Delete(id.ToString());
-
-        public void DeleteAll()
-        {
-            using (var conn = dbConFactory.Get())
-            {
-                conn.Execute("DELETE FROM Users");
-            }
         }
     }
 }
