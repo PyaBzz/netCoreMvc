@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using myCoreMvc.Domain;
-using myCoreMvc.App;
 using myCoreMvc.App.Interfaces;
 using Dapper;
 using myCoreMvc.Persistence.Services;
@@ -11,12 +10,7 @@ namespace myCoreMvc.Persistence
 {
     public abstract class CrudRepo<T> : ICrudRepo<T> where T : class, ISavable
     {
-        private readonly Dictionary<Type, string> tableNames = new Dictionary<Type, string> {
-            {typeof(User), "Users"},
-            {typeof(WorkPlan), "WorkPlans"},
-            {typeof(WorkItem), "WorkItems"}
-            };
-
+        private readonly DbMap<T> dbMap = new DbMap<T>();
         private readonly IDbConFactory dbConFactory;
 
         public CrudRepo(IDbConFactory conFac)
@@ -26,10 +20,9 @@ namespace myCoreMvc.Persistence
 
         private T Add(T x)
         {
-            var colMap = new ColumnMap<T>();
-            var cols = colMap.Get();
-            var placeHolders = colMap.GetPlaceholders();
-            var query = $"INSERT INTO {tableNames[typeof(T)]} ({cols}) OUTPUT INSERTED.Id VALUES ({placeHolders})";
+            var cols = dbMap.GetColumns();
+            var placeHolders = dbMap.GetPlaceholders();
+            var query = $"INSERT INTO {dbMap.Table} ({cols}) OUTPUT INSERTED.Id VALUES ({placeHolders})";
             using (var conn = dbConFactory.Get())
             {
                 var id = conn.ExecuteScalar<Guid>(query, x);
@@ -40,9 +33,8 @@ namespace myCoreMvc.Persistence
 
         private T Update(T x)
         {
-            var colMap = new ColumnMap<T>();
-            var assignments = colMap.GetAssignments();
-            var query = $"UPDATE {tableNames[typeof(T)]} SET {assignments} WHERE Id = @Id";
+            var assignments = dbMap.GetAssignments();
+            var query = $"UPDATE {dbMap.Table} SET {assignments} WHERE Id = @Id";
             using (var conn = dbConFactory.Get())
             {
                 conn.Execute(query, x);
@@ -61,7 +53,7 @@ namespace myCoreMvc.Persistence
         {
             using (var conn = dbConFactory.Get())
             {
-                var reader = conn.QueryMultiple($"SELECT * FROM {tableNames[typeof(T)]}");
+                var reader = conn.QueryMultiple($"SELECT * FROM {dbMap.Table}");
                 return reader.Read<T>().ToList();
             }
         }
@@ -75,7 +67,7 @@ namespace myCoreMvc.Persistence
                 {
                     try
                     {
-                        return conn.QuerySingle<T>($"SELECT * FROM {tableNames[typeof(T)]} WHERE Id = @Id", new { Id = id });
+                        return conn.QuerySingle<T>($"SELECT * FROM {dbMap.Table} WHERE Id = @Id", new { Id = id });
                     }
                     catch (Exception e)
                     {
@@ -93,7 +85,7 @@ namespace myCoreMvc.Persistence
         {
             using (var conn = dbConFactory.Get())
             {
-                conn.Execute($"DELETE FROM {tableNames[typeof(T)]} WHERE Id = @Id", new { Id = id });
+                conn.Execute($"DELETE FROM {dbMap.Table} WHERE Id = @Id", new { Id = id });
             }
         }
 
@@ -103,7 +95,7 @@ namespace myCoreMvc.Persistence
         {
             using (var conn = dbConFactory.Get())
             {
-                conn.Execute($"DELETE FROM {tableNames[typeof(T)]}");
+                conn.Execute($"DELETE FROM {dbMap.Table}");
             }
         }
     }

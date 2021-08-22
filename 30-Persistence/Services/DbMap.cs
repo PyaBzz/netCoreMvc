@@ -3,20 +3,29 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using Baz.Core;
+using myCoreMvc.Domain;
 using myCoreMvc.Domain.Attributes;
 
 namespace myCoreMvc.Persistence.Services
 {
     // Todo: Unit test with a dynamically created class at runtime
-    public class ColumnMap<T>
+    public class DbMap<T>
     {
-        private static Dictionary<Type, string[]> memo = new Dictionary<Type, string[]>();
+        private static readonly Dictionary<Type, string> tableNames = new Dictionary<Type, string>
+        {
+            {typeof(User), "Users"},
+            {typeof(WorkPlan), "WorkPlans"},
+            {typeof(WorkItem), "WorkItems"}
+        };
+
+        private static Dictionary<Type, string[]> propsMemo = new Dictionary<Type, string[]>();
+
+        public string Table => tableNames[typeof(T)];
 
         private string[] GetPropNames()
         {
             string[] res;
-            if (memo.TryGetValue(typeof(T), out res))
+            if (propsMemo.TryGetValue(typeof(T), out res))
             {
                 // Console.WriteLine("Found in cache!");
             }
@@ -28,11 +37,12 @@ namespace myCoreMvc.Persistence.Services
                 .Where(x => Attribute.IsDefined(x, typeof(Persist)))
                 .Select(x => x.Name)
                 .ToArray();
-                memo.Add(typeof(T), res);
+                propsMemo.Add(typeof(T), res);
             }
             return res;
         }
-        public string Get()
+
+        public string GetColumns()
         {
             var propNames = GetPropNames();
             return String.Join(", ", propNames);
