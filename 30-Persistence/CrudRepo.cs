@@ -5,6 +5,7 @@ using myCoreMvc.Domain;
 using myCoreMvc.App;
 using myCoreMvc.App.Interfaces;
 using Dapper;
+using myCoreMvc.Persistence.Services;
 
 namespace myCoreMvc.Persistence
 {
@@ -22,9 +23,38 @@ namespace myCoreMvc.Persistence
             dbConFactory = conFac;
         }
 
+        private T Add(T x)
+        {
+            var colMap = new ColumnMap<T>();
+            var cols = colMap.Get();
+            var placeHolders = colMap.GetPlaceholders();
+            var query = $"INSERT INTO {tableNames[typeof(T)]} ({cols}) OUTPUT INSERTED.Id VALUES ({placeHolders})";
+            using (var conn = dbConFactory.Get())
+            {
+                var id = conn.ExecuteScalar<Guid>(query, x);
+                x.Id = id;
+                return x;
+            }
+        }
+
+        private T Update(T x)
+        {
+            var colMap = new ColumnMap<T>();
+            var assignments = colMap.GetAssignments();
+            var query = $"UPDATE {tableNames[typeof(T)]} SET {assignments} WHERE Id = @Id";
+            using (var conn = dbConFactory.Get())
+            {
+                conn.Execute(query, x);
+            }
+            return x;
+        }
+
         /*==================================  Interface Methods =================================*/
 
-        public abstract T Save(T x);
+        public T Save(T x)
+        {
+            return x.Id.HasValue ? Update(x) : Add(x);
+        }
 
         public List<T> GetAll()
         {

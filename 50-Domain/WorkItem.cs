@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Baz.Core;
+using myCoreMvc.Domain.Attributes;
 
 namespace myCoreMvc.Domain
 {
@@ -11,13 +12,16 @@ namespace myCoreMvc.Domain
 
         /*================================  Properties ================================*/
 
+        [Persist]
         public string Reference { get; set; }
 
+        [Persist]
         public int Priority { get; set; }
 
-        [Display(Name = "Item name"), Required] //Todo: Not a concern of Domain
+        [Persist]
         public string Name { get; set; }
 
+        [Persist]
         public Guid WorkPlanId { get; set; }
 
         public WorkPlan WorkPlan { get; set; }
