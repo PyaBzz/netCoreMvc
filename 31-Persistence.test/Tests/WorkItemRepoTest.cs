@@ -12,8 +12,8 @@ namespace myCoreMvc.Persistence.Test
     [Trait("Group", "Repos")]
     public class WorkItemRepoTest : IDisposable
     {
-        private readonly WorkItem wi11, wi12, wi21, wi22;
         private readonly IWorkItemRepo repo;
+        private readonly WorkItem wi11, wi12, wi21, wi22;
 
         public WorkItemRepoTest(IWorkItemRepo rep)
         {

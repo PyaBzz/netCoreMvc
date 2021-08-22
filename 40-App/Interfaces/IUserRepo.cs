@@ -4,14 +4,7 @@ using System.Collections.Generic;
 
 namespace myCoreMvc.App.Interfaces
 {
-    public interface IUserRepo
+    public interface IUserRepo : ICrudRepo<User>
     {
-        User Save(User x);
-        List<User> GetAll();
-        User Get(Guid? id);
-        User Get(string id);
-        void Delete(Guid? id);
-        void Delete(string id);
-        void DeleteAll();
     }
 }

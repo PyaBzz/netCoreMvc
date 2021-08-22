@@ -12,52 +12,51 @@ using Baz.Core;
 
 namespace myCoreMvc.Persistence
 {
-    public class WorkplanRepoMock : IWorkplanRepo
-    {
-        private List<WorkPlan> Data;
+    // public class WorkplanRepoMock : IWorkplanRepo
+    // {
+    //     private List<WorkPlan> Data;
 
-        public WorkplanRepoMock()
-        {
-            var conf = ConfigFactory.Get();
-            var xmlReader = new XmlReader<WorkPlan>(conf);
-            Data = xmlReader.Read();
-        }
+    //     public WorkplanRepoMock()
+    //     {
+    //         var conf = ConfigFactory.Get();
+    //         var xmlReader = new XmlReader<WorkPlan>(conf);
+    //         Data = xmlReader.Read();
+    //     }
 
-        /*==================================  Interface Methods =================================*/
+    //     /*==================================  Interface Methods =================================*/
 
-        public WorkPlan Add(WorkPlan wp)
-        {
-            // wp.Id = Guid.NewGuid(); //Todo: Can we delegate Id generation to sql?
-            Data.Add(wp);
-            return wp;
-        }
-        public List<WorkPlan> GetAll() => Data;
-        public WorkPlan Get(Guid? id) => Data.SingleOrDefault(i => i.Id == id);
-        public WorkPlan Get(string id) => Get(new Guid(id));
+    //     public WorkPlan Add(WorkPlan wp)
+    //     {
+    //         Data.Add(wp);
+    //         return wp;
+    //     }
+    //     public List<WorkPlan> GetAll() => Data;
+    //     public WorkPlan Get(Guid? id) => Data.SingleOrDefault(i => i.Id == id);
+    //     public WorkPlan Get(string id) => Get(new Guid(id));
 
-        public WorkPlan Update(WorkPlan wp)
-        {
-            var target = Get(wp.Id);
-            if (target == null)
-                throw new Exception("Not found");
-            else
-            {
-                target.Name = wp.Name;
-                return wp;
-            }
-        }
+    //     public WorkPlan Update(WorkPlan wp)
+    //     {
+    //         var target = Get(wp.Id);
+    //         if (target == null)
+    //             throw new Exception("Not found");
+    //         else
+    //         {
+    //             target.Name = wp.Name;
+    //             return wp;
+    //         }
+    //     }
 
-        public void Delete(Guid id)
-        {
-            var target = Data.SingleOrDefault(e => e.Id == id);
-            if (target == null)
-                throw new Exception("Not found");
-            Data.Remove(target);
-        }
-        public void Delete(string id)
-        {
-            var guid = new Guid(id);
-            Delete(guid);
-        }
-    }
+    //     public void Delete(Guid id)
+    //     {
+    //         var target = Data.SingleOrDefault(e => e.Id == id);
+    //         if (target == null)
+    //             throw new Exception("Not found");
+    //         Data.Remove(target);
+    //     }
+    //     public void Delete(string id)
+    //     {
+    //         var guid = new Guid(id);
+    //         Delete(guid);
+    //     }
+    // }
 }

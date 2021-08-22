@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Baz.Core;
+using myCoreMvc.Domain.Attributes;
 
 namespace myCoreMvc.Domain
 {
@@ -8,7 +9,7 @@ namespace myCoreMvc.Domain
     {
         /*================================  Properties ================================*/
 
-        [Display(Name = "Plan name"), Required]
+        [Persist]
         public string Name { get; set; }
 
         //Todo: Make calculated

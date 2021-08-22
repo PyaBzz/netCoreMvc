@@ -9,10 +9,11 @@ using myCoreMvc.Persistence.Services;
 
 namespace myCoreMvc.Persistence
 {
-    public abstract class CrudRepo<T> where T : class, ISavable
+    public abstract class CrudRepo<T> : ICrudRepo<T> where T : class, ISavable
     {
         private readonly Dictionary<Type, string> tableNames = new Dictionary<Type, string> {
             {typeof(User), "Users"},
+            {typeof(WorkPlan), "WorkPlans"},
             {typeof(WorkItem), "WorkItems"}
             };
 
