@@ -6,11 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- <PackageReference Include="dapper" Version="2.0.78" /> -->
     <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="2.2.0" />
     <PackageReference Include="microsoft.extensions.configuration.binder" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
-    <!-- <PackageReference Include="System.Data.SqlClient" Version="4.8.2" /> -->
   </ItemGroup>
 
   <ItemGroup>
@@ -21,12 +19,10 @@
     <None Update="settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Sources\WorkItems.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Sources\WorkPlans.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove=".gitignore" />
   </ItemGroup>
 
 </Project>

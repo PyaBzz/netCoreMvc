@@ -1,8 +1,5 @@
-﻿using Baz.Core;
-using myCoreMvc.Domain.Attributes;
+﻿using myCoreMvc.Domain.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace myCoreMvc.Domain
 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using Baz.Core;
 using myCoreMvc.Domain.Attributes;
 

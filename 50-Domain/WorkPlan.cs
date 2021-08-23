@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Baz.Core;
+﻿using Baz.Core;
 using myCoreMvc.Domain.Attributes;
 
 namespace myCoreMvc.Domain

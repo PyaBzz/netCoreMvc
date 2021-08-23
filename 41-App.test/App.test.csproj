@@ -19,4 +19,8 @@
     <ProjectReference Include="..\40-App\App.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove=".gitignore" />
+  </ItemGroup>
+
 </Project>

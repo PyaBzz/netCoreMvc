@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>_02_Domain</RootNamespace>
+    <RootNamespace>myCoreMvc.Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove=".gitignore" />
+    <PackageReference Include="bazdasoo" Version="0.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="bazdasoo" Version="0.0.1" />
+    <None Remove=".gitignore" />
   </ItemGroup>
 
 </Project>

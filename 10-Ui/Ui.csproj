@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove=".gitignore" />
+    <ProjectReference Include="..\20-App\20-App.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\20-App\20-App.csproj" />
+    <None Remove=".gitignore" />
   </ItemGroup>
 
 </Project>

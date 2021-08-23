@@ -21,7 +21,7 @@ BEGIN
         Name VARCHAR(20),
         RefId UNIQUEIDENTIFIER NOT NULL,
         NullableRefId UNIQUEIDENTIFIER,
-        Qty INT,
+        Qty INT NOT NULL,
     )
 END
 ELSE
