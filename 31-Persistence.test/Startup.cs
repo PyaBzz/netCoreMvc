@@ -12,14 +12,14 @@ namespace myCoreMvc.Persistence.Test
             services.AddSingleton<Config>(ConfigFactory.Get());
             services.AddTransient<IDbConFactory, DbTestConFactory>();
             services.AddTransient<IHashFactory, HashFactory>();
+
+            services.AddTransient<CrudRepo<DummyA>, DummyARepo>();
             // services.AddTransient<IUserRepo, UserRepoMock>();
             services.AddTransient<IUserRepo, UserRepo>();
             // services.AddTransient<IWorkItemRepo, WorkItemRepoMock>();
             services.AddTransient<IWorkItemRepo, WorkItemRepo>();
             // services.AddTransient<IWorkplanRepo, WorkplanRepoMock>();
             services.AddTransient<IWorkplanRepo, WorkplanRepo>();
-
-            services.AddTransient<CrudRepo<DummyA>, DummyARepo>();
         }
     }
 }
