@@ -2,7 +2,6 @@ using Microsoft.Extensions.DependencyInjection;
 using myCoreMvc.App;
 using myCoreMvc.App.Interfaces;
 using myCoreMvc.App.Services;
-using myCoreMvc.Persistence;
 
 namespace myCoreMvc.Persistence.Test
 {
@@ -20,9 +19,7 @@ namespace myCoreMvc.Persistence.Test
             // services.AddTransient<IWorkplanRepo, WorkplanRepoMock>();
             services.AddTransient<IWorkplanRepo, WorkplanRepo>();
 
-            // services.AddTransient<IDataRepo, DataRepoMock>();
-            // services.AddTransient<IDataRepo, DataRepo>();
-
+            services.AddTransient<CrudRepo<DummyA>, DummyARepo>();
         }
     }
 }

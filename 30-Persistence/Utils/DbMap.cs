@@ -13,6 +13,7 @@ namespace myCoreMvc.Persistence.Services
     {
         private static readonly Dictionary<Type, string> tableNames = new Dictionary<Type, string>
         {
+            {typeof(DummyA), "DummiesA"},
             {typeof(User), "Users"},
             {typeof(WorkPlan), "WorkPlans"},
             {typeof(WorkItem), "WorkItems"}
