@@ -17,12 +17,7 @@ namespace myCoreMvc.Persistence
         [Persist]
         public Guid? NullableRefId { get; set; }
 
-        // [Persist]
-        // public string Reference { get; set; }
-
-        // [Persist]
-        // public int Priority { get; set; }
-
-        // public WorkPlan WorkPlan { get; set; }
+        [Persist]
+        public int Qty { get; set; }
     }
 }

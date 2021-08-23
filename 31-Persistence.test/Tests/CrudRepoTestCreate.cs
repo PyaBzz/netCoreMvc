@@ -5,10 +5,10 @@ namespace myCoreMvc.Persistence.Test
 {
     public partial class CrudRepoTest : IDisposable
     {
-        /*==================================  Create  =================================*/
+        /*==================================  Guid  =================================*/
 
         [Fact]
-        public void Save_Saves_Guid_Uninitialised_As_EmptyGuid()
+        public void Save_Saves_Guid_Default_As_EmptyGuid()
         {
             Assert.StrictEqual(Guid.Empty, A1.RefId);
             var retrieved = SaveAndRetrieve(A1);
@@ -16,7 +16,7 @@ namespace myCoreMvc.Persistence.Test
         }
 
         [Fact]
-        public void Save_Saves_NullableGuid_Uninitialised_As_Null()
+        public void Save_Saves_NullableGuid_Default_As_Null()
         {
             Assert.Null(A1.NullableRefId);
             var retrieved = SaveAndRetrieve(A1);
@@ -40,8 +40,10 @@ namespace myCoreMvc.Persistence.Test
             Assert.NotEqual(A1.Id.Value, A2.Id.Value);
         }
 
+        /*==================================  String  =================================*/
+
         [Fact]
-        public void Save_Saves_String_Uninitialised_As_Null()
+        public void Save_Saves_String_Default_As_Null()
         {
             var x = new DummyA();
             Assert.Null(x.Name);
@@ -64,6 +66,25 @@ namespace myCoreMvc.Persistence.Test
         {
             var retrieved = SaveAndRetrieve(A1);
             Assert.StrictEqual(A1.Name, retrieved.Name);
+        }
+
+        /*==================================  Int  =================================*/
+
+        [Fact]
+        public void Save_Saves_Int_Default_As_0()
+        {
+            Assert.StrictEqual(0, A1.Qty);
+            var retrieved = SaveAndRetrieve(A1);
+            Assert.StrictEqual(0, retrieved.Qty);
+        }
+
+        [Fact]
+        public void Save_Saves_Int_Correctly()
+        {
+            var qty = 7;
+            var x = new DummyA { Qty = qty };
+            var retrieved = SaveAndRetrieve(x);
+            Assert.StrictEqual(qty, retrieved.Qty);
         }
     }
 }
