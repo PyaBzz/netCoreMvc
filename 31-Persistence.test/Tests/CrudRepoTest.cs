@@ -36,6 +36,8 @@ namespace myCoreMvc.Persistence.Test
             return repo.Get(x.Id);
         }
 
+        /*==================================  Create  =================================*/
+
         [Fact]
         public void Save_AssignsIdToNewRecords()
         {
@@ -43,17 +45,6 @@ namespace myCoreMvc.Persistence.Test
             var retrieved = SaveAndRetrieve(A1);
             Assert.True(A1.Id.HasValue);
             Assert.StrictEqual(A1, repo.Get(A1.Id));
-        }
-
-        [Fact]
-        public void Save_PreservesIdOfExistingRecords()
-        {
-            Assert.False(A1.Id.HasValue);
-            repo.Save(A1);
-            var id1 = A1.Id.Value;
-            repo.Save(A1);
-            var id2 = A1.Id.Value;
-            Assert.StrictEqual(id1, id2);
         }
 
         [Fact]
@@ -90,6 +81,82 @@ namespace myCoreMvc.Persistence.Test
             Assert.StrictEqual(A1.Name, retrieved.Name);
         }
 
+        /*==================================  Read  =================================*/
+
+        [Fact]
+        public void GetAll_GetsTheRightType()
+        {
+            Assert.IsType<List<DummyA>>(repo.GetAll());
+        }
+
+        [Fact]
+        public void GetAll_GetsAllItems()
+        {
+            List<DummyA> all;
+            Assert.StrictEqual(0, repo.GetAll().Count());
+
+            repo.Save(A1);
+            all = repo.GetAll();
+            Assert.StrictEqual(1, all.Count());
+            Assert.Contains(A1, all);
+
+            repo.Save(A2);
+            all = repo.GetAll();
+            Assert.StrictEqual(2, all.Count());
+            Assert.Contains(A1, all);
+            Assert.Contains(A2, all);
+
+            repo.Save(A3);
+            all = repo.GetAll();
+            Assert.StrictEqual(3, all.Count());
+            Assert.Contains(A1, all);
+            Assert.Contains(A2, all);
+            Assert.Contains(A3, all);
+        }
+
+        [Fact]
+        public void Get_GetsByGuid()
+        {
+            repo.Save(A1);
+            Assert.StrictEqual(A1, repo.Get(A1.Id));
+        }
+
+        [Fact]
+        public void Get_GetsByStringId()
+        {
+            repo.Save(A1);
+            Assert.StrictEqual(A1, repo.Get(A1.Id.ToString()));
+        }
+
+        [Fact]
+        public void Get_IsCaseInsensitiveToId()
+        {
+            repo.Save(A1);
+            Assert.StrictEqual(repo.Get(A1.Id.ToString().ToLower()), repo.Get(A1.Id.ToString().ToUpper()));
+        }
+
+        [Fact]
+        public void Get_ReturnsNewObject()
+        {
+            repo.Save(A1);
+            var retrievedObject = repo.Get(A1.Id);
+            Assert.StrictEqual(A1, retrievedObject);
+            Assert.NotSame(A1, retrievedObject);
+        }
+
+        /*==================================  Update  =================================*/
+
+        [Fact]
+        public void Save_PreservesIdOfExistingRecords()
+        {
+            Assert.False(A1.Id.HasValue);
+            repo.Save(A1);
+            var id1 = A1.Id.Value;
+            repo.Save(A1);
+            var id2 = A1.Id.Value;
+            Assert.StrictEqual(id1, id2);
+        }
+
         [Fact]
         public void Save_Updates_String()
         {
@@ -101,68 +168,22 @@ namespace myCoreMvc.Persistence.Test
             Assert.StrictEqual(newName, repo.Get(A1.Id).Name);
         }
 
-        // [Fact]
-        // public void GetAll_GetsTheRightType()
-        // {
-        //     Assert.IsType<List<A>>(repo.GetAll());
-        // }
+        /*==================================  Delete  =================================*/
 
-        // [Fact]
-        // public void GetAll_GetsAllItems()
-        // {
-        //     Assert.StrictEqual(0, repo.GetAll().Count());
-        //     repo.Save(A1);
-        //     Assert.StrictEqual(1, repo.GetAll().Count());
-        //     repo.Save(A2);
-        //     Assert.StrictEqual(2, repo.GetAll().Count());
-        //     repo.Save(A3);
-        //     Assert.StrictEqual(3, repo.GetAll().Count());
-        // }
+        [Fact]
+        public void Delete_DeletesByGuid()
+        {
+            repo.Save(A1);
+            repo.Delete(A1.Id);
+            Assert.Null(repo.Get(A1.Id));
+        }
 
-        // [Fact]
-        // public void Get_GetsByGuid()
-        // {
-        //     repo.Save(A1);
-        //     Assert.StrictEqual(A1, repo.Get(A1.Id));
-        // }
-
-        // [Fact]
-        // public void Get_GetsByStringId()
-        // {
-        //     repo.Save(A1);
-        //     Assert.StrictEqual(A1, repo.Get(A1.Id.ToString()));
-        // }
-
-        // [Fact]
-        // public void Get_IsCaseInsensitiveToId()
-        // {
-        //     repo.Save(A1);
-        //     Assert.StrictEqual(repo.Get(A1.Id.ToString().ToLower()), repo.Get(A1.Id.ToString().ToUpper()));
-        // }
-
-        // [Fact]
-        // public void Get_ReturnsNewObject()
-        // {
-        //     repo.Save(A1);
-        //     var retrievedObject = repo.Get(A1.Id);
-        //     Assert.StrictEqual(A1, retrievedObject);
-        //     Assert.NotSame(A1, retrievedObject);
-        // }
-
-        // [Fact]
-        // public void Delete_DeletesByGuid()
-        // {
-        //     repo.Save(A1);
-        //     repo.Delete(A1.Id);
-        //     Assert.Null(repo.Get(A1.Id));
-        // }
-
-        // [Fact]
-        // public void Delete_DeletesByStringId()
-        // {
-        //     repo.Save(A1);
-        //     repo.Delete(A1.Id.ToString());
-        //     Assert.Null(repo.Get(A1.Id));
-        // }
+        [Fact]
+        public void Delete_DeletesByStringId()
+        {
+            repo.Save(A1);
+            repo.Delete(A1.Id.ToString());
+            Assert.Null(repo.Get(A1.Id));
+        }
     }
 }
