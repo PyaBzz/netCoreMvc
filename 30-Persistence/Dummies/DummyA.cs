@@ -11,14 +11,17 @@ namespace myCoreMvc.Persistence
         [Persist]
         public string Name { get; set; }
 
+        [Persist]
+        public Guid RefId { get; set; }
+
+        [Persist]
+        public Guid? NullableRefId { get; set; }
+
         // [Persist]
         // public string Reference { get; set; }
 
         // [Persist]
         // public int Priority { get; set; }
-
-        // [Persist]
-        // public Guid WorkPlanId { get; set; }
 
         // public WorkPlan WorkPlan { get; set; }
     }

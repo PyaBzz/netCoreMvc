@@ -12,6 +12,23 @@ END
 GO
 
 USE ##dbname##
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'DummiesA')
+BEGIN
+    print 'Creating DummiesA'
+    CREATE TABLE DummiesA
+    (
+        Id UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID() PRIMARY KEY,
+        Name VARCHAR(20),
+        RefId UNIQUEIDENTIFIER NOT NULL,
+        NullableRefId UNIQUEIDENTIFIER
+    )
+END
+ELSE
+BEGIN
+    PRINT 'DummiesA already exists'
+END
+
+USE ##dbname##
 IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'WorkPlans')
 BEGIN
     print 'Creating WorkPlans'
@@ -24,21 +41,6 @@ END
 ELSE
 BEGIN
     PRINT 'WorkPlans already exists'
-END
-
-USE ##dbname##
-IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'DummiesA')
-BEGIN
-    print 'Creating DummiesA'
-    CREATE TABLE DummiesA
-    (
-        Id UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
-        Name VARCHAR(20)
-    )
-END
-ELSE
-BEGIN
-    PRINT 'DummiesA already exists'
 END
 
 GO

@@ -8,12 +8,28 @@ namespace myCoreMvc.Persistence.Test
         /*==================================  Create  =================================*/
 
         [Fact]
+        public void Save_Saves_Guid_Uninitialised_As_EmptyGuid()
+        {
+            Assert.StrictEqual(Guid.Empty, A1.RefId);
+            var retrieved = SaveAndRetrieve(A1);
+            Assert.StrictEqual(Guid.Empty, retrieved.RefId);
+        }
+
+        [Fact]
+        public void Save_Saves_NullableGuid_Uninitialised_As_Null()
+        {
+            Assert.Null(A1.NullableRefId);
+            var retrieved = SaveAndRetrieve(A1);
+            Assert.Null(retrieved.NullableRefId);
+        }
+
+        [Fact]
         public void Save_AssignsIdToNewRecords()
         {
-            Assert.False(A1.Id.HasValue);
+            Assert.Null(A1.Id);
             var retrieved = SaveAndRetrieve(A1);
-            Assert.True(A1.Id.HasValue);
-            Assert.StrictEqual(A1, repo.Get(A1.Id));
+            Assert.NotNull(A1.Id);
+            Assert.StrictEqual(A1, retrieved);
         }
 
         [Fact]

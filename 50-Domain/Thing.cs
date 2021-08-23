@@ -11,7 +11,7 @@ namespace myCoreMvc.Domain
 
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
+            if (Id.HasValue == false || obj == null || GetType() != obj.GetType())
                 return false;
 
             return Id == ((Thing)obj).Id;
