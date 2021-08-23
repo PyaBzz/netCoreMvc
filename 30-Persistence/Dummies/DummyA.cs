@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using Baz.Core;
 using myCoreMvc.Domain;
 using myCoreMvc.Domain.Attributes;
@@ -16,6 +15,9 @@ namespace myCoreMvc.Persistence
 
         [Persist]
         public Guid? NullableRefId { get; set; }
+
+        [Persist, Mandatory]
+        public Guid? MandatoryRefId { get; set; }
 
         [Persist]
         public int Qty { get; set; }

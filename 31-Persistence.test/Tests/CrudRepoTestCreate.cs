@@ -40,12 +40,19 @@ namespace myCoreMvc.Persistence.Test
             Assert.NotEqual(A1.Id.Value, A2.Id.Value);
         }
 
+        [Fact]
+        public void Save_ThrowsErrorIfMandatoryPropMissing()
+        {
+            var x = new DummyA();
+            Assert.Throws<NullReferenceException>(() => repo.Save(x));
+        }
+
         /*==================================  String  =================================*/
 
         [Fact]
         public void Save_Saves_String_Default_As_Null()
         {
-            var x = new DummyA();
+            var x = new DummyA { MandatoryRefId = Guid.Empty };
             Assert.Null(x.Name);
             var retrieved = SaveAndRetrieve(x);
             Assert.Null(retrieved.Name);
@@ -54,7 +61,7 @@ namespace myCoreMvc.Persistence.Test
         [Fact]
         public void Save_Saves_String_Empty_As_Empty()
         {
-            var x = new DummyA { Name = string.Empty };
+            var x = new DummyA { Name = string.Empty, MandatoryRefId = Guid.Empty };
             Assert.Empty(x.Name);
             Assert.StrictEqual(string.Empty, x.Name);
             var retrieved = SaveAndRetrieve(x);
@@ -82,7 +89,7 @@ namespace myCoreMvc.Persistence.Test
         public void Save_Saves_Int_Correctly()
         {
             var qty = 7;
-            var x = new DummyA { Qty = qty };
+            var x = new DummyA { Qty = qty, MandatoryRefId = Guid.Empty };
             var retrieved = SaveAndRetrieve(x);
             Assert.StrictEqual(qty, retrieved.Qty);
         }

@@ -21,6 +21,7 @@ BEGIN
         Name VARCHAR(20),
         RefId UNIQUEIDENTIFIER NOT NULL,
         NullableRefId UNIQUEIDENTIFIER,
+        MandatoryRefId UNIQUEIDENTIFIER NOT NULL,
         Qty INT NOT NULL,
     )
 END
@@ -55,7 +56,7 @@ BEGIN
         Reference VARCHAR(20),
         Priority INT,
         Name VARCHAR(20),
-        WorkPlanId  UNIQUEIDENTIFIER
+        WorkPlanId  UNIQUEIDENTIFIER NOT NULL
     )
 END
 ELSE

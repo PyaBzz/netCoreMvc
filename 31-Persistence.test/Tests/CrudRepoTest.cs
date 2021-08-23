@@ -8,10 +8,10 @@ namespace myCoreMvc.Persistence.Test
     { //Todo: Cover all CRUD related operations
         private readonly CrudRepo<DummyA> repo;
         private readonly DummyA
-            A1 = new DummyA { Name = "A1" },
-            A2 = new DummyA { Name = "A2" },
-            A3 = new DummyA { Name = "A3" },
-            A4 = new DummyA { Name = "A4" };
+            A1 = new DummyA { Name = "A1", MandatoryRefId = Guid.Empty },
+            A2 = new DummyA { Name = "A2", MandatoryRefId = Guid.Empty },
+            A3 = new DummyA { Name = "A3", MandatoryRefId = Guid.Empty },
+            A4 = new DummyA { Name = "A4", MandatoryRefId = Guid.Empty };
 
         public CrudRepoTest(CrudRepo<DummyA> rep)
         {

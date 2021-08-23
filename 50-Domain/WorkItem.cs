@@ -21,7 +21,7 @@ namespace myCoreMvc.Domain
         public string Name { get; set; }
 
         [Persist]
-        public Guid WorkPlanId { get; set; }
+        public Guid? WorkPlanId { get; set; }
 
         public WorkPlan WorkPlan { get; set; }
 

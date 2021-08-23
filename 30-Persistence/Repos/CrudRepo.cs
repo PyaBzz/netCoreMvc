@@ -46,6 +46,7 @@ namespace myCoreMvc.Persistence
 
         public T Save(T x)
         {
+            x.Validate();
             return x.Id.HasValue ? Update(x) : Add(x);
         }
 
