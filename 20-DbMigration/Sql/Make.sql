@@ -56,7 +56,8 @@ BEGIN
         Reference VARCHAR(20),
         Priority INT,
         Name VARCHAR(20),
-        WorkPlanId  UNIQUEIDENTIFIER NOT NULL
+        WorkPlanId  UNIQUEIDENTIFIER NOT NULL,
+        FOREIGN KEY (WorkPlanId) REFERENCES WorkPlans(Id)
     )
 END
 ELSE
