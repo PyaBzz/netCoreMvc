@@ -1,30 +1,28 @@
-﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using myCoreMvc.Domain;
+﻿using myCoreMvc.Domain;
 using Baz.Core;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace myCoreMvc.App.Services
 {
-    public class UserBiz : IUserBiz
+    public class UserSrv : IUserSrv
     {
         // private IDataRepo DataRepo;
 
         // public UserBiz(IDataRepo dataRepo)
         //     => DataRepo = dataRepo;
 
-        User IUserBiz.Get(Guid id) => throw new NotImplementedException();
+        User IUserSrv.Get(Guid id) => throw new NotImplementedException();
 
-        List<User> IUserBiz.GetList() => throw new NotImplementedException();
+        List<User> IUserSrv.GetList() => throw new NotImplementedException();
 
-        Task<bool> IUserBiz.GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
+        Task<bool> IUserSrv.GetPrincipal(string userName, string passWord, out ClaimsPrincipal claimsPrincipal)
         {
             claimsPrincipal = null;
 
-            if ((this as IUserBiz).ValidateCredentials(userName, passWord, out var user).Result == false)
+            if ((this as IUserSrv).ValidateCredentials(userName, passWord, out var user).Result == false)
                 return Task.FromResult(false);
 
             var claims = new List<Claim>
@@ -45,7 +43,7 @@ namespace myCoreMvc.App.Services
             return Task.FromResult(true);
         }
 
-        Task<bool> IUserBiz.ValidateCredentials(string userName, string passWord, out User user)
+        Task<bool> IUserSrv.ValidateCredentials(string userName, string passWord, out User user)
         {
             throw new NotImplementedException();
             // user = DataRepo.Get<User>(u => u.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
@@ -60,7 +58,7 @@ namespace myCoreMvc.App.Services
             // return Task.FromResult(false);
         }
 
-        IUserBizOf IUserBiz.Of(User user)
+        IUserSrvOf IUserSrv.Of(User user)
             => throw new NotImplementedException();
     }
 }

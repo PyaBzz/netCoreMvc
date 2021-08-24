@@ -1,11 +1,9 @@
-﻿using myCoreMvc.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System;
+using myCoreMvc.Domain;
 
 namespace myCoreMvc.App.Services
 {
-    public class WorkItemBizOf : IWorkItemBizOf
+    public class WorkItemSrvOf : IWorkItemSrvOf
     {
         // private readonly IDataRepo DataRepo;
         public WorkItem WorkItem { get; }
@@ -16,8 +14,8 @@ namespace myCoreMvc.App.Services
         //     WorkItem = workItem;
         // }
 
-        WorkItem IWorkItemBizOf.Save() => throw new NotImplementedException();
-        void IWorkItemBizOf.Delete()
+        WorkItem IWorkItemSrvOf.Save() => throw new NotImplementedException();
+        void IWorkItemSrvOf.Delete()
         {
             throw new NotImplementedException();
             // DataRepo.Delete<WorkItem>(WorkItem.Id);

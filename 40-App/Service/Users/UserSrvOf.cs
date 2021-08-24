@@ -1,15 +1,10 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using myCoreMvc.Domain;
-using Baz.Core;
 using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
 
 namespace myCoreMvc.App.Services
 {
-    public class UserBizOf : IUserBizOf
+    public class UserSrvOf : IUserSrvOf
     {
         // private IDataRepo DataRepo;
         public User User { get; }
@@ -20,7 +15,7 @@ namespace myCoreMvc.App.Services
         //     User = user;
         // }
 
-        User IUserBizOf.Save()
+        User IUserSrvOf.Save()
         {
             throw new NotImplementedException();
             //Task: Is this the best way to determine if the object is new?
@@ -35,14 +30,14 @@ namespace myCoreMvc.App.Services
             // return DataRepo.Save(User);
         }
 
-        User IUserBizOf.SetPassword(string password)
+        User IUserSrvOf.SetPassword(string password)
         {
             var hashBytes = KeyDerivation.Pbkdf2(password, User.Salt, KeyDerivationPrf.HMACSHA512, 100, 256 / 8);
             User.Hash = Convert.ToBase64String(hashBytes);
             return User;
         }
 
-        void IUserBizOf.Delete()
+        void IUserSrvOf.Delete()
         {
             throw new NotImplementedException();
             // DataRepo.Delete<User>(User.Id);

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace myCoreMvc.App.Services
 {
-    public interface IWorkItemBiz
+    public interface IWorkItemSrv
     {
         WorkItem Get(Guid id);
         WorkItem Get(Predicate<WorkItem> func);
@@ -15,6 +15,6 @@ namespace myCoreMvc.App.Services
         List<WorkItem> GetListIncluding(params Expression<Func<WorkItem, object>>[] includeProperties);
         List<WorkItem> GetListIncluding(Predicate<WorkItem> predicate, params Expression<Func<WorkItem, object>>[] includeProperties);
 
-        IWorkItemBizOf Of(WorkItem workItem);
+        IWorkItemSrvOf Of(WorkItem workItem);
     }
 }

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace myCoreMvc.App.Services
 {
-    public class WorkItemBiz : IWorkItemBiz
+    public class WorkItemSrv : IWorkItemSrv
     {
         // private readonly IDataRepo DataRepo;
 
@@ -22,7 +22,7 @@ namespace myCoreMvc.App.Services
         public List<WorkItem> GetListIncluding(Predicate<WorkItem> predicate, params Expression<Func<WorkItem, object>>[] includeProperties)
             => throw new NotImplementedException();
 
-        public IWorkItemBizOf Of(WorkItem workItem)
+        public IWorkItemSrvOf Of(WorkItem workItem)
             => throw new NotImplementedException();
     }
 }
