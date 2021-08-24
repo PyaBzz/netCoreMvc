@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace myCoreMvc.App.Services
 {
-    public interface IWorkPlanSrv
+    public interface IProductSrv
     {
-        List<WorkPlan> GetAll();
+        List<Product> GetAll();
     }
 }

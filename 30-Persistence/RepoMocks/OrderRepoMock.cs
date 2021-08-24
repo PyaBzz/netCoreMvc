@@ -12,37 +12,37 @@
 
 // namespace myCoreMvc.Persistence
 // {
-//     public class WorkItemRepoMock : IWorkItemRepo
+//     public class OrderRepoMock : IOrderRepo
 //     {
 //         private Config config;
-//         private List<WorkItem> Data;
+//         private List<Order> Data;
 
-//         public WorkItemRepoMock(Config conf)
+//         public OrderRepoMock(Config conf)
 //         {
 //             this.config = conf;
-//             var xmlReader = new XmlReader<WorkItem>(conf);
+//             var xmlReader = new XmlReader<Order>(conf);
 //             Data = xmlReader.Read();
 //         }
 
 //         /*==================================  Interface Methods =================================*/
 
-//         public WorkItem Add(WorkItem x)
+//         public Order Add(Order x)
 //         {
 //             Data.Add(x);
 //             return x;
 //         }
 
-//         public List<WorkItem> GetAll() => Data;
+//         public List<Order> GetAll() => Data;
 
-//         public WorkItem Get(Guid id)
+//         public Order Get(Guid id)
 //         {
 //             throw new NotImplementedException();
 //             // Data.SingleOrDefault(i => i.Id == id);
 //         }
 
-//         public WorkItem Get(string id) => Get(new Guid(id));
+//         public Order Get(string id) => Get(new Guid(id));
 
-//         public WorkItem Update(WorkItem x)
+//         public Order Update(Order x)
 //         {
 //             throw new NotImplementedException();
 

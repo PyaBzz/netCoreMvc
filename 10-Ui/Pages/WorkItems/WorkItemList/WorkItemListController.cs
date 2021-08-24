@@ -8,22 +8,22 @@ using myCoreMvc.App.Services;
 
 namespace myCoreMvc.UI.Controllers
 {
-    [Area("WorkItems")]
-    public class WorkItemListController : BaseController
+    [Area("Orders")]
+    public class OrderListController : BaseController
     {
-        private readonly IWorkItemBiz WorkItemBiz;
+        private readonly IOrderBiz OrderBiz;
 
-        public WorkItemListController(IWorkItemBiz workItemBiz)
-            => WorkItemBiz = workItemBiz;
+        public OrderListController(IOrderBiz orderBiz)
+            => OrderBiz = orderBiz;
 
         public IActionResult Index(string message)
         {
             var listModel = new ListModel
             {
-                Items = WorkItemBiz.GetListIncluding(wi => wi.WorkPlan),
+                Items = OrderBiz.GetListIncluding(wi => wProductan),
                 Message = message
             };
-            return View("WorkItemList", listModel);
+            return View("OrderList", listModel);
         }
 
         [HttpPost]
@@ -31,8 +31,8 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                listModel.Items = WorkItemBiz.GetList();
-                var searchFilters = new List<Predicate<WorkItem>>();
+                listModel.Items = OrderBiz.GetList();
+                var searchFilters = new List<Predicate<Order>>();
                 if (listModel.Search_All != null) searchFilters.Add(wi => Regex.IsMatch(wi.GetStringOfProperties(), listModel.Search_All));
                 if (listModel.Search_Reference != null) searchFilters.Add(wi => Regex.IsMatch(wi.Reference, listModel.Search_Reference));
                 if (listModel.Search_Name != null) searchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
@@ -42,14 +42,14 @@ namespace myCoreMvc.UI.Controllers
             }
             else
             {
-                listModel.Items = WorkItemBiz.GetList();
+                listModel.Items = OrderBiz.GetList();
             }
-            return View("WorkItemList", listModel);
+            return View("OrderList", listModel);
         }
 
         public class ListModel
         {
-            public IEnumerable<WorkItem> Items;
+            public IEnumerable<Order> Items;
 
             public string Search_All { get; set; }
             public string Search_Reference { get; set; }

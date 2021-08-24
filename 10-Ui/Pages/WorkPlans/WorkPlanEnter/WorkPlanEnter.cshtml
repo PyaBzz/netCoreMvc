@@ -2,17 +2,17 @@
 @using myCoreMvc.UI.Controllers;
 @using Baz.CoreMvc
 
-@model WorkPlanEnterController.EnterModel
-@{ ViewBag.Title = "WorkPlan Details"; }
+@model ProductEnterController.EnterModel
+@{ ViewBag.Title = "Product Details"; }
 
 <h2 id="message">@Model.Message</h2>
 
-<a asp-controller="@(Short<WorkPlanListController>.Name)" asp-action="@nameof(WorkPlanListController.Index)">Back</a>
+<a asp-controller="@(Short<ProductListController>.Name)" asp-action="@nameof(ProductListController.Index)">Back</a>
 
 @if (Model.Id == Guid.Empty)
-{<h3>Add WorkPlan</h3>}
+{<h3>Add Product</h3>}
 else
-{<h3>Edit WorkPlan</h3>}
+{<h3>Edit Product</h3>}
 
 <form method="post">
     <input type="hidden" name="Id" value="@Model.Id" />

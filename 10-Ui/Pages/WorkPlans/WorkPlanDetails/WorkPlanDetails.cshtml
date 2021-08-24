@@ -2,21 +2,21 @@
 @using myCoreMvc.Domain;
 @using Baz.CoreMvc
 
-@model WorkPlan
-@{ ViewBag.Title = "WorkPlan Details"; }
+@model Product
+@{ ViewBag.Title = "Product Details"; }
 
-<a asp-controller="@(Short<WorkPlanListController>.Name)" asp-action="@nameof(WorkPlanListController.Index)">Back</a>
+<a asp-controller="@(Short<ProductListController>.Name)" asp-action="@nameof(ProductListController.Index)">Back</a>
 
 @if (@Model != null)
 {
-    <h3>WorkPlan details</h3>
+    <h3>Product details</h3>
     <br />
     <ObjectDetails Object=@Model>
-        <a asp-controller="@(Short<WorkPlanEnterController>.Name)" asp-action="@nameof(WorkPlanEnterController.Index)" asp-route-id="@Model.Id">Edit</a>
-        <ActionWithConfirm controller-type="@typeof(WorkPlanDetailsController)" method-name="@nameof(WorkPlanDetailsController.Delete)" message="Delete this" route-parameter="@Model.Id" />
+        <a asp-controller="@(Short<ProductEnterController>.Name)" asp-action="@nameof(ProductEnterController.Index)" asp-route-id="@Model.Id">Edit</a>
+        <ActionWithConfirm controller-type="@typeof(ProductDetailsController)" method-name="@nameof(ProductDetailsController.Delete)" message="Delete this" route-parameter="@Model.Id" />
     </ObjectDetails>
 }
 else
 {
-    <h5>WorkPlan not found!</h5>
+    <h5>Product not found!</h5>
 }

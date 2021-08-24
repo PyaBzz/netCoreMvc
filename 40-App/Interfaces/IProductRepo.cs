@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace myCoreMvc.App.Interfaces
 {
-    public interface IWorkplanRepo : ICrudRepo<WorkPlan>
+    public interface IProductRepo : ICrudRepo<Product>
     {
     }
 }

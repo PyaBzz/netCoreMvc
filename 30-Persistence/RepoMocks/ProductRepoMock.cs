@@ -12,29 +12,29 @@ using Baz.Core;
 
 namespace myCoreMvc.Persistence
 {
-    // public class WorkplanRepoMock : IWorkplanRepo
+    // public class ProductRepoMock : IProductRepo
     // {
-    //     private List<WorkPlan> Data;
+    //     private List<Product> Data;
 
-    //     public WorkplanRepoMock()
+    //     public ProductRepoMock()
     //     {
     //         var conf = ConfigFactory.Get();
-    //         var xmlReader = new XmlReader<WorkPlan>(conf);
+    //         var xmlReader = new XmlReader<Product>(conf);
     //         Data = xmlReader.Read();
     //     }
 
     //     /*==================================  Interface Methods =================================*/
 
-    //     public WorkPlan Add(WorkPlan wp)
+    //     public Product Add(Product wp)
     //     {
     //         Data.Add(wp);
     //         return wp;
     //     }
-    //     public List<WorkPlan> GetAll() => Data;
-    //     public WorkPlan Get(Guid? id) => Data.SingleOrDefault(i => i.Id == id);
-    //     public WorkPlan Get(string id) => Get(new Guid(id));
+    //     public List<Product> GetAll() => Data;
+    //     public Product Get(Guid? id) => Data.SingleOrDefault(i => i.Id == id);
+    //     public Product Get(string id) => Get(new Guid(id));
 
-    //     public WorkPlan Update(WorkPlan wp)
+    //     public Product Update(Product wp)
     //     {
     //         var target = Get(wp.Id);
     //         if (target == null)

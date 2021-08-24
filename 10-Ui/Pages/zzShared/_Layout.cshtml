@@ -16,9 +16,9 @@
         <img src="~/StaticContent/Mushroom-Red-2.png" />
         @if (config.Authentication.ShowNavToUnknownUsers || User.Identity.IsAuthenticated)
         {
-            <a asp-area="WorkPlans" asp-controller="@(Short<WorkPlanListController>.Name)" asp-action="Index">WorkPlans</a>
+            <a asp-area="Products" asp-controller="@(Short<ProductListController>.Name)" asp-action="Index">Products</a>
             <span class="separator"></span>
-            <a asp-area="WorkItems" asp-controller="@(Short<WorkItemListController>.Name)" asp-action="Index">WorkItems</a>
+            <a asp-area="Orders" asp-controller="@(Short<OrderListController>.Name)" asp-action="Index">Orders</a>
             <span class="separator"></span>
             <a asp-area="Level1Only" asp-controller="@(Short<Level1AtLeastController>.Name)" asp-action="Index">@(Short<Level1AtLeastController>.Name)</a>
             <span class="separator"></span>

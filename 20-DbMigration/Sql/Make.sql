@@ -31,10 +31,10 @@ BEGIN
 END
 
 USE ##dbname##
-IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'WorkPlans')
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'Products')
 BEGIN
-    print 'Creating WorkPlans'
-    CREATE TABLE WorkPlans
+    print 'Creating Products'
+    CREATE TABLE Products
     (
         Id UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
         Name VARCHAR(20)
@@ -42,27 +42,27 @@ BEGIN
 END
 ELSE
 BEGIN
-    PRINT 'WorkPlans already exists'
+    PRINT 'Products already exists'
 END
 
 GO
 
-IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'WorkItems')
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.tables t WHERE t.TABLE_NAME = 'Orders')
 BEGIN
-    print 'Creating WorkItems'
-    CREATE TABLE WorkItems
+    print 'Creating Orders'
+    CREATE TABLE Orders
     (
         Id UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
         Reference VARCHAR(20),
         Priority INT,
         Name VARCHAR(20),
-        WorkPlanId  UNIQUEIDENTIFIER NOT NULL,
-        FOREIGN KEY (WorkPlanId) REFERENCES WorkPlans(Id)
+        ProductId  UNIQUEIDENTIFIER NOT NULL,
+        FOREIGN KEY (ProductId) REFERENCES Products(Id)
     )
 END
 ELSE
 BEGIN
-    PRINT 'WorkItems already exists'
+    PRINT 'Orders already exists'
 END
 
 GO

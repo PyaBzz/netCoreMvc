@@ -14,33 +14,33 @@ using Baz.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
 {
-    [Area("WorkItems")]
-    public class WorkItemEnterController : BaseController
+    [Area("Orders")]
+    public class OrderEnterController : BaseController
     {
-        private readonly IWorkItemBiz WorkItemBiz;
-        private readonly IWorkplanRepo WorkPlanRepo;
+        private readonly IOrderBiz OrderBiz;
+        private readonly IProductRepo ProductRepo;
 
-        public WorkItemEnterController(IWorkItemBiz workItemBiz, IWorkplanRepo workPlanBiz)
+        public OrderEnterController(IOrderBiz orderBiz, IProductRepo productBiz)
         {
-            WorkItemBiz = workItemBiz;
-            WorkPlanRepo = workPlanBiz;
+            OrderBiz = orderBiz;
+            ProductRepo = productBiz;
         }
 
         public IActionResult Index(Guid id)
         {
             var inputModel = new EnterModel();
-            inputModel.PriorityChoices = WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
-            inputModel.WorkPlanChoices = WorkPlanRepo.GetAll().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.WorkPlan });
+            inputModel.PriorityChoices = Order.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
+            inputModel.ProductChoices = ProductRepo.GetAll().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.Product });
             if (id != Guid.Empty)
             {
-                var item = WorkItemBiz.Get(id);
+                var item = OrderBiz.Get(id);
                 if (item != null)
                 {
                     inputModel.CopySimilarPropertiesFrom(item);
-                    inputModel.WorkPlan = item.WorkPlan.Id; //Task: WorkPlan itself works in Get but its Guid works for POST. Find a way to cover both.
+                    inputModel.Product = item.Product.Id; //Task: Product itself works in Get but its Guid works for POST. Find a way to cover both.
                 }
             }
-            return View("WorkItemEnter", inputModel);
+            return View("OrderEnter", inputModel);
         }
 
         [HttpPost]
@@ -58,16 +58,16 @@ namespace myCoreMvc.UI.Controllers
                 // @Html.ValidationMessageFor(p => p.Reference)
                 #endregion
 
-                // inputModel.PriorityChoices = WorkItem.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
-                // inputModel.WorkPlanChoices = WorkPlanRepo.GetAll().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.WorkPlan });
+                // inputModel.PriorityChoices = Order.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
+                // inputModel.ProductChoices = ProductRepo.GetAll().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.Product });
 
-                // var workItem = inputModel.Id == Guid.Empty
-                //     ? new WorkItem()
-                //     : WorkItemBiz.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
+                // var order = inputModel.Id == Guid.Empty
+                //     ? new Order()
+                //     : OrderBiz.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
 
-                // workItem.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                // workItem.WorkPlan = WorkPlanRepo.Get(inputModel.WorkPlan); //Task: This is because the getter method from DataRepo is shallow. Could we make it deep to return WorkPlan as well?
-                // var transactionResult = WorkItemBiz.Of(workItem).Save();
+                // order.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
+                // workIteProductan ProductanRepo.Get(inputModeProductan); //Task: This is because the getter method from DataRepo is shallow. Could we make it deep to returProductan as well?
+                // var transactionResult = OrderBiz.Of(order).Save();
 
                 // string resultMessage;
                 // switch (transactionResult)
@@ -77,13 +77,13 @@ namespace myCoreMvc.UI.Controllers
                 //     default: resultMessage = transactionResult.ToString(); break;
                 // }
 
-                // return RedirectToAction(nameof(WorkItemListController.Index), Short<WorkItemListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
+                // return RedirectToAction(nameof(OrderListController.Index), Short<OrderListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
             }
             else
             {
                 inputModel.Message = "Invalid values for: "
                     + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
-                return View("WorkItemEnter", inputModel);
+                return View("OrderEnter", inputModel);
             }
         }
 
@@ -102,11 +102,11 @@ namespace myCoreMvc.UI.Controllers
             [Display(Name = "Item name")]
             [ValidateAlphanumeric(3, 16)]
             public string Name { get; set; }
-            public Guid WorkPlan { get; set; }
+            public Guid Product { get; set; }
             public string Reference { get; set; }
             public int Priority { get; set; }
             public IEnumerable<SelectListItem> PriorityChoices { get; set; }
-            public IEnumerable<SelectListItem> WorkPlanChoices { get; set; }
+            public IEnumerable<SelectListItem> ProductChoices { get; set; }
             public string Message = "";
         }
     }

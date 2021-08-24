@@ -16,10 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="RepoMocks\Sources\WorkItems.xml">
+    <None Update="RepoMocks\Sources\Orders.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="RepoMocks\Sources\WorkPlans.xml">
+    <None Update="RepoMocks\Sources\Products.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

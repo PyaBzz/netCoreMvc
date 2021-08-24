@@ -10,18 +10,18 @@ using myCoreMvc.App.Interfaces;
 namespace myCoreMvc.Persistence.Test
 {
     [Trait("Group", "Repos")]
-    public class WorkItemRepoTest : IDisposable
+    public class OrderRepoTest : IDisposable
     {
-        private readonly IWorkItemRepo repo;
-        private readonly WorkItem wi11, wi12, wi21, wi22;
+        private readonly IOrderRepo repo;
+        private readonly Order wi11, wi12, wi21, wi22;
 
-        public WorkItemRepoTest(IWorkItemRepo rep)
+        public OrderRepoTest(IOrderRepo rep)
         {
             this.repo = rep;
-            wi11 = new WorkItem { Name = "wi11" };
-            wi12 = new WorkItem { Name = "wi12" };
-            wi21 = new WorkItem { Name = "wi21" };
-            wi22 = new WorkItem { Name = "wi22" };
+            wi11 = new Order { Name = "wi11" };
+            wi12 = new Order { Name = "wi12" };
+            wi21 = new Order { Name = "wi21" };
+            wi22 = new Order { Name = "wi22" };
         }
 
         public void Dispose()

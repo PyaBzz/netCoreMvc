@@ -4,7 +4,7 @@ using myCoreMvc.Domain;
 
 namespace myCoreMvc.App.Interfaces
 {
-    public interface IWorkItemRepo : ICrudRepo<WorkItem>
+    public interface IOrderRepo : ICrudRepo<Order>
     {
     }
 }

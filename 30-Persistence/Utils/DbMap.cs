@@ -15,8 +15,8 @@ namespace myCoreMvc.Persistence.Services
         {
             {typeof(DummyA), "DummiesA"},
             {typeof(User), "Users"},
-            {typeof(WorkPlan), "WorkPlans"},
-            {typeof(WorkItem), "WorkItems"}
+            {typeof(Product), "Products"},
+            {typeof(Order), "Orders"}
         };
 
         private static Dictionary<Type, string[]> propsMemo = new Dictionary<Type, string[]>();

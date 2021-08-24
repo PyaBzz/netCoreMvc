@@ -12,8 +12,8 @@
                 "Destroy": "Sql//Destroy.sql"
             },
             "XmlSource": {
-                "WorkPlans": "Sources//WorkPlans.xml",
-                "WorkItems": "Sources//WorkItems.xml"
+                "Products": "Sources//Products.xml",
+                "Orders": "Sources//Orders.xml"
             }
         }
     },

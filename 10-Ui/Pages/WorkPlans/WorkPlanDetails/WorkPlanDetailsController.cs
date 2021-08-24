@@ -6,31 +6,31 @@ using System;
 
 namespace myCoreMvc.UI.Controllers
 {
-    [Area("WorkPlans")]
-    public class WorkPlanDetailsController : BaseController
+    [Area("Products")]
+    public class ProductDetailsController : BaseController
     {
-        private readonly IWorkplanRepo WorkPlanRepo;
+        private readonly IProductRepo ProductRepo;
 
-        public WorkPlanDetailsController(IWorkplanRepo repo)
-            => WorkPlanRepo = repo;
+        public ProductDetailsController(IProductRepo repo)
+            => ProductRepo = repo;
 
         public IActionResult Index(Guid id)
         {
-            var viewModel = WorkPlanRepo.Get(id);
-            return View("WorkPlanDetails", viewModel);
+            var viewModel = ProductRepo.Get(id);
+            return View("ProductDetails", viewModel);
         }
 
         public IActionResult Delete(Guid id)
         {
             throw new NotImplementedException();
             // var result = "";
-            // switch (WorkPlanRepo.Delete(id))
+            // switch (ProductRepo.Delete(id))
             // {
-            //     case TransactionResult.NotFound: result = "Found no WorkPlan with the provided Id."; break;
+            //     case TransactionResult.NotFound: result = "Found no Product with the provided Id."; break;
             //     case TransactionResult.Deleted: result = "Item deleted."; break;
-            //     default: result = "Found no WorkPlan with the provided Id."; break;
+            //     default: result = "Found no Product with the provided Id."; break;
             // }
-            // return RedirectToAction(nameof(WorkPlanListController.Index), Short<WorkPlanListController>.Name, new { message = result });  // Prevents re-submission by refresh
+            // return RedirectToAction(nameof(ProductListController.Index), Short<ProductListController>.Name, new { message = result });  // Prevents re-submission by refresh
         }
     }
 }

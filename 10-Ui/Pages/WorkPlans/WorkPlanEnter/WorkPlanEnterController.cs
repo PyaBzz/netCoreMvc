@@ -11,23 +11,23 @@ using Baz.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers
 {
-    [Area("WorkPlans")]
-    public class WorkPlanEnterController : BaseController
+    [Area("Products")]
+    public class ProductEnterController : BaseController
     {
-        private readonly IWorkplanRepo WorkPlanRepo;
+        private readonly IProductRepo ProductRepo;
 
-        public WorkPlanEnterController(IWorkplanRepo repo)
-            => WorkPlanRepo = repo;
+        public ProductEnterController(IProductRepo repo)
+            => ProductRepo = repo;
 
         public IActionResult Index(Guid id)
         {
             var inputModel = new EnterModel();
             if (id != Guid.Empty)
             {
-                var workPlan = WorkPlanRepo.Get(id);
-                if (workPlan != null) inputModel.CopySimilarPropertiesFrom(workPlan);
+                var product = ProductRepo.Get(id);
+                if (product != null) inputModel.CopySimilarPropertiesFrom(product);
             }
-            return View("WorkPlanEnter", inputModel);
+            return View("ProductEnter", inputModel);
         }
 
         [HttpPost]
@@ -36,12 +36,12 @@ namespace myCoreMvc.UI.Controllers
             throw new NotImplementedException();
             // if (ModelState.IsValid)
             // {
-            //     var workPlan = inputModel.Id == Guid.Empty
-            //         ? new WorkPlan()
-            //         : WorkPlanRepo.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
+            //     var product = inputModel.Id == Guid.Empty
+            //         ? new Product()
+            //         : ProductRepo.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
 
-            //     workPlan.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-            //     var transactionResult = WorkPlanRepo.Add(workPlan);
+            //     product.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
+            //     var transactionResult = ProductRepo.Add(product);
 
             //     string resultMessage;
             //     switch (transactionResult)
@@ -51,13 +51,13 @@ namespace myCoreMvc.UI.Controllers
             //         default: resultMessage = transactionResult.ToString(); break;
             //     }
 
-            //     return RedirectToAction(nameof(WorkPlanListController.Index), Short<WorkPlanListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
+            //     return RedirectToAction(nameof(ProductListController.Index), Short<ProductListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
             // }
             // else
             // {
             //     inputModel.Message = "Invalid values for: "
             //         + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
-            //     return View("WorkPlanEnter", inputModel);
+            //     return View("ProductEnter", inputModel);
             // }
         }
 

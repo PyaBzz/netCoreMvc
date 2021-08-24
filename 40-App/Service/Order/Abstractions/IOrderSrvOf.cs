@@ -2,11 +2,11 @@
 
 namespace myCoreMvc.App.Services
 {
-    public interface IWorkItemSrvOf
+    public interface IOrderSrvOf
     {
-        WorkItem WorkItem { get; }
+        Order Order { get; }
 
-        WorkItem Save();
+        Order Save();
         void Delete();
     }
 }

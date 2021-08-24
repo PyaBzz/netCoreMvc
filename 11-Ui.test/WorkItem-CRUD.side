@@ -1,11 +1,11 @@
 {
   "id": "2886a69a-746c-4d2d-ac65-c11786e230cb",
   "version": "2.0",
-  "name": "WorkItem-CRUD",
+  "name": "Order-CRUD",
   "url": "http://localhost:60343",
   "tests": [{
     "id": "ad5ddc5b-7849-4387-8ef1-645a4fecc293",
-    "name": "01-Add WorkItem",
+    "name": "01-Add Order",
     "commands": [{
       "id": "bb4efc00-b8d5-4ecb-b0c1-550937119198",
       "comment": "",
@@ -17,7 +17,7 @@
       "id": "f74be6b1-9d81-4d64-8718-220ecb0d7f67",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -29,7 +29,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -38,7 +38,7 @@
       "id": "6a464855-6138-460c-b138-7bfd0dfaf70e",
       "comment": "",
       "command": "select",
-      "target": "id=WorkPlan",
+      "target": "id=Product",
       "targets": [],
       "value": "label=Plan2"
     }, {
@@ -115,7 +115,7 @@
     }]
   }, {
     "id": "943462bb-5389-4f59-b15f-3bb81d0eed31",
-    "name": "03-Edit WorkItem",
+    "name": "03-Edit Order",
     "commands": [{
       "id": "ba05303e-7d37-4336-bf8e-ce9472e58191",
       "comment": "",
@@ -127,7 +127,7 @@
       "id": "ed1163b4-7df7-403e-aa62-7a877b02c568",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -139,7 +139,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -148,7 +148,7 @@
       "id": "b9adb1f0-014f-400e-8c98-dd9e0307029d",
       "comment": "",
       "command": "verifySelectedLabel",
-      "target": "name=WorkPlan",
+      "target": "name=Product",
       "targets": [],
       "value": "Plan2"
     }, {
@@ -214,7 +214,7 @@
       "id": "335c18e9-2ddb-48ed-8694-e06146cea450",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=EditedItem] > [probe=WorkPlan]",
+      "target": "css=[probe=EditedItem] > [probe=Product]",
       "targets": [],
       "value": "Plan2"
     }, {
@@ -247,7 +247,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -283,7 +283,7 @@
     }]
   }, {
     "id": "6ead18da-bc9c-42b5-a9c9-3eabe25f96d2",
-    "name": "04-Delete WorkItem",
+    "name": "04-Delete Order",
     "commands": [{
       "id": "6ed9fb3d-66a4-4f2f-904c-35a26d1d6753",
       "comment": "",
@@ -295,7 +295,7 @@
       "id": "b2fd31ec-9195-4224-a05a-0b9b359c8357",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -309,9 +309,9 @@
       "id": "14d06e5c-9b45-4adf-aebf-9a586834db1e",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemDetailsHeader]",
+      "target": "css=[probe=OrderDetailsHeader]",
       "targets": [],
-      "value": "WorkItem details"
+      "value": "Order details"
     }, {
       "id": "712eb510-ac78-4627-bcb1-2544a3651e38",
       "comment": "",
@@ -377,7 +377,7 @@
     }]
   }, {
     "id": "68ecefaf-5cb6-4e0c-ad16-98507031feaa",
-    "name": "05-Search WorkItem by All",
+    "name": "05-Search Order by All",
     "commands": [{
       "id": "9cb15eaf-91a8-46c8-b772-1c5927c274ce",
       "comment": "",
@@ -389,7 +389,7 @@
       "id": "6ba0fb32-56c5-4506-b086-9017f9d8641e",
       "comment": "",
       "command": "verifyElementPresent",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -475,7 +475,7 @@
     }]
   }, {
     "id": "f511996f-9ce9-4db1-a60d-3a05da150e13",
-    "name": "06-Search WorkItem by Reference",
+    "name": "06-Search Order by Reference",
     "commands": [{
       "id": "74b332c8-232f-4640-993c-38ca504b5b8b",
       "comment": "",
@@ -487,7 +487,7 @@
       "id": "3f783863-4846-4f9b-9985-3d09262ab65b",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -573,7 +573,7 @@
     }]
   }, {
     "id": "9a4dae8d-de15-4f82-8d0b-1231491572b5",
-    "name": "07-Search WorkItem by Name",
+    "name": "07-Search Order by Name",
     "commands": [{
       "id": "364fa7b2-515e-456a-86fc-7bafc9479353",
       "comment": "",
@@ -585,7 +585,7 @@
       "id": "35f6dc83-2d09-42f2-8b1b-53b2bbc4028b",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -671,7 +671,7 @@
     }]
   }, {
     "id": "17777587-9b5c-441d-9e9e-644938285c69",
-    "name": "08-Search WorkItem by Priority",
+    "name": "08-Search Order by Priority",
     "commands": [{
       "id": "4f7b93a9-28a5-4392-8202-6bcb26876f8d",
       "comment": "",
@@ -683,7 +683,7 @@
       "id": "f8009957-4919-4921-97ab-1c48824510e3",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -769,7 +769,7 @@
     }]
   }, {
     "id": "7a6af029-a883-4f9a-aa56-e6562c1e293e",
-    "name": "02-Details of WorkItem",
+    "name": "02-Details of Order",
     "commands": [{
       "id": "4df5f4b9-5e5e-44aa-957b-52cfe7f22eb3",
       "comment": "",
@@ -781,7 +781,7 @@
       "id": "97001a2b-289f-4f9f-824c-3f7cac756ddd",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -795,9 +795,9 @@
       "id": "96a45eb1-44bd-4a86-9870-aa35b339a981",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemDetailsHeader]",
+      "target": "css=[probe=OrderDetailsHeader]",
       "targets": [],
-      "value": "WorkItem details"
+      "value": "Order details"
     }, {
       "id": "9c4a0331-afc1-4d3d-8bad-a9d212ac21cf",
       "comment": "",
@@ -823,7 +823,7 @@
       "id": "39fe9762-a686-4acc-a10e-da2f91dd68aa",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkPlan] > [probe=Value]",
+      "target": "css=[probe=Product] > [probe=Value]",
       "targets": [],
       "value": "Plan2"
     }]

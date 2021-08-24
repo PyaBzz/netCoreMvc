@@ -16,10 +16,10 @@ namespace myCoreMvc.Persistence.Test
             services.AddTransient<CrudRepo<DummyA>, DummyARepo>();
             // services.AddTransient<IUserRepo, UserRepoMock>();
             services.AddTransient<IUserRepo, UserRepo>();
-            // services.AddTransient<IWorkItemRepo, WorkItemRepoMock>();
-            services.AddTransient<IWorkItemRepo, WorkItemRepo>();
-            // services.AddTransient<IWorkplanRepo, WorkplanRepoMock>();
-            services.AddTransient<IWorkplanRepo, WorkplanRepo>();
+            // services.AddTransient<IOrderRepo, OrderRepoMock>();
+            services.AddTransient<IOrderRepo, OrderRepo>();
+            // services.AddTransient<IProductRepo, ProductRepoMock>();
+            services.AddTransient<IProductRepo, ProductRepo>();
         }
     }
 }

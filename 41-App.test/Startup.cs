@@ -14,11 +14,11 @@ namespace myCoreMvc.App.Test
             // services.AddTransient<IDataRepo, DataRepoMock>();
             // services.AddTransient<IDataRepo, DataRepo>();
 
-            // services.AddTransient<IWorkplanRepo, WorkplanRepoMock>();
-            // services.AddTransient<IWorkplanRepo, WorkplanRepo>();
+            // services.AddTransient<IProductRepo, ProductRepoMock>();
+            // services.AddTransient<IProductRepo, ProductRepo>();
 
-            // services.AddTransient<IWorkItemRepo, WorkItemRepoMock>();
-            // services.AddTransient<IWorkItemRepo, WorkItemRepo>();
+            // services.AddTransient<IOrderRepo, OrderRepoMock>();
+            // services.AddTransient<IOrderRepo, OrderRepo>();
 
             // services.AddTransient<IUserRepo, UserRepoMock>();
             // services.AddTransient<IUserRepo, UserRepo>();

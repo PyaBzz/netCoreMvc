@@ -3,7 +3,7 @@ using myCoreMvc.Domain.Attributes;
 
 namespace myCoreMvc.Domain
 {
-    public class WorkPlan : Thing, IClonable
+    public class Product : Thing, IClonable
     {
         /*================================  Properties ================================*/
 
@@ -11,7 +11,7 @@ namespace myCoreMvc.Domain
         public string Name { get; set; }
 
         //Todo: Make calculated
-        //public List<WorkItem> WorkItems { get; set; }
+        //public List<Order> Orders { get; set; }
 
         /*==================================  Methods =================================*/
 

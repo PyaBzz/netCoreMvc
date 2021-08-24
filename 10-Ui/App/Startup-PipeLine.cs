@@ -41,7 +41,7 @@ namespace myCoreMvc.UI
             appBuilder.UseRouting();
             appBuilder.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(name: "default", "{area=WorkPlans}/{controller=WorkPlanList}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: "default", "{area=Products}/{controller=ProductList}/{action=Index}/{id?}");
             });
         }
     }

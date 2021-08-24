@@ -44,8 +44,8 @@ namespace myCoreMvc.UI
             // services.AddSingleton(new EfCtx());
             // services.AddSingleton<IDataRepo, DataRepo>();
             services.AddSingleton<IUserBiz, UserBiz>();
-            services.AddSingleton<IWorkplanRepo, WorkplanRepoMock>();
-            services.AddSingleton<IWorkItemBiz, WorkItemBiz>();
+            services.AddSingleton<IProductRepo, ProductRepoMock>();
+            services.AddSingleton<IOrderBiz, OrderBiz>();
 
             var authBuilder = services.AddAuthentication(options =>
                 {

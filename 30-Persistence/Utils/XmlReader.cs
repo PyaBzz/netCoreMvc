@@ -14,7 +14,7 @@ namespace myCoreMvc.Persistence
     public class XmlReader<T> where T : class
     {
         private Config config;
-        private List<WorkPlan> Data;
+        private List<Product> Data;
 
         public XmlReader(Config conf)
         {
@@ -39,8 +39,8 @@ namespace myCoreMvc.Persistence
                         {
                             if (xmlRdr.NodeType == XmlNodeType.Element && xmlRdr.Name == typeName)
                             {
-                                var workPlan = serialiser.Deserialize(xmlRdr) as T;
-                                res.Add(workPlan);
+                                var product = serialiser.Deserialize(xmlRdr) as T;
+                                res.Add(product);
                             }
                         }
                     }

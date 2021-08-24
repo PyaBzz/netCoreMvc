@@ -6,32 +6,32 @@ using System;
 
 namespace myCoreMvc.UI.Controllers
 {
-    [Area("WorkItems")]
-    public class WorkItemDetailsController : BaseController
+    [Area("Orders")]
+    public class OrderDetailsController : BaseController
     {
-        private readonly IWorkItemBiz WorkItemBiz;
+        private readonly IOrderBiz OrderBiz;
 
-        public WorkItemDetailsController(IWorkItemBiz workItemBiz)
-            => WorkItemBiz = workItemBiz;
+        public OrderDetailsController(IOrderBiz orderBiz)
+            => OrderBiz = orderBiz;
 
         public IActionResult Index(Guid id)
         {
-            var viewModel = WorkItemBiz.Get(id);
-            return View("WorkItemDetails", viewModel);
+            var viewModel = OrderBiz.Get(id);
+            return View("OrderDetails", viewModel);
         }
 
         public IActionResult Delete(Guid id)
         {
             throw new NotImplementedException();
             // var result = "";
-            // var workItem = WorkItemBiz.Get(id);
-            // switch (WorkItemBiz.Of(workItem).Delete())
+            // var order = OrderBiz.Get(id);
+            // switch (OrderBiz.Of(order).Delete())
             // {
-            //     case TransactionResult.NotFound: result = "Found no WorkItem with the provided Id."; break;
+            //     case TransactionResult.NotFound: result = "Found no Order with the provided Id."; break;
             //     case TransactionResult.Deleted: result = "Item deleted."; break;
-            //     default: result = "Found no WorkItem with the provided Id."; break;
+            //     default: result = "Found no Order with the provided Id."; break;
             // }
-            // return RedirectToAction(nameof(WorkItemListController.Index), Short<WorkItemListController>.Name, new { message = result });  // Prevents re-submission by refresh
+            // return RedirectToAction(nameof(OrderListController.Index), Short<OrderListController>.Name, new { message = result });  // Prevents re-submission by refresh
         }
     }
 }

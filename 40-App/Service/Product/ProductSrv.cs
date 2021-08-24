@@ -4,15 +4,15 @@ using myCoreMvc.Domain;
 
 namespace myCoreMvc.App.Services
 {
-    public class WorkPlanSrv : IWorkPlanSrv
+    public class ProductSrv : IProductSrv
     {
-        private IWorkplanRepo repo;
+        private IProductRepo repo;
 
-        public WorkPlanSrv(IWorkplanRepo r)
+        public ProductSrv(IProductRepo r)
         {
             repo = r;
         }
 
-        public List<WorkPlan> GetAll() => null;
+        public List<Product> GetAll() => null;
     }
 }

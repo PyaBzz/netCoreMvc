@@ -4,9 +4,9 @@ using myCoreMvc.Domain.Attributes;
 
 namespace myCoreMvc.Domain
 {
-    public class WorkItem : Thing, IClonable
+    public class Order : Thing, IClonable
     {
-        //Task: Is PriorityChoices a responsibility of WorkItem or its Biz class?
+        //Task: Is PriorityChoices a responsibility of Order or its Biz class?
         public static readonly int[] PriorityChoices = new[] { 1, 2, 3, 4 };
 
         /*================================  Properties ================================*/
@@ -21,9 +21,9 @@ namespace myCoreMvc.Domain
         public string Name { get; set; }
 
         [Persist]
-        public Guid? WorkPlanId { get; set; }
+        public Guid? ProductId { get; set; }
 
-        public WorkPlan WorkPlan { get; set; }
+        public Product Product { get; set; }
 
         /*==================================  Methods =================================*/
 

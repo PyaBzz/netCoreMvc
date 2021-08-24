@@ -1,15 +1,15 @@
 ﻿@using myCoreMvc.UI.Controllers
 @using Baz.CoreMvc
 
-@model myCoreMvc.UI.Controllers.WorkItemListController.ListModel
-@{ ViewBag.Title = "WorkItems";}
+@model myCoreMvc.UI.Controllers.OrderListController.ListModel
+@{ ViewBag.Title = "Orders";}
 
 <h2 id="message">@Model.Message</h2>
 
-<h3 probe="WorkItemListHeader">Work Items</h3>
-<a asp-controller="@(Short<WorkItemEnterController>.Name)" asp-action="@nameof(WorkItemEnterController.Index)">Add</a>
+<h3 probe="OrderListHeader">Work Items</h3>
+<a asp-controller="@(Short<OrderEnterController>.Name)" asp-action="@nameof(OrderEnterController.Index)">Add</a>
 
-<form asp-controller="@(Short<WorkItemListController>.Name)" asp-action="@nameof(WorkItemListController.Index)">
+<form asp-controller="@(Short<OrderListController>.Name)" asp-action="@nameof(OrderListController.Index)">
     <h3>Search</h3>
     <label asp-for=@Model.Search_All>All</label>
     <input type="text" name="Search_All" value="@Model.Search_All" />
@@ -29,10 +29,10 @@
 
 @if (Model.Items != null && Model.Items.Any())
 {
-    <table probe="WorkItemList">
+    <table probe="OrderList">
         <thead>
             <tr>
-                <td>WorkPlan</td>
+                <td>Product</td>
                 <td>Reference</td>
                 <td>Name</td>
                 <td>Priority</td>
@@ -42,16 +42,16 @@
         @foreach (var item in Model.Items)
         {
             <tr probe="@item.Name">
-                <td probe="@nameof(item.WorkPlan)">@item.WorkPlan</td>
-                <td probe="@nameof(item.Reference)"><a asp-controller="@(Short<WorkItemDetailsController>.Name)" asp-action="@nameof(WorkItemDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
+                <td probe="@nameof(item.Product)">@item.Product</td>
+                <td probe="@nameof(item.Reference)"><a asp-controller="@(Short<OrderDetailsController>.Name)" asp-action="@nameof(OrderDetailsController.Index)" asp-route-id="@item.Id">@item.Reference</a></td>
                 <td probe="@nameof(item.Name)">@item.Name</td>
                 <td probe="@nameof(item.Priority)">@item.Priority</td>
-                <td probe="Edit"><a asp-controller="@(Short<WorkItemEnterController>.Name)" asp-action="@nameof(WorkItemEnterController.Index)" asp-route-id="@item.Id">Go</a></td>
+                <td probe="Edit"><a asp-controller="@(Short<OrderEnterController>.Name)" asp-action="@nameof(OrderEnterController.Index)" asp-route-id="@item.Id">Go</a></td>
             </tr>
         }
     </table>
 }
 else
 {
-    <div>No WorkItems found.</div>
+    <div>No Orders found.</div>
 }

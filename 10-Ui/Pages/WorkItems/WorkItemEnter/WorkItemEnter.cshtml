@@ -1,24 +1,24 @@
 ﻿@using myCoreMvc.UI.Controllers;
 @using Baz.CoreMvc
 
-@model WorkItemEnterController.EnterModel
-@{ ViewBag.Title = "WorkItem Details";
+@model OrderEnterController.EnterModel
+@{ ViewBag.Title = "Order Details";
     var addMode = Model.Id == Guid.Empty;
 }
 
 <h2 id="message">@Model.Message</h2>
 
-<a asp-controller="@(Short<WorkItemListController>.Name)" asp-action="@nameof(WorkItemListController.Index)">Back</a>
+<a asp-controller="@(Short<OrderListController>.Name)" asp-action="@nameof(OrderListController.Index)">Back</a>
 
 @if (addMode)
-{<h3>Add WorkItem</h3>}
+{<h3>Add Order</h3>}
 else
-{<h3>Edit WorkItem</h3>}
+{<h3>Edit Order</h3>}
 
 <form method="post">
     <input type="hidden" name="Id" value="@Model.Id" />
-    <label>WorkPlan</label>
-    <select asp-for=@Model.WorkPlan asp-items="Model.WorkPlanChoices"></select>
+    <label>Product</label>
+    <select asp-for=@Model.Product asp-items="Model.ProductChoices"></select>
     <br />
     <label>Reference</label>
     <input type="text" name="Reference" value="@Model.Reference" />

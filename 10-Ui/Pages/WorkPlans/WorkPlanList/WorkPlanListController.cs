@@ -8,22 +8,22 @@ using myCoreMvc.App.Services;
 
 namespace myCoreMvc.UI.Controllers
 {
-    [Area("WorkPlans")]
-    public class WorkPlanListController : BaseController
+    [Area("Products")]
+    public class ProductListController : BaseController
     {
-        IWorkplanRepo WorkPlanRepo;
+        IProductRepo ProductRepo;
 
-        public WorkPlanListController(IWorkplanRepo repo)
-            => WorkPlanRepo = repo;
+        public ProductListController(IProductRepo repo)
+            => ProductRepo = repo;
 
         public IActionResult Index(string message)
         {
             var listModel = new ListModel
             {
-                Items = WorkPlanRepo.GetAll(),
+                Items = ProductRepo.GetAll(),
                 Message = message
             };
-            return View("WorkPlanList", listModel);
+            return View("ProductList", listModel);
         }
 
         [HttpPost]
@@ -31,8 +31,8 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                listModel.Items = WorkPlanRepo.GetAll();
-                var searchFilters = new List<Predicate<WorkPlan>>();
+                listModel.Items = ProductRepo.GetAll();
+                var searchFilters = new List<Predicate<Product>>();
                 if (listModel.Search_Name != null)
                     searchFilters.Add(wi => Regex.IsMatch(wi.Name, listModel.Search_Name));
 
@@ -40,14 +40,14 @@ namespace myCoreMvc.UI.Controllers
             }
             else
             {
-                listModel.Items = WorkPlanRepo.GetAll();
+                listModel.Items = ProductRepo.GetAll();
             }
-            return View("WorkPlanList", listModel);
+            return View("ProductList", listModel);
         }
 
         public class ListModel
         {
-            public IEnumerable<WorkPlan> Items;
+            public IEnumerable<Product> Items;
 
             public string Search_Name { get; set; }
 

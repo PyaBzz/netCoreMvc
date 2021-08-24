@@ -10,7 +10,7 @@
  - Log in
  - Verify access permissions
 
-2- WorkPlan
+2- Product
  - Add
  - Check details
  - Search
@@ -18,7 +18,7 @@
  - Delete
  - List work items
  
-3- WorkItem
+3- Order
  - Add
  - Check details
  - Search

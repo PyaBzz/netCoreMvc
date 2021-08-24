@@ -17,7 +17,7 @@
       "id": "f74be6b1-9d81-4d64-8718-220ecb0d7f67",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -29,7 +29,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -185,7 +185,7 @@
       "id": "ed1163b4-7df7-403e-aa62-7a877b02c568",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -197,7 +197,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -218,7 +218,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -340,7 +340,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -433,7 +433,7 @@
       "id": "b2fd31ec-9195-4224-a05a-0b9b359c8357",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -445,7 +445,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -541,7 +541,7 @@
       "id": "f8009957-4919-4921-97ab-1c48824510e3",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -553,7 +553,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -625,7 +625,7 @@
       "id": "97001a2b-289f-4f9f-824c-3f7cac756ddd",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -637,7 +637,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -720,7 +720,7 @@
       "id": "a5c0eaea-5847-4d76-b6cf-cae5adfe4fda",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -732,7 +732,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -753,7 +753,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -807,7 +807,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -907,7 +907,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -948,7 +948,7 @@
       "id": "4f5fb9ea-2ab2-4956-8791-bacddb43e1af",
       "comment": "",
       "command": "verifyText",
-      "target": "css=[probe=WorkItemListHeader]",
+      "target": "css=[probe=OrderListHeader]",
       "targets": [],
       "value": "Work Items"
     }, {
@@ -960,7 +960,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -981,7 +981,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -1042,7 +1042,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
@@ -1105,7 +1105,7 @@
         ["linkText=Add", "linkText"],
         ["css=body > a", "css:finder"],
         ["xpath=//a[contains(text(),'Add')]", "xpath:link"],
-        ["xpath=//a[contains(@href, '/WorkItems/WorkItemEnter')]", "xpath:href"],
+        ["xpath=//a[contains(@href, '/Orders/OrderEnter')]", "xpath:href"],
         ["xpath=//body/a", "xpath:position"],
         ["xpath=//a[contains(.,'Add')]", "xpath:innerText"]
       ],
