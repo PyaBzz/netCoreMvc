@@ -9,20 +9,13 @@ namespace myCoreMvc.UI
     {
         public static void Main(string[] args)
         {
-            if (DbMigrator.MigrateIfNeeded(args))
-            {
-                return;
-            }
-            else
-            {
-                var host = new WebHostBuilder()
-                    .UseKestrel()
-                    .UseContentRoot(Directory.GetCurrentDirectory())
-                    //.UseIISIntegration()
-                    .UseStartup<Startup>()
-                    .Build();
-                host.Run();
-            }
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                //.UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+            host.Run();
         }
     }
 }

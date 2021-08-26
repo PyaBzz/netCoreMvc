@@ -6,10 +6,11 @@ using Baz.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor;
+using myCoreMvc.App;
 using myCoreMvc.App.Services;
+using myCoreMvc.App.Interfaces;
 using Baz.CoreMvc;
 using myCoreMvc.UI.Controllers;
-using myCoreMvc.App;
 
 namespace myCoreMvc.UI
 {
@@ -43,9 +44,9 @@ namespace myCoreMvc.UI
 
             // services.AddSingleton(new EfCtx());
             // services.AddSingleton<IDataRepo, DataRepo>();
-            services.AddSingleton<IUserBiz, UserBiz>();
-            services.AddSingleton<IProductRepo, ProductRepoMock>();
-            services.AddSingleton<IOrderBiz, OrderBiz>();
+            services.AddSingleton<IUserSrv, UserSrv>();
+            // services.AddSingleton<IProductRepo, ProductRepoMock>();
+            services.AddSingleton<IOrderSrv, OrderSrv>();
 
             var authBuilder = services.AddAuthentication(options =>
                 {

@@ -5,6 +5,7 @@ using myCoreMvc.Domain;
 using System.Text.RegularExpressions;
 using Baz.Core;
 using myCoreMvc.App.Services;
+using myCoreMvc.App.Interfaces;
 
 namespace myCoreMvc.UI.Controllers
 {

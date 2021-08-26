@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Baz.Core;
 using myCoreMvc.App;
-using myCoreMvc.App.Services;
+using myCoreMvc.App.Interfaces;
 using Baz.CoreMvc;
 
 namespace myCoreMvc.UI.Controllers

@@ -9,6 +9,7 @@ using Baz.Core;
 using Baz.Attributes;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using myCoreMvc.App;
+using myCoreMvc.App.Interfaces;
 using myCoreMvc.App.Services;
 using Baz.CoreMvc;
 
@@ -17,10 +18,10 @@ namespace myCoreMvc.UI.Controllers
     [Area("Orders")]
     public class OrderEnterController : BaseController
     {
-        private readonly IOrderBiz OrderBiz;
+        private readonly IOrderSrv OrderBiz;
         private readonly IProductRepo ProductRepo;
 
-        public OrderEnterController(IOrderBiz orderBiz, IProductRepo productBiz)
+        public OrderEnterController(IOrderSrv orderBiz, IProductRepo productBiz)
         {
             OrderBiz = orderBiz;
             ProductRepo = productBiz;
@@ -37,7 +38,7 @@ namespace myCoreMvc.UI.Controllers
                 if (item != null)
                 {
                     inputModel.CopySimilarPropertiesFrom(item);
-                    inputModel.Product = item.Product.Id; //Task: Product itself works in Get but its Guid works for POST. Find a way to cover both.
+                    inputModel.Product = item.Product.Id.Value; //Task: Product itself works in Get but its Guid works for POST. Find a way to cover both.
                 }
             }
             return View("OrderEnter", inputModel);

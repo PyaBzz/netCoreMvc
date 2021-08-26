@@ -9,9 +9,9 @@ namespace myCoreMvc.UI.Controllers
     [Area("Orders")]
     public class OrderDetailsController : BaseController
     {
-        private readonly IOrderBiz OrderBiz;
+        private readonly IOrderSrv OrderBiz;
 
-        public OrderDetailsController(IOrderBiz orderBiz)
+        public OrderDetailsController(IOrderSrv orderBiz)
             => OrderBiz = orderBiz;
 
         public IActionResult Index(Guid id)

@@ -9,9 +9,9 @@ namespace myCoreMvc.UI.Controllers
     [Area("Users")]
     public class UserDetailsController : BaseController
     {
-        private readonly IUserBiz UserBiz;
+        private readonly IUserSrv UserBiz;
 
-        public UserDetailsController(IUserBiz userBiz)
+        public UserDetailsController(IUserSrv userBiz)
             => UserBiz = userBiz;
 
         public IActionResult Index(Guid id)

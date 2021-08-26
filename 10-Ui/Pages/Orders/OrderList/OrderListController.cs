@@ -11,16 +11,16 @@ namespace myCoreMvc.UI.Controllers
     [Area("Orders")]
     public class OrderListController : BaseController
     {
-        private readonly IOrderBiz OrderBiz;
+        private readonly IOrderSrv OrderBiz;
 
-        public OrderListController(IOrderBiz orderBiz)
+        public OrderListController(IOrderSrv orderBiz)
             => OrderBiz = orderBiz;
 
         public IActionResult Index(string message)
         {
             var listModel = new ListModel
             {
-                Items = OrderBiz.GetListIncluding(wi => wProductan),
+                Items = OrderBiz.GetListIncluding(wi => wi.Product),
                 Message = message
             };
             return View("OrderList", listModel);

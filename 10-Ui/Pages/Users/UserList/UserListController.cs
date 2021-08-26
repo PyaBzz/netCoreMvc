@@ -11,9 +11,9 @@ namespace myCoreMvc.UI.Controllers
     [Area("Users")]
     public class UserListController : BaseController
     {
-        private readonly IUserBiz UserBiz;
+        private readonly IUserSrv UserBiz;
 
-        public UserListController(IUserBiz userBiz)
+        public UserListController(IUserSrv userBiz)
             => UserBiz = userBiz;
 
         public IActionResult Index(string message)

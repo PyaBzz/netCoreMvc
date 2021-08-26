@@ -16,9 +16,9 @@ namespace myCoreMvc.UI.Controllers
     [Area("Users")]
     public class UserEnterController : BaseController
     {
-        private readonly IUserBiz UserBiz;
+        private readonly IUserSrv UserBiz;
 
-        public UserEnterController(IUserBiz userBiz)
+        public UserEnterController(IUserSrv userBiz)
             => UserBiz = userBiz;
 
         public IActionResult Index(Guid id)

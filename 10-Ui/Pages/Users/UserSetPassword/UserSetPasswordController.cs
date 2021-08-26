@@ -13,9 +13,9 @@ namespace myCoreMvc.UI.Controllers
     [Area("Users")]
     public class UserSetPasswordController : BaseController
     {
-        private readonly IUserBiz UserBiz;
+        private readonly IUserSrv UserBiz;
 
-        public UserSetPasswordController(IUserBiz userBiz)
+        public UserSetPasswordController(IUserSrv userBiz)
             => UserBiz = userBiz;
 
         public IActionResult Index(Guid id)

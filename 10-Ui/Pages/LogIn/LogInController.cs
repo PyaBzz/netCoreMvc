@@ -15,9 +15,9 @@ namespace myCoreMvc.UI.Controllers
     [Area("LogIn")]
     public class LogInController : BaseController
     {
-        private readonly IUserBiz UserBiz;
+        private readonly IUserSrv UserBiz;
 
-        public LogInController(IUserBiz userBiz)
+        public LogInController(IUserSrv userBiz)
         {
             UserBiz = userBiz;
         }
