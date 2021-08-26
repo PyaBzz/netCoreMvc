@@ -19,7 +19,7 @@ namespace myCoreMvc.UI.Controllers
         public ProductEnterController(IProductRepo repo)
             => ProductRepo = repo;
 
-        public IActionResult Index(Guid id)
+        public IActionResult Index(Guid? id)
         {
             var inputModel = new EnterModel();
             if (id != null)
@@ -42,7 +42,7 @@ namespace myCoreMvc.UI.Controllers
                 var resultId = ProductRepo.Save(product);
 
                 var resultMessage = "Item saved";
-                return RedirectToAction(nameof(ProductListController.Index), Short<ProductListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
+                return RedirectToAction(nameof(ProductListController.Index), Short<ProductListController>.Name, new { message = resultMessage });
             }
             else
             {

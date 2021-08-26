@@ -46,13 +46,13 @@ namespace myCoreMvc.UI
             services.AddTransient<IDbConFactory, DbTestConFactory>();
             services.AddTransient<IHashFactory, HashFactory>();
 
-            services.AddTransient<CrudRepo<DummyA>, DummyARepo>();
             services.AddTransient<IUserRepo, UserRepo>();
             services.AddTransient<IOrderRepo, OrderRepo>();
             services.AddTransient<IProductRepo, ProductRepo>();
 
             services.AddSingleton<IUserSrv, UserSrv>();
             services.AddSingleton<IOrderSrv, OrderSrv>();
+            services.AddTransient<IProductSrv, ProductSrv>();
 
             var authBuilder = services.AddAuthentication(options =>
                 {

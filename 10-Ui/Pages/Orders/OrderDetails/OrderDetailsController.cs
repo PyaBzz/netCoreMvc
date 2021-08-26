@@ -31,7 +31,7 @@ namespace myCoreMvc.UI.Controllers
             //     case TransactionResult.Deleted: result = "Item deleted."; break;
             //     default: result = "Found no Order with the provided Id."; break;
             // }
-            // return RedirectToAction(nameof(OrderListController.Index), Short<OrderListController>.Name, new { message = result });  // Prevents re-submission by refresh
+            // return RedirectToAction(nameof(OrderListController.Index), Short<OrderListController>.Name, new { message = result });
         }
     }
 }

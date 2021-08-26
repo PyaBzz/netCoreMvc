@@ -50,7 +50,7 @@ namespace myCoreMvc.UI.Controllers
             //         case TransactionResult.Added: resultMessage = "New item added"; break;
             //         default: resultMessage = transactionResult.ToString(); break;
             //     }
-            //     return RedirectToAction(nameof(UserListController.Index), Short<UserListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
+            //     return RedirectToAction(nameof(UserListController.Index), Short<UserListController>.Name, new { message = resultMessage });
             // }
             // else
             // {

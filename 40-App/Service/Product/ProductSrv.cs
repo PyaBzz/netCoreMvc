@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using myCoreMvc.App.Interfaces;
 using myCoreMvc.Domain;
 
@@ -13,6 +14,8 @@ namespace myCoreMvc.App.Services
             repo = r;
         }
 
-        public List<Product> GetAll() => null;
+        public Product Get(Guid id) => repo.Get(id);
+        public List<Product> GetAll() => repo.GetAll();
+        public void Delete(Guid id) => repo.Delete(id);
     }
 }

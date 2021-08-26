@@ -78,7 +78,7 @@ namespace myCoreMvc.UI.Controllers
                 //     default: resultMessage = transactionResult.ToString(); break;
                 // }
 
-                // return RedirectToAction(nameof(OrderListController.Index), Short<OrderListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
+                // return RedirectToAction(nameof(OrderListController.Index), Short<OrderListController>.Name, new { message = resultMessage });
             }
             else
             {
