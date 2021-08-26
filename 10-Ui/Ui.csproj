@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\40-App\App.csproj" />
+    <ProjectReference Include="..\30-Persistence\Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

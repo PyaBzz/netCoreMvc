@@ -22,10 +22,10 @@ namespace myCoreMvc.UI.Controllers
         public IActionResult Index(Guid id)
         {
             var inputModel = new EnterModel();
-            if (id != Guid.Empty)
+            if (id != null)
             {
                 var product = ProductRepo.Get(id);
-                if (product != null) inputModel.CopySimilarPropertiesFrom(product);
+                if (product != null) inputModel.CopySimilarPropertiesFrom(product); //Todo: Should throw a not-found exception
             }
             return View("ProductEnter", inputModel);
         }
@@ -33,39 +33,30 @@ namespace myCoreMvc.UI.Controllers
         [HttpPost]
         public IActionResult Index(EnterModel inputModel)
         {
-            throw new NotImplementedException();
-            // if (ModelState.IsValid)
-            // {
-            //     var product = inputModel.Id == Guid.Empty
-            //         ? new Product()
-            //         : ProductRepo.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
+            // throw new NotImplementedException();
+            if (ModelState.IsValid)
+            {
+                var product = new Product();  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
 
-            //     product.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-            //     var transactionResult = ProductRepo.Add(product);
+                product.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
+                var resultId = ProductRepo.Save(product);
 
-            //     string resultMessage;
-            //     switch (transactionResult)
-            //     {
-            //         case TransactionResult.Updated: resultMessage = "Item updated"; break;
-            //         case TransactionResult.Added: resultMessage = "New item added"; break;
-            //         default: resultMessage = transactionResult.ToString(); break;
-            //     }
-
-            //     return RedirectToAction(nameof(ProductListController.Index), Short<ProductListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
-            // }
-            // else
-            // {
-            //     inputModel.Message = "Invalid values for: "
-            //         + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
-            //     return View("ProductEnter", inputModel);
-            // }
+                var resultMessage = "Item saved";
+                return RedirectToAction(nameof(ProductListController.Index), Short<ProductListController>.Name, new { message = resultMessage });  // Prevents re-submission by refresh
+            }
+            else
+            {
+                inputModel.Message = "Invalid values for: "
+                    + ModelState.Where(p => p.Value.ValidationState == ModelValidationState.Invalid).Select(p => p.Key).ToString(", ");
+                return View("ProductEnter", inputModel);
+            }
         }
 
         public class EnterModel : IClonable
         {
-            public Guid Id { get; set; }
+            public Guid? Id { get; set; }
 
-            [Display(Name = "Plan name")]
+            [Display(Name = "Product name")]
             [Required(ErrorMessage = "{0} is mandatory.")]
             [StringLength(16, MinimumLength = 3, ErrorMessage = "{0} should be between {2} and {1} characters in length.")]
             [RegularExpression("^[A-Z][a-zA-Z0-9]*", ErrorMessage = "{0} must start with a capital letter and may only contain alphanumeric characters.")]

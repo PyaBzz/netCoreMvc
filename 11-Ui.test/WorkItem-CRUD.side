@@ -19,7 +19,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "5157163e-5c78-46f3-b5b3-a9eea6b98179",
       "comment": "",
@@ -40,7 +40,7 @@
       "command": "select",
       "target": "id=Product",
       "targets": [],
-      "value": "label=Plan2"
+      "value": "label=Product2"
     }, {
       "id": "fa320e4b-550a-42b7-bfc9-4fc831ec70f6",
       "comment": "",
@@ -129,7 +129,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "bc4e3eac-ddba-4312-b77b-50632d41cdf0",
       "comment": "",
@@ -150,7 +150,7 @@
       "command": "verifySelectedLabel",
       "target": "name=Product",
       "targets": [],
-      "value": "Plan2"
+      "value": "Product2"
     }, {
       "id": "0caa3b74-4c66-4ad6-9071-a60dc4614a1f",
       "comment": "",
@@ -216,7 +216,7 @@
       "command": "verifyText",
       "target": "css=[probe=EditedItem] > [probe=Product]",
       "targets": [],
-      "value": "Plan2"
+      "value": "Product2"
     }, {
       "id": "3c083ede-816d-430a-910a-5d77ca5b6ae6",
       "comment": "",
@@ -297,7 +297,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "b1f22127-e894-4f1c-a55a-ab7928b689f0",
       "comment": "",
@@ -391,7 +391,7 @@
       "command": "verifyElementPresent",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "4b4b34d4-7e3f-44ac-b3da-53e5983252bf",
       "comment": "",
@@ -489,7 +489,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "ff5bdb42-29e2-434a-b4dc-c16302f95312",
       "comment": "",
@@ -587,7 +587,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "52e04986-1eb9-4ca1-bd32-1079e0005535",
       "comment": "",
@@ -685,7 +685,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "749c4c75-6dac-4ef9-ac2b-f81a3ea1e4fa",
       "comment": "",
@@ -783,7 +783,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "812f37cd-2d71-4e40-b5a2-2804d544fbb0",
       "comment": "",
@@ -825,7 +825,7 @@
       "command": "verifyText",
       "target": "css=[probe=Product] > [probe=Value]",
       "targets": [],
-      "value": "Plan2"
+      "value": "Product2"
     }]
   }],
   "suites": [{

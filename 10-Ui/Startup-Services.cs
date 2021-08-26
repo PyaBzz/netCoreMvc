@@ -11,6 +11,7 @@ using myCoreMvc.App.Services;
 using myCoreMvc.App.Interfaces;
 using Baz.CoreMvc;
 using myCoreMvc.UI.Controllers;
+using myCoreMvc.Persistence;
 
 namespace myCoreMvc.UI
 {
@@ -42,10 +43,15 @@ namespace myCoreMvc.UI
 
             services.AddSingleton<Config>(config);
 
-            // services.AddSingleton(new EfCtx());
-            // services.AddSingleton<IDataRepo, DataRepo>();
+            services.AddTransient<IDbConFactory, DbTestConFactory>();
+            services.AddTransient<IHashFactory, HashFactory>();
+
+            services.AddTransient<CrudRepo<DummyA>, DummyARepo>();
+            services.AddTransient<IUserRepo, UserRepo>();
+            services.AddTransient<IOrderRepo, OrderRepo>();
+            services.AddTransient<IProductRepo, ProductRepo>();
+
             services.AddSingleton<IUserSrv, UserSrv>();
-            // services.AddSingleton<IProductRepo, ProductRepoMock>();
             services.AddSingleton<IOrderSrv, OrderSrv>();
 
             var authBuilder = services.AddAuthentication(options =>

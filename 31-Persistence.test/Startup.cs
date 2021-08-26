@@ -14,11 +14,8 @@ namespace myCoreMvc.Persistence.Test
             services.AddTransient<IHashFactory, HashFactory>();
 
             services.AddTransient<CrudRepo<DummyA>, DummyARepo>();
-            // services.AddTransient<IUserRepo, UserRepoMock>();
             services.AddTransient<IUserRepo, UserRepo>();
-            // services.AddTransient<IOrderRepo, OrderRepoMock>();
             services.AddTransient<IOrderRepo, OrderRepo>();
-            // services.AddTransient<IProductRepo, ProductRepoMock>();
             services.AddTransient<IProductRepo, ProductRepo>();
         }
     }

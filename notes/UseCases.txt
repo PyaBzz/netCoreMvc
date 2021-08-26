@@ -16,7 +16,7 @@
  - Search
  - Edit
  - Delete
- - List work items
+ - List Orders
  
 3- Order
  - Add
@@ -24,9 +24,9 @@
  - Search
  - Edit
  - Delete
- - Add to work plan
- - Move to another work plan
- - Remove from work plan (assign to backlog or no work plan)
+ - Add to work Product
+ - Move to another work Product
+ - Remove from work Product (assign to backlog or no work Product)
 
  */
  

@@ -19,7 +19,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "5157163e-5c78-46f3-b5b3-a9eea6b98179",
       "comment": "",
@@ -187,7 +187,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "16e38da7-a974-4ba7-9e6a-430927ee0de5",
       "comment": "",
@@ -435,7 +435,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "e54cc5c0-27c8-478d-b0a4-0dc038888518",
       "comment": "",
@@ -543,7 +543,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "ef60b7e3-494f-40ee-bed4-cf49a2ddb4cd",
       "comment": "",
@@ -627,7 +627,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "16f09fe3-84b4-414e-89ce-2e394ece8e7b",
       "comment": "",
@@ -722,7 +722,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "d7a97bee-9c64-492b-a498-a41b029151b0",
       "comment": "",
@@ -950,7 +950,7 @@
       "command": "verifyText",
       "target": "css=[probe=OrderListHeader]",
       "targets": [],
-      "value": "Work Items"
+      "value": "Orders"
     }, {
       "id": "0d76eea6-fd56-4b60-97f1-ca4620d49d1a",
       "comment": "",

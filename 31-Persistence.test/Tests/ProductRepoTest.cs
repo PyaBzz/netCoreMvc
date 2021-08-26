@@ -14,9 +14,9 @@ namespace myCoreMvc.Test.DataLayer
     {
         private readonly IProductRepo repo;
 
-        private readonly Product plan1 = new Product { Name = "Plan1" };
-        private readonly Product plan2 = new Product { Name = "Plan2" };
-        private readonly Product plan3 = new Product { Name = "Plan3" };
+        private readonly Product Product1 = new Product { Name = "Product1" };
+        private readonly Product Product2 = new Product { Name = "Product2" };
+        private readonly Product Product3 = new Product { Name = "Product3" };
 
         public ProductRepoTest(IProductRepo rep)
         {
