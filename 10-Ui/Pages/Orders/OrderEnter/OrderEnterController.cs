@@ -18,29 +18,23 @@ namespace myCoreMvc.UI.Controllers
     [Area("Orders")]
     public class OrderEnterController : BaseController
     {
-        private readonly IOrderSrv OrderBiz;
-        private readonly IProductRepo ProductRepo;
+        private readonly IOrderSrv orderSrv;
+        private readonly IProductSrv productSrv;
 
-        public OrderEnterController(IOrderSrv orderBiz, IProductRepo productBiz)
+        public OrderEnterController(IOrderSrv o, IProductSrv p)
         {
-            OrderBiz = orderBiz;
-            ProductRepo = productBiz;
+            orderSrv = o;
+            productSrv = p;
         }
 
-        public IActionResult Index(Guid id)
+        public IActionResult Index(Guid? id)
         {
             var inputModel = new EnterModel();
-            inputModel.PriorityChoices = Order.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
-            inputModel.ProductChoices = ProductRepo.GetAll().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.Product });
-            if (id != Guid.Empty)
-            {
-                var item = OrderBiz.Get(id);
-                if (item != null)
-                {
-                    inputModel.CopySimilarPropertiesFrom(item);
-                    inputModel.Product = item.Product.Id.Value; //Task: Product itself works in Get but its Guid works for POST. Find a way to cover both.
-                }
-            }
+            inputModel.PriorityChoices = Order.PriorityChoices.Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = x == inputModel.Priority });
+            inputModel.ProductChoices = productSrv.GetAll().Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString(), Selected = x.Id == inputModel.ProductId });
+            var item = id.HasValue ? orderSrv.Get(id) : new Order();
+            inputModel.CopySimilarPropertiesFrom(item);
+            inputModel.ProductId = item.ProductId;
             return View("OrderEnter", inputModel);
         }
 
@@ -48,37 +42,15 @@ namespace myCoreMvc.UI.Controllers
         //[CustomExceptionFilter]
         public IActionResult Index(EnterModel inputModel)
         {
-            throw new NotImplementedException();
             if (ModelState.IsValid)
             {
-                #region Lesson
-                // We could work with ModelState errors in details using the following:
-                // ModelState.AddModelError("Reference", "It must be in blabla format!")
-                // ModelState.AddModelError("", "This is an object level error rather than property level.")
-                // @Html.ValidationSummary(true)
-                // @Html.ValidationMessageFor(p => p.Reference)
-                #endregion
-
-                // inputModel.PriorityChoices = Order.PriorityChoices.Select(c => new SelectListItem { Text = c.ToString(), Value = c.ToString(), Selected = c == inputModel.Priority });
-                // inputModel.ProductChoices = ProductRepo.GetAll().Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString(), Selected = c.Id == inputModel.Product });
-
-                // var order = inputModel.Id == Guid.Empty
-                //     ? new Order()
-                //     : OrderBiz.Get(inputModel.Id);  //Task: Instead of finding the object again, cache it in the view model as inputModel.Item
-
-                // order.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
-                // workIteProductan ProductanRepo.Get(inputModeProductan); //Task: This is because the getter method from DataRepo is shallow. Could we make it deep to returProductan as well?
-                // var transactionResult = OrderBiz.Of(order).Save();
-
-                // string resultMessage;
-                // switch (transactionResult)
-                // {
-                //     case TransactionResult.Updated: resultMessage = "Item updated"; break;
-                //     case TransactionResult.Added: resultMessage = "New item added"; break;
-                //     default: resultMessage = transactionResult.ToString(); break;
-                // }
-
-                // return RedirectToAction(nameof(OrderListController.Index), Short<OrderListController>.Name, new { message = resultMessage });
+                inputModel.PriorityChoices = Order.PriorityChoices.Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = x == inputModel.Priority });
+                inputModel.ProductChoices = productSrv.GetAll().Select(x => new SelectListItem { Text = x.Name, Value = x.Id.ToString(), Selected = x.Id == inputModel.ProductId });
+                var order = new Order();
+                order.CopySimilarPropertiesFrom(inputModel);  // Prevents malicious over-posting
+                orderSrv.Save(order);
+                string resultMessage = "Item saved";
+                return RedirectToAction(nameof(OrderListController.Index), Short<OrderListController>.Name, new { message = resultMessage });
             }
             else
             {
@@ -90,20 +62,11 @@ namespace myCoreMvc.UI.Controllers
 
         public class EnterModel : IClonable
         {
-            #region Lesson
-            //View models should be simpe data containers.
-            //They should contain no behavior and neither expose nor hold any dependencies.
-            //This forces the Razor views to be simple and stupid and hence most maintainable.
-            //When you follow that practice, only the controller will (and should) have dependencies.
-            //Then the controller should set necessary properties on the VM
-            //This may require filtering or policy enforcement based on business requirements none of which is a concern of VM!
-            #endregion
-
-            public Guid Id { get; set; }
+            public Guid? Id { get; set; }
             [Display(Name = "Item name")]
             [ValidateAlphanumeric(3, 16)]
             public string Name { get; set; }
-            public Guid Product { get; set; }
+            public Guid? ProductId { get; set; }
             public string Reference { get; set; }
             public int Priority { get; set; }
             public IEnumerable<SelectListItem> PriorityChoices { get; set; }

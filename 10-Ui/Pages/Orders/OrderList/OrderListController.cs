@@ -11,16 +11,15 @@ namespace myCoreMvc.UI.Controllers
     [Area("Orders")]
     public class OrderListController : BaseController
     {
-        private readonly IOrderSrv OrderBiz;
+        private readonly IOrderSrv orderSrv;
 
-        public OrderListController(IOrderSrv orderBiz)
-            => OrderBiz = orderBiz;
+        public OrderListController(IOrderSrv o) => orderSrv = o;
 
         public IActionResult Index(string message)
         {
             var listModel = new ListModel
             {
-                Items = OrderBiz.GetListIncluding(wi => wi.Product),
+                Items = orderSrv.GetAll(),
                 Message = message
             };
             return View("OrderList", listModel);
@@ -31,7 +30,7 @@ namespace myCoreMvc.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                listModel.Items = OrderBiz.GetList();
+                listModel.Items = orderSrv.GetAll();
                 var searchFilters = new List<Predicate<Order>>();
                 if (listModel.Search_All != null) searchFilters.Add(wi => Regex.IsMatch(wi.GetStringOfProperties(), listModel.Search_All));
                 if (listModel.Search_Reference != null) searchFilters.Add(wi => Regex.IsMatch(wi.Reference, listModel.Search_Reference));
@@ -42,7 +41,7 @@ namespace myCoreMvc.UI.Controllers
             }
             else
             {
-                listModel.Items = OrderBiz.GetList();
+                listModel.Items = orderSrv.GetAll();
             }
             return View("OrderList", listModel);
         }

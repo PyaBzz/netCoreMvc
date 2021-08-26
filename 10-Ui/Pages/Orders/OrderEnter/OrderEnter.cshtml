@@ -18,7 +18,7 @@ else
 <form method="post">
     <input type="hidden" name="Id" value="@Model.Id" />
     <label>Product</label>
-    <select asp-for=@Model.Product asp-items="Model.ProductChoices"></select>
+    <select asp-for=@Model.ProductId asp-items="Model.ProductChoices"></select>
     <br />
     <label>Reference</label>
     <input type="text" name="Reference" value="@Model.Reference" />

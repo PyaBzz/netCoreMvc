@@ -1,28 +1,21 @@
-﻿using myCoreMvc.Domain;
-using System;
+﻿using System;
+using myCoreMvc.Domain;
+using myCoreMvc.App.Interfaces;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace myCoreMvc.App.Services
 {
     public class OrderSrv : IOrderSrv
     {
-        // private readonly IDataRepo DataRepo;
+        private readonly IOrderRepo repo;
+        public OrderSrv(IOrderRepo r) => repo = r;
 
-        // public OrderBiz(IDataRepo dataRepo)
-        //     => DataRepo = dataRepo;
+        public Order Save(Order x) => repo.Save(x);
 
-        public Order Get(Guid id) => throw new NotImplementedException();
-        public Order Get(Predicate<Order> func) => throw new NotImplementedException();
+        public List<Order> GetAll() => repo.GetAll();
 
-        public List<Order> GetList() => throw new NotImplementedException();
-        public List<Order> GetList(Predicate<Order> func) => throw new NotImplementedException();
-        public List<Order> GetListIncluding(params Expression<Func<Order, object>>[] includeProperties)
-            => throw new NotImplementedException();
-        public List<Order> GetListIncluding(Predicate<Order> predicate, params Expression<Func<Order, object>>[] includeProperties)
-            => throw new NotImplementedException();
+        public Order Get(Guid? id) => repo.Get(id);
 
-        public IOrderSrvOf Of(Order order)
-            => throw new NotImplementedException();
+        public void Delete(Guid? id) => repo.Delete(id);
     }
 }
