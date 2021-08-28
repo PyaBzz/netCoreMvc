@@ -17,5 +17,7 @@ namespace myCoreMvc.App.Services
         public Order Get(Guid? id) => repo.Get(id);
 
         public void Delete(Guid? id) => repo.Delete(id);
+
+        public void DeleteAll() => repo.DeleteAll();
     }
 }

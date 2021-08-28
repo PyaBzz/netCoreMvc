@@ -9,5 +9,6 @@ namespace myCoreMvc.App.Services
         List<Product> GetAll();
         Product Get(Guid id);
         void Delete(Guid id);
+        void DeleteAll();
     }
 }

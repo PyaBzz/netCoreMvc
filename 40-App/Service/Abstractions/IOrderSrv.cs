@@ -10,5 +10,6 @@ namespace myCoreMvc.App.Services
         List<Order> GetAll();
         Order Get(Guid? id);
         void Delete(Guid? id);
+        void DeleteAll();
     }
 }
