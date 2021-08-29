@@ -5,6 +5,7 @@ using Baz.Core;
 
 namespace myCoreMvc.UI.Controllers
 {
+    //Todo: Make available only in dev environment
     [Area("e2eTest")]
     public class EraseController : BaseController
     {
